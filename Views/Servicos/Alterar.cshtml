@@ -1,0 +1,91 @@
+﻿@model Ordem_Servicos_Web.Models.Servico
+
+@{
+    ViewData["Title"] = "Alterar Serviço";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Alterar" method="post" id="formServico">
+    <input type="hidden" asp-for="IdServico" />
+		
+    <!-- Descrição da Servico -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="IdCodigoBase" class="label-destaque">Código Base do Serviço</label>
+            <input asp-for="IdCodigoBase" class="form-control text-uppercase maiusculo" id="IdCodigoBase" readonly style="width:250px;" />
+            <input type="hidden" asp-for="IdCodigoBase" />
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">Categoria de Serviço</label>
+            <input type="text" class="form-control" value="@Model.CategoriaServico?.Descricao" readonly style="width:616px;" id="categoriaServicoSelect" />
+            <input type="hidden" asp-for="IdCategoriaServico" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Descricao" class="label-destaque">Descrição do Servico</label>
+            <input asp-for="Descricao" class="form-control text-uppercase maiusculo" id="Descricao" required autofocus style="width:615px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="ValorServico" class="label-destaque">Valor do Serviço</label>
+            <input asp-for="ValorServico" type="text" inputmode="numeric" class="form-control text-end" id="ValorServico" style="width:250px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
+            <i class="fa fa-save"></i> Salvar Alterações
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const descricao = document.getElementById("Descricao");
+            const valorServico = document.getElementById("ValorServico");
+            const btnSalvar = document.getElementById("btnSalvar");
+            const form = document.getElementById("formServico");
+            const camposObrigatorios = ["Descricao"];
+
+            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+            }
+
+            // Aplicar máscaras de formatação
+            if (valorServico) aplicarMascaraCampo(valorServico, "valor");
+  
+            configurarValidacaoCamposObrigatorios(camposObrigatorios);
+
+            aplicarMaiusculoCampos(".maiusculo");
+
+            // valorServico: Permitir apenas números, vírgula e ponto
+            if (valorServico && btnSalvar) {
+
+               // Ao pressionar Enter dentro do campo
+                valorServico.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // evita submit automático
+                        btnSalvar.focus();
+                    }
+                });
+            }
+
+            // Normalizar valores antes de enviar
+            if (form) {
+                form.addEventListener("submit", function () {
+                    if (valorServico) semMascaraCampo(valorServico);
+                    form.submit();
+                });
+            }
+        });
+    </script>
+}

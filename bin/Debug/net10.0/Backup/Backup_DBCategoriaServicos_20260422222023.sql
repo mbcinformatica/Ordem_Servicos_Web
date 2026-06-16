@@ -1,0 +1,51 @@
+﻿-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
+--
+-- Host: localhost    Database: DBOrdemServicos
+-- ------------------------------------------------------
+-- Server version	8.0.44
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `dbcategoriaservicos`
+--
+
+LOCK TABLES `dbcategoriaservicos` WRITE;
+/*!40000 ALTER TABLE `dbcategoriaservicos` DISABLE KEYS */;
+INSERT INTO `dbcategoriaservicos` VALUES (15,'AUTOMOTIVO');
+INSERT INTO `dbcategoriaservicos` VALUES (8,'CONSTRUÇÃO');
+INSERT INTO `dbcategoriaservicos` VALUES (2,'CONSULTORIA');
+INSERT INTO `dbcategoriaservicos` VALUES (12,'DESIGN');
+INSERT INTO `dbcategoriaservicos` VALUES (7,'EDUCAÇÃO');
+INSERT INTO `dbcategoriaservicos` VALUES (14,'EVENTOS');
+INSERT INTO `dbcategoriaservicos` VALUES (10,'FINANCEIRO');
+INSERT INTO `dbcategoriaservicos` VALUES (1,'INSTALAÇÕES');
+INSERT INTO `dbcategoriaservicos` VALUES (13,'JURÍDICO');
+INSERT INTO `dbcategoriaservicos` VALUES (9,'LIMPEZA');
+INSERT INTO `dbcategoriaservicos` VALUES (3,'MANUTENÇÃO');
+INSERT INTO `dbcategoriaservicos` VALUES (11,'MARKETING');
+INSERT INTO `dbcategoriaservicos` VALUES (6,'SAÚDE');
+INSERT INTO `dbcategoriaservicos` VALUES (5,'TECNOLOGIA');
+INSERT INTO `dbcategoriaservicos` VALUES (4,'TRANSPORTE');
+/*!40000 ALTER TABLE `dbcategoriaservicos` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-04-22 22:20:23

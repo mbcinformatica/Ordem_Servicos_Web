@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Produto>
+
+@foreach (var produto in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Alterar" asp-route-id="@produto.IdProduto" class="btn btn-alterar btn-sm">
+                <i class="fa fa-edit"></i> Alterar
+            </a>
+            <a asp-action="Excluir" asp-route-id="@produto.IdProduto" class="btn btn-excluir btn-sm">
+                <i class="fa fa-trash"></i> Excluir
+            </a>
+            <a asp-action="Detalhes" asp-route-id="@produto.IdProduto" class="btn btn-detalhes btn-sm">
+                <i class="fa fa-eye"></i> Detalhes
+            </a>
+        </td>
+        <td>
+            @if (produto.Imagem != null)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(produto.Imagem)"
+                     alt="Imagem do Produto" style="width:50px;height:50px;border-radius:50%;" />
+            }
+            else
+            {
+                <span>Sem foto</span>
+            }
+        </td>
+        <td class="text-end>@produto.IdProduto</td>
+        <td>@produto.IdProdutoInterno</td>
+        <td>@produto.IdProdutoFabricante</td>
+        <td>@produto.Descricao</td>
+        <td>@produto.Fornecedor?.NomeRazaoSocial</td>
+        <td>@produto.Marca?.Descricao</td>
+        <td>@produto.Modelo?.Descricao</td>
+        <td>@produto.Unidade?.Descricao</td>
+        <td class="text-end">@produto.PrecoCompraFormatado</td>
+        <td class="text-end">@produto.PrecoVendaFormatado</td>
+        <td class="text-end">@produto.EstoqueAtualFormatado</td>
+        <td class="text-end">@produto.EstoqueMinimoFormatado</td>
+    </tr>
+}

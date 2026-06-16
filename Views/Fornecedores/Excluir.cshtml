@@ -1,0 +1,40 @@
+﻿@model Ordem_Servicos_Web.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Excluir Fornecedor";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<modal-confirmacao id-modal="confirmarExclusao"
+                   icone="fa fa-trash"
+                   titulo="Excluir Fornecedor"
+                   mensagem="Tem Certeza que Deseja Excluir Este Fornecedor?"
+                   classe-mensagem="mensagem-sucesso-modal"
+                   action-controller="Fornecedores"
+                   action-name="Excluir"
+                   id-registro="@Model.IdFornecedor"
+                   icone-botao-principal="fa fa-trash"
+                   texto-botao-principal="Excluir"
+                   classe-botao-principal="btn-excluir"
+                   texto-botao-cancelar="Voltar"
+                   classe-botao-secundario="btn-voltar"
+                   action-controller-secundario="Fornecedores"
+                   action-name-secundario="Index">
+</modal-confirmacao>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+            var modalElement = document.getElementById("confirmarExclusao");
+            if (modalElement) {
+                var modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            }
+        });
+    </script>
+}

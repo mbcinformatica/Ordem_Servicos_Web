@@ -1,0 +1,15 @@
+﻿@* Este partial carrega os scripts de validação do lado do cliente *@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<!-- Inputmask (jQuery plugin) via CDN para garantir disponibilidade do método $.fn.inputmask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.11/jquery.inputmask.bundle.min.js"></script>
+
+<script>
+    // Verificação opcional em ambiente de desenvolvimento
+    if (typeof $ === 'undefined') {
+        console.error('jQuery não foi carregado antes dos scripts de validação.');
+    } else if (!$.fn.inputmask) {
+        console.error('Inputmask não está disponível. Verifique o carregamento do script.');
+    }
+</script>

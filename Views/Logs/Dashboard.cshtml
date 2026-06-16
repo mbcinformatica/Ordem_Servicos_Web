@@ -1,0 +1,69 @@
+﻿@model Ordem_Servicos_Web.Models.LogsDashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard de Logs";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Últimos 10 Logs</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Data/Hora</th>
+            <th>Nível</th>
+            <th>Mensagem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model.UltimosLogs)
+        {
+            <tr>
+                <td>@log.Timestamp.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@log.Level</td>
+                <td>@log.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Erros Críticos (últimas 24h)</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Data/Hora</th>
+            <th>Mensagem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model.ErrosCriticos24h)
+        {
+            <tr class="table-danger">
+                <td>@log.Timestamp.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@log.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Quantidade por Nível</h3>
+<ul class="list-group mb-3">
+    @foreach (var item in Model.QuantidadePorNivel)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            @item.Level
+            <span class="badge bg-primary rounded-pill">@item.Total</span>
+        </li>
+    }
+</ul>
+
+<h3>Quantidade por Dia</h3>
+<ul class="list-group">
+    @foreach (var item in Model.QuantidadePorDia)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            @item.Dia.ToShortDateString()
+            <span class="badge bg-secondary rounded-pill">@item.Total</span>
+        </li>
+    }
+</ul>

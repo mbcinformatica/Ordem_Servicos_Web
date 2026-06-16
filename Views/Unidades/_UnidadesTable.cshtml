@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Unidade>
+
+@foreach (var unidade in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Alterar" asp-route-id="@unidade.IdUnidade" class="btn btn-alterar btn-sm">
+                <i class="fa fa-edit"></i> Alterar
+            </a>
+            <a asp-action="Excluir" asp-route-id="@unidade.IdUnidade" class="btn btn-excluir btn-sm">
+                <i class="fa fa-trash"></i> Excluir
+            </a>
+        </td>
+        <td class="text-end">@unidade.IdUnidade</td>
+        <td>@unidade.Descricao</td>
+    </tr>
+}

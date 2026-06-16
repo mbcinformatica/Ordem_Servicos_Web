@@ -1,0 +1,278 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Usuario>
+
+@{
+<<<<<<< HEAD
+    ViewData["Title"] = "Gerenciamento de Usuários";
+=======
+    ViewData["Title"] = "Cadastro de Usuários";
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+    int page = ViewBag.Page ?? 1;
+    int totalPaginas = ViewBag.TotalPaginas ?? 1;
+    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+    string search = ViewBag.Search ?? "";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<<<<<<< HEAD
+=======
+@if (TempData["Mensagem"] != null)
+{
+    <div class="modal fade" id="mensagemModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header bg-success text-white justify-content-center">
+                    <h5 class="modal-title">
+                        <i class="fa fa-check-circle me-2"></i> Sucesso
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-bold fs-5">
+                        <i class="fa fa-check text-success me-2"></i>
+                        @TempData["Mensagem"]
+                    </p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+<div class="table-responsive">
+    <table class="table-os table-os-striped table-os-bordered table-os-condensed w-100 mb-0">
+        <thead class="table-dark">
+            <tr>
+                <th style="width:150px;">Ações</th>
+                <th>Foto</th>
+<<<<<<< HEAD
+                <th class="sortable">ID</th>
+                <th class="sortable">NOME</th>
+                <th class="sortable">LOGIN</th>
+=======
+                <th>ID</th>
+                <th>NOME</th>
+                <th>LOGIN</th>
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+                <th>CEP</th>
+                <th>ENDEREÇO</th>
+                <th>NÚMERO</th>
+                <th>BAIRRO</th>
+                <th>MUNICÍPIO</th>
+                <th>UF</th>
+<<<<<<< HEAD
+                <th>FONE FIXO</th>
+                <th>FONE CELULAR</th>
+=======
+                <th>CELULAR</th>
+                <th>FIXO</th>
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+                <th>E-MAIL</th>
+                <th>DATA CADASTRO</th>
+            </tr>
+        </thead>
+        <tbody id="usuariosTable">
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Alterar" asp-route-id="@usuario.IdUsuario" class="btn btn-alterar btn-sm">
+                            <i class="fa fa-edit"></i> Alterar
+                        </a>
+                        <a asp-action="Excluir" asp-route-id="@usuario.IdUsuario" class="btn btn-excluir btn-sm">
+                            <i class="fa fa-trash"></i> Excluir
+                        </a>
+<<<<<<< HEAD
+                        <a asp-action="Detalhes" asp-route-id="@usuario.IdUsuario" class="btn btn-detalhes btn-sm">
+=======
+                        <a asp-action="Detalhes" asp-route-id="@usuario.IdUsuario" class="btn btn-info btn-sm">
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+                            <i class="fa fa-eye"></i> Detalhes
+                        </a>
+                    </td>
+                    <td>
+                        @if (usuario.Imagem != null)
+                        {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(usuario.Imagem)"
+                                 alt="Foto do Usuário" style="width:50px;height:50px;border-radius:50%;" />
+                        }
+                        else
+                        {
+                            <span>Sem foto</span>
+                        }
+                    </td>
+<<<<<<< HEAD
+                    <td class="text-end">@usuario.IdUsuario</td>
+                    <td>@usuario.NomeUsuario</td>
+                    <td>@usuario.Login</td>
+                    <td class="text-center">@usuario.CepFormatado</td>
+                    <td>@usuario.Endereco</td>
+                    <td class="text-end">@usuario.Numero</td>
+                    <td>@usuario.Bairro</td>
+                    <td>@usuario.Municipio</td>
+                    <td class="text-center">@usuario.Uf</td>
+                    <td class="text-center">@usuario.FoneFixoFormatado</td>
+                    <td class="text-center">@usuario.FoneCelularFormatado</td>
+                    <td>@usuario.EmailFormatado</td>
+                    <td class="text-end">@usuario.DataCadastro.ToShortDateString()</td>
+=======
+                    <td>@usuario.IdUsuario</td>
+                    <td>@usuario.NomeUsuario</td>
+                    <td>@usuario.Login</td>
+                    <td>@usuario.CepFormatado</td>
+                    <td>@usuario.Endereco</td>
+                    <td>@usuario.Numero</td>
+                    <td>@usuario.Bairro</td>
+                    <td>@usuario.Municipio</td>
+                    <td>@usuario.Uf</td>
+                    <td>@usuario.Fone1Formatado</td>
+                    <td>@usuario.Fone2Formatado</td>
+                    <td>@usuario.EmailFormatado</td>
+                    <td>@usuario.DataCadastro.ToShortDateString()</td>
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<input type="text" id="searchBox" value="@search"
+       class="input-pesquisa"
+<<<<<<< HEAD
+       placeholder="..." style="max-width:1000px;" />
+=======
+       placeholder="Pesquisar Usuário por Nome..." style="max-width:1000px;" />
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+
+<!-- Rodapé -->
+<div class="d-flex justify-content-between align-items-center mt-2 flex-wrap">
+    <div class="d-flex align-items-center flex-wrap">
+<<<<<<< HEAD
+        <a class="btn btn-navegacao btn-bg me-2 @(page == 1 ? "disabled" : "")"
+=======
+        <a class="btn btn-navegacao btn-sm me-2 @(page == 1 ? "disabled" : "")"
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+           asp-action="Index" asp-route-page="@(page - 1)" asp-route-search="@search">
+            <i class="fa fa-arrow-left"></i> Anterior
+        </a>
+
+        <span class="fw-bold text-black me-2">Página: @(page) - @totalPaginas</span>
+
+<<<<<<< HEAD
+        <a class="btn btn-navegacao btn-bg me-3 @(page == totalPaginas ? "disabled" : "")"
+=======
+        <a class="btn btn-navegacao btn-sm me-3 @(page == totalPaginas ? "disabled" : "")"
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+           asp-action="Index" asp-route-page="@(page + 1)" asp-route-search="@search">
+            Próximo <i class="fa fa-arrow-right"></i>
+        </a>
+
+        <span id="totalRegistros" class="fw-bold text-black me-2">Total de Registros: @totalRegistros</span>
+    </div>
+
+    <div class="d-flex gap-2">
+<<<<<<< HEAD
+        <a asp-action="Create" class="btn btn-novo btn-bg">
+            <i class="fa fa-plus"></i> Novo Usuário
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-voltar btn-bg" onclick="liberarMenu()">
+=======
+        <a asp-action="Create" class="btn btn-novo">
+            <i class="fa fa-plus"></i> Novo Usuário
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-voltar">
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+            <i class="fa fa-home"></i> Voltar
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+<<<<<<< HEAD
+    
+    <!-- Importa o arquivo JS reutilizável -->
+    <script src="~/js/PesquisaDinamica.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            initSortableTable({
+                tableSelector: "table",
+                searchBoxSelector: "#searchBox",
+                targetTableBody: "#usuariosTable",
+                totalRegSelector: "#totalRegistros",
+                colMap: {
+                    2: "IdUsuario",
+                    3: "NomeUsuario",
+                    4: "Login"
+                },
+                initialCol: 3,              // começa em NomeRazaoSocial
+                initialDirection: true,     // ascendente
+                searchUrl: '@Url.Action("Search", "Usuarios")',
+                indexUrl: '@Url.Action("Index", "Usuarios", new { page = 1 })',
+                defaultSearchColumn: "NomeUsuario",
+                placeholders: {
+                    "IdUsuario": "Pesquisar Usuário por ID...",
+                    "Login": "Pesquisar Usuário por Login...",
+                    "NomeUsuario": "Pesquisar Usuário por Nome..."
+                }
+            });
+        });
+    </script>
+}
+=======
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modalElement = document.getElementById("mensagemModal");
+            if (modalElement) {
+                var modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            }
+
+            if (typeof aplicarFormatacaoTabela === "function") {
+                aplicarFormatacaoTabela();
+            }
+        });
+
+        // Busca dinâmica
+        document.getElementById("searchBox").addEventListener("keyup", function () {
+            var searchValue = this.value.trim();
+
+            if (searchValue.length > 0) {
+                fetch('@Url.Action("Search", "Usuarios")?search=' + encodeURIComponent(searchValue))
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("usuariosTable").innerHTML = html;
+
+                        var total = document.querySelectorAll("#usuariosTable tr").length;
+                        document.getElementById("totalRegistros").innerText = "Total de Registros: " + total;
+
+                        if (typeof aplicarFormatacaoTabela === "function") {
+                            aplicarFormatacaoTabela();
+                        }
+                    });
+            } else {
+                window.location.href = '@Url.Action("Index", "Usuarios", new { page = 1 })';
+            }
+        });
+
+        // Corrigido seletor para usuariosTable
+        function aplicarFormatacaoTabela() {
+            document.querySelectorAll("#usuariosTable tr").forEach(tr => {
+                let cep = tr.children[5];   // ajustado índice por nova coluna Foto
+                let fone1 = tr.children[11];
+                let fone2 = tr.children[12];
+                let email = tr.children[13];
+
+                if (cep) cep.innerText = formatCep(cep.innerText);
+                if (fone1) fone1.innerText = formatTelefone(fone1.innerText);
+                if (fone2) fone2.innerText = formatTelefone(fone2.innerText);
+                if (email) email.innerText = converteParaMinusculo(email.innerText);
+            });
+        }
+    </script>
+}
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

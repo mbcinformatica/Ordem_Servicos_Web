@@ -1,0 +1,37 @@
+private readonly PermissaoService _permissaoService;
+            
+_permissaoService = permissaoService;
+				
+, PermissaoService permissaoService)				
+						
+						var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+            if (!_permissaoService.PodeExecutar(idUsuario, idMenu: 4, idItensMenu: 27))
+            {
+                TempData["Mensagem"] = "Você não tem Permissão para Acessar essa Tela.";
+                TempData["MensagemTipo"] = "aviso";
+                return RedirectToAction("Index", "Home");
+            }
+						
+            var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+            if (!_permissaoService.PodeCriar(idUsuario, idMenu: 4, idItensMenu: 27))
+            {
+                TempData["Mensagem"] = "Você não tem Permissão para Executar essa Ação.";
+                TempData["MensagemTipo"] = "aviso";
+                return RedirectToAction("Index");
+            }
+
+            var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+            if (!_permissaoService.PodeAlterar(idUsuario, idMenu: 4, idItensMenu: 27))
+            {
+                TempData["Mensagem"] = "Você não tem Permissão para Executar essa Ação.";
+                TempData["MensagemTipo"] = "aviso";
+                return RedirectToAction("Index");
+            }
+
+            var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+            if (!_permissaoService.PodeExcluir(idUsuario, idMenu: 4, idItensMenu: 27))
+            {
+                TempData["Mensagem"] = "Você não tem Permissão para Executar essa Ação.";
+                TempData["MensagemTipo"] = "aviso";
+                return RedirectToAction("Index");
+            }						

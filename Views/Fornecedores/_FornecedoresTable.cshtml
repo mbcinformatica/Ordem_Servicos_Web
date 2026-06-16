@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Fornecedor>
+
+@foreach (var fornecedor in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Alterar" asp-route-id="@fornecedor.IdFornecedor" class="btn btn-alterar btn-sm">
+                <i class="fa fa-edit"></i> Alterar
+            </a>
+            <a asp-action="Excluir" asp-route-id="@fornecedor.IdFornecedor" class="btn btn-excluir btn-sm">
+                <i class="fa fa-trash"></i> Excluir
+            </a>
+        </td>
+        <td>@fornecedor.IdFornecedor</td>
+        <td>@fornecedor.TipoPessoa</td>
+        <td>@fornecedor.CpfCnpjFormatado</td>
+        <td>@fornecedor.NomeRazaoSocial</td>
+        <td>@fornecedor.Endereco</td>
+        <td>@fornecedor.Numero</td>
+        <td>@fornecedor.Bairro</td>
+        <td>@fornecedor.Municipio</td>
+        <td>@fornecedor.Uf</td>
+        <td>@fornecedor.CepFormatado</td>
+        <td>@fornecedor.Contato</td>
+        <td>@fornecedor.FoneFixoFormatado</td>
+        <td>@fornecedor.FoneCelularFormatado</td>
+        <td>@fornecedor.EmailFormatado</td>
+        <td>@fornecedor.DataCadastro.ToShortDateString()</td>
+    </tr>
+}

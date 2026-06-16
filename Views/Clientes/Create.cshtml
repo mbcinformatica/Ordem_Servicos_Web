@@ -1,0 +1,389 @@
+﻿@model Ordem_Servicos_Web.Models.Cliente
+
+@{
+    ViewData["Title"] = "Novo Cliente";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<<<<<<< HEAD
+<partial name="_MensagemToast" />
+
+<form asp-action="Create" method="post" id="formCliente" enctype="multipart/form-data">
+
+=======
+<!-- Caixa de mensagem centralizada no topo -->
+<div class="mensagem-container" style="display:none;">
+    <div id="toastMensagem"
+         class="mensagem-custom d-inline-flex align-items-center"
+         role="alert" aria-live="assertive" aria-atomic="true">
+        <span id="toastTexto" class="me-3"></span>
+        <button type="button"
+                class="btn-close ms-2"
+                data-bs-dismiss="toast"
+                aria-label="Fechar"></button>
+    </div>
+</div>
+
+<form asp-action="Create" method="post" id="formCliente" enctype="multipart/form-data">
+
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+    <!-- Linha 1 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="TipoPessoa" class="label-destaque">Tipo de Pessoa</label>
+<<<<<<< HEAD
+            <select asp-for="TipoPessoa" id="TipoPessoa" class="form-select maiusculo" style="width:120px;" autofocus>
+                <option value="FÍSICA">FÍSICA</option>
+                <option value="JURÍDICA">JURÍDICA</option>
+=======
+            <select asp-for="TipoPessoa" class="form-select" id="TipoPessoa" style="width:120px;">
+                <option value="FÍSICA">Física</option>
+                <option value="JURÍDICA">Jurídica</option>
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+            </select>
+        </div>
+        <div class="col-auto">
+            <label asp-for="CpfCnpj" class="label-destaque">CPF/CNPJ</label>
+<<<<<<< HEAD
+            <input asp-for="CpfCnpj" id="CpfCnpj" type="text" inputmode="numeric" class="form-control" maxlength="18" style="width:200px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="NomeRazaoSocial" class="label-destaque">Nome/Razão Social</label>
+            <input asp-for="NomeRazaoSocial" id="NomeRazaoSocial" class="form-control text-uppercase maiusculo" maxlength="150" style="width:561px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Cep" class="label-destaque">CEP</label>
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" maxlength="9" style="width:130px;" />
+=======
+            <input asp-for="CpfCnpj" class="form-control" id="CpfCnpj" inputmode="numeric" maxlength="14" style="width:170px;" />
+            <span asp-validation-for="CpfCnpj" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="NomeRazaoSocial" class="label-destaque">Nome/Razão Social</label>
+            <input asp-for="NomeRazaoSocial" class="form-control text-uppercase" id="NomeRazaoSocial" maxlength="150" style="width:600px;" />
+            <span asp-validation-for="NomeRazaoSocial" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Cep" class="label-destaque">CEP</label>
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" style="width:120px;" />
+            <span asp-validation-for="Cep" class="text-danger"></span>
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+        </div>
+    </div>
+
+    <!-- Linha 2 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Endereco" class="label-destaque">Endereço</label>
+<<<<<<< HEAD
+            <input asp-for="Endereco" id="Endereco" class="form-control text-uppercase maiusculo" maxlength="100" style="width:515px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Numero" class="label-destaque">Número</label>
+            <input asp-for="Numero" id="Numero" type="text" class="form-control text-uppercase text-end maiusculo" style="width:100px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Bairro" class="label-destaque">Bairro</label>
+            <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase maiusculo" maxlength="50" style="width:435px;" />
+=======
+            <input asp-for="Endereco" class="form-control text-uppercase" maxlength="100" style="width:500px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Numero" class="label-destaque">Número</label>
+            <input asp-for="Numero" id="Numero" type="text" class="form-control text-uppercase" maxlength="10" style="width:100px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Bairro" class="label-destaque">Bairro</label>
+            <input asp-for="Bairro" class="form-control text-uppercase" maxlength="50" style="width:435px;" />
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+        </div>
+    </div>
+
+    <!-- Linha 3 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Municipio" class="label-destaque">Município</label>
+<<<<<<< HEAD
+            <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase maiusculo" maxlength="100" style="width:450px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Uf" class="label-destaque">UF</label>
+            <estado-select asp-for="Uf" id="Uf"></estado-select>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Contato" class="label-destaque">Contato</label>
+            <input asp-for="Contato" id="Contato" class="form-control text-uppercase maiusculo" maxlength="50" style="width:400px;" />
+=======
+            <input asp-for="Municipio" class="form-control text-uppercase" maxlength="100" style="width:500px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Uf" class="label-destaque">UF</label>
+            <estado-select asp-for="Uf"></estado-select>
+            <span asp-validation-for="Uf" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Contato" class="label-destaque">Contato</label>
+            <input asp-for="Contato" class="form-control text-uppercase" maxlength="50" style="width:485px;" />
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+        </div>
+    </div>
+
+    <!-- Linha 4 -->
+    <div class="row mb-2 g-4">
+
+        <div class="col-auto">
+<<<<<<< HEAD
+            <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
+            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control" maxlength="15" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
+            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control" maxlength="15" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Email" class="label-destaque">Email</label>
+            <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo" style="width:530px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
+            <input asp-for="DataCadastro" id="DataCadastro" type="date" class="form-control" readonly
+=======
+            <label asp-for="Fone1" class="label-destaque">Telefone 1</label>
+            <input asp-for="Fone1" id="Fone1" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Fone2" class="label-destaque">Telefone 2</label>
+            <input asp-for="Fone2" id="Fone2" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Email" class="label-destaque">Email</label>
+            <input asp-for="Email" id="Email" class="form-control text-lowercase" style="width:530px;" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
+            <input asp-for="DataCadastro" type="date" class="form-control" readonly
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+                   value="@DateTime.Now.ToString("yyyy-MM-dd")" style="width:180px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+<<<<<<< HEAD
+        <button type="submit" id="btnSalvar" class="btn btn-bg btn-salvar">
+            <i class="fa fa-save"></i> Salvar Cliente
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+=======
+        <button type="submit" class="btn btn-salvar">
+            <i class="fa fa-save"></i> Salvar Cliente
+        </button>
+        <a asp-action="Index" class="btn btn-voltar">
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+<<<<<<< HEAD
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const tipoPessoa   = document.getElementById("TipoPessoa");
+            const cpfCnpj      = document.getElementById("CpfCnpj");
+            const cep          = document.getElementById("Cep");
+            const foneFixo     = document.getElementById("FoneFixo");
+            const foneCelular  = document.getElementById("FoneCelular");
+            const email        = document.getElementById("Email");
+            const form         = document.getElementById("formCliente");
+            const btnSalvar    = document.getElementById("btnSalvar");
+
+            const camposObrigatorios = [
+                "CpfCnpj",
+                "NomeRazaoSocial",
+                "Cep",
+                "Endereco",
+                "Bairro",
+                "Municipio",
+                "Uf"
+            ];
+
+            aplicarMaiusculoCampos(".maiusculo");
+            aplicarMinusculoCampos(".minusculo");
+
+            // Aplicar máscaras de formatação
+            if (cpfCnpj) aplicarCpfCnpj(cpfCnpj, tipoPessoa.value);
+            if (cep) aplicarMascaraCampo(cep, "cep");
+            if (foneFixo) aplicarMascaraCampo(foneFixo, "telefone");
+            if (foneCelular) aplicarMascaraCampo(foneCelular, "telefone");
+
+            // 🔹 Configuração automática de validação
+            if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "CLIENTES");
+                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+                }
+
+                form.addEventListener("submit", function () {
+                    if (cpfCnpj)     semMascaraCampo(cpfCnpj);
+                    if (cep)         semMascaraCampo(cep);
+                    if (foneFixo)    semMascaraCampo(foneFixo);
+                    if (foneCelular) semMascaraCampo(foneCelular);
+                });
+            }
+
+            // Atualizar máscara ao trocar tipo de pessoa
+            if (tipoPessoa) {
+                tipoPessoa.addEventListener("change", function () {
+                    cpfCnpj.value = "";
+                    aplicarCpfCnpj(cpfCnpj, tipoPessoa.value);
+                });
+            }
+
+            // Focar no botão salvar a partir do campo de email
+            if (email && btnSalvar) {
+                email.addEventListener("blur", function () {
+                    if (email.classList.contains("Invalid")) {
+                        email.focus();
+                    } else {
+                        btnSalvar.focus();
+                    }
+                });
+                email.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        btnSalvar.focus();
+                    }
+                });
+            }
+        });
+    </script>
+}
+=======
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/formatters.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Foca no campo Tipo de Pessoa ao carregar
+            const tipoPessoa = document.getElementById("TipoPessoa");
+            const cpfCnpj = document.getElementById("CpfCnpj");
+            const campos = document.querySelectorAll("input, select, textarea");
+            const email = document.getElementById("Email");
+            const cep = document.getElementById("Cep");
+            const fone2 = document.getElementById("Fone2");
+            const fone1 = document.getElementById("Fone1");
+            const btnSalvar = document.querySelector("button[type='submit']");
+
+            // Enter vai para o próximo campo
+            campos.forEach(function (el, index) {
+                el.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        const next = campos[index + 1];
+                        if (next) next.focus();
+                    }
+                });
+            });
+            // Campos de texto que devem ficar em maiúsculo
+            document.querySelectorAll("#NomeRazaoSocial, #Numero, #Endereco, #Bairro, #Municipio, #Contato, #Uf")
+                .forEach(input => input.addEventListener("blur", () => {
+                    input.value = input.value.toUpperCase().trim();
+                }));
+            // Apenas números
+            [cpfCnpj, cep, fone1, fone2].forEach(campo => {
+                if (campo) {
+                    campo.addEventListener("input", () => apenasNumeros(campo));
+                }
+            });
+
+            if (cpfCnpj) {
+                 cpfCnpj.addEventListener("blur", function () {
+                     const cpfcnpj = cpfCnpj.value.trim();
+                     if (cpfcnpj.length > 0) {
+                         fetch(`/Clientes/VerificarCpfCnpj?cpfcnpj=${encodeURIComponent(cpfcnpj)}`)
+                             .then(response => response.json())
+                             .then(data => {
+                                 if (data.existe) {
+                                     mostrarToast("CPF/CNPJ já Cadastrado.", "aviso");
+                                     cpfCnpj.focus();
+                                 } else {
+                                     mostrarToast("CPF/CNPJ Disponível.", "sucesso");
+                                     cpfCnpj.value = formatCpfCnpj(cpfCnpj.value, tipoPessoa.value);
+                                     if (!validarCpfCnpj(cpfCnpj, tipoPessoa.value)) {
+                                         cpfCnpj.focus();
+                                     } else {
+                                         buscarCNPJ("CpfCnpj", "TipoPessoa", "NomeRazaoSocial", "Endereco", "Numero", "Bairro", "Municipio", "Uf", "Cep", "Fone1", "Fone2", "Email", "Contato");
+                                     }
+                                 }
+                             })
+                             .catch(() => {
+                                 mostrarToast("Erro ao Verificar CPF/CNPJ.", "erro");
+                             });
+                     }
+                 });
+            }
+            // CEP
+            if (cep) {
+                cep.addEventListener("blur", () => {
+                    cep.value = formatCep(cep.value);
+                    if (!validarCep(cep)) {
+                        cep.focus();
+                    } else {
+                        buscarCEP("Cep", "Endereco", "Bairro", "Municipio", "Uf");
+                    }
+                });
+            }
+            // Telefone 1
+            if (fone1) fone1.addEventListener("blur", () => {
+                fone1.value = formatTelefone(fone1.value);
+                if (!validarTelefone(fone1)) fone1.focus();
+            });
+
+            // Telefone 2
+            if (fone2) fone2.addEventListener("blur", () => {
+                fone2.value = formatTelefone(fone2.value);
+                if (!validarTelefone(fone2)) fone2.focus();
+            });
+
+            // Email
+            if (email && btnSalvar) {
+                email.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        email.value = converteParaMinusculo(email.value);
+                        if (!validarEmail(email)) {
+                            email.focus();
+                        } else {
+                            btnSalvar.focus();
+                        }
+                    }
+                });
+            }
+
+            // Antes de enviar → remove formatação
+            const form = document.getElementById("formCliente");
+            if (form) {
+                form.addEventListener("submit", function () {
+                    if (cpfCnpj) cpfCnpj.value = SemFormatacao(cpfCnpj.value);
+                    if (cep) cep.value = SemFormatacao(cep.value);
+                    if (fone1) fone1.value = SemFormatacao(fone1.value);
+                    if (fone2) fone2.value = SemFormatacao(fone2.value);
+                    if (email) email.value = converteParaMinusculo(email.value);
+                });
+            }
+        });
+    </script>
+}
+
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

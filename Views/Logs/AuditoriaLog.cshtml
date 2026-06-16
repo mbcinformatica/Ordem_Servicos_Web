@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Log>
+
+@{
+    ViewData["Title"] = "Consulta de Logs";
+    int page = ViewBag.Page ?? 1;
+    int totalPaginas = ViewBag.TotalPaginas ?? 1;
+    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+    string search = ViewBag.Search ?? "";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<form method="get" asp-action="AuditoriaLog">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="inicio">Data Início</label>
+            <input type="date" name="inicio" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label for="fim">Data Fim</label>
+            <input type="date" name="fim" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label for="usuarioSelect">Usuário</label>
+            <select name="usuario" class="form-control" id="usuarioSelect">
+                <option value="">-- Clique para carregar Usuários --</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="Acao" class="label-destaque">Ação</label>
+            <select name="acao" id="Acao" class="form-select">
+                <option value="">-- Selecione --</option>
+                <option value="Criar">Criar</option>
+                <option value="Alterar">Alterar</option>
+                <option value="Excluir">Excluir</option>
+            </select>
+        </div>
+    </div>
+    <div class="d-flex gap-2 mt-3">
+        <button type="submit" class="btn btn-salvar btn-bg">Filtrar</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-voltar btn-bg" onclick="liberarMenu()">
+            <i class="fa fa-home"></i> Voltar
+        </a>
+    </div>
+</form>
+
+<div class="table-responsive mt-3">
+    <table class="table-os table-os-striped table-os-bordered table-os-condensed w-100 mb-0">
+        <thead class="table-dark">
+            <tr>
+                <th>DATA/HORA</th>
+                <th>NÍVEL</th>
+                <th>MENSAGEM</th>
+                <th>USUÁRIO</th>
+                <th>AÇÃO</th>
+                <th>TABELA</th>
+                <th>CÓDIGO REGISTRO</th>
+                <th>OBSERVAÇÕES</th>
+            </tr>
+        </thead>
+        <tbody id="logsTable">
+            @foreach (var log in Model)
+            {
+                <tr>
+                    <td>@log.Timestamp.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                    <td>@log.Level</td>
+                    <td>@log.Message</td>
+                    <td>@log.Usuario?.NomeUsuario</td>
+                    <td>@log.Acao</td>
+                    <td>@log.Tabela</td>
+                    <td class="text-end">@log.IdRegistro</td>
+                    <td>@log.Observacao</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Rodapé -->
+<div class="d-flex justify-content-between align-items-center mt-2 flex-wrap">
+    <div class="d-flex align-items-center flex-wrap">
+        <a class="btn btn-navegacao btn-bg me-2 @(page == 1 ? "disabled" : "")"
+               asp-action="AuditoriaLog" asp-route-page="@(page - 1)" asp-route-search="@search">
+            <i class="fa fa-arrow-left"></i> Anterior
+        </a>
+        <span class="fw-bold text-black me-2">Página: @(page) - @totalPaginas</span>
+        <a class="btn btn-navegacao btn-bg me-3 @(page == totalPaginas ? "disabled" : "")"
+               asp-action="AuditoriaLog" asp-route-page="@(page + 1)" asp-route-search="@search">
+            Próximo <i class="fa fa-arrow-right"></i>
+        </a>
+        <span id="totalRegistros" class="fw-bold text-black me-2">Total de Registros: @totalRegistros</span>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            // Ao clicar no campo Usuário → carregar usuários
+            document.getElementById("usuarioSelect").addEventListener("focus", function () {
+                var usuarioSelect = this;
+                if (usuarioSelect.options.length <= 1) {
+                    fetch('/Logs/GetUsuarios')
+                        .then(response => response.json())
+                        .then(data => {
+                            usuarioSelect.innerHTML = "";
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione um Usuário --";
+                            option.value = "";
+                            usuarioSelect.appendChild(option);
+
+                            data.forEach(function (usuario) {
+                                var option = document.createElement("option");
+                                option.value = usuario.idUsuario;
+                                option.text = usuario.nomeUsuario;
+                                usuarioSelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+        });
+    </script>
+}

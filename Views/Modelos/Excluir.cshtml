@@ -1,0 +1,41 @@
+﻿@model Ordem_Servicos_Web.Models.Modelo
+
+@{
+    ViewData["Title"] = "Excluir Modelo";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+
+<modal-confirmacao id-modal="confirmarExclusao"
+                   icone="fa fa-trash"
+                   titulo="Excluir Modelo"
+                   mensagem="Tem Certeza que Deseja Excluir Este Modelo?"
+                   classe-mensagem="mensagem-sucesso-modal"
+                   action-controller="Modelos"
+                   action-name="Excluir"
+                   id-registro="@Model.IdModelo"
+                   icone-botao-principal="fa fa-trash"
+                   texto-botao-principal="Excluir"
+                   classe-botao-principal="btn-excluir"
+                   texto-botao-cancelar="Voltar"
+                   classe-botao-secundario="btn-voltar"
+                   action-controller-secundario="Modelos"
+                   action-name-secundario="Index">
+</modal-confirmacao>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+            var modalElement = document.getElementById("confirmarExclusao");
+            if (modalElement) {
+                var modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Permissao>
+
+@foreach (var p in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Alterar" asp-route-id="@p.IdPermissao" class="btn btn-alterar btn-sm">
+                <i class="fa fa-edit"></i> Alterar
+            </a>
+            <a asp-action="Excluir" asp-route-id="@p.IdPermissao" class="btn btn-excluir btn-sm">
+                <i class="fa fa-trash"></i> Excluir
+            </a>
+        </td>
+        <td class="text-end">@p.IdPermissao</td>
+        <td>@p.Usuario?.NomeUsuario</td>
+        <td>@p.Menu?.Descricao</td>
+        <td>@p.ItensMenu?.Descricao</td>
+        <td class="text-center">@(p.Executar ? "Sim" : "Não")</td>
+        <td class="text-center">@(p.Criar ? "Sim" : "Não")</td>
+        <td class="text-center">@(p.Alterar ? "Sim" : "Não")</td>
+        <td class="text-center">@(p.Excluir ? "Sim" : "Não")</td>
+    </tr>
+}

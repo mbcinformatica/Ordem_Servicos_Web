@@ -1,0 +1,167 @@
+﻿@model Ordem_Servicos_Web.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Alterar Fornecedor";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Alterar" method="post" id="formFornecedor">
+    <input type="hidden" asp-for="IdFornecedor" />
+
+    <!-- Tipo de Pessoa e CPF/CNPJ -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="TipoPessoa" class="label-destaque">Tipo de Pessoa</label>
+            <input asp-for="TipoPessoa" class="form-control" id="TipoPessoa" readonly style="width:120px;" />
+            <input type="hidden" asp-for="TipoPessoa" />
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">CPF/CNPJ</label>
+            <input class="form-control" id="CpfCnpj" value="@Model.CpfCnpjFormatado" readonly style="width:200px;" />
+            <input type="hidden" asp-for="CpfCnpj" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="NomeRazaoSocial" class="label-destaque">Nome/Razão Social</label>
+            <input asp-for="NomeRazaoSocial" id="NomeRazaoSocial" class="form-control text-uppercase maiusculo" maxlength="150" style="width:561px;" autofocus />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Cep" class="label-destaque">CEP</label>
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" maxlength="9" style="width:130px;" />
+        </div>
+    </div>
+
+    <!-- Endereço, Número, Bairro -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Endereco" class="label-destaque">Endereço</label>
+            <input asp-for="Endereco" id="Endereco" class="form-control text-uppercase maiusculo" maxlength="100" style="width:515px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Numero" class="label-destaque">Número</label>
+            <input asp-for="Numero" id="Numero" type="text" class="form-control text-uppercase text-end maiusculo" maxlength="10" style="width:100px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Bairro" class="label-destaque">Bairro</label>
+            <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase maiusculo" maxlength="50" style="width:435px;" />
+        </div>
+    </div>
+
+    <!-- Município, UF, CEP -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Municipio" class="label-destaque">Município</label>
+            <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase maiusculo" maxlength="100" style="width:450px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Uf" class="label-destaque">UF</label>
+            <estado-select asp-for="Uf" id="Uf"></estado-select>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Contato" class="label-destaque">Contato</label>
+            <input asp-for="Contato" id="Contato" class="form-control text-uppercase maiusculo" maxlength="50" style="width:400px;" />
+        </div>
+    </div>
+
+    <!-- Contato, Fones, Email -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
+            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control" maxlength="15" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
+            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control" maxlength="15" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Email" class="label-destaque">Email</label>
+            <input asp-for="Email" id="Email" class="form-control text-lowercase" style="width:530px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
+            <input asp-for="DataCadastro" id="DataCadastro" type="date" class="form-control" readonly style="width:180px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
+            <i class="fa fa-save"></i> Salvar Alterações
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const tipoPessoa   = document.getElementById("TipoPessoa");
+            const cpfCnpj      = document.getElementById("CpfCnpj");
+            const cep          = document.getElementById("Cep");
+            const foneFixo     = document.getElementById("FoneFixo");
+            const foneCelular  = document.getElementById("FoneCelular");
+            const email        = document.getElementById("Email");
+            const form         = document.getElementById("formFornecedor");
+            const btnSalvar    = document.getElementById("btnSalvar");
+
+            const camposObrigatorios = [
+                "NomeRazaoSocial",
+                "Cep",
+                "Endereco",
+                "Bairro",
+                "Municipio",
+                "Uf"
+            ];
+
+            aplicarMaiusculoCampos(".maiusculo");
+            aplicarMinusculoCampos(".minusculo");
+
+            // Aplicar máscaras de formatação
+            if (cep) aplicarMascaraCampo(cep, "cep");
+            if (foneFixo) aplicarMascaraCampo(foneFixo, "telefone");
+            if (foneCelular) aplicarMascaraCampo(foneCelular, "telefone");
+
+            // 🔹 Configuração automática de validação
+            if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "FORNECEDORES");
+                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+                }
+
+                form.addEventListener("submit", function () {
+                    if (cpfCnpj)     semMascaraCampo(cpfCnpj);
+                    if (cep)         semMascaraCampo(cep);
+                    if (foneFixo)    semMascaraCampo(foneFixo);
+                    if (foneCelular) semMascaraCampo(foneCelular);
+                });
+            }
+
+            // Focar no botão salvar a partir do campo de email
+            if (email && btnSalvar) {
+                email.addEventListener("blur", function () {
+                    if (email.classList.contains("Invalid")) {
+                        email.focus();
+                    } else {
+                        btnSalvar.focus();
+                    }
+                });
+                email.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        btnSalvar.focus();
+                    }
+                });
+            }
+        });
+    </script>
+}
+}

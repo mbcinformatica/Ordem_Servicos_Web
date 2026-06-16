@@ -1,0 +1,213 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|d:\\desenvolvimento\\projetoscsharp\\ordem_servicos_web\\wwwroot\\js\\formatacoes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|solutionrelative:wwwroot\\js\\formatacoes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|d:\\desenvolvimento\\projetoscsharp\\ordem_servicos_web\\views\\shared\\_mensagemtoast.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|solutionrelative:views\\shared\\_mensagemtoast.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|d:\\desenvolvimento\\projetoscsharp\\ordem_servicos_web\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|d:\\desenvolvimento\\projetoscsharp\\ordem_servicos_web\\wwwroot\\js\\validacoes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|",
+      "RelativeMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|solutionrelative:wwwroot\\js\\validacoes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|d:\\desenvolvimento\\projetoscsharp\\ordem_servicos_web\\wwwroot\\js\\validacaoutils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|",
+      "RelativeMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|solutionrelative:wwwroot\\js\\validacaoutils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|d:\\desenvolvimento\\projetoscsharp\\ordem_servicos_web\\controllers\\entidades\\entidadescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D302BD63-F353-0BA4-6C41-E23DC7146C7A}|Ordem_Servicos_Web.csproj|solutionrelative:controllers\\entidades\\entidadescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 223,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Formatacoes.js",
+              "DocumentMoniker": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\js\\Formatacoes.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\Formatacoes.js",
+              "ToolTip": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\js\\Formatacoes.js",
+              "RelativeToolTip": "wwwroot\\js\\Formatacoes.js",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAGsAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-06-16T01:49:05.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_MensagemToast.cshtml",
+              "DocumentMoniker": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\Views\\Shared\\_MensagemToast.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_MensagemToast.cshtml",
+              "ToolTip": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\Views\\Shared\\_MensagemToast.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_MensagemToast.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-16T01:43:06.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAACgCAAAAAAAAAAAAAC8CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-06-16T01:37:51.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EntidadesController.cs",
+              "DocumentMoniker": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\Controllers\\Entidades\\EntidadesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Entidades\\EntidadesController.cs",
+              "ToolTip": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\Controllers\\Entidades\\EntidadesController.cs",
+              "RelativeToolTip": "Controllers\\Entidades\\EntidadesController.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAIwGUAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T00:21:01.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "validacaoUtils.js",
+              "DocumentMoniker": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\js\\validacaoUtils.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\validacaoUtils.js",
+              "ToolTip": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\js\\validacaoUtils.js",
+              "RelativeToolTip": "wwwroot\\js\\validacaoUtils.js",
+              "ViewState": "AgIAABYAAAAAAAAAAAAswCQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-06-16T00:16:52.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Validacoes.js",
+              "DocumentMoniker": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\js\\Validacoes.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\Validacoes.js",
+              "ToolTip": "D:\\Desenvolvimento\\ProjetosCSharp\\Ordem_Servicos_Web\\wwwroot\\js\\Validacoes.js",
+              "RelativeToolTip": "wwwroot\\js\\Validacoes.js",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-06-16T00:08:16.435Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 223,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 223,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

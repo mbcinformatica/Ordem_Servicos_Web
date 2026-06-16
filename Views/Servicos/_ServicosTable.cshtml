@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Servico>
+
+@foreach (var servico in Model)
+{
+    <tr>
+        <td>
+            <a asp-action="Alterar" asp-route-id="@servico.IdServico" class="btn btn-alterar btn-sm">
+                <i class="fa fa-edit"></i> Alterar
+            </a>
+            <a asp-action="Excluir" asp-route-id="@servico.IdServico" class="btn btn-excluir btn-sm">
+                <i class="fa fa-trash"></i> Excluir
+            </a>
+        </td>
+        <td class="text-end">@servico.IdServico</td>
+        <td>@servico.IdCodigoBase</td>
+        <td>@servico.CategoriaServico?.Descricao</td>
+        <td>@servico.Descricao</td>
+        <td class="text-end">@servico.ValorServicoFormatado</td>
+    </tr>
+}

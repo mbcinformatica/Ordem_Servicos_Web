@@ -1,0 +1,32 @@
+﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+
+// Utilitários de formulário reutilizáveis
+window.FormUtils = window.FormUtils || {};
+
+/**
+ * Retorna elementos focoáveis dentro de um form, filtrando hidden, disabled e invisíveis.
+ * @param {HTMLFormElement|Element} frm
+ * @returns {HTMLElement[]}
+ */
+FormUtils.getFocusableElements = function (frm) {
+    if (!frm || typeof frm.querySelectorAll !== 'function') return [];
+    return Array.from(
+        frm.querySelectorAll(
+            'input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+        )
+    ).filter(el => el.offsetParent !== null);
+};
+
+// Foco automático no primeiro campo obrigatório do formulário
+window.addEventListener("load", function () {
+    const primeiroCampo = document.querySelector("form input[required], form select[required], form textarea[required]");
+    if (primeiroCampo) {
+        primeiroCampo.focus();
+        if (typeof primeiroCampo.select === 'function') {
+            primeiroCampo.select();
+        }
+    }
+});

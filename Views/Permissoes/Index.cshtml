@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Permissao>
+
+@{
+    ViewData["Title"] = "Permissões de Usuários";
+    int page = ViewBag.Page ?? 1;
+    int totalPaginas = ViewBag.TotalPaginas ?? 1;
+    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+    string search = ViewBag.Search ?? "";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="table-responsive">
+    <table class="table-os table-os-striped table-os-bordered table-os-condensed w-100 mb-0">
+        <thead class="table-dark">
+            <tr>
+                <th style="width:150px;">Ações</th>
+                <th class="sortable" style="width:100px;">ID</th>
+                <th class="sortable">Usuário</th>
+                <th class="sortable">Menu</th>
+                <th class="sortable">Item do Menu</th>
+                <th>Executar</th>
+                <th>Criar</th>
+                <th>Alterar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody id="permissoesTable">
+            @foreach (var p in Model)
+            {
+
+                <tr>
+                    <td>
+                        <a asp-action="Alterar" asp-route-id="@p.IdPermissao" class="btn btn-alterar btn-sm">
+                            <i class="fa fa-edit"></i> Alterar
+                        </a>
+                        <a asp-action="Excluir" asp-route-id="@p.IdPermissao" class="btn btn-excluir btn-sm">
+                            <i class="fa fa-trash"></i> Excluir
+                        </a>
+                    </td>
+                    <td class="text-end">@p.IdPermissao</td>
+                    <td>@p.Usuario?.NomeUsuario</td>
+                    <td>@p.Menu?.Descricao</td>
+                    <td>@p.ItensMenu?.Descricao</td>
+                    <td class="text-center">@(p.Executar ? "Sim" : "Não")</td>
+                    <td class="text-center">@(p.Criar ? "Sim" : "Não")</td>
+                    <td class="text-center">@(p.Alterar ? "Sim" : "Não")</td>
+                    <td class="text-center">@(p.Excluir ? "Sim" : "Não")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<input type="text" id="searchBox" value="@search"
+       class="input-pesquisa"
+       placeholder="..." style="max-width:1000px;" />
+
+<!-- Rodapé -->
+<div class="d-flex justify-content-between align-items-center mt-2 flex-wrap">
+    <div class="d-flex align-items-center flex-wrap">
+        <a class="btn btn-navegacao btn-bg me-2 @(page == 1 ? "disabled" : "")"
+           asp-action="Index" asp-route-page="@(page - 1)" asp-route-search="@search">
+            <i class="fa fa-arrow-left"></i> Anterior
+        </a>
+
+        <span class="fw-bold text-black me-2">Página: @(page) - @totalPaginas</span>
+
+        <a class="btn btn-navegacao btn-bg me-3 @(page == totalPaginas ? "disabled" : "")"
+           asp-action="Index" asp-route-page="@(page + 1)" asp-route-search="@search">
+            Próximo <i class="fa fa-arrow-right"></i>
+        </a>
+
+        <span id="totalRegistros" class="fw-bold text-black me-2">Total de Registros: @totalRegistros</span>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Create" class="btn btn-novo btn-bg">
+            <i class="fa fa-plus"></i> Nova Permissão
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-voltar btn-bg" onclick="liberarMenu()">
+            <i class="fa fa-home"></i> Voltar
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    
+    <!-- Importa o arquivo JS reutilizável -->
+    <script src="~/js/PesquisaDinamica.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            initSortableTable({
+                tableSelector: "table",
+                searchBoxSelector: "#searchBox",
+                targetTableBody: "#permissoesTable",
+                totalRegSelector: "#totalRegistros",
+                colMap: {
+                    1: "IdPermissao",
+                    2: "UsuarioNomeUsuario",
+                    3: "MenuDescricao",
+                    4: "ItensMenuDescricao"
+                },
+                initialCol: 2,              // começa em NomeRazaoSocial
+                initialDirection: true,     // ascendente
+                searchUrl: '@Url.Action("Search", "Permissoes")',
+                indexUrl: '@Url.Action("Index", "Permissoes", new { page = 1 })',
+                defaultSearchColumn: "UsuarioNomeUsuario",
+                placeholders: {
+                    "IdPermissao": "Pesquisar Permissão por ID...",
+                    "UsuarioNomeUsuario": "Pesquisar Permissão por Usuário...",
+                    "MenuDescricao": "Pesquisar Permissão por Menu...",
+                    "ItensMenuDescricao": "Pesquisar Permissão por Item de Menu..."
+                }
+            });
+        });
+    </script>
+}

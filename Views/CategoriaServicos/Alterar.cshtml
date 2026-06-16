@@ -1,0 +1,63 @@
+﻿@model Ordem_Servicos_Web.Models.CategoriaServico
+
+@{
+    ViewData["Title"] = "Alterar Categoria de Serviços";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Alterar" method="post" id="formCategoriaServico">
+    <input type="hidden" asp-for="IdCategoriaServico" />
+		
+    <!-- Descrição da CategoriaServico -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Descricao" class="label-destaque">Descrição de Categoria de Serviços</label>
+            <input asp-for="Descricao" class="form-control text-uppercase maiusculo" id="Descricao" required autofocus style="width:615px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
+            <i class="fa fa-save"></i> Salvar Alterações
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+            const descricao = document.getElementById("Descricao");
+            const btnSalvar = document.getElementById("btnSalvar");
+            const form = document.getElementById("formCategoriaServico");
+
+            if (descricao) descricao.focus();
+
+            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+            }
+
+            aplicarMaiusculoCampos(".maiusculo");
+
+			// Descricao
+            if (descricao && btnSalvar) {
+
+               // Ao pressionar Enter dentro do campo
+                descricao.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // evita submit automático
+                        btnSalvar.focus();
+                    }
+                });
+            }
+        });
+    </script>
+}

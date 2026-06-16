@@ -1,0 +1,1024 @@
+/* Tamanho base da fonte */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+<<<<<<< HEAD
+/* Aumenta a fonte em telas maiores para melhor legibilidade */
+=======
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Espaçamento inferior do body para evitar sobreposição com rodapé fixo */
+body {
+    background-color: #20B2AA; /* fundo claro */
+    margin-bottom: 60px;
+    transition: background-color 0.5s ease, color 0.5s ease, background 0.5s ease;
+}
+
+<<<<<<< HEAD
+/* Efeito de foco personalizado */
+.highlight-focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+    border: 1px solid #007bff;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+=======
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+/* Foco em botões, links e inputs */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem #258cfb;
+}
+
+/* Placeholder alinhado à direita por padrão */
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+/* Placeholder volta para alinhamento à esquerda quando em foco */
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+<<<<<<< HEAD
+/* aumenta o tamanho do checkbox */
+.form-check-input {
+    width: 3em;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 2.25em;
+}
+
+    /* cor quando marcado */
+    .form-check-input:checked {
+        background-color: #28a745; /* verde */
+        border-color: #28a745;
+    }
+
+    /* cor quando em foco */
+    .form-check-input:focus {
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.6);
+    }
+
+    /* cor quando desabilitado */
+    .form-check-input:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+/* espaçamento entre label e toggle */
+.form-check-label {
+    vertical-align: middle;
+    margin-top: 32px;
+}
+
+.form-switch {
+    width: 12em;
+    padding-left: 1.5em;
+    margin-left: 1em;
+}
+/* Classe base para todos os botões */
+.btn {
+    display: inline-block;
+=======
+/* Ajuste dos botões pequenos */
+.btn-sm {
+    padding: 2px 6px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Botão Novo (verde) */
+.btn-novo {
+    background-color: #198754;
+    color: #fff;
+}
+
+    .btn-novo:hover {
+        background-color: #fff;
+        color: #198754;
+        border: 0.5px solid #198754;
+    }
+
+/* Botão Salvar (verde) */
+.btn-salvar {
+    background-color: #198754;
+    color: #fff;
+}
+
+    .btn-salvar:hover {
+        background-color: #fff;
+        color: #198754;
+        border: 0.5px solid #198754;
+    }
+
+.btn-voltar {
+    background-color: #198754;
+    color: #fff;
+}
+
+    .btn-voltar:hover {
+        background-color: #fff;
+        color: #198754;
+        border: 0.5px solid #198754;
+    }
+
+/* Botão Alterar (laranja) */
+.btn-alterar {
+    background-color: #ff6a00;
+    color: #fff;
+    padding: 2px 6px;
+}
+    .btn-alterar:hover {
+        background-color: #fff;
+        color: #ff6a00;
+        border: 0.5px solid #ff6a00;
+    }
+
+/* Botão Excluir (vermelho) */
+.btn-excluir {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 2px 6px;
+}
+    .btn-excluir:hover {
+        background-color: #fff;
+        color: #dc3545;
+        border: 0.5px solid #dc3545;
+    }
+
+/* Botões de navegação (azul) */
+.btn-navegacao {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+    .btn-navegacao:hover {
+        background-color: #fff;
+        color: #0d6efd;
+        border: 0.5px solid #0d6efd;
+    }
+
+/* Classe base para todos os botões */
+.btn {
+    display: inline-block;
+    padding: 2px 6px;
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+<<<<<<< HEAD
+/* Botão Novo */
+.btn-novo {
+    background-color: #28a745; /* verde */
+    color: #fff;
+}
+    /* Ícone com espaçamento */
+    .btn-novo i {
+        margin-right: 5px;
+    }
+    /* Hover invertido */
+    .btn-novo:hover {
+        background-color: #fff; /* fundo branco */
+        color: #28a745; /* texto verde */
+        border: 1px solid #28a745;
+    }
+/* Botão Salvar */
+.btn-salvar {
+    background-color: #007bff; /* azul */
+    color: #fff;
+}
+    /* Ícone com espaçamento */
+    .btn-salvar i {
+        margin-right: 5px;
+    }
+    /* Hover invertido */
+    .btn-salvar:hover {
+        background-color: #fff;
+        color: #007bff;
+        border: 1px solid #007bff;
+    }
+/* Botão Alterar */
+.btn-alterar {
+    background-color: #fd7e14; /* laranja */
+    color: #fff;
+}
+    .btn-alterar i {
+        margin-right: 5px;
+    }
+
+    .btn-alterar:hover {
+        background-color: #fff;
+        color: #fd7e14;
+        border: 1px solid #fd7e14;
+    }
+/* Botão Excluir */
+.btn-excluir {
+    background-color: #dc3545; /* vermelho */
+    color: #fff;
+}
+
+    .btn-excluir i {
+        margin-right: 5px;
+    }
+
+    .btn-excluir:hover {
+        background-color: #fff;
+        color: #dc3545;
+        border: 1px solid #dc3545;
+    }
+/* Botão Detalhes */
+.btn-detalhes {
+    background-color: #17a2b8; /* azul claro */
+    color: #fff;
+}
+
+    .btn-detalhes i {
+        margin-right: 5px;
+    }
+
+    .btn-detalhes:hover {
+        background-color: #fff;
+        color: #17a2b8;
+        border: 1px solid #17a2b8;
+    }
+/* Botão Pesquisar */
+.btn-pesquisar {
+    background-color: #6c757d; /* cinza escuro */
+    color: #fff;
+}
+
+    .btn-pesquisar i {
+        margin-right: 5px;
+    }
+
+    .btn-pesquisar:hover {
+        background-color: #fff;
+        color: #6c757d;
+        border: 1px solid #6c757d;
+    }
+/* Botão Navegação */
+.btn-navegacao {
+    background-color: #6c757d; /* cinza neutro */
+    color: #fff;
+}
+
+    .btn-navegacao i {
+        margin-right: 5px;
+    }
+    /* Hover invertido */
+    .btn-navegacao:hover {
+        background-color: #fff; /* fundo branco */
+        color: #6c757d; /* texto cinza */
+        border: 1px solid #6c757d;
+    }
+
+/* Botão Voltar */
+.btn-voltar {
+    background-color: #6c757d; /* cinza neutro */
+    color: #fff;
+}
+
+    .btn-voltar i {
+        margin-right: 5px;
+    }
+    /* Hover invertido */
+    .btn-voltar:hover {
+        background-color: #fff; /* fundo branco */
+        color: #6c757d; /* texto cinza */
+        border: 1px solid #6c757d;
+    }
+
+/* Botão Fechar */
+.btn-fechar {
+    background-color: #6c757d; /* cinza */
+    color: #fff;
+}
+
+    .btn-fechar i {
+        margin-right: 5px;
+    }
+
+    .btn-fechar:hover {
+        background-color: #fff;
+        color: #6c757d;
+        border: 1px solid #6c757d;
+    }
+
+/* Botão Fechar */
+.btn-logout {
+    background-color: #212529; /* cinza */
+    color: #fff;
+}
+
+    .btn-logout i {
+        margin-right: 5px;
+    }
+
+    .btn-logout:hover {
+        background-color: #fff;
+        color: #212529;
+    }
+
+.btn-ok {
+    border: 2px solid #000;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100px;
+    height: 30px;
+    font-family: Arial, sans-serif; /* fonte usada no texto */
+    font-size: 16px; /* tamanho da fonte */
+    font-weight: bold;
+    border-radius: 10px; /* arredonda os cantos do botão */
+    background: linear-gradient(45deg, #007bff, #ffffff); /* gradiente azul → branco */
+    box-shadow: 0 0 10px #00ff00, /* brilho neon verde suave */
+    0 0 20px #00ff00, 0 0 30px #00ff00;
+    transition: background 0.3s ease, /* transição suave da cor de fundo */
+    transform 0.2s ease, /* transição suave do efeito de escala */
+    box-shadow 0.3s ease;
+}
+
+    .btn-ok:hover {
+        background: linear-gradient(45deg, #0056b3, #e6e6e6); /* gradiente mais escuro no hover */
+        transform: scale(1.05); /* aumenta levemente o botão */
+        box-shadow: 0 0 15px #00ff00, /* brilho neon verde mais intenso */
+        0 0 30px #00ff00, 0 0 45px #00ff00;
+    }
+
+.btn-entrar {
+    display: inline-block; /* exibe como bloco inline, permite largura/altura */
+    margin: auto; /* configura a margem do botão */
+    width: 200px; /* largura fixa do botão (comprimento) */
+    height: 50px; /* altura fixa do botão */
+    padding: 12px 24px; /* espaço interno do botão (vertical x horizontal) */
+    font-family: Arial, sans-serif; /* fonte usada no texto */
+    font-size: 16px; /* tamanho da fonte */
+    font-weight: bold; /* deixa o texto em negrito */
+    line-height: 1.5; /* altura da linha, melhora legibilidade */
+    color: #000; /* cor do texto (preto para contraste) */
+    text-align: center; /* centraliza o texto dentro do botão */
+    text-decoration: none; /* remove sublinhado do texto */
+    vertical-align: middle; /* alinha verticalmente com outros elementos inline */
+    cursor: pointer; /* mostra a “mãozinha” ao passar o mouse */
+    -webkit-user-select: none; /* impede seleção de texto (Safari/Chrome) */
+    -moz-user-select: none; /* impede seleção de texto (Firefox) */
+    user-select: none; /* impede seleção de texto em navegadores modernos */
+    border: 2px solid #00ff00; /* borda verde neon */
+    border-radius: 10px; /* arredonda os cantos do botão */
+    background: linear-gradient(45deg, #007bff, #ffffff); /* gradiente azul → branco */
+    box-shadow: 0 0 10px #00ff00, /* brilho neon verde suave */
+    0 0 20px #00ff00, 0 0 30px #00ff00;
+    transition: background 0.3s ease, /* transição suave da cor de fundo */
+    transform 0.2s ease, /* transição suave do efeito de escala */
+    box-shadow 0.3s ease; /* transição suave da sombra neon */
+}
+
+    .btn-entrar:hover {
+        background: linear-gradient(45deg, #0056b3, #e6e6e6); /* gradiente mais escuro no hover */
+        transform: scale(1.05); /* aumenta levemente o botão */
+        box-shadow: 0 0 15px #00ff00, /* brilho neon verde mais intenso */
+        0 0 30px #00ff00, 0 0 45px #00ff00;
+    }
+/* Ajuste dos botões pequenos */
+.btn-sm {
+    padding: 2px 6px;
+    line-height: 1.2;
+}
+/* Ajuste dos botões Grandes */
+.btn-bg {
+    padding: 8px 10px;
+    line-height: 1.2;
+}
+=======
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+/* Verde (Sucesso) */
+.btn-verde {
+    background-color: #198754;
+    color: #fff;
+}
+
+    .btn-verde:hover {
+        background-color: #fff;
+        color: #198754;
+<<<<<<< HEAD
+        border: 1px solid #198754;
+    }
+/* Vermelho (Error) */
+=======
+        border: 0.5px solid #198754;
+    }
+
+/* Vermelho (Excluir) */
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+.btn-vermelho {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+    .btn-vermelho:hover {
+        background-color: #fff;
+        color: #dc3545;
+<<<<<<< HEAD
+        border: 1px solid #dc3545;
+    }
+=======
+        border: 0.5px solid #dc3545;
+    }
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+/* Azul (Informações) */
+.btn-azul {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+    .btn-azul:hover {
+        background-color: #fff;
+        color: #0dcaf0;
+<<<<<<< HEAD
+        border: 1px solid #0dcaf0;
+    }
+=======
+        border: 0.5px solid #0dcaf0;
+    }
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+/* Claro */
+.btn-claro {
+    background-color: #f8f9fa;
+    color: #212529;
+<<<<<<< HEAD
+=======
+    border: 0.5px solid #ccc;
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+}
+
+    .btn-claro:hover {
+        background-color: #212529;
+        color: #f8f9fa;
+<<<<<<< HEAD
+        border: 1px solid #ccc;
+    }
+=======
+    }
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+/* Escuro */
+.btn-escuro {
+    background-color: #212529;
+    color: #fff;
+}
+
+    .btn-escuro:hover {
+        background-color: #fff;
+        color: #212529;
+<<<<<<< HEAD
+        border: 1px solid #212529;
+    }
+/* Fundo personalizado para todos os inputs */
+input,
+select,
+textarea {
+    background-color: #f5fcfe !important; /* azul claro */
+    caret-shape:block;
+}
+    /* Aplica efeito de foco em qualquer campo obrigatório */
+    input[required]:focus,
+    select[required]:focus,
+    textarea[required]:focus {
+        background-color: #cef4fc; /* fundo claro */
+        border-color: #0dcaf0; /* borda azul turquesa */
+        box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
+        transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+    /* Se quiser aplicar em todos os campos, não apenas obrigatórios */
+    input:focus,
+    select:focus,
+    textarea:focus {
+        background-color: #cef4fc !important;
+        border-color: #0dcaf0 !important;
+        box-shadow: 0 0 6px #0dcaf0 !important;
+        transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out !important;
+    }
+/* Input de Pesquisa */
+.input-pesquisa {
+    width: 600px; /* Comprimento fixa (pode ajustar) */
+=======
+        border: 0.5px solid #212529;
+    }
+
+/* Input de Pesquisa */
+.input-pesquisa {
+    width: 300px; /* largura fixa (pode ajustar) */
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+    padding: 8px 12px; /* espaço interno */
+    font-size: 14px; /* tamanho da fonte */
+    border: 2px solid #198754; /* borda verde */
+    border-radius: 6px; /* cantos arredondados */
+    outline: none; /* remove contorno padrão */
+    transition: all 0.3s ease; /* transição suave */
+<<<<<<< HEAD
+    caret-shape: block;
+}
+    /* Efeito ao focar */
+    .input-pesquisa:focus {
+        background-color: #cef4fc; /* fundo claro */
+        border-color: #0dcaf0; /* borda azul turquesa */
+        box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
+    }
+=======
+}
+
+    /* Efeito ao focar */
+    .input-pesquisa:focus {
+        background-color: #f8f9fa; /* fundo claro */
+        border-color: #0dcaf0; /* borda azul turquesa */
+        box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
+    }
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+    /* Placeholder estilizado */
+    .input-pesquisa::placeholder {
+        color: #6c757d; /* cinza */
+        font-style: italic; /* estilo itálico */
+    }
+<<<<<<< HEAD
+/* Input de Login */
+.input-login {
+    display: flex;
+    width: 100%; /* largura fixa (pode ajustar) */
+    padding: 8px 12px; /* espaço interno */
+    font-size: 18px; /* tamanho da fonte */
+    font-weight: bolder;
+    font-family: 'Times New Roman', Times, serif;
+    border: 2px solid #198754; /* borda verde */
+    border-radius: 11px; /* cantos arredondados */
+    outline: none; /* remove contorno padrão */
+    transition: all 0.3s ease; /* transição suave */
+    caret-shape:block;
+}
+    /* Placeholder estilizado */
+    .input-login::placeholder {
+        color: #6c757d; /* cinza */
+        font-style: italic; /* estilo itálico */
+    }
+/* tamanho e estilo do toggle */
+.toggle-switch {
+    width: 3rem;
+    height: 1.5rem;
+    background-color: #ccc;
+    border-radius: 1rem;
+    position: relative;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+    margin-top: 32px;
+}
+
+    .toggle-switch::before {
+        content: "";
+        position: absolute;
+        top: 0.15rem;
+        left: 0.15rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: #0d6efd;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+
+    .toggle-switch:checked {
+        background-color: #28a745; /* verde ligado */
+    }
+
+        .toggle-switch:checked::before {
+            transform: translateX(1.5rem);
+        }
+    /* desabilitado */
+    .toggle-switch:disabled {
+        background-color: #999;
+        cursor: not-allowed;
+    }
+
+.label-destaque {
+    font-weight: bolder;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+}
+=======
+
+.label-destaque {
+    font-weight: bold;
+    color: #212529;
+    font-size: 16px;
+}
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+/* Tema personalizado para Sistema OS */
+.table-os {
+    caption-side: bottom;
+    border-collapse: separate;
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+    /* Cabeçalho */
+    .table-os thead {
+        background-color: #004085; /* azul escuro */
+        color: #fff; /* texto branco */
+        text-transform: uppercase;
+        text-align: center;
+    }
+<<<<<<< HEAD
+/* Bordas das células */
+.table-os-condensed td,
+.table-os-condensed th {
+    white-space: nowrap; /* impede quebra de linha */
+    overflow: hidden; /* oculta texto que ultrapassa */
+    text-overflow: ellipsis; /* adiciona "..." quando o texto for maior */
+    padding: 4px 8px;
+    line-height: 1.2;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: bold;
+}
+/* Linhas alternadas */
+.table-os-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: var(--bs-table-striped-bg);
+}
+
+.table-os-bordered > :not(caption) > * {
+    border-width: var(--bs-border-width) 0;
+}
+/* Linhas alternadas */
+.table-os-striped tbody tr:nth-child(even) {
+    background-color: #ced4da;
+}
+
+.table-os-striped tbody tr:nth-child(odd) {
+    background-color: #d1ecf1;
+}
+/* Texto */
+.table-os td {
+    color: #000; /* cinza escuro */
+}
+/* Hover */
+.table-os-striped tbody tr:hover {
+    background-color: #ffc107; /* azul claro */
+    cursor: pointer;
+}
+/* Rodapé */
+.table-footer {
+    background-color: #198754;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+/* Alinhamentos reutilizáveis */
+.table th.text-center, .table td.text-center {
+    text-align: center;
+}
+
+.table th.text-right, .table td.text-right {
+    text-align: right;
+}
+
+th.sortable.active {
+    background-color: #343a40; /* cor de fundo diferente */
+    color: #ffc107; /* texto em amarelo para contraste */
+}
+
+
+=======
+
+    /* Bordas das células */
+    .table-os-condensed td,
+    .table-os-condensed th {
+        white-space: nowrap; /* impede quebra de linha */
+        overflow: hidden; /* oculta texto que ultrapassa */
+        text-overflow: ellipsis; /* adiciona "..." quando o texto for maior */
+        padding: 4px 8px;
+        line-height: 1.2;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    /* Linhas alternadas */
+    .table-os-striped > tbody > tr:nth-of-type(odd) > * {
+        --bs-table-color-type: var(--bs-table-striped-color);
+        --bs-table-bg-type: var(--bs-table-striped-bg);
+    }
+
+    .table-os-bordered > :not(caption) > * {
+        border-width: var(--bs-border-width) 0;
+    }
+
+    /* Linhas alternadas */
+    .table-os-striped tbody tr:nth-child(even) {
+        background-color: #dc9797;
+    }
+
+    .table-os-striped tbody tr:nth-child(odd) {
+        background-color: #d1ecf1;
+    }
+
+    /* Texto */
+    .table-os td {
+        color: #212529; /* cinza escuro */
+    }
+    /* Hover */
+    .table-os-striped tbody tr:hover {
+        background-color: #d1ecf1; /* azul claro */
+        cursor: pointer;
+    }
+    /* Rodapé */
+    .table-footer {
+        background-color: #198754;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+
+.mensagem-container {
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+<<<<<<< HEAD
+/* Base */
+=======
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+.mensagem-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    white-space: nowrap; /* não quebra linha */
+    width: auto; /* autosize */
+    max-width: 90%; /* limite opcional */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+<<<<<<< HEAD
+/* Erro */
+=======
+
+/* Estilos prontos */
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+.mensagem-erro {
+    background-color: #d9534f; /* vermelho */
+    color: #fff;
+}
+<<<<<<< HEAD
+/* Aviso */
+=======
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+.mensagem-aviso {
+    background-color: #f0ad4e; /* amarelo */
+    color: #000;
+}
+<<<<<<< HEAD
+/* Sucesso */
+=======
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
+.mensagem-sucesso {
+    background-color: #5cb85c; /* verde */
+    color: #fff;
+}
+<<<<<<< HEAD
+/* Erro → vermelho */
+.mensagem-erro-modal {
+    background: linear-gradient(270deg, #ff0000, #ff4d4d, #b30000);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    color: white;
+}
+/* Sucesso → verde */
+.mensagem-sucesso-modal {
+    background: linear-gradient(270deg, #28a745, #66ff66, #006600);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    color: white;
+}
+/* Aviso → amarelo */
+.mensagem-aviso-modal {
+    background: linear-gradient(270deg, #ffc107, #fff176, #ff9800);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    color: black; /* melhor contraste */
+}
+/* Informação → azul (opcional) */
+.mensagem-info-modal {
+    background: linear-gradient(270deg, #007bff, #66ccff, #004080);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    color: white;
+}
+
+.mensagem-texto {
+    display: block; /* força ocupar linha inteira */
+    white-space: pre-wrap; /* respeita quebras de linha e ajusta altura */
+    word-wrap: break-word; /* quebra palavras longas */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.8s ease forwards;
+}
+/* Classe que será adicionada ao fechar */
+.mensagem-erro.fade-out {
+    animation: fadeOut 0.8s ease forwards;
+}
+/* Submenu dentro de dropdown */
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+    }
+/* Navbar fundo e links */
+.navbar.bg-dark {
+    background-color: #1a1a40; /* cor personalizada para o fundo */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #ccccff; /* cor normal dos links */
+}
+
+    .navbar-dark .navbar-nav .nav-link:hover,
+    .navbar-dark .navbar-nav .nav-link:focus {
+        color: #000; /* cor ao passar o mouse */
+    }
+/* Dropdown itens */
+.dropdown-menu {
+    background-color: #2c2c54; /* fundo do menu dropdown */
+}
+
+.dropdown-item {
+    color: #f1f1f1; /* cor normal do texto */
+}
+
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+        background-color: #575fcf; /* fundo ao passar o mouse */
+        color: #ffffff; /* texto ao passar o mouse */
+    }
+
+.login-page {
+    height: 100vh;
+}
+
+
+.gradient-bg {
+    background: linear-gradient(270deg, #007bff, #ffffff, #66ccff);
+    background-size: 600% 600%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.translucent-box {
+    max-width: 400px;
+    width: 100%;
+    background-color: rgba(40, 167, 69, 0.85); /* verde com 85% opacidade */
+    color: white;
+    border-radius: 8px;
+}
+
+.modal-content-tempdata {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 35;
+    color: #ffffff;
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+}
+
+.card-login {
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.col-detalhe {
+    flex: 0 0 auto;
+    width: 35%;
+}
+
+/* Animação deslizar de cima */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animação deslizar da direita */
+@keyframes slideRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Classe aplicada ao toast */
+.toast-anim-slide {
+    animation: slideDown 0.5s ease-out;
+}
+
+.toast-anim-right {
+    animation: slideRight 0.5s ease-out;
+}
+=======
+
+>>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

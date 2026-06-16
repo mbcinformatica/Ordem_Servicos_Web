@@ -1,0 +1,28 @@
+IDItensMenu | IDMenu | Descrição Menu | Descricao Itens Menu
+1    				| 1   	 | CADASTROS  		| CLIENTES
+2    				| 1   	 | CADASTROS  		| FORNECEDORES
+3    				| 1   	 | CADASTROS  		| PRODUTOS
+4    				| 1   	 | CADASTROS  		| SERVIÇOS
+5    				| 1   	 | CADASTROS  		| USUÁRIOS
+6    				| 1   	 | CADASTROS  		| CATEGORIA DE SERVIÇOS
+7    				| 1   	 | CADASTROS  		| MARCAS
+8    				| 1   	 | CADASTROS  		| MODELOS
+9    				| 1   	 | CADASTROS  		| UNIDADES DE MEDIDAS
+10   				| 2   	 | LANÇAMENTOS		| SERVIÇOS
+11   				| 3   	 | RELATÓRIOS 		| CLIENTES
+12   				| 3   	 | RELATÓRIOS 		| FORNECEDORES
+13   				| 3   	 | RELATÓRIOS 		| USUÁRIOS
+27   				| 4   	 | CONFIGURAÇÕES  | PERMISSÕES DE ACESSO
+14   				| 4   	 | CONFIGURAÇÕES  | FORMULÁRIOS
+15   				| 4   	 | CONFIGURAÇÕES  | CONEXÃO BD
+16   				| 4   	 | CONFIGURAÇÕES  | BACKUP
+17   				| 4   	 | CONFIGURAÇÕES  | RESTAURE
+18   				| 5   	 | FERRAMENTAS   	| IMPORTAR-CLIENTES
+19   				| 5   	 | FERRAMENTAS   	| IMPORTAR-FORNECEDORES
+20   				| 5   	 | FERRAMENTAS   	| IMPORTAR-PRODUTOS
+21   				| 5   	 | FERRAMENTAS   	| IMPORTAR-SERVIÇOS
+22   				| 5   	 | FERRAMENTAS   	| IMPORTAR-USUÁRIOS
+23   				| 5   	 | FERRAMENTAS   	| IMPORTAR-CATEGORIA DE SERVIÇOS
+24   				| 5   	 | FERRAMENTAS   	| IMPORTAR-MARCAS
+25   				| 5   	 | FERRAMENTAS   	| IMPORTAR-MODELOS
+26   				| 5   	 | FERRAMENTAS   	| IMPORTAR-UNIDADES DE MEDIDAS

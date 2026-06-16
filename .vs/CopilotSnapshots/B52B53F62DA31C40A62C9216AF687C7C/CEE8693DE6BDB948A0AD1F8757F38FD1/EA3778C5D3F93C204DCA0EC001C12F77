@@ -1,0 +1,269 @@
+﻿@model Ordem_Servicos_Web.ViewModels.UsuarioCreateViewModel
+
+@{
+    ViewData["Title"] = "Novo Usuário";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Create" method="post" id="formUsuario" enctype="multipart/form-data">
+
+    <!-- Linha 1 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="NomeUsuario" class="label-destaque">Nome do Usuário</label>
+            <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase" required autofocus maxlength="150" style="width:500px;" />
+            <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Login" class="label-destaque">Login</label>
+            <input asp-for="Login" id="Login" class="form-control" maxlength="50" style="width:200px;" />
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Senha" class="label-destaque">Senha</label>
+            <input asp-for="Senha" id="Senha" type="password" class="form-control" maxlength="50" style="width:200px;" />
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="ConfirmaSenha" class="label-destaque">Confirma a Senha</label>
+            <input asp-for="ConfirmaSenha" id="ConfirmaSenha" type="password" class="form-control" maxlength="50" style="width:200px;" />
+            <span asp-validation-for="ConfirmaSenha" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- Linha 2 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Cep" class="label-destaque">CEP</label>
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" style="width:120px;" />
+            <span asp-validation-for="Cep" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Endereco" class="label-destaque">Endereço</label>
+            <input asp-for="Endereco" id="Endereco" class="form-control text-uppercase" maxlength="100" style="width:450px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Numero" class="label-destaque">Número</label>
+            <input asp-for="Numero" id="Numero" type="text" inputmode="numeric" class="form-control" maxlength="10" style="width:100px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Bairro" class="label-destaque">Bairro</label>
+            <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase" maxlength="50" style="width:432px;" />
+        </div>
+    </div>
+
+    <!-- Linha 3 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Municipio" class="label-destaque">Município</label>
+            <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase" maxlength="200" style="width:580px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Uf" class="label-destaque">UF</label>
+            <estado-select asp-for="Uf"></estado-select>
+            <span asp-validation-for="Uf" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Fone1" class="label-destaque">Telefone 1</label>
+            <input asp-for="Fone1" id="Fone1" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="Fone2" class="label-destaque">Telefone 2</label>
+            <input asp-for="Fone2" id="Fone2" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
+        </div>
+    </div>
+
+    <!-- Linha 4 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="Email" class="label-destaque">Email</label>
+            <input asp-for="Email" id="Email" class="form-control text-lowercase" style="width:585px;" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <label for="Imagem" class="label-destaque">Foto do Usuário</label>
+            <input type="file" id="Imagem" name="Imagem" class="form-control" accept="image/*" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
+            <input asp-for="DataCadastro" type="date" class="form-control" readonly
+                   value="@DateTime.Now.ToString("yyyy-MM-dd")" style="width:180px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
+            <i class="fa fa-save"></i> Salvar Usuário
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const nomeUsuario = document.getElementById("NomeUsuario");
+            const cep = document.getElementById("Cep");
+            const fone1 = document.getElementById("Fone1");
+            const fone2 = document.getElementById("Fone2");
+            const email = document.getElementById("Email");
+            const btnSalvar = document.getElementById("btnSalvar");
+            const loginInput = document.getElementById("Login");
+            const imagem = document.getElementById("Imagem");
+            const form = document.getElementById("formUsuario");
+
+            // wrapper local para o utilitário reutilizável
+            function getFocusableElements(frm) {
+                return FormUtils.getFocusableElements(frm);
+            }
+
+            // Tratamento de Enter: previne submit e vai para próximo campo (exceto textarea e submits)
+            if (form) {
+                form.addEventListener("keydown", function (e) {
+                    if (e.key !== "Enter") return;
+
+                    const target = e.target;
+                    if (!(target instanceof Element)) return;
+
+                    // permitir Enter em textareas e em inputs do tipo submit/button
+                    if (target.tagName === "TEXTAREA") return;
+                    const type = target.getAttribute && target.getAttribute("type");
+                    if ((target.tagName === "BUTTON" && (!type || type.toLowerCase() === "submit")) ||
+                        (target.tagName === "INPUT" && type && type.toLowerCase() === "submit")) {
+                        return;
+                    }
+
+                    // evita submit e move para próximo
+                    e.preventDefault();
+                    const focusables = getFocusableElements(form);
+                    const idx = focusables.indexOf(target);
+                    const next = (idx >= 0 && idx < focusables.length - 1) ? focusables[idx + 1] : null;
+                    if (next) {
+                        next.focus();
+                        if (typeof next.select === "function") next.select();
+                    }
+                }, true);
+            }
+
+            // Campos em maiúsculo
+            document.querySelectorAll("#NomeUsuario,#Endereco,#Bairro,#Municipio")
+                .forEach(input => input.addEventListener("blur", () => {
+                    input.value = input.value.toUpperCase().trim();
+                }));
+
+            // Apenas números
+            [cep, fone1, fone2].forEach(campo => {
+                if (campo) {
+                    campo.addEventListener("input", () => apenasNumeros(campo));
+                }
+            });
+
+            if (nomeUsuario) {
+                nomeUsuario.addEventListener("blur", function () {
+                    const nome = nomeUsuario.value.trim();
+                    if (nome.length > 0) {
+                        fetch(`/Usuarios/VerificarNomeUsuario?nome=${encodeURIComponent(nome)}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.existe) {
+                                    mostrarToast("Nome de Usuário já Cadastrado.", "erro");
+                                    nomeUsuario.focus();
+                                }
+                            })
+                            .catch(() => {
+                                mostrarToast("Erro ao Verificar Nome.", "erro");
+                                nomeUsuario.focus();
+                            });
+                    }
+                });
+            }
+
+            // Verificação ao sair do campo Login
+            if (loginInput) {
+                loginInput.addEventListener("blur", function () {
+                    const login = loginInput.value.trim();
+                    if (login.length > 0) {
+                        fetch(`/Usuarios/VerificarLogin?login=${encodeURIComponent(login)}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.existe) {
+                                    mostrarToast("Login já Cadastrado.", "erro");
+                                    loginInput.focus();
+                                }
+                            })
+                            .catch(() => {
+                                mostrarToast("Erro ao Verificar Login.", "erro");
+                                loginInput.focus();
+                            });
+                    }
+                });
+            }
+
+            // CEP
+            if (cep) {
+                cep.addEventListener("blur", () => {
+                    cep.value = formatCep(cep.value);
+                    if (!validarCep(cep)) {
+                        cep.focus();
+                    } else {
+                        buscarCEP("Cep", "Endereco", "Bairro", "Municipio", "Uf");
+                    }
+                });
+            }
+
+            // Telefone 1
+            if (fone1) fone1.addEventListener("blur", () => {
+                fone1.value = formatTelefone(fone1.value);
+                if (!validarTelefone(fone1)) fone1.focus();
+            });
+
+            // Telefone 2
+            if (fone2) fone2.addEventListener("blur", () => {
+                fone2.value = formatTelefone(fone2.value);
+                if (!validarTelefone(fone2)) fone2.focus();
+            });
+
+            // Email
+            if (email) email.addEventListener("blur", () => {
+                email.value = converteParaMinusculo(email.value);
+                if (!validarEmail(email)) email.focus();
+            });
+
+            // Focar no Botao Salvar a partir do campo de imagem (com prevenção de submit)
+            if (imagem && btnSalvar) {
+                // Ao sair do campo (blur)
+                imagem.addEventListener("blur", () => {
+                    // não dispara submit; apenas move foco
+                    btnSalvar.focus();
+                });
+
+                // Ao pressionar Enter dentro do campo de arquivo
+                imagem.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // evita submit automático
+                        btnSalvar.focus();
+                    }
+                });
+            }
+
+            // Antes de enviar → remove formatação
+            if (form) {
+                form.addEventListener("submit", function () {
+                    if (cep) cep.value = SemFormatacao(cep.value);
+                    if (fone1) fone1.value = SemFormatacao(fone1.value);
+                    if (fone2) fone2.value = SemFormatacao(fone2.value);
+                    if (email) email.value = converteParaMinusculo(email.value);
+                });
+            }
+        });
+    </script>
+}

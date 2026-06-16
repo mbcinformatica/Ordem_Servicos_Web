@@ -1,0 +1,1270 @@
+2026-06-13 00:19:11.338 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 00:19:11.880 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 00:19:12.009 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 00:19:13.835 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 00:19:15.936 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 00:19:16.664 -03:00 [INF] Executed ViewResult - view Login executed in 747.2885ms.
+2026-06-13 00:19:16.667 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2829.165ms
+2026-06-13 00:19:16.668 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 00:19:16.785 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=1XoTLDQk5iT45x8WaIAT_gUS18yuGwJIvIgDV92fAHo - null null
+2026-06-13 00:19:16.785 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=Y5B_934Fdnjnuw6_hCuReD7IYqXwIjNDLfpt014oEpM - null null
+2026-06-13 00:19:16.785 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 00:19:16.819 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 4949.0836ms
+2026-06-13 00:19:16.852 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 66.5216ms
+2026-06-13 00:19:16.856 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 00:19:16.856 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 00:19:16.858 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=1XoTLDQk5iT45x8WaIAT_gUS18yuGwJIvIgDV92fAHo - 304 null text/javascript 106.1919ms
+2026-06-13 00:19:16.858 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=Y5B_934Fdnjnuw6_hCuReD7IYqXwIjNDLfpt014oEpM - 304 null text/javascript 104.8793ms
+2026-06-13 00:19:19.525 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 00:19:19.592 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 00:19:19.600 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 76.0993ms
+2026-06-13 00:48:39.522 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=aaa&entidade=USUARIOS&campo=Login - null null
+2026-06-13 00:48:39.582 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 00:48:39.637 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 00:48:41.689 -03:00 [INF] Executed DbCommand (882ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 00:48:41.718 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 00:48:41.730 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 2092.1734ms
+2026-06-13 00:48:41.732 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 00:48:41.736 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=aaa&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 2214.3626ms
+2026-06-13 01:15:05.996 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 01:15:06.411 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 01:15:06.548 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:15:07.612 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:15:09.366 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:15:09.924 -03:00 [INF] Executed ViewResult - view Login executed in 573.2577ms.
+2026-06-13 01:15:09.928 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2314.6856ms
+2026-06-13 01:15:09.928 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:15:10.082 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=Y5B_934Fdnjnuw6_hCuReD7IYqXwIjNDLfpt014oEpM - null null
+2026-06-13 01:15:10.083 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=iZ4rU4ECuFhY4uGjNXsNMpfefOHRDh4mK5f74MTaPMM - null null
+2026-06-13 01:15:10.082 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:15:10.152 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 103.6834ms
+2026-06-13 01:15:10.155 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 01:15:10.157 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 3757.9337ms
+2026-06-13 01:15:10.158 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=Y5B_934Fdnjnuw6_hCuReD7IYqXwIjNDLfpt014oEpM - 304 null text/javascript 140.7708ms
+2026-06-13 01:15:10.199 -03:00 [INF] Sending file. Request path: '/js/validacaoUtils.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\validacaoUtils.js'
+2026-06-13 01:15:10.200 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=iZ4rU4ECuFhY4uGjNXsNMpfefOHRDh4mK5f74MTaPMM - 200 9848 text/javascript 182.9906ms
+2026-06-13 01:15:12.856 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 01:15:12.931 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 01:15:12.944 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 88.4446ms
+2026-06-13 01:19:30.507 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 01:19:30.800 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 01:19:30.925 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:19:31.201 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:19:32.160 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:19:32.562 -03:00 [INF] Executed ViewResult - view Login executed in 404.6941ms.
+2026-06-13 01:19:32.565 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 1363.7156ms
+2026-06-13 01:19:32.566 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:19:32.580 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 1790.2781ms
+2026-06-13 01:19:32.631 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:19:32.631 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=luaqNRU55y2Peyc5orxUGxOQble7ev5qplD9r5hoJ84 - null null
+2026-06-13 01:19:32.631 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=iZ4rU4ECuFhY4uGjNXsNMpfefOHRDh4mK5f74MTaPMM - null null
+2026-06-13 01:19:32.636 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 5.9339ms
+2026-06-13 01:19:32.640 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 01:19:32.703 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=iZ4rU4ECuFhY4uGjNXsNMpfefOHRDh4mK5f74MTaPMM - 304 null text/javascript 13.0585ms
+2026-06-13 01:19:32.710 -03:00 [INF] Sending file. Request path: '/js/Validacoes.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\Validacoes.js'
+2026-06-13 01:19:32.710 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=luaqNRU55y2Peyc5orxUGxOQble7ev5qplD9r5hoJ84 - 200 7771 text/javascript 80.6924ms
+2026-06-13 01:19:32.861 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 01:19:32.875 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 01:19:32.886 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 39.5182ms
+2026-06-13 01:19:48.253 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:19:48.279 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 26.3221ms
+2026-06-13 01:19:48.281 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:20:29.648 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:20:29.653 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 5.1925ms
+2026-06-13 01:20:29.653 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:22:45.754 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:22:45.756 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 1.7525ms
+2026-06-13 01:22:45.826 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:22:54.263 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 01:22:54.265 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:22:54.322 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 01:22:55.226 -03:00 [INF] Executed DbCommand (49ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 01:22:55.514 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:22:55.528 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 1205.6946ms
+2026-06-13 01:22:55.529 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:22:55.532 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 1269.5621ms
+2026-06-13 01:26:42.031 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 01:26:42.598 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 01:26:42.761 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:26:43.613 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:26:45.625 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:26:46.305 -03:00 [INF] Executed ViewResult - view Login executed in 711.6218ms.
+2026-06-13 01:26:46.310 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2696.5904ms
+2026-06-13 01:26:46.311 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:26:46.391 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 3811.1503ms
+2026-06-13 01:26:46.545 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=iZ4rU4ECuFhY4uGjNXsNMpfefOHRDh4mK5f74MTaPMM - null null
+2026-06-13 01:26:46.545 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:26:46.546 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 01:26:46.626 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 42.3719ms
+2026-06-13 01:26:46.630 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 01:26:46.634 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=iZ4rU4ECuFhY4uGjNXsNMpfefOHRDh4mK5f74MTaPMM - 304 null text/javascript 91.099ms
+2026-06-13 01:26:46.706 -03:00 [INF] Sending file. Request path: '/js/Validacoes.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\Validacoes.js'
+2026-06-13 01:26:46.707 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 200 7972 text/javascript 164.2969ms
+2026-06-13 01:26:48.641 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 01:26:48.687 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 01:26:48.694 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 53.9496ms
+2026-06-13 01:27:08.217 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:27:08.226 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 8.5957ms
+2026-06-13 01:27:08.227 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:29:42.883 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:29:42.892 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 9.4444ms
+2026-06-13 01:29:42.893 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:30:22.172 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:30:22.173 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 1.5216ms
+2026-06-13 01:30:22.174 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:32:36.209 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - null null
+2026-06-13 01:32:36.210 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarLogin?valor=mbc&campo=Login - 404 null null 0.8648ms
+2026-06-13 01:32:36.210 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44312/Entidades/VerificarLogin, Response status code: 404
+2026-06-13 01:38:56.996 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 01:38:57.377 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 01:38:57.549 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:38:58.390 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:39:00.214 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:39:00.929 -03:00 [INF] Executed ViewResult - view Login executed in 752.2058ms.
+2026-06-13 01:39:00.931 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2540.2147ms
+2026-06-13 01:39:00.931 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:39:01.062 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=FnCH7Ip9iqx19FrmMGXy6WRCsctzWT7Xm6KUDQWB6Yo - null null
+2026-06-13 01:39:01.062 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 01:39:01.062 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:39:01.110 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 3766.3891ms
+2026-06-13 01:39:01.110 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 76.3738ms
+2026-06-13 01:39:01.114 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 01:39:01.115 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 85.1765ms
+2026-06-13 01:39:01.201 -03:00 [INF] Sending file. Request path: '/js/validacaoUtils.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\validacaoUtils.js'
+2026-06-13 01:39:01.207 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=FnCH7Ip9iqx19FrmMGXy6WRCsctzWT7Xm6KUDQWB6Yo - 200 9854 text/javascript 176.6822ms
+2026-06-13 01:39:01.270 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 01:39:01.351 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 01:39:01.366 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 96.7893ms
+2026-06-13 01:39:22.279 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&campo=Login - null null
+2026-06-13 01:39:22.287 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:39:22.349 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 01:39:22.433 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-13 01:39:22.482 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 132.0198ms
+2026-06-13 01:39:22.482 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:39:22.483 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&campo=Login - 400 null application/problem+json; charset=utf-8 204.6466ms
+2026-06-13 01:40:01.234 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&campo=Login - null null
+2026-06-13 01:40:01.240 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:40:01.249 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 01:40:01.275 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-13 01:40:01.276 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 26.7665ms
+2026-06-13 01:40:01.277 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:40:01.278 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&campo=Login - 400 null application/problem+json; charset=utf-8 43.8749ms
+2026-06-13 01:45:14.842 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 01:45:15.121 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 01:45:15.255 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:45:15.621 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:45:16.666 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:45:17.052 -03:00 [INF] Executed ViewResult - view Login executed in 378.8275ms.
+2026-06-13 01:45:17.059 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 1436.4966ms
+2026-06-13 01:45:17.059 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:45:17.168 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 01:45:17.168 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=_X7uzhLStSaX-qzitJAEleyn69R814tQp3vcoCO2MTg - null null
+2026-06-13 01:45:17.168 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:45:17.244 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 127.9399ms
+2026-06-13 01:45:17.246 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 01:45:17.248 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 139.9431ms
+2026-06-13 01:45:17.309 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 01:45:17.311 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 2200.2753ms
+2026-06-13 01:45:17.316 -03:00 [INF] Sending file. Request path: '/js/validacaoUtils.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\validacaoUtils.js'
+2026-06-13 01:45:17.317 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=_X7uzhLStSaX-qzitJAEleyn69R814tQp3vcoCO2MTg - 200 9852 text/javascript 208.2998ms
+2026-06-13 01:45:17.397 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 01:45:17.442 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 133.6747ms
+2026-06-13 01:45:29.962 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=aaa&entidade=USUARIOS&campo=Login - null null
+2026-06-13 01:45:29.968 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:45:29.991 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 01:45:52.655 -03:00 [INF] Executed DbCommand (868ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 01:45:52.720 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:45:52.732 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 22740.8068ms
+2026-06-13 01:45:52.733 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:45:52.736 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=aaa&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 22774.7781ms
+2026-06-13 01:46:07.255 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 01:46:07.260 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:46:07.267 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 01:46:07.509 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 01:46:07.509 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:46:07.510 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 242.3368ms
+2026-06-13 01:46:07.510 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:46:07.511 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 256.6831ms
+2026-06-13 01:46:07.517 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 01:46:07.517 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:46:07.539 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 01:46:07.775 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 01:46:07.937 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:46:07.940 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 401.1451ms
+2026-06-13 01:46:07.941 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:46:07.941 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 424.363ms
+2026-06-13 01:47:54.797 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryjp9aqd5lniC9LvZD 507
+2026-06-13 01:47:55.232 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:47:55.617 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:47:55.826 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 01:47:56.382 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:47:56.400 -03:00 [INF] Executed ViewResult - view Login executed in 18.3303ms.
+2026-06-13 01:47:56.401 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 783.0615ms
+2026-06-13 01:47:56.401 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:47:56.402 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 1673.9779ms
+2026-06-13 01:47:56.433 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 01:47:56.433 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:47:56.496 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=_X7uzhLStSaX-qzitJAEleyn69R814tQp3vcoCO2MTg - null null
+2026-06-13 01:47:56.499 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 64.9971ms
+2026-06-13 01:47:56.499 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 01:47:56.499 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 01:47:56.500 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=_X7uzhLStSaX-qzitJAEleyn69R814tQp3vcoCO2MTg - 304 null text/javascript 65.8643ms
+2026-06-13 01:47:56.500 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 67.8631ms
+2026-06-13 01:48:13.828 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryjp9aqd5lniC9LvZD 507
+2026-06-13 01:48:13.830 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:48:13.830 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:48:13.858 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 01:48:14.310 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:48:14.317 -03:00 [INF] Executed ViewResult - view Login executed in 7.1571ms.
+2026-06-13 01:48:14.318 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 486.9385ms
+2026-06-13 01:48:14.318 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:48:14.318 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 490.433ms
+2026-06-13 01:55:19.143 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 01:55:19.409 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 01:55:19.489 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:55:19.986 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 01:55:20.949 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 01:55:21.454 -03:00 [INF] Executed ViewResult - view Login executed in 540.6284ms.
+2026-06-13 01:55:21.460 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 1472.0356ms
+2026-06-13 01:55:21.461 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 01:55:21.622 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 01:55:21.622 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Formatacoes.js?v=Efjt5eYnBM-UfsTa2m9KDBulJPYDFZo2qxi2CB4m3Ks - null null
+2026-06-13 01:55:21.622 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=vbVBNR0pspLbzy46qf83laUztknO9dn_1jbX_Jvzedk - null null
+2026-06-13 01:55:21.622 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 01:55:21.663 -03:00 [INF] The file /js/Formatacoes.js was not modified
+2026-06-13 01:55:21.663 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 01:55:21.665 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 39.71ms
+2026-06-13 01:55:21.667 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 47.0282ms
+2026-06-13 01:55:21.667 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Formatacoes.js?v=Efjt5eYnBM-UfsTa2m9KDBulJPYDFZo2qxi2CB4m3Ks - 304 null text/javascript 47.3632ms
+2026-06-13 01:55:21.677 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 2276.1495ms
+2026-06-13 01:55:21.710 -03:00 [INF] Sending file. Request path: '/js/validacaoUtils.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\validacaoUtils.js'
+2026-06-13 01:55:21.716 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=vbVBNR0pspLbzy46qf83laUztknO9dn_1jbX_Jvzedk - 200 10084 text/javascript 96.8457ms
+2026-06-13 01:55:21.821 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 01:55:21.827 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 01:55:21.834 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 12.2064ms
+2026-06-13 01:55:31.911 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 01:55:31.916 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:55:31.939 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 01:55:32.848 -03:00 [INF] Executed DbCommand (57ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 01:55:32.887 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:55:32.898 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 958.4741ms
+2026-06-13 01:55:32.899 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:55:32.901 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 990.1693ms
+2026-06-13 01:55:32.937 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 01:55:32.942 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:55:32.950 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 01:55:33.130 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 01:55:33.282 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:55:33.292 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 341.9549ms
+2026-06-13 01:55:33.293 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:55:33.294 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 357.3619ms
+2026-06-13 01:55:33.349 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 01:55:33.352 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:55:33.354 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 01:55:33.415 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 01:55:33.416 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:55:33.416 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 61.8098ms
+2026-06-13 01:55:33.416 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 01:55:33.417 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 67.9391ms
+2026-06-13 01:55:33.422 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 01:55:33.424 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:55:33.425 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 01:55:33.441 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 01:55:33.443 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 01:55:33.443 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 18.1995ms
+2026-06-13 01:55:33.444 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 01:55:33.444 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 22.0741ms
+2026-06-13 02:09:04.978 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 02:09:05.627 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 02:09:05.787 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:09:06.784 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:09:08.958 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:09:09.605 -03:00 [INF] Executed ViewResult - view Login executed in 680.3895ms.
+2026-06-13 02:09:09.608 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2823.4581ms
+2026-06-13 02:09:09.609 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:09:09.676 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 4061.9917ms
+2026-06-13 02:09:09.815 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:09:09.815 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:09:09.815 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/BuscaDadosNet.js?v=TNUdlclzaLVoE5R_P-HAHJnHosMBR66fTrKqufGuVpY - null null
+2026-06-13 02:09:09.815 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 02:09:09.855 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 40.585ms
+2026-06-13 02:09:09.859 -03:00 [INF] The file /js/BuscaDadosNet.js was not modified
+2026-06-13 02:09:09.859 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 02:09:09.863 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/BuscaDadosNet.js?v=TNUdlclzaLVoE5R_P-HAHJnHosMBR66fTrKqufGuVpY - 304 null text/javascript 49.9475ms
+2026-06-13 02:09:09.863 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 49.9745ms
+2026-06-13 02:09:09.888 -03:00 [INF] Sending file. Request path: '/js/validacaoUtils.js'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\js\validacaoUtils.js'
+2026-06-13 02:09:09.889 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 200 10202 text/javascript 75.6618ms
+2026-06-13 02:09:12.129 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 02:09:12.179 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 02:09:12.197 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 68.7997ms
+2026-06-13 02:09:29.404 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:09:29.411 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:09:29.445 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:09:30.775 -03:00 [INF] Executed DbCommand (69ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:09:30.820 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:09:30.829 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 1384.4015ms
+2026-06-13 02:09:30.830 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:09:30.837 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 1432.4645ms
+2026-06-13 02:09:30.843 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:09:30.847 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:09:30.858 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:09:31.176 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:09:31.553 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:09:31.557 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:09:31.560 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.561 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:09:31.563 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 704.3568ms
+2026-06-13 02:09:31.563 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.564 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 720.4915ms
+2026-06-13 02:09:31.603 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:09:31.604 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:09:31.605 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 43.8631ms
+2026-06-13 02:09:31.605 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.606 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 49.6578ms
+2026-06-13 02:09:31.609 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:09:31.609 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.610 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:09:31.611 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:09:31.613 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.614 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:09:31.634 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:09:31.635 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:09:31.636 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 25.3745ms
+2026-06-13 02:09:31.636 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.637 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 27.5914ms
+2026-06-13 02:09:31.649 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:09:31.651 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:09:31.652 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 38.4868ms
+2026-06-13 02:09:31.653 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.653 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 42.2138ms
+2026-06-13 02:09:31.657 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:09:31.657 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.658 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:09:31.675 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:09:31.675 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:09:31.676 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 18.2525ms
+2026-06-13 02:09:31.676 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:09:31.676 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 19.8172ms
+2026-06-13 02:09:35.725 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundarynBKul4fJ55HfkpUt 502
+2026-06-13 02:09:35.730 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:09:35.742 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:09:35.942 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:09:36.658 -03:00 [INF] Executing RedirectResult, redirecting to /Home/Index.
+2026-06-13 02:09:36.659 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 916.4847ms
+2026-06-13 02:09:36.659 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:09:36.660 -03:00 [INF] Session started; Key:b5de9816-a8c3-6971-8657-40f7525380a1, Id:f2ec7b01-018d-fd75-cafb-a1e7c39daa3e
+2026-06-13 02:09:36.663 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 302 null null 938.0604ms
+2026-06-13 02:09:36.675 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Home/Index - null null
+2026-06-13 02:09:36.676 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.HomeController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:09:36.678 -03:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Ordem_Servicos_Web.Controllers.HomeController (Ordem_Servicos_Web).
+2026-06-13 02:09:36.757 -03:00 [INF] Executing ViewResult, running view Index.
+2026-06-13 02:09:36.818 -03:00 [INF] Executed ViewResult - view Index executed in 120.0928ms.
+2026-06-13 02:09:36.818 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.HomeController.Index (Ordem_Servicos_Web) in 139.8395ms
+2026-06-13 02:09:36.819 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.HomeController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:09:36.819 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Home/Index - 200 null text/html; charset=utf-8 144.6125ms
+2026-06-13 02:09:36.846 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/site.js?v=NHtn8bPN0qK5C8HecSUigZGDvhOWz4BvQDqf7sF5mNY - null null
+2026-06-13 02:09:36.846 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:09:36.846 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:09:36.847 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:09:36.847 -03:00 [INF] The file /js/site.js was not modified
+2026-06-13 02:09:36.847 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 0.8851ms
+2026-06-13 02:09:36.847 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.1366ms
+2026-06-13 02:09:36.847 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/site.js?v=NHtn8bPN0qK5C8HecSUigZGDvhOWz4BvQDqf7sF5mNY - 304 null text/javascript 1.3414ms
+2026-06-13 02:09:44.348 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/Index - null null
+2026-06-13 02:09:44.349 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:09:44.353 -03:00 [INF] Route matched with {action = "Index", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:09:44.431 -03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__nomeMenu_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IdMenu`
+FROM `DBMenu` AS `d`
+WHERE UPPER(`d`.`Descricao`) = @__nomeMenu_0
+LIMIT 1
+2026-06-13 02:09:44.455 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__nomeItemMenu_0='?' (Size = 100), @__idMenu_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IdItensMenu`
+FROM `DBItensMenu` AS `d`
+WHERE (UPPER(`d`.`Descricao`) = @__nomeItemMenu_0) AND (`d`.`IdMenu` = @__idMenu_1)
+LIMIT 1
+2026-06-13 02:09:44.465 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__idUsuario_0='?' (DbType = Int32), @__idMenu_1='?' (DbType = Int32), @__idItensMenu_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDPermissao`, `d`.`Alterar`, `d`.`Criar`, `d`.`Excluir`, `d`.`Executar`, `d`.`IDItensMenu`, `d`.`IDMenu`, `d`.`IDUsuario`
+FROM `DBPermissoes` AS `d`
+WHERE ((`d`.`IDUsuario` = @__idUsuario_0) AND (`d`.`IDMenu` = @__idMenu_1)) AND (`d`.`IDItensMenu` = @__idItensMenu_2)
+LIMIT 1
+2026-06-13 02:09:44.527 -03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+ORDER BY `d`.`Nome`
+LIMIT @__p_1 OFFSET @__p_0
+2026-06-13 02:09:44.566 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `DBUsuarios` AS `d`
+2026-06-13 02:09:45.258 -03:00 [INF] Executing ViewResult, running view Index.
+2026-06-13 02:09:45.962 -03:00 [INF] Executed ViewResult - view Index executed in 704.4355ms.
+2026-06-13 02:09:45.962 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Index (Ordem_Servicos_Web) in 1609.411ms
+2026-06-13 02:09:45.962 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:09:45.974 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/Index - 200 null text/html; charset=utf-8 1659.63ms
+2026-06-13 02:09:45.998 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:09:45.998 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:09:45.998 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:09:45.998 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 0.7635ms
+2026-06-13 02:09:45.999 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.2197ms
+2026-06-13 02:09:48.715 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/Alterar/41 - null null
+2026-06-13 02:09:48.718 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Alterar (Ordem_Servicos_Web)'
+2026-06-13 02:09:48.726 -03:00 [INF] Route matched with {action = "Alterar", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Alterar(Int32) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:09:48.753 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__nomeMenu_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IdMenu`
+FROM `DBMenu` AS `d`
+WHERE UPPER(`d`.`Descricao`) = @__nomeMenu_0
+LIMIT 1
+2026-06-13 02:09:48.755 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__nomeItemMenu_0='?' (Size = 100), @__idMenu_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IdItensMenu`
+FROM `DBItensMenu` AS `d`
+WHERE (UPPER(`d`.`Descricao`) = @__nomeItemMenu_0) AND (`d`.`IdMenu` = @__idMenu_1)
+LIMIT 1
+2026-06-13 02:09:48.756 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__idUsuario_0='?' (DbType = Int32), @__idMenu_1='?' (DbType = Int32), @__idItensMenu_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDPermissao`, `d`.`Alterar`, `d`.`Criar`, `d`.`Excluir`, `d`.`Executar`, `d`.`IDItensMenu`, `d`.`IDMenu`, `d`.`IDUsuario`
+FROM `DBPermissoes` AS `d`
+WHERE ((`d`.`IDUsuario` = @__idUsuario_0) AND (`d`.`IDMenu` = @__idMenu_1)) AND (`d`.`IDItensMenu` = @__idItensMenu_2)
+LIMIT 1
+2026-06-13 02:09:48.825 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`IDUsuario` = @__p_0
+LIMIT 1
+2026-06-13 02:09:48.844 -03:00 [INF] Executing ViewResult, running view Alterar.
+2026-06-13 02:09:48.959 -03:00 [INF] Executed ViewResult - view Alterar executed in 130.1714ms.
+2026-06-13 02:09:48.959 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Alterar (Ordem_Servicos_Web) in 233.4298ms
+2026-06-13 02:09:48.960 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Alterar (Ordem_Servicos_Web)'
+2026-06-13 02:09:48.963 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/Alterar/41 - 200 null text/html; charset=utf-8 248.9523ms
+2026-06-13 02:09:48.987 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:09:48.988 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.031ms
+2026-06-13 02:11:13.692 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/Index - null null
+2026-06-13 02:11:13.693 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:11:13.694 -03:00 [INF] Route matched with {action = "Index", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(Int32, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:11:13.721 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__nomeMenu_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IdMenu`
+FROM `DBMenu` AS `d`
+WHERE UPPER(`d`.`Descricao`) = @__nomeMenu_0
+LIMIT 1
+2026-06-13 02:11:13.723 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__nomeItemMenu_0='?' (Size = 100), @__idMenu_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IdItensMenu`
+FROM `DBItensMenu` AS `d`
+WHERE (UPPER(`d`.`Descricao`) = @__nomeItemMenu_0) AND (`d`.`IdMenu` = @__idMenu_1)
+LIMIT 1
+2026-06-13 02:11:13.724 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__idUsuario_0='?' (DbType = Int32), @__idMenu_1='?' (DbType = Int32), @__idItensMenu_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDPermissao`, `d`.`Alterar`, `d`.`Criar`, `d`.`Excluir`, `d`.`Executar`, `d`.`IDItensMenu`, `d`.`IDMenu`, `d`.`IDUsuario`
+FROM `DBPermissoes` AS `d`
+WHERE ((`d`.`IDUsuario` = @__idUsuario_0) AND (`d`.`IDMenu` = @__idMenu_1)) AND (`d`.`IDItensMenu` = @__idItensMenu_2)
+LIMIT 1
+2026-06-13 02:11:13.726 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+ORDER BY `d`.`Nome`
+LIMIT @__p_1 OFFSET @__p_0
+2026-06-13 02:11:13.728 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `DBUsuarios` AS `d`
+2026-06-13 02:11:13.728 -03:00 [INF] Executing ViewResult, running view Index.
+2026-06-13 02:11:13.731 -03:00 [INF] Executed ViewResult - view Index executed in 3.3376ms.
+2026-06-13 02:11:13.731 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Index (Ordem_Servicos_Web) in 37.4784ms
+2026-06-13 02:11:13.731 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:11:13.743 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/Index - 200 null text/html; charset=utf-8 50.936ms
+2026-06-13 02:11:13.773 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:11:13.773 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:11:13.774 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.0735ms
+2026-06-13 02:11:13.774 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:11:13.774 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 1.2829ms
+2026-06-13 02:11:18.552 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Home/Index - null null
+2026-06-13 02:11:18.554 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.HomeController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:11:18.555 -03:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Ordem_Servicos_Web.Controllers.HomeController (Ordem_Servicos_Web).
+2026-06-13 02:11:18.596 -03:00 [INF] Executing ViewResult, running view Index.
+2026-06-13 02:11:18.598 -03:00 [INF] Executed ViewResult - view Index executed in 1.6989ms.
+2026-06-13 02:11:18.598 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.HomeController.Index (Ordem_Servicos_Web) in 17.465ms
+2026-06-13 02:11:18.598 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.HomeController.Index (Ordem_Servicos_Web)'
+2026-06-13 02:11:18.598 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Home/Index - 200 null text/html; charset=utf-8 46.6486ms
+2026-06-13 02:11:18.623 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:11:18.625 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.993ms
+2026-06-13 02:11:22.379 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/Account/Logout - application/x-www-form-urlencoded 186
+2026-06-13 02:11:22.380 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Logout (Ordem_Servicos_Web)'
+2026-06-13 02:11:22.384 -03:00 [INF] Route matched with {action = "Logout", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Logout() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:11:22.398 -03:00 [INF] Executing RedirectResult, redirecting to /.
+2026-06-13 02:11:22.398 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Logout (Ordem_Servicos_Web) in 14.0834ms
+2026-06-13 02:11:22.399 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Logout (Ordem_Servicos_Web)'
+2026-06-13 02:11:22.400 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/Account/Logout - 302 null null 20.4743ms
+2026-06-13 02:11:22.407 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 02:11:22.407 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:11:22.408 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:11:22.424 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:11:22.426 -03:00 [INF] Executed ViewResult - view Login executed in 1.9465ms.
+2026-06-13 02:11:22.426 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 18.2382ms
+2026-06-13 02:11:22.426 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:11:22.427 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 19.6651ms
+2026-06-13 02:11:22.448 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:11:22.452 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 3.261ms
+2026-06-13 02:11:30.667 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:11:30.669 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.669 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:11:30.697 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:11:30.698 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:11:30.698 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 28.674ms
+2026-06-13 02:11:30.698 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.699 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 32.7954ms
+2026-06-13 02:11:30.705 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:11:30.706 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.706 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:11:30.725 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:11:30.726 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:11:30.726 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 19.8211ms
+2026-06-13 02:11:30.726 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.727 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 21.5336ms
+2026-06-13 02:11:30.734 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:11:30.735 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.737 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:11:30.764 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:11:30.764 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:11:30.765 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 26.3079ms
+2026-06-13 02:11:30.765 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.765 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 30.8328ms
+2026-06-13 02:11:30.774 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:11:30.774 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.775 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:11:30.798 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:11:30.798 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:11:30.799 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 23.3895ms
+2026-06-13 02:11:30.799 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:11:30.799 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 25.6201ms
+2026-06-13 02:11:39.372 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryFHyUq0yGxRBQAfs7 505
+2026-06-13 02:11:39.373 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:11:39.376 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:11:39.412 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:11:39.675 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:11:39.677 -03:00 [INF] Executed ViewResult - view Login executed in 1.9855ms.
+2026-06-13 02:11:39.677 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 300.6079ms
+2026-06-13 02:11:39.677 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:11:39.678 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 306.0523ms
+2026-06-13 02:11:39.715 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:11:39.715 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:11:39.715 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:11:39.715 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 0.9709ms
+2026-06-13 02:11:39.715 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.0347ms
+2026-06-13 02:20:19.770 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 02:20:20.052 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 02:20:20.232 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:20:20.614 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:20:21.503 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:21:20.321 -03:00 [INF] Executed ViewResult - view Login executed in 58818.2649ms.
+2026-06-13 02:21:20.324 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 59709.1534ms
+2026-06-13 02:21:20.324 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:21:20.362 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:21:20.364 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 02:21:20.366 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:21:20.474 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 48.3072ms
+2026-06-13 02:21:20.480 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:21:20.480 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 02:21:20.484 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 117.6417ms
+2026-06-13 02:21:20.484 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 125.0264ms
+2026-06-13 02:21:20.490 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 60448.9905ms
+2026-06-13 02:21:20.654 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 02:21:20.697 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 02:21:20.745 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 90.2649ms
+2026-06-13 02:21:26.091 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:21:26.301 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:21:26.331 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:21:26.957 -03:00 [INF] Executed DbCommand (54ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:21:26.985 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:21:26.996 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 664.3575ms
+2026-06-13 02:21:26.997 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:21:26.999 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 1072.2528ms
+2026-06-13 02:21:27.003 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:21:27.005 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:21:27.012 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:21:27.183 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:21:27.272 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:21:27.274 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 261.5708ms
+2026-06-13 02:21:27.275 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:21:27.277 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 274.6988ms
+2026-06-13 02:21:27.285 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:21:27.287 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:21:27.288 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:21:27.321 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:21:27.321 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:21:27.322 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 33.6176ms
+2026-06-13 02:21:27.322 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:21:27.322 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 37.0776ms
+2026-06-13 02:21:27.328 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:21:27.330 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:21:27.330 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:21:27.348 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:21:27.349 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:21:27.350 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 18.9806ms
+2026-06-13 02:21:27.350 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:21:27.350 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 22.5462ms
+2026-06-13 02:21:33.815 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundary1OsfKtz1oKzHycZr 506
+2026-06-13 02:21:33.817 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:21:33.822 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:21:33.905 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:22:25.239 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:22:51.114 -03:00 [INF] Executed ViewResult - view Login executed in 25874.6671ms.
+2026-06-13 02:22:51.115 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 77292.3156ms
+2026-06-13 02:22:51.115 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:22:51.116 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 77301.0108ms
+2026-06-13 02:22:51.559 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:22:51.626 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:22:52.025 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 498.2383ms
+2026-06-13 02:22:52.026 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:22:52.027 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 501.0035ms
+2026-06-13 02:23:05.033 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc123&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:23:05.034 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.034 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:23:05.055 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:23:05.055 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:05.056 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 21.2175ms
+2026-06-13 02:23:05.056 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.056 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc123&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 22.9745ms
+2026-06-13 02:23:05.059 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc123 - null null
+2026-06-13 02:23:05.060 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.061 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:23:05.076 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:23:05.078 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:05.079 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 17.5923ms
+2026-06-13 02:23:05.079 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.080 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc123 - 200 null application/json; charset=utf-8 20.9978ms
+2026-06-13 02:23:05.086 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc123&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:23:05.086 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.087 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:23:05.103 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:23:05.103 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:05.104 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 16.8719ms
+2026-06-13 02:23:05.104 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.104 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc123&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 18.3633ms
+2026-06-13 02:23:05.115 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc123 - null null
+2026-06-13 02:23:05.115 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.116 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:23:05.131 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:23:05.132 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:05.133 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 17.1155ms
+2026-06-13 02:23:05.133 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:05.134 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc123 - 200 null application/json; charset=utf-8 18.5826ms
+2026-06-13 02:23:12.160 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryjfuORbvUBmPrO6SZ 506
+2026-06-13 02:23:12.161 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:23:12.163 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:23:12.186 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:23:15.420 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:23:17.552 -03:00 [INF] Executed ViewResult - view Login executed in 2131.9775ms.
+2026-06-13 02:23:17.553 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 5388.512ms
+2026-06-13 02:23:17.553 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:23:17.553 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 5393.9904ms
+2026-06-13 02:23:17.581 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:23:17.582 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 0.8924ms
+2026-06-13 02:23:32.654 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:23:32.654 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.655 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:23:32.675 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:23:32.676 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:32.676 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 21.2574ms
+2026-06-13 02:23:32.676 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.678 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 23.9865ms
+2026-06-13 02:23:32.685 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:23:32.685 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.685 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:23:32.701 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:23:32.701 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:32.701 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 16.236ms
+2026-06-13 02:23:32.702 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.702 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 17.2695ms
+2026-06-13 02:23:32.707 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:23:32.707 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.707 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:23:32.724 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:23:32.725 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:32.725 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 17.5566ms
+2026-06-13 02:23:32.725 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.725 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 18.7996ms
+2026-06-13 02:23:32.734 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:23:32.735 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.735 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:23:32.752 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:23:32.753 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:32.753 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 17.7375ms
+2026-06-13 02:23:32.753 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:32.753 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 19.2578ms
+2026-06-13 02:23:37.294 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundary9SkPHnD2LMQUot7B 501
+2026-06-13 02:23:37.527 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:23:37.662 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:23:38.185 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:23:46.813 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:23:46.815 -03:00 [INF] Executed ViewResult - view Login executed in 2.669ms.
+2026-06-13 02:23:46.815 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 9088.0072ms
+2026-06-13 02:23:46.815 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:23:46.816 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 9620.6584ms
+2026-06-13 02:23:46.837 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:23:46.838 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 0.8865ms
+2026-06-13 02:23:53.097 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:23:53.098 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.099 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:23:53.121 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:23:53.121 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:53.122 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 23.1484ms
+2026-06-13 02:23:53.122 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.123 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 26.1892ms
+2026-06-13 02:23:53.125 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:23:53.126 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.126 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:23:53.140 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:23:53.140 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:53.140 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 14.3124ms
+2026-06-13 02:23:53.140 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.141 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 15.2514ms
+2026-06-13 02:23:53.147 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:23:53.148 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.149 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:23:53.162 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:23:53.162 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:53.163 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 14.1407ms
+2026-06-13 02:23:53.163 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.163 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 15.7426ms
+2026-06-13 02:23:53.171 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:23:53.171 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.171 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:23:53.185 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:23:53.185 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:23:53.186 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 14.2925ms
+2026-06-13 02:23:53.186 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:23:53.186 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 15.3601ms
+2026-06-13 02:23:55.549 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryT4O3W5GD2ooTS21t 502
+2026-06-13 02:23:55.550 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:23:55.551 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:23:55.589 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:23:55.748 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:23:55.750 -03:00 [INF] Executed ViewResult - view Login executed in 2.734ms.
+2026-06-13 02:23:55.751 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 199.0507ms
+2026-06-13 02:23:55.751 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:23:55.752 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 202.6453ms
+2026-06-13 02:23:55.773 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:23:55.774 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.2161ms
+2026-06-13 02:24:35.900 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 02:24:35.901 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:24:35.902 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:24:35.928 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:24:35.935 -03:00 [INF] Executed ViewResult - view Login executed in 6.8583ms.
+2026-06-13 02:24:35.935 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 32.9708ms
+2026-06-13 02:24:35.935 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:24:35.937 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 36.3575ms
+2026-06-13 02:25:53.688 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 02:25:54.029 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 02:25:54.184 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:25:54.584 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:25:55.695 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:25:56.242 -03:00 [INF] Executed ViewResult - view Login executed in 548.269ms.
+2026-06-13 02:25:56.245 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 1659.7305ms
+2026-06-13 02:25:56.245 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:25:56.347 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:25:56.347 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:25:56.452 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 73.121ms
+2026-06-13 02:25:56.459 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:25:56.464 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 119.1054ms
+2026-06-13 02:25:56.500 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 2488.0843ms
+2026-06-13 02:25:56.659 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 02:25:56.807 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 02:25:56.822 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 162.8628ms
+2026-06-13 02:26:20.640 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:26:20.646 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:26:20.715 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:26:22.320 -03:00 [INF] Executed DbCommand (52ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:26:22.359 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:26:22.374 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 1657.9239ms
+2026-06-13 02:26:22.375 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.378 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 1737.837ms
+2026-06-13 02:26:22.384 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:26:22.388 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.395 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:26:22.734 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:26:22.835 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:26:22.840 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 444.4207ms
+2026-06-13 02:26:22.840 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.841 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 456.6834ms
+2026-06-13 02:26:22.857 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:26:22.859 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.860 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:26:22.889 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:26:22.891 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:26:22.891 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 31.1422ms
+2026-06-13 02:26:22.892 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.892 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 34.9572ms
+2026-06-13 02:26:22.899 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:26:22.901 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.902 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:26:22.925 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:26:22.926 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:26:22.927 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 24.7077ms
+2026-06-13 02:26:22.927 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:26:22.928 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 29.0015ms
+2026-06-13 02:26:28.306 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryAf2iF7fy73Gn2Plp 500
+2026-06-13 02:26:28.307 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:26:28.310 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:26:28.432 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:26:29.083 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:26:29.108 -03:00 [INF] Executed ViewResult - view Login executed in 25.0884ms.
+2026-06-13 02:26:29.108 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 798.0146ms
+2026-06-13 02:26:29.109 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:26:29.109 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 804.1089ms
+2026-06-13 02:26:29.149 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:26:29.154 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 4.4813ms
+2026-06-13 02:53:28.061 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 02:53:28.330 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 02:53:28.491 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:53:28.900 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:53:29.750 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:53:30.076 -03:00 [INF] Executed ViewResult - view Login executed in 327.3052ms.
+2026-06-13 02:53:30.078 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 1177.5243ms
+2026-06-13 02:53:30.079 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:53:30.150 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 02:53:30.150 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 02:53:30.150 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:53:30.192 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 71.4172ms
+2026-06-13 02:53:30.195 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 02:53:30.196 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 02:53:30.198 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 78.7306ms
+2026-06-13 02:53:30.198 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 77.6981ms
+2026-06-13 02:53:30.199 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 1880.2421ms
+2026-06-13 02:53:30.370 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 02:53:30.386 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 02:53:30.395 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 24.9023ms
+2026-06-13 02:54:29.584 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:54:29.623 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:54:29.681 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:54:30.467 -03:00 [INF] Executed DbCommand (52ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:54:30.507 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:54:30.516 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 835.3794ms
+2026-06-13 02:54:30.517 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:54:30.519 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 935.2677ms
+2026-06-13 02:54:30.525 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:54:30.528 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:54:30.535 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:54:30.711 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:54:30.802 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:54:30.806 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 270.9602ms
+2026-06-13 02:54:30.807 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:54:30.808 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 282.5754ms
+2026-06-13 02:54:30.814 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:54:30.816 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:54:30.817 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:54:31.587 -03:00 [INF] Executed DbCommand (202ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:54:32.022 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:54:32.023 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 1206.5357ms
+2026-06-13 02:54:32.024 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:54:32.026 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 1211.5199ms
+2026-06-13 02:54:32.030 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:54:32.032 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:54:32.032 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:54:32.046 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:54:32.047 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:54:32.048 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 15.8524ms
+2026-06-13 02:54:32.048 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:54:32.048 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 18.6745ms
+2026-06-13 02:54:36.161 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryXYYaWoXo2HaY2LGu 501
+2026-06-13 02:54:36.164 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:54:36.168 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:54:36.254 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:55:00.207 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:55:00.217 -03:00 [INF] Executed ViewResult - view Login executed in 10.2352ms.
+2026-06-13 02:55:00.217 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 24049.0026ms
+2026-06-13 02:55:00.217 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:55:00.218 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 24057.1529ms
+2026-06-13 02:55:00.304 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:55:00.306 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 3.2095ms
+2026-06-13 02:56:00.926 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:56:00.933 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:56:00.934 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:56:01.014 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:56:01.014 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:56:01.015 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 81.0638ms
+2026-06-13 02:56:01.015 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.016 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 89.7536ms
+2026-06-13 02:56:01.044 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:56:01.045 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.045 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:56:01.062 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:56:01.063 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:56:01.063 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 17.9692ms
+2026-06-13 02:56:01.063 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.064 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 19.3882ms
+2026-06-13 02:56:01.090 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:56:01.091 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.092 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:56:01.103 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:56:01.104 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:56:01.104 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 11.6888ms
+2026-06-13 02:56:01.104 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.106 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 14.5292ms
+2026-06-13 02:56:01.111 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:56:01.111 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.112 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:56:01.125 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:56:01.125 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:56:01.126 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 14.2623ms
+2026-06-13 02:56:01.126 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:56:01.127 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 15.9823ms
+2026-06-13 02:56:03.486 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryoSfapTKgY0Jby3PZ 500
+2026-06-13 02:56:03.487 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:56:03.487 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:56:03.505 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:56:06.205 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:56:06.213 -03:00 [INF] Executed ViewResult - view Login executed in 8.0099ms.
+2026-06-13 02:56:06.213 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2725.3012ms
+2026-06-13 02:56:06.213 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:56:06.214 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 2727.4448ms
+2026-06-13 02:56:06.233 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:56:06.234 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 0.7335ms
+2026-06-13 02:57:41.168 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 02:57:41.169 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:57:41.169 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 02:57:41.224 -03:00 [INF] Executed DbCommand (35ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 02:57:41.225 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:57:41.227 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 57.1554ms
+2026-06-13 02:57:41.227 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 02:57:41.228 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 59.7522ms
+2026-06-13 02:57:41.233 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 02:57:41.234 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:57:41.234 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 02:57:41.250 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 02:57:41.251 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 02:57:41.251 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 17.2463ms
+2026-06-13 02:57:41.251 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 02:57:41.252 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 18.5529ms
+2026-06-13 02:57:46.310 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryx9KMI13zkG9q0DWJ 505
+2026-06-13 02:57:46.476 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:57:46.742 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 02:57:46.796 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 02:57:46.959 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 02:57:46.963 -03:00 [INF] Executed ViewResult - view Login executed in 3.8395ms.
+2026-06-13 02:57:46.963 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 188.1478ms
+2026-06-13 02:57:46.963 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 02:57:46.964 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 689.2141ms
+2026-06-13 02:57:46.984 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 02:57:46.985 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.5844ms
+2026-06-13 03:31:36.401 -03:00 [INF] User profile is available. Using 'C:\Users\Reginaldo.MBC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 03:31:36.802 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - null null
+2026-06-13 03:31:36.959 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 03:31:37.878 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 03:31:39.872 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 03:31:40.580 -03:00 [INF] Executed ViewResult - view Login executed in 737.6437ms.
+2026-06-13 03:31:40.585 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 2705.4552ms
+2026-06-13 03:31:40.585 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 03:31:40.639 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - 200 null text/html; charset=utf-8 3850.3594ms
+2026-06-13 03:31:40.820 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - null null
+2026-06-13 03:31:40.820 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 03:31:40.820 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - null null
+2026-06-13 03:31:40.859 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 39.5208ms
+2026-06-13 03:31:40.863 -03:00 [INF] The file /js/Validacoes.js was not modified
+2026-06-13 03:31:40.863 -03:00 [INF] The file /js/validacaoUtils.js was not modified
+2026-06-13 03:31:40.865 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/validacaoUtils.js?v=Cirru4OqHV3ioMFUgctDpqeHWI2vwvWCCOB6nwK02Ns - 304 null text/javascript 46.229ms
+2026-06-13 03:31:40.865 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/js/Validacoes.js?v=DWSTYXC1PWAGnnQBF1mV-JKVKAQZY2h2JKRSuBoZVlA - 304 null text/javascript 46.2476ms
+2026-06-13 03:31:44.067 -03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - null null
+2026-06-13 03:31:44.247 -03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map'. Physical path: 'D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map'
+2026-06-13 03:31:44.258 -03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map - 200 332090 text/plain 191.4678ms
+2026-06-13 03:31:50.171 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 03:31:50.181 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 03:31:50.219 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 03:31:51.521 -03:00 [INF] Executed DbCommand (69ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 03:31:51.567 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 03:31:51.581 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 1360.2034ms
+2026-06-13 03:31:51.582 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 03:31:51.585 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 1415.1923ms
+2026-06-13 03:31:51.594 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 03:31:51.597 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 03:31:51.606 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 03:31:51.827 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 03:31:52.012 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 03:31:52.014 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 408.4458ms
+2026-06-13 03:31:52.015 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 03:31:52.015 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 421.6222ms
+2026-06-13 03:31:52.032 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - null null
+2026-06-13 03:31:52.045 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 03:31:52.045 -03:00 [INF] Route matched with {action = "VerificarDuplicidade", controller = "Entidades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerificarDuplicidade(System.String, System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Entidades.EntidadesController (Ordem_Servicos_Web).
+2026-06-13 03:31:52.078 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `DBUsuarios` AS `d`
+    WHERE `d`.`Login` = @__valor_0)
+2026-06-13 03:31:52.079 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 03:31:52.079 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web) in 33.4589ms
+2026-06-13 03:31:52.079 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Entidades.EntidadesController.VerificarDuplicidade (Ordem_Servicos_Web)'
+2026-06-13 03:31:52.080 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Entidades/VerificarDuplicidade?valor=mbc&entidade=USUARIOS&campo=Login - 200 null application/json; charset=utf-8 47.4982ms
+2026-06-13 03:31:52.083 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - null null
+2026-06-13 03:31:52.084 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 03:31:52.085 -03:00 [INF] Route matched with {action = "GetUserImage", controller = "Usuarios"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserImage(System.String) on controller Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController (Ordem_Servicos_Web).
+2026-06-13 03:31:52.101 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__valor_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = @__valor_0
+LIMIT 1
+2026-06-13 03:31:52.102 -03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType35`5[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-13 03:31:52.103 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web) in 18.0886ms
+2026-06-13 03:31:52.104 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Cadastros.UsuariosController.GetUserImage (Ordem_Servicos_Web)'
+2026-06-13 03:31:52.104 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/Usuarios/GetUserImage?valor=mbc - 200 null application/json; charset=utf-8 21.2095ms
+2026-06-13 03:31:55.803 -03:00 [INF] Request starting HTTP/2 POST https://localhost:44312/ - multipart/form-data; boundary=----WebKitFormBoundaryeJ53W2zqmA0m2C4b 504
+2026-06-13 03:31:55.806 -03:00 [INF] Executing endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 03:31:55.813 -03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(System.String, System.String) on controller Ordem_Servicos_Web.Controllers.Login.AccountController (Ordem_Servicos_Web).
+2026-06-13 03:31:55.944 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__login_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`IDUsuario`, `d`.`Bairro`, `d`.`Cep`, `d`.`DataCadastro`, `d`.`Email`, `d`.`Endereco`, `d`.`Fone_2`, `d`.`Fone_1`, `d`.`Imagem`, `d`.`Login`, `d`.`Municipio`, `d`.`Nome`, `d`.`Numero`, `d`.`Senha`, `d`.`UF`
+FROM `DBUsuarios` AS `d`
+WHERE `d`.`Login` = CONVERT(@__login_0 USING utf8mb4) COLLATE utf8mb4_bin
+LIMIT 1
+2026-06-13 03:31:56.590 -03:00 [INF] Executing ViewResult, running view Login.
+2026-06-13 03:31:56.606 -03:00 [INF] Executed ViewResult - view Login executed in 15.8659ms.
+2026-06-13 03:31:56.607 -03:00 [INF] Executed action Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web) in 793.7618ms
+2026-06-13 03:31:56.607 -03:00 [INF] Executed endpoint 'Ordem_Servicos_Web.Controllers.Login.AccountController.Login (Ordem_Servicos_Web)'
+2026-06-13 03:31:56.608 -03:00 [INF] Request finished HTTP/2 POST https://localhost:44312/ - 200 null text/html; charset=utf-8 805.0579ms
+2026-06-13 03:31:56.639 -03:00 [INF] Request starting HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-13 03:31:56.640 -03:00 [INF] Request finished HTTP/2 GET https://localhost:44312/_framework/aspnetcore-browser-refresh.js - 200 14941 application/javascript; charset=utf-8 1.1ms

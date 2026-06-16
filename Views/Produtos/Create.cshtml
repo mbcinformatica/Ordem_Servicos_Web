@@ -1,0 +1,234 @@
+﻿@model Ordem_Servicos_Web.ViewModels.ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Novo Produto";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Create" method="post" id="formProduto" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Descricao" />
+
+
+    <!-- Linha 1 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno do Produto</label>
+            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control text-uppercase maiusculo" style="width:260px;" autofocus />
+        </div>
+        <div class="col-auto">
+            <label asp-for="IdProdutoFabricante" class="label-destaque">Código do Fabricante</label>
+            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control text-uppercase maiusculo" style="width:260px;" />
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">Nome do Fornecedor</label>
+            <select asp-for="IdFornecedor" class="form-select" style="width:525px;" id="fornecedorSelect">
+                <option value="">-- Clique para carregar Fornecedores --</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Linha 2 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label class="label-destaque">Descrição da Marca</label>
+            <select asp-for="IdMarca" class="form-select" style="width:300px;" id="marcaSelect">
+                <option value="">-- Clique para carregar Marca --</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">Descrição do Modelo</label>
+            <select asp-for="IdModelo" class="form-select" style="width:400px;" id="modeloSelect">
+                <option value="">-- Selecione uma Marca primeiro --</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">Descrição da Unidade</label>
+            <select asp-for="IdUnidade" class="form-select" style="width:350px;" id="unidadeSelect">
+                <option value="">-- Clique para carregar Unidade --</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Linha 3 -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="PrecoCompra" class="label-destaque">Preço de Compra</label>
+            <input asp-for="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end" id="PrecoCompra" style="width:257px;" />
+
+        </div>
+        <div class="col-auto">
+            <label asp-for="PrecoVenda" class="label-destaque">Preço de Venda</label>
+            <input asp-for="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end" id="PrecoVenda" style="width:257px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
+            <input asp-for="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end" id="EstoqueAtual" style="width:257px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
+            <input asp-for="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end" id="EstoqueMinimo" style="width:257px;" />
+        </div>
+    </div>
+
+    <!-- Linha 4 -->
+    <div class="row mb-2 g-4">
+          <div class="col-auto">
+              <label for="Imagem" class="label-destaque">Imagem do Produto</label>
+              <input type="file" id="Imagem" name="Imagem" class="form-control" accept="image/*" />
+          </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-bg btn-salvar">
+            <i class="fa fa-save"></i> Salvar Produto
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const form = document.getElementById("formProduto");
+            const descricao = document.getElementById("Descricao");
+            const precoCompra = document.getElementById("PrecoCompra");
+            const precoVenda = document.getElementById("PrecoVenda");
+            const estoqueAtual = document.getElementById("EstoqueAtual");
+            const estoqueMinimo = document.getElementById("EstoqueMinimo");
+            const imagem = document.getElementById("Imagem");
+
+            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+            }
+
+            // Aplicar máscaras de formatação
+            if (precoCompra) aplicarMascaraCampo(precoCompra, "valor");
+            if (precoVenda) aplicarMascaraCampo(precoVenda, "valor");
+            if (estoqueAtual) aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (estoqueMinimo) aplicarMascaraCampo(estoqueMinimo, "quantidade");
+
+            aplicarMaiusculoCampos(".maiusculo");
+
+            // Ao clicar no campo Fornecedor → carregar fornecedores
+            document.getElementById("fornecedorSelect").addEventListener("focus", function () {
+                var fornecedorSelect = this;
+                if (fornecedorSelect.options.length <= 1) {
+                    fetch('/Produtos/GetFornecedores')
+                        .then(response => response.json())
+                        .then(data => {
+                            fornecedorSelect.innerHTML = "";
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione um Fornecedor --";
+                            option.value = "";
+                            fornecedorSelect.appendChild(option);
+
+                            data.forEach(function (fornecedor) {
+                                var option = document.createElement("option");
+                                option.value = fornecedor.idFornecedor;
+                                option.text = fornecedor.nomeRazaoSocial;
+                                fornecedorSelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+
+            // Ao clicar no campo Marca → carregar marcas
+            document.getElementById("marcaSelect").addEventListener("focus", function () {
+                var marcaSelect = this;
+                if (marcaSelect.options.length <= 1) {
+                    fetch('/Produtos/GetMarcas')
+                        .then(response => response.json())
+                        .then(data => {
+                            marcaSelect.innerHTML = "";
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione uma Marca --";
+                            option.value = "";
+                            marcaSelect.appendChild(option);
+
+                            data.forEach(function (marca) {
+                                var option = document.createElement("option");
+                                option.value = marca.idMarca;
+                                option.text = marca.descricao;
+                                marcaSelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+
+            // Ao selecionar Marca → carregar Modelos
+            document.getElementById("marcaSelect").addEventListener("change", function () {
+                var idMarca = this.value;
+                var modeloSelect = document.getElementById("modeloSelect");
+
+                modeloSelect.innerHTML = "";
+
+                if (idMarca) {
+                    fetch('/Produtos/GetModelos?idMarca=' + idMarca)
+                        .then(response => response.json())
+                        .then(data => {
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione um Modelo --";
+                            option.value = "";
+                            modeloSelect.appendChild(option);
+
+                            data.forEach(function (modelo) {
+                                var option = document.createElement("option");
+                                option.value = modelo.idModelo;
+                                option.text = modelo.descricao;
+                                modeloSelect.appendChild(option);
+                                descricao.value = `${document.getElementById("marcaSelect").selectedOptions[0].text} ${modelo.descricao}`;
+                            });
+                        });
+                } else {
+                    var option = document.createElement("option");
+                    option.text = "-- Selecione uma Marca primeiro --";
+                    modeloSelect.appendChild(option);
+                }
+            });
+
+            // Ao clicar no campo Unidade → carregar unidades
+            document.getElementById("unidadeSelect").addEventListener("focus", function () {
+                var unidadeSelect = this;
+                if (unidadeSelect.options.length <= 1) {
+                    fetch('/Produtos/GetUnidades')
+                        .then(response => response.json())
+                        .then(data => {
+                            unidadeSelect.innerHTML = "";
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione uma Unidade --";
+                            option.value = "";
+                            unidadeSelect.appendChild(option);
+
+                            data.forEach(function (unidade) {
+                                var option = document.createElement("option");
+                                option.value = unidade.idUnidade;
+                                option.text = unidade.descricao;
+                                unidadeSelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+
+            // Normalizar valores antes de enviar
+            if (form) {
+                form.addEventListener("submit", function () {
+                    if (precoCompra) semMascaraCampo(precoCompra);
+                    if (precoVenda) semMascaraCampo(precoVenda);
+                    if (estoqueAtual) semMascaraCampo(estoqueAtual);
+                    if (estoqueMinimo) semMascaraCampo(estoqueMinimo);
+                    form.submit();
+                });
+            }
+        });
+    </script>
+}

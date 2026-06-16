@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<partial name="_MensagemToast" />
+
+<div class="login-page gradient-bg d-flex justify-content-center align-items-center ">
+    <div class="card shadow-lg translucent-box card-login">
+        <div class="card-body">
+            <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+            <form asp-action="Login" asp-controller="Account" method="post" id="formLogin" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="Login" class="form-label label-destaque">Login</label>
+                    <input type="text" id="Login" name="Login" class="form-control input-login" autofocus tabindex="1" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="Senha" class="form-label label-destaque">Senha</label>
+                    <input type="password" id="Senha" name="Senha" class="form-control input-login" tabindex="2" />
+                </div>
+
+                <!-- Container da imagem e NomeUsuario -->
+                <div id="userImageContainer" class="text-center mb-3" style="display:none;">
+                    <img id="userImage" src="" alt="Imagem do usuário" class="img-thumbnail" style="max-width:150px;" />
+                    <p id="nomeUsuario" class="fw-bold mt-2"></p>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-grid">
+                    <button type="submit" id="btnEntrar" class="btn-entrar" tabindex="3">
+                        <i class="fa fa-sign-in-alt me-2"></i> Entrar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const loginInput = document.getElementById("Login");
+            const senhaInput = document.getElementById("Senha");
+            const userImageContainer = document.getElementById("userImageContainer");
+            const userImage = document.getElementById("userImage");
+            const nomeUsuario = document.getElementById("nomeUsuario");
+            const form = document.getElementById("formLogin");
+            const btnEntrar = document.getElementById("btnEntrar");
+
+            const camposObrigatorios = [
+                "Login",
+                "Senha"
+            ];
+
+            if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "USUARIOS");
+                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+                }
+            }
+
+            // Focar no botão salvar a partir do campo de email
+            if (senhaInput && btnEntrar) {
+                senhaInput.addEventListener("blur", function () {
+                    if (senhaInput.classList.contains("Invalid")) {
+                        senhaInput.focus();
+                    } else {
+                        btnEntrar.focus();
+                    }
+                });
+                senhaInput.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        btnEntrar.focus();
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\bin\Release\net10.0\publish\</_PublishTargetUrl>
+    <History>True|2026-04-09T09:12:51.5723660Z||;True|2026-04-08T21:40:23.6615562-03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=192.168.2.200%3bPort=33061%3bDatabase=DBOrdemServicos%3bUid=root%3bPwd=password%3b</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="MySqlConnection">
+      <Value>Server=192.168.2.200%3bPort=33061%3bDatabase=DBOrdemServicos%3bUid=root%3bPwd=password%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

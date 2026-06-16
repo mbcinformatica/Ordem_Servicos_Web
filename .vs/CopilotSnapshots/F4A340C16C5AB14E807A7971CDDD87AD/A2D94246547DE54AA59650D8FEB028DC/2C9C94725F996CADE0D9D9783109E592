@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Sistema OS</title>
+
+    <!-- CSS com cache busting -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Variável global -->
+    <script>
+        window.menuBloqueado = false; // menu começa liberado
+    </script>
+
+    <style>
+        /* Estilo para desabilitar visualmente */
+        .menu-disabled {
+            pointer-events: none; /* bloqueia clique */
+            opacity: 0.5; /* deixa visualmente apagado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand">Sistema OS</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+
+                        <!-- Cadastros -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="cadastrosDropdown" role="button" data-bs-toggle="dropdown">
+                                Cadastros
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index">Clientes</a></li>
+                                <li><a class="dropdown-item" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a></li>
+                                <li><a class="dropdown-item" asp-controller="Produtos" asp-action="Index">Produtos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Servicos" asp-action="Index">Serviços</a></li>
+                                <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index">Usuários</a></li>
+                                <li><a class="dropdown-item" asp-controller="CategoriaServicos" asp-action="Index">Categoria de Serviços</a></li>
+                                <li><a class="dropdown-item" asp-controller="Marcas" asp-action="Index">Marcas</a></li>
+                                <li><a class="dropdown-item" asp-controller="Modelos" asp-action="Index">Modelos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Unidades" asp-action="Index">Unidades de Medida</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Lançamentos -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="lancamentosDropdown" role="button" data-bs-toggle="dropdown">
+                                Lançamentos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Servicos" asp-action="Index">Serviços</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Relatórios -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="relatoriosDropdown" role="button" data-bs-toggle="dropdown">
+                                Relatórios
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Relatorios" asp-action="Clientes">Clientes</a></li>
+                                <li><a class="dropdown-item" asp-controller="Relatorios" asp-action="Fornecedores">Fornecedores</a></li>
+                                <li><a class="dropdown-item" asp-controller="Relatorios" asp-action="Usuarios">Usuários</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Configurações -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="configuracoesDropdown" role="button" data-bs-toggle="dropdown">
+                                Configurações
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Formularios" asp-action="Index">Formulários</a></li>
+                                <li><a class="dropdown-item" asp-controller="ConexaoBD" asp-action="Index">Conexão BD</a></li>
+                                <li><a class="dropdown-item" asp-controller="Backup" asp-action="Index">Backup</a></li>
+                                <li><a class="dropdown-item" asp-controller="Restaure" asp-action="Index">Restaure</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Ferramentas -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="ferramentasDropdown" role="button" data-bs-toggle="dropdown">
+                                Ferramentas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="ferramentasDropdown">
+                                <!-- Submenu Importar Dados -->
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Importar Dados</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="ImportarClientes" asp-action="ImportarClientes">Clientes</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarFornecedores" asp-action="ImportarFornecedores">Fornecedores</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarProdutos" asp-action="ImportarProdutos">Produtos</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarServicos" asp-action="ImportarServicos">Serviços</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarUsuarios" asp-action="ImportarUsuarios">Usuários</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarCategoriaServicos" asp-action="ImportarCategoriaServicos">Categoria de Serviços</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarMarcas" asp-action="ImportarMarcas">Marcas</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarModelos" asp-action="ImportarModelos">Modelos</a></li>
+                                        <li><a class="dropdown-item" asp-controller="ImportarUnidades" asp-action="ImportarUnidades">Unidades de Medida</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Fechar -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="window.close();" aria-label="Fechar aplicação">Fechar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container">
+            &copy; 2026 - Sistema OS
+        </div>
+    </footer>
+
+    <!-- Scripts com cache busting -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/js/formatters.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    <!-- Script para habilitar submenu e bloquear menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            aplicarEstadoMenu();
+            document.querySelectorAll('.dropdown-submenu .dropdown-toggle').forEach(function (element) {
+                element.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let submenu = this.nextElementSibling;
+                    if (submenu) {
+                        submenu.classList.toggle('show');
+                    }
+                });
+            });
+
+            // Bloqueio do menu
+            document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    if (menuBloqueado) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                });
+            });
+        });
+
+        function aplicarEstadoMenu() {
+            const links = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item');
+            if (window.menuBloqueado) {
+                links.forEach(link => link.classList.add('menu-disabled'));
+            } else {
+                links.forEach(link => link.classList.remove('menu-disabled'));
+            }
+        }
+
+        // Funções globais
+        function bloquearMenu() {
+            window.menuBloqueado = true;
+            aplicarEstadoMenu();
+        }
+
+        function liberarMenu() {
+            window.menuBloqueado = false;
+            aplicarEstadoMenu();
+        }
+    </script>
+</body>
+</html>

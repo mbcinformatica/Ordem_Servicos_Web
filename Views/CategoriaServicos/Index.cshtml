@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.CategoriaServico>
+
+@{
+    ViewData["Title"] = "Gerenciamento de Categoria de Serviços";
+    int page = ViewBag.Page ?? 1;
+    int totalPaginas = ViewBag.TotalPaginas ?? 1;
+    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+    string search = ViewBag.Search ?? "";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="table-responsive">
+    <table class="table-os table-os-striped table-os-bordered table-os-condensed w-100 mb-0">        
+        <thead class="table-dark">
+            <tr>
+                <th style="width:150px;">Ações</th>
+                <th class="sortable" style="width:100px;">ID</th>
+                <th class="sortable">DESCRIÇÃO</th>
+            </tr>
+        </thead>
+        <tbody id="categoriaServicosTable">
+            @foreach (var categoriaServico in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Alterar" asp-route-id="@categoriaServico.IdCategoriaServico" class="btn btn-alterar btn-sm">
+                            <i class="fa fa-edit"></i> Alterar
+                        </a>
+                        <a asp-action="Excluir" asp-route-id="@categoriaServico.IdCategoriaServico" class="btn btn-excluir btn-sm">
+                            <i class="fa fa-trash"></i> Excluir
+                        </a>
+                    </td>
+                    <td class="text-end">@categoriaServico.IdCategoriaServico</td>
+                    <td>@categoriaServico.Descricao</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<input type="text" id="searchBox" value="@search"
+       class="input-pesquisa"
+       placeholder="..." style="max-width:1000px;" />
+
+<!-- Rodapé -->
+<div class="d-flex justify-content-between align-items-center mt-2 flex-wrap">
+    <div class="d-flex align-items-center flex-wrap">
+        <a class="btn btn-navegacao btn-bg me-2 @(page == 1 ? "disabled" : "")"
+           asp-action="Index" asp-route-page="@(page - 1)" asp-route-search="@search">
+            <i class="fa fa-arrow-left"></i> Anterior
+        </a>
+
+        <span class="fw-bold text-black me-2">Página: @(page) - @totalPaginas</span>
+
+        <a class="btn btn-navegacao btn-bg me-3 @(page == totalPaginas ? "disabled" : "")"
+           asp-action="Index" asp-route-page="@(page + 1)" asp-route-search="@search">
+            Próximo <i class="fa fa-arrow-right"></i>
+        </a>
+
+        <span id="totalRegistros" class="fw-bold text-black me-2">Total de Registros: @totalRegistros</span>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Create" class="btn btn-novo btn-bg">
+            <i class="fa fa-plus"></i> Nova Categoria de Serviços
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-voltar btn-bg" onclick="liberarMenu()">
+            <i class="fa fa-home"></i> Voltar
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/PesquisaDinamica.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            initSortableTable({
+                tableSelector: "table",
+                searchBoxSelector: "#searchBox",
+                targetTableBody: "#categoriaServicosTable",
+                totalRegSelector: "#totalRegistros",
+                colMap: {
+                    1: "IdCategoriaServico",
+                    2: "Descricao",
+                },
+                initialCol: 2,              // começa em NomeRazaoSocial
+                initialDirection: true,     // ascendente
+                searchUrl: '@Url.Action("Search", "CategoriaServicos")',
+                indexUrl: '@Url.Action("Index", "CategoriaServicos", new { page = 1 })',
+                defaultSearchColumn: "Descricao",
+                placeholders: {
+                    "IdCategoriaServico": "Pesquisar Categoria de Serviços por ID...",
+                    "Descricao": "Pesquisar Categoria de Serviços por Descrição..."
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,116 @@
+﻿@model Ordem_Servicos_Web.Models.Modelo
+
+@{
+    ViewData["Title"] = "Novo Modelo";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Create" method="post" id="formModelo" enctype="multipart/form-data">
+    
+	<!-- Descrição da Modelo -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label class="label-destaque">Descrição da Marca</label>
+            <select asp-for="IdMarca" class="form-control" style="width:450px;" id="marcaSelect">
+                <option value="">-- Clique para carregar Marcas --</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">Descrição do Modelo</label>
+            <input asp-for="Descricao" class="form-control text-uppercase maiusculo" id="Descricao" required autofocus style="width:615px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-bg btn-salvar">
+            <i class="fa fa-save"></i> Salvar Modelo
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+
+            const descricao = document.getElementById("Descricao");
+            const btnSalvar = document.getElementById("btnSalvar");
+            const form = document.getElementById("formModelo");
+
+            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+            }
+
+            aplicarMaiusculoCampos(".maiusculo");
+
+            // Ao clicar no campo Marca → carregar Marcas
+            document.getElementById("marcaSelect").addEventListener("focus", function () {
+                var marcaSelect = this;
+                if (marcaSelect.options.length <= 1) {
+                    fetch('/Modelos/GetMarcas')
+                        .then(response => response.json())
+                        .then(data => {
+                            marcaSelect.innerHTML = "";
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione uma Marca --";
+                            option.value = "";
+                            marcaSelect.appendChild(option);
+
+                            data.forEach(function (marca) {
+                                var option = document.createElement("option");
+                                option.value = marca.idMarca;
+                                option.text  = marca.descricao;
+                                marcaSelect.appendChild(option);
+                            });
+                        })
+                        .catch(() => {
+                            mostrarToast("Erro ao carregar marcas.", "erro");
+                        });
+                }
+            });
+
+            if (descricao) {
+                descricao.addEventListener("blur", function () {
+                    const idMarca = document.getElementById("marcaSelect").value;
+                    const descricaoModelo = descricao.value.trim();
+
+                    if (descricaoModelo.length > 0 && idMarca) {
+                        fetch(`/Modelos/VerificarDescricaoModelo?idMarca=${idMarca}&descricaoModelo=${encodeURIComponent(descricaoModelo)}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.existe) {
+                                    mostrarToast("Já existe um Modelo com essa Marca e Descrição.", "erro");
+                                    descricao.focus();
+                                }
+                            })
+                            .catch(() => {
+                                mostrarToast("Erro ao verificar Modelo.", "erro");
+                                descricao.focus();
+                            });
+                    }
+
+                });
+            }
+
+			// Descricao
+            if (descricao && btnSalvar) {
+
+               // Ao pressionar Enter dentro do campo
+                descricao.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // evita submit automático
+                        btnSalvar.focus();
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Restaurar Backup";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<div class="alert alert-info mt-3">
+    <strong>Instruções para Restauração:</strong>
+    <ul>
+        <li>O arquivo deve estar no formato <strong>.sql</strong>.</li>
+        <li>Exemplo de arquivo válido: <code>Backup_DBClientes_20260422191000.sql</code></li>
+    </ul>
+</div>
+
+<form asp-action="RestoreBackup" asp-controller="RestoreBackup" method="post" enctype="multipart/form-data" class="mt-3">
+    <div class="mb-3">
+        <label for="arquivoSQL" class="form-label">Selecione o arquivo SQL:</label>
+        <input type="file" id="arquivoSQL" name="arquivoSQL" class="form-control" accept=".sql" required />
+    </div>
+    <button type="submit" id="btnRestaurar" class="btn btn-danger">Restaurar Backup</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-2" onclick="liberarMenu()">
+        <i class="fa fa-home"></i> Voltar
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+        });
+    </script>
+}

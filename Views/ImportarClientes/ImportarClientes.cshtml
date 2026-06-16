@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Importar Clientes";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="alert alert-info">
+    <br />
+    <strong>Instruções para importação:</strong>
+    <ul>
+        <li>O arquivo deve estar no formato <strong>CSV</strong>.</li>
+        <li>Deve conter um CNPJ por linha sem formatação.</li>
+        <li>
+            Exemplo de linha válida:
+            <br />
+            00000000000000
+            <br />
+            11111111111111
+        </li>
+    </ul>
+</div>
+
+
+
+<form asp-action="ImportarClientes" asp-controller="ImportarClientes" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="arquivoCSV" class="alert-info" style="font-size: 18px;">Selecione o arquivo CSV:</label>
+        <input type="file" id="arquivoCSV" name="arquivoCSV" class="form-control" />
+    </div>
+    <button type="submit" id="btnSalvar" class="btn btn-primary btn-bg"
+            onclick="iniciarProgresso('/ImportarClientes/Progresso','barraProgresso')">Importar</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-voltar btn-bg" onclick="liberarMenu()">
+        <i class="fa fa-home"></i> Voltar
+    </a>
+</form>
+
+<!-- Barra de progresso -->
+<div class="progress mt-4" style="height:3em">
+    <div id="barraProgresso" class="progress-bar progress-bar-striped progress-bar-animated"
+         role="progressbar" style="width: 0%; font-size: 1.5em; font-weight: bold;"
+         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        0%
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/ProgressBar.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+        });
+    </script>
+}

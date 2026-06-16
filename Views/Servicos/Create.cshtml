@@ -1,0 +1,166 @@
+﻿@model Ordem_Servicos_Web.Models.Servico
+
+@{
+    ViewData["Title"] = "Novo Serviço";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<partial name="_MensagemToast" />
+
+<form asp-action="Create" method="post" id="formServico" enctype="multipart/form-data">
+    
+	<!-- Descrição da Servico -->
+    <div class="row mb-2 g-4">
+        <div class="col-auto">
+            <label asp-for="IdCodigoBase" class="label-destaque">Código Base do Serviço</label>
+            <input asp-for="IdCodigoBase" class="form-control text-uppercase maiusculo" id="IdCodigoBase" required autofocus style="width:250px;" />
+        </div>
+        <div class="col-auto">
+            <label class="label-destaque">Categoria de Serviço</label>
+            <select asp-for="IdCategoriaServico" class="form-control" style="width:616px;" id="categoriaServicoSelect">
+                <option value="">-- Clique para carregar Categorias --</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label asp-for="Descricao" class="label-destaque">Descrição do Serviço</label>
+            <input asp-for="Descricao" class="form-control text-uppercase maiusculo" id="Descricao"  style="width:615px;" />
+        </div>
+        <div class="col-auto">
+            <label asp-for="ValorServico" class="label-destaque">Valor do Serviço</label>
+            <input asp-for="ValorServico" type="text" inputmode="numeric" class="form-control text-end" id="ValorServico" style="width:250px;" />
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" id="btnSalvar" class="btn btn-bg btn-salvar">
+            <i class="fa fa-save"></i> Salvar Servico
+        </button>
+        <a asp-action="Index" class="btn btn-voltar btn-bg">
+            <i class="fa fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            bloquearMenu();
+            
+            const idCodigoBase = document.getElementById("IdCodigoBase");
+            const descricao = document.getElementById("Descricao");
+            const valorServico = document.getElementById("ValorServico");
+            const btnSalvar = document.getElementById("btnSalvar");
+            const form = document.getElementById("formServico");
+            const camposObrigatorios = ["Descricao","IdCodigoBase"];
+
+            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+            }
+
+            // Aplicar máscaras de formatação
+            if (valorServico) aplicarMascaraCampo(valorServico, "valor");
+
+            aplicarMaiusculoCampos(".maiusculo");
+  
+            configurarValidacaoCamposObrigatorios(camposObrigatorios);
+
+            // Campos de texto que devem ficar em maiúsculo
+            document.querySelectorAll("#Descricao,#IdCodigoBase")
+                .forEach(input => input.addEventListener("blur", () => {
+                    input.value = input.value.toUpperCase().trim();
+            }));
+
+            // Ao clicar no campo GetCategoria Servico → carregar GetCategoria Servico
+            document.getElementById("categoriaServicoSelect").addEventListener("focus", function () {
+                var categoriaServicoSelect = this;
+                if (categoriaServicoSelect.options.length <= 1) {
+                    fetch('/Servicos/GetCategoriaServico')
+                        .then(response => response.json())
+                        .then(data => {
+                            categoriaServicoSelect.innerHTML = "";
+                            var option = document.createElement("option");
+                            option.text = "-- Selecione uma Categoria de Serviços --";
+                            option.value = "";
+                            categoriaServicoSelect.appendChild(option);
+
+                            data.forEach(function (categoriaServico) {
+                                var option = document.createElement("option");
+                                option.value = categoriaServico.idCategoriaServico;
+                                option.text  = categoriaServico.descricao;
+                                categoriaServicoSelect.appendChild(option);
+                            });
+                        })
+                        .catch(() => {
+                            mostrarToast("Erro ao Carregar Categorias de Serviços.", "erro");
+                        });
+                }
+            });
+
+            if (idCodigoBase) {
+                idCodigoBase.addEventListener("blur", function () {
+                    const codigoBase = idCodigoBase.value.trim();
+
+                    if (codigoBase.length > 0) {
+                        fetch(`/Servicos/VerificarCodigoBase?codigoBase=${encodeURIComponent(codigoBase)}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.existe) {
+                                    mostrarToast("Já Existe um Serviço com esse Código Base.", "erro");
+                                    idCodigoBase.focus();
+                                }
+                            })
+                            .catch(() => {
+                                mostrarToast("Erro ao Verificar Serviço.", "erro");
+                                idCodigoBase.focus();
+                            });
+                    }
+                });
+            }
+
+            if (descricao) {
+                descricao.addEventListener("blur", function () {
+                    const idCategoriaServico = document.getElementById("categoriaServicoSelect").value;
+                    const descricaoServico = descricao.value.trim();
+
+                    if (descricaoServico.length > 0 && idCategoriaServico) {
+                        fetch(`/Servicos/VerificarDescricaoServico?idCategoriaServico=${idCategoriaServico}&descricaoServico=${encodeURIComponent(descricaoServico)}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.existe) {
+                                    mostrarToast("Já Existe um Serviço com essa Categoria de Serviços e Descrição.", "erro");
+                                    descricao.focus();
+                                }
+                            })
+                            .catch(() => {
+                                mostrarToast("Erro ao Verificar Serviço.", "erro");
+                                descricao.focus();
+                            });
+                    }
+                });
+            }
+
+            // valorServico: Permitir apenas números, vírgula e ponto
+            if (valorServico && btnSalvar) {
+
+               // Ao pressionar Enter dentro do campo
+                valorServico.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // evita submit automático
+                        btnSalvar.focus();
+                    }
+                });
+            }
+
+            // Normalizar valores antes de enviar
+            if (form) {
+                form.addEventListener("submit", function () {
+                    if (valorServico) semMascaraCampo(valorServico);
+                    form.submit();
+                });
+            }
+        });
+    </script>
+}

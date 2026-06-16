@@ -1,0 +1,8 @@
+﻿@{
+    ViewData["Title"] = "Erro de Banco de Dados";
+}
+
+<div class="alert alert-danger mt-4">
+    <h4>⚠ Banco de dados indisponível</h4>
+    <p>Não foi possível conectar ao banco de dados. Por favor, tente novamente mais tarde.</p>
+</div>

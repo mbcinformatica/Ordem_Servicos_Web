@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Ordem_Servicos_Web.Models.Log>
+
+<tbody>
+    @foreach (var log in Model)
+    {
+        <tr>
+            <td>@log.Timestamp.ToString("dd/MM/yyyy HH:mm:ss")</td>
+            <td>@log.Level</td>
+            <td>@log.Message</td>
+            <td>@log.Usuario?.NomeUsuario</td>
+            <td>@log.Acao</td>
+            <td>@log.Tabela</td>
+            <td class="text-end">@log.IdRegistro</td>
+            <td>@log.Observacao</td>
+        </tr>
+    }
+</tbody>

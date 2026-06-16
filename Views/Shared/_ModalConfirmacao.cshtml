@@ -1,0 +1,45 @@
+﻿@model dynamic
+
+<div class="modal fade" id="@Model.IdModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center @Model.ClasseMensagem">
+
+            <!-- Cabeçalho -->
+            <div class="modal-header d-flex justify-content-center align-items-center fw-bold fs-5">
+                <i class="@Model.Icone me-2"></i>
+                <span>@Model.Titulo</span>
+            </div>
+
+            <!-- Corpo -->
+            <div class="modal-body text-center fw-bold fs-5">
+                <span class="mensagem-texto">@Html.Raw(Model.Mensagem)</span>
+                <form asp-controller="@Model.ActionController" asp-action="@Model.ActionName" method="post" class="text-center mt-4">
+                    @if (Model.IdRegistro != null)
+                    {
+                        <input type="hidden" name="Id" value="@Model.IdRegistro" />
+                    }
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- Botão principal -->
+                        <button type="submit" class="btn btn-excluir btn-bg">
+                            <i class="@Model.IconeBotaoPrincipal"></i> @Model.TextoBotaoPrincipal
+                        </button>
+
+                        <!-- Botão secundário -->
+                        @if (!string.IsNullOrEmpty(Model.ActionControllerSecundario) && !string.IsNullOrEmpty(Model.ActionNameSecundario))
+                        {
+                            <a asp-controller="@Model.ActionControllerSecundario" asp-action="@Model.ActionNameSecundario" class="btn btn-voltar btn-bg">
+                                <i class="fa fa-arrow-left"></i> @Model.TextoBotaoCancelar
+                            </a>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-voltar btn-bg" data-bs-dismiss="modal">
+                                <i class="fa fa-arrow-left"></i> @Model.TextoBotaoCancelar
+                            </button>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
