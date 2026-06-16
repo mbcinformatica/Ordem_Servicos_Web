@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
@@ -9,19 +8,12 @@ using Ordem_Servicos_Web.ViewModels;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class ProdutosController : Controller
+    public class ProdutosController(MeuDbContext context, ILogger<ProdutosController> logger, PermissaoService permissaoService, EntidadesService entidadesService) : Controller
     {
-        private readonly MeuDbContext _context;
-        private readonly ILogger<ProdutosController> _logger;
-        private readonly PermissaoService _permissaoService;
-
-
-        public ProdutosController(MeuDbContext context, ILogger<ProdutosController> logger, PermissaoService permissaoService)
-        {
-            _context = context;
-            _logger = logger;
-            _permissaoService = permissaoService;
-        }
+        private readonly MeuDbContext _context = context;
+        private readonly ILogger<ProdutosController> _logger = logger;
+        private readonly PermissaoService _permissaoService = permissaoService;
+        private readonly EntidadesService _entidadesService = entidadesService;
 
         // Index com paginação + pesquisa
         public IActionResult Index(int page = 1, string search = "", string column = "Descricao")
@@ -148,6 +140,9 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
+                var normalizarCampos = new[] { "PrecoCompra", "PrecoVenda" };
+                _entidadesService.NormalizarCampos(model, normalizarCampos);
+
                 if (ModelState.IsValid)
                 {
 
@@ -164,7 +159,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         IdProduto = model.IdProduto,
                         IdProdutoInterno = model.IdProdutoInterno,
                         IdProdutoFabricante = model.IdProdutoFabricante,
-                        Descricao = model.Descricao,
+                        //Descricao = model.Descricao,
+                        Descricao = model.Modelo?.Descricao ?? "Não informado",
                         IdFornecedor = model.IdFornecedor,
                         IdMarca = model.IdMarca,
                         IdModelo = model.IdModelo,
@@ -259,6 +255,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             try
 
             {
+                var normalizarCampos = new[] { "PrecoCompra", "PrecoVenda" };
+                _entidadesService.NormalizarCampos(model, normalizarCampos);
 
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");
@@ -393,46 +391,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             };
 
             return View(model);
-        }
-
-        // Endpoints JSON para popular selects dinamicamente
-        [HttpGet]
-        public JsonResult GetFornecedores()
-        {
-            var fornecedores = _context.Fornecedores
-                .Select(fo => new { idFornecedor = fo.IdFornecedor, nomeRazaoSocial = fo.NomeRazaoSocial })
-                .ToList();
-            return Json(fornecedores);
-        }
-
-        [HttpGet]
-        public JsonResult GetMarcas()
-        {
-            var marcas = _context.Marcas
-                .Select(ma => new { idMarca = ma.IdMarca, descricao = ma.Descricao })
-                .ToList();
-
-            return Json(marcas);
-        }
-
-        [HttpGet]
-        public JsonResult GetModelos(int idMarca)
-        {
-            var modelos = _context.Modelos
-                .Where(mo => mo.IdMarca == idMarca)
-                .Select(mo => new {mo.IdModelo,mo.Descricao })
-                .ToList();
-
-            return Json(modelos);
-        }
-
-        [HttpGet]
-        public JsonResult GetUnidades()
-        {
-            var unidades = _context.Unidades
-                .Select(un => new { idUnidade = un.IdUnidade, descricao = un.Descricao })
-                .ToList();
-            return Json(unidades);
         }
     }
 }

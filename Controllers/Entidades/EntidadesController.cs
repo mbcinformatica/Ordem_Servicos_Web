@@ -79,6 +79,7 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
             });
         }
 
+        // Valida login e senha de usuário para autenticação.
         [HttpGet]
         public IActionResult ValidarLoginSenha(string login, string senha)
         {
@@ -110,5 +111,48 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
             }
         }
 
+        // Busca listas de entidades (Fornecedores, Marcas, Modelos, Unidades) para dropdowns, com opção de filtro por marca para modelos.
+        [HttpGet]
+        public IActionResult GetEntidades(string entidade, string campoDescricao, string apelido, int? filtroId = null)
+        {
+            if (string.IsNullOrWhiteSpace(entidade) || string.IsNullOrWhiteSpace(campoDescricao))
+                return Json(new { sucesso = false, mensagem = "Parâmetros inválidos" });
+
+            object resultado = entidade.ToUpperInvariant() switch
+            {
+                "FORNECEDORES" => _context.Fornecedores
+                    .Select(f => new {
+                        id = f.IdFornecedor,
+                        valorDescricao = EF.Property<string>(f, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                "MARCAS" => _context.Marcas
+                    .Select(m => new {
+                        id = m.IdMarca,
+                        valorDescricao = EF.Property<string>(m, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                "MODELOS" => _context.Modelos
+                    .Where(m => filtroId == null || m.IdMarca == filtroId)
+                    .Select(m => new {
+                        id = m.IdModelo,
+                        valorDescricao = EF.Property<string>(m, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                "UNIDADES" => _context.Unidades
+                    .Select(u => new {
+                        id = u.IdUnidade,
+                        valorDescricao = EF.Property<string>(u, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                _ => throw new ArgumentException("Entidade inválida.")
+            };
+
+            return Json(new { sucesso = true, dados = resultado });
+        }
     }
 }

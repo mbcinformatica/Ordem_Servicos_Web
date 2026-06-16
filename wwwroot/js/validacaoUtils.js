@@ -16,6 +16,7 @@ const ValidacaoUtils = (function () {
             // opcional e vazio → válido
             if (opcional && !campo.value.trim()) {
                 campo.classList.remove("Invalid");
+                campo.classList.remove("input-validation-error");
                 campo.classList.add("Valid");
                 return true;
             }
@@ -53,6 +54,7 @@ const ValidacaoUtils = (function () {
             }
 
             campo.classList.remove("Invalid");
+            campo.classList.remove("input-validation-error");
             campo.classList.add("Valid");
             return true;
         };
@@ -129,6 +131,7 @@ const ValidacaoUtils = (function () {
                     return false;
                 }
             }
+            return true;
         });
     }
 
@@ -265,12 +268,105 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
+            else if (id.includes("fornecedorselect")) {
+                ["focus", "click"].forEach(evt => {
+                    fornecedorSelect.addEventListener(evt, async function () {
+                        if (fornecedorSelect.options.length <= 1) {
+                            await GetEntidades(
+                                fornecedorSelect,
+                                "/Entidades/GetEntidades",
+                                "FORNECEDORES",
+                                { campoDescricao: "NomeRazaoSocial", apelido: "f" }
+                            );
+                        }
+                    });
+                });
+
+                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+                fornecedorSelect.addEventListener("change", function () {
+                    if (fornecedorSelect.value && marcaSelect) {
+                        marcaSelect.focus();
+                    }
+                });
+            }
+            // 🔹 Marca
+            else if (id.includes("marcaselect")) {
+                ["focus", "click"].forEach(evt => {
+                    marcaSelect.addEventListener(evt, async function () {
+                        if (marcaSelect.options.length <= 1) {
+                            await GetEntidades(
+                                marcaSelect,
+                                "/Entidades/GetEntidades",
+                                "MARCAS",
+                                { campoDescricao: "Descricao", apelido: "ma" }
+                            );
+                        }
+                    });
+                });
+
+                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+                marcaSelect.addEventListener("change", function () {
+                    if (marcaSelect.value && modeloSelect) {
+                        modeloSelect.focus();
+                    }
+                });
+            }
+            // 🔹 Modelo
+            else if (id.includes("modeloselect")) {
+                ["focus", "click"].forEach(evt => {
+                    modeloSelect.addEventListener(evt, async function () {
+                        if (modeloSelect.options.length <= 1) {
+                            await GetEntidades(
+                                modeloSelect,
+                                "/Entidades/GetEntidades",
+                                "MODELOS",
+                                { campoDescricao: "Descricao", apelido: "mo" }
+                            );
+                        }
+                    });
+                });
+
+                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+                modeloSelect.addEventListener("change", function () {
+                    if (modeloSelect.value && unidadeSelect) {
+                        unidadeSelect.focus();
+
+                        const descricaoProduto = document.getElementById("Descricao");
+                        const selectedOption = campo.options[campo.selectedIndex];
+                        if (descricaoProduto && selectedOption && selectedOption.text) {
+                            descricaoProduto.value = selectedOption.text;
+                        }
+                    }
+                });
+            }
+            // 🔹 Unidade
+            else if (id.includes("unidadeselect")) {
+                ["focus", "click"].forEach(evt => {
+                    unidadeSelect.addEventListener(evt, async function () {
+                        if (unidadeSelect.options.length <= 1) {
+                            await GetEntidades(
+                                unidadeSelect,
+                                "/Entidades/GetEntidades",
+                                "UNIDADES",
+                                { campoDescricao: "Descricao", apelido: "un" }
+                            );
+                        }
+                    });
+                });
+
+                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+                unidadeSelect.addEventListener("change", function () {
+                    if (unidadeSelect.value && PrecoCompra) {
+                        PrecoCompra.focus();
+                        if (typeof PrecoCompra.select === "function") PrecoCompra.select();
+                    }
+                });
+            }
             else {
                 ValidacaoUtils.validarCampo(campo, null, null, "", false, ehObrigatorio);
             }
         });
     }
-
     return {
         validarCampo,
         consultaDuplicidade,

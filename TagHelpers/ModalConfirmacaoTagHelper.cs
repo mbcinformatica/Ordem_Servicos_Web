@@ -8,24 +8,17 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace Ordem_Servicos_Web.TagHelpers
 {
     [HtmlTargetElement("modal-confirmacao")]
-    public class ModalConfirmacaoTagHelper : TagHelper
+    public class ModalConfirmacaoTagHelper(
+        IAntiforgery antiforgery,
+        IHttpContextAccessor httpContextAccessor,
+        IUrlHelperFactory urlHelperFactory) : TagHelper
     {
-        private readonly IAntiforgery _antiforgery;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IUrlHelperFactory _urlHelperFactory;
+        private readonly IAntiforgery _antiforgery = antiforgery;
+        private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+        private readonly IUrlHelperFactory _urlHelperFactory = urlHelperFactory;
 
         [ViewContext]
         public ViewContext ViewContext { get; set; } = default!;
-
-        public ModalConfirmacaoTagHelper(
-            IAntiforgery antiforgery,
-            IHttpContextAccessor httpContextAccessor,
-            IUrlHelperFactory urlHelperFactory)
-        {
-            _antiforgery = antiforgery;
-            _httpContextAccessor = httpContextAccessor;
-            _urlHelperFactory = urlHelperFactory;
-        }
 
         public required string IdModal { get; set; }
         public required string Icone { get; set; }
@@ -52,7 +45,8 @@ namespace Ordem_Servicos_Web.TagHelpers
             output.Attributes.SetAttribute("aria-hidden", "true");
 
             // Token antiforgery
-            var tokens = _antiforgery.GetAndStoreTokens(_httpContextAccessor.HttpContext);
+var tokens = _antiforgery.GetAndStoreTokens(httpContextAccessor.HttpContext!);
+
             var antiForgeryInput = $"<input name='{tokens.FormFieldName}' type='hidden' value='{tokens.RequestToken}' />";
 
             // URL do botão Voltar

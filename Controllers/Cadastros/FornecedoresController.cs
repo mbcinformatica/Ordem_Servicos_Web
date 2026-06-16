@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
@@ -121,7 +122,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                _entidadesService.NormalizarCampos(fornecedor);
+                var normalizarCampos = new[] { "CpfCnpj", "Cep", "FoneFixo", "FoneCelular", "Email" };
+                _entidadesService.NormalizarCampos(fornecedor, normalizarCampos);
 
                 if (ModelState.IsValid)
                 {
@@ -178,7 +180,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                _entidadesService.NormalizarCampos(fornecedor);
+                var normalizarCampos = new[] { "CpfCnpj", "Cep", "FoneFixo", "FoneCelular", "Email" };
+                _entidadesService.NormalizarCampos(fornecedor, normalizarCampos);
 
                 if (ModelState.IsValid)
                 {

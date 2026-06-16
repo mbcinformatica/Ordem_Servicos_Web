@@ -104,17 +104,17 @@
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();
 
-            const nomeUsuario = document.getElementById("NomeUsuario");
-            const cep = document.getElementById("Cep");
-            const foneFixo = document.getElementById("FoneFixo");
-            const foneCelular = document.getElementById("FoneCelular");
-            const email = document.getElementById("Email");
-            const btnSalvar = document.getElementById("btnSalvar");
-            const loginInput = document.getElementById("Login");
-            const senhaInput = document.getElementById("Senha");
-            const confirmaSenhaInput = document.getElementById("ConfirmaSenha");
-            const imagem = document.getElementById("Imagem");
-            const form = document.getElementById("formUsuario");
+            const nomeUsuario           = document.getElementById("NomeUsuario");
+            const cep                   = document.getElementById("Cep");
+            const foneFixo              = document.getElementById("FoneFixo");
+            const foneCelular           = document.getElementById("FoneCelular");
+            const email                 = document.getElementById("Email");
+            const btnSalvar             = document.getElementById("btnSalvar");
+            const loginInput            = document.getElementById("Login");
+            const senhaInput            = document.getElementById("Senha");
+            const confirmaSenhaInput    = document.getElementById("ConfirmaSenha");
+            const imagem                = document.getElementById("Imagem");
+            const form                  = document.getElementById("formUsuario");
             
             const camposObrigatorios = [
                 "NomeUsuario",
@@ -132,8 +132,8 @@
             aplicarMinusculoCampos(".minusculo");
 
             // Aplicar máscaras
-            if (cep) aplicarMascaraCampo(cep, "cep");
-            if (foneFixo) aplicarMascaraCampo(foneFixo, "telefone");
+            if (cep)         aplicarMascaraCampo(cep, "cep");
+            if (foneFixo)    aplicarMascaraCampo(foneFixo, "telefone");
             if (foneCelular) aplicarMascaraCampo(foneCelular, "telefone");
 
             // 🔹 Configuração automática de validação

@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Ordem_Servicos_Web.Controllers.Cadastros;
+using Microsoft.Extensions.Logging;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
 using Ordem_Servicos_Web.Services.Interfaces;
-using Serilog.Core;
 
 namespace Ordem_Servicos_Web.Controllers.Ferramentas
 {
@@ -48,9 +46,9 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
             int totalLinhas = 0;
             using (var reader = new StreamReader(arquivoCSV.OpenReadStream()))
             {
-                while (!reader.EndOfStream)
+                string? linha;
+                while ((linha = await reader.ReadLineAsync()) != null)
                 {
-                    var linha = await reader.ReadLineAsync();
                     if (!string.IsNullOrWhiteSpace(linha))
                         totalLinhas++;
                 }
@@ -58,29 +56,35 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
             int linhaAtual = 0;
             using (var reader = new StreamReader(arquivoCSV.OpenReadStream()))
             {
-                while (!reader.EndOfStream)
+                string? linha;
+                while ((linha = await reader.ReadLineAsync()) != null)
                 {
-                    var linha = await reader.ReadLineAsync();
-                    if (string.IsNullOrWhiteSpace(linha)) continue;
+                    if (string.IsNullOrWhiteSpace(linha)) continue; if (string.IsNullOrWhiteSpace(linha)) continue;
 
                     linhaAtual++;
                     ProgressoImportacao = (int)((linhaAtual / (double)totalLinhas) * 100);
 
                     try
                     {
-                        string cnpj = new string(linha.Where(char.IsDigit).ToArray());
+                        string cnpj = string.Concat(linha.Where(char.IsDigit));
 
                         if (!DocumentoHelper.ValidaCnpj(cnpj))
                         {
                             totalInvalidos++;
-                            _logger.LogWarning($"CNPJ inválido ignorado: {cnpj}");
+                            if (_logger.IsEnabled(LogLevel.Warning))
+                            {
+                                _logger.LogWarning("CNPJ inválido ignorado: {Cnpj}", cnpj);
+                            }
                             continue;
                         }
 
                         if (_context.Clientes.Any(c => c.CpfCnpj == cnpj))
                         {
                             totalDuplicados++;
-                            _logger.LogInformation($"CNPJ duplicado ignorado: {cnpj}");
+                            if (_logger.IsEnabled(LogLevel.Information))
+                            {
+                                _logger.LogInformation("CNPJ duplicado ignorado: {Cnpj}", cnpj);
+                            }
                             continue;
                         }
 
@@ -88,7 +92,10 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                         if (cliente == null)
                         {
                             totalInvalidos++;
-                            _logger.LogWarning($"CNPJ não encontrado na API: {cnpj}");
+                            if (_logger.IsEnabled(LogLevel.Warning))
+                            {
+                                _logger.LogWarning("CNPJ não encontrado na API: {Cnpj}", cnpj);
+                            }
                             continue;
                         }
 
@@ -103,7 +110,10 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex, $"Erro ao importar CNPJ da linha: {linha}");
+                        if (_logger.IsEnabled(LogLevel.Error))
+                        {
+                            _logger.LogError(ex, "Erro ao importar CNPJ da linha: {Linha}", linha);
+                        }
                         TempData["Mensagem"] = "Erro ao inserir cliente: " + ex.Message;
                         TempData["MensagemTipo"] = "erro";
                         break;

@@ -1,34 +1,63 @@
 ﻿using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
-using Ordem_Servicos_Web.ViewModels;
+using System.Globalization;
 
 namespace Ordem_Servicos_Web.Services
 {
-    public class EntidadesService(MeuDbContext context)
+    public class EntidadesService(MeuDbContext context, IHttpContextAccessor httpContextAccessor)
     {
         private readonly MeuDbContext _context = context;
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
-        /// Normaliza campos comuns de Pessoa Física/Jurídica.
-        public void NormalizarCampos(PessoaFisicaJuridica pessoa)
+        /// <summary>
+        /// Normaliza campos comuns de uma entidade (remove formatação ou converte para minúsculo).
+        /// </summary>
+        public void NormalizarCampos(object entidade, IEnumerable<string> campos)
         {
-            if (pessoa == null) return;
+            if (entidade == null) return;
 
-            pessoa.CpfCnpj = FormatHelper.SemFormatacao(pessoa.CpfCnpj);
-            pessoa.Cep = FormatHelper.SemFormatacao(pessoa.Cep);
-            pessoa.FoneFixo = FormatHelper.SemFormatacao(pessoa.FoneFixo ?? string.Empty);
-            pessoa.FoneCelular = FormatHelper.SemFormatacao(pessoa.FoneCelular ?? string.Empty);
-            pessoa.Email = FormatHelper.ConverteParaMinusculo(pessoa.Email ?? string.Empty);
+            var tipo = entidade.GetType();
+            var form = _httpContextAccessor.HttpContext?.Request.Form;
+
+            foreach (var id in campos)
+            {
+                var prop = tipo.GetProperty(id);
+                if (prop != null && prop.CanWrite)
+                {
+                    var rawValue = form?[id].ToString() ?? prop.GetValue(entidade)?.ToString() ?? string.Empty;
+
+                    // 🔹 Email → minúsculo
+                    if (id.Contains("email", StringComparison.OrdinalIgnoreCase))
+                    {
+                        prop.SetValue(entidade, FormatHelper.ConverteParaMinusculo(rawValue));
+                    }
+                    // 🔹 Preço/Valor → decimal
+                    else if (id.Contains("preco", StringComparison.OrdinalIgnoreCase) ||
+                             id.Contains("valor", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var normalizado = FormatHelper.SemFormatacao(rawValue, monetario: true);
+
+                        if (decimal.TryParse(normalizado, NumberStyles.Any, CultureInfo.InvariantCulture, out var dec))
+                        {
+                            prop.SetValue(entidade, dec);
+
+                        }
+                        else
+                        {
+                            if (Nullable.GetUnderlyingType(prop.PropertyType) != null)
+                                prop.SetValue(entidade, null);
+                            else
+                                prop.SetValue(entidade, 0m);
+                        }
+                    }
+                    // 🔹 Demais campos → apenas números
+                    else
+                    {
+                        prop.SetValue(entidade, FormatHelper.SemFormatacao(rawValue));
+                    }
+                }
+            }
         }
-
-        /// Normaliza campos específicos de Usuário.
-        public void NormalizarDadosUsuario(UsuarioViewModel usuario)
-        {
-            usuario.Cep = FormatHelper.SemFormatacao(usuario.Cep);
-            usuario.FoneFixo = FormatHelper.SemFormatacao(usuario.FoneFixo ?? string.Empty);
-            usuario.FoneCelular = FormatHelper.SemFormatacao(usuario.FoneCelular ?? string.Empty);
-            usuario.Email = FormatHelper.ConverteParaMinusculo(usuario.Email ?? string.Empty);
-        }
-
     }
 }

@@ -58,11 +58,33 @@ namespace Ordem_Servicos_Web.Helpers
             return NonDigitRegex().Replace(valor, "");
         }
 
-        public static string SemFormatacao(string? valor)
+        public static string SemFormatacao(string? valor, bool monetario = false)
         {
-            return SomenteNumeros(valor);
-        }
+            if (string.IsNullOrWhiteSpace(valor)) return "";
 
+            if (monetario)
+            {
+                // remove tudo que não for número, vírgula ou ponto
+                var limpo = Regex.Replace(valor, @"[^0-9.,]", "");
+                
+                // converte vírgula para ponto
+                limpo = limpo.Replace(",", ".");
+
+                // remove múltiplos pontos (mantém apenas o último como separador decimal)
+                int lastDot = limpo.LastIndexOf('.');
+                // remove múltiplos pontos (mantém apenas o último como separador decimal)
+                if (lastDot >= 0)
+                {
+                    var inteiro = limpo[..lastDot].Replace(".", "");
+                    var decimalParte = limpo[lastDot..];
+                    limpo = inteiro + decimalParte;
+                }
+                return limpo;
+            }
+
+            // padrão: só números
+            return NonDigitRegex().Replace(valor, "");
+        }
         public static string FormatValor(decimal valor)
         {
             return valor.ToString("C", new CultureInfo("pt-BR"));

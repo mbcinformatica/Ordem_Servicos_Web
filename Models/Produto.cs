@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Ordem_Servicos_Web.Helpers;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -13,16 +15,10 @@ namespace Ordem_Servicos_Web.Models
         [Column("IDProduto")]
         public int IdProduto { get; set; }
 
-        [Required(ErrorMessage = "ID do Produto Interno é Obrigatório")]
-        [StringLength(50)]
         public string IdProdutoInterno { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "ID do Produto Fabricante é Obrigatório")]
-        [StringLength(50)]
         public string IdProdutoFabricante { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Descrição do Produto é Obrigatória")]
-        [StringLength(100)]
         public string Descricao { get; set; } = string.Empty;
 
         public int? IdFornecedor { get; set; }
@@ -33,8 +29,7 @@ namespace Ordem_Servicos_Web.Models
 
         public int? IdUnidade { get; set; }
 
-        [Required(ErrorMessage = "Preço de Compra é Obrigatório")]
-        [Range(0.01, double.MaxValue)]
+        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public decimal PrecoCompra { get; set; }
 
         // Propriedade para exibir o valor formatado
@@ -44,8 +39,7 @@ namespace Ordem_Servicos_Web.Models
             ? FormatHelper.FormatValor(PrecoCompra)
             : string.Empty;
 
-        [Required(ErrorMessage = "Preço de Venda é Obrigatório")]
-        [Range(0.01, double.MaxValue)]
+        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public decimal PrecoVenda { get; set; }
 
         // Propriedade para exibir o valor formatado
@@ -55,7 +49,7 @@ namespace Ordem_Servicos_Web.Models
             ? FormatHelper.FormatValor(PrecoVenda)
             : string.Empty;
 
-        [Range(0, int.MaxValue)]
+        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public int EstoqueAtual { get; set; }
 
         // Propriedade para exibir o valor formatado
@@ -65,7 +59,7 @@ namespace Ordem_Servicos_Web.Models
             ? FormatHelper.FormatQuantidade(EstoqueAtual)
             : string.Empty;
 
-        [Range(0, int.MaxValue)]
+        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public int EstoqueMinimo { get; set; }
 
         // Propriedade para exibir o valor formatado

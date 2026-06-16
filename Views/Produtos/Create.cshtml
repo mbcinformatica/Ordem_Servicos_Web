@@ -56,20 +56,20 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="PrecoCompra" class="label-destaque">Preço de Compra</label>
-            <input asp-for="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end" id="PrecoCompra" style="width:257px;" />
+            <input asp-for="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end valor" id="PrecoCompra" style="width:257px;" />
 
         </div>
         <div class="col-auto">
             <label asp-for="PrecoVenda" class="label-destaque">Preço de Venda</label>
-            <input asp-for="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end" id="PrecoVenda" style="width:257px;" />
+            <input asp-for="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end valor" id="PrecoVenda" style="width:257px;" />
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
-            <input asp-for="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end" id="EstoqueAtual" style="width:257px;" />
+            <input asp-for="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end valor" id="EstoqueAtual" style="width:257px;" />
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
-            <input asp-for="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end" id="EstoqueMinimo" style="width:257px;" />
+            <input asp-for="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end valor" id="EstoqueMinimo" style="width:257px;" />
         </div>
     </div>
 
@@ -91,142 +91,66 @@
         </a>
     </div>
 </form>
-
-
+              
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();
 
-            const form = document.getElementById("formProduto");
-            const descricao = document.getElementById("Descricao");
-            const precoCompra = document.getElementById("PrecoCompra");
-            const precoVenda = document.getElementById("PrecoVenda");
-            const estoqueAtual = document.getElementById("EstoqueAtual");
+            const form          = document.getElementById("formProduto");
+            const descricao     = document.getElementById("Descricao");
+            const precoCompra   = document.getElementById("PrecoCompra");
+            const precoVenda    = document.getElementById("PrecoVenda");
+            const estoqueAtual  = document.getElementById("EstoqueAtual");
             const estoqueMinimo = document.getElementById("EstoqueMinimo");
-            const imagem = document.getElementById("Imagem");
+            const imagem        = document.getElementById("Imagem");
+            const btnSalvar     = document.getElementById("btnSalvar");
 
-            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
-                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
-            }
-
-            // Aplicar máscaras de formatação
-            if (precoCompra) aplicarMascaraCampo(precoCompra, "valor");
-            if (precoVenda) aplicarMascaraCampo(precoVenda, "valor");
-            if (estoqueAtual) aplicarMascaraCampo(estoqueAtual, "quantidade");
-            if (estoqueMinimo) aplicarMascaraCampo(estoqueMinimo, "quantidade");
+            const camposObrigatorios = [
+                "IdProdutoInterno",
+                "IdProdutoFabricante"
+            ];
 
             aplicarMaiusculoCampos(".maiusculo");
 
-            // Ao clicar no campo Fornecedor → carregar fornecedores
-            document.getElementById("fornecedorSelect").addEventListener("focus", function () {
-                var fornecedorSelect = this;
-                if (fornecedorSelect.options.length <= 1) {
-                    fetch('/Produtos/GetFornecedores')
-                        .then(response => response.json())
-                        .then(data => {
-                            fornecedorSelect.innerHTML = "";
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione um Fornecedor --";
-                            option.value = "";
-                            fornecedorSelect.appendChild(option);
+            // Aplicar máscaras de formatação
+            if (precoCompra)    aplicarMascaraCampo(precoCompra, "valor");
+            if (precoVenda)     aplicarMascaraCampo(precoVenda, "valor");
+            if (estoqueAtual)   aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (estoqueMinimo)  aplicarMascaraCampo(estoqueMinimo, "quantidade");
 
-                            data.forEach(function (fornecedor) {
-                                var option = document.createElement("option");
-                                option.value = fornecedor.idFornecedor;
-                                option.text = fornecedor.nomeRazaoSocial;
-                                fornecedorSelect.appendChild(option);
-                            });
-                        });
-                }
-            });
-
-            // Ao clicar no campo Marca → carregar marcas
-            document.getElementById("marcaSelect").addEventListener("focus", function () {
-                var marcaSelect = this;
-                if (marcaSelect.options.length <= 1) {
-                    fetch('/Produtos/GetMarcas')
-                        .then(response => response.json())
-                        .then(data => {
-                            marcaSelect.innerHTML = "";
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione uma Marca --";
-                            option.value = "";
-                            marcaSelect.appendChild(option);
-
-                            data.forEach(function (marca) {
-                                var option = document.createElement("option");
-                                option.value = marca.idMarca;
-                                option.text = marca.descricao;
-                                marcaSelect.appendChild(option);
-                            });
-                        });
-                }
-            });
-
-            // Ao selecionar Marca → carregar Modelos
-            document.getElementById("marcaSelect").addEventListener("change", function () {
-                var idMarca = this.value;
-                var modeloSelect = document.getElementById("modeloSelect");
-
-                modeloSelect.innerHTML = "";
-
-                if (idMarca) {
-                    fetch('/Produtos/GetModelos?idMarca=' + idMarca)
-                        .then(response => response.json())
-                        .then(data => {
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione um Modelo --";
-                            option.value = "";
-                            modeloSelect.appendChild(option);
-
-                            data.forEach(function (modelo) {
-                                var option = document.createElement("option");
-                                option.value = modelo.idModelo;
-                                option.text = modelo.descricao;
-                                modeloSelect.appendChild(option);
-                                descricao.value = `${document.getElementById("marcaSelect").selectedOptions[0].text} ${modelo.descricao}`;
-                            });
-                        });
-                } else {
-                    var option = document.createElement("option");
-                    option.text = "-- Selecione uma Marca primeiro --";
-                    modeloSelect.appendChild(option);
-                }
-            });
-
-            // Ao clicar no campo Unidade → carregar unidades
-            document.getElementById("unidadeSelect").addEventListener("focus", function () {
-                var unidadeSelect = this;
-                if (unidadeSelect.options.length <= 1) {
-                    fetch('/Produtos/GetUnidades')
-                        .then(response => response.json())
-                        .then(data => {
-                            unidadeSelect.innerHTML = "";
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione uma Unidade --";
-                            option.value = "";
-                            unidadeSelect.appendChild(option);
-
-                            data.forEach(function (unidade) {
-                                var option = document.createElement("option");
-                                option.value = unidade.idUnidade;
-                                option.text = unidade.descricao;
-                                unidadeSelect.appendChild(option);
-                            });
-                        });
-                }
-            });
-
-            // Normalizar valores antes de enviar
+            // 🔹 Configuração automática de validação
             if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "PRODUTOS");
+                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+                }
+
                 form.addEventListener("submit", function () {
-                    if (precoCompra) semMascaraCampo(precoCompra);
-                    if (precoVenda) semMascaraCampo(precoVenda);
-                    if (estoqueAtual) semMascaraCampo(estoqueAtual);
+                    if (precoCompra)   semMascaraCampo(precoCompra);
+                    if (precoVenda)    semMascaraCampo(precoVenda);
+                    if (estoqueAtual)  semMascaraCampo(estoqueAtual);
                     if (estoqueMinimo) semMascaraCampo(estoqueMinimo);
-                    form.submit();
+                });
+            }
+
+            // Focar no botão salvar a partir do campo de email
+            if (estoqueMinimo && btnSalvar) {
+                estoqueMinimo.addEventListener("blur", function () {
+                    if (estoqueMinimo.classList.contains("Invalid")) {
+                        estoqueMinimo.focus();
+                    } else {
+                        btnSalvar.focus();
+                    }
+                });
+                estoqueMinimo.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        btnSalvar.focus();
+                    }
                 });
             }
         });

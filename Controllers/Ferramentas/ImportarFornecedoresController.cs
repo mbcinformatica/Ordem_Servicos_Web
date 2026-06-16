@@ -35,20 +35,18 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
 
         [HttpPost]
         public async Task<IActionResult> ImportarFornecedores(IFormFile arquivoCSV)
-        {
+         {
             if (arquivoCSV == null || arquivoCSV.Length == 0)
             {
                 TempData["Mensagem"] = "Nenhum arquivo selecionado.";
                 TempData["MensagemTipo"] = "erro";
-                return RedirectToAction("ImportarFornecedores");
+                return RedirectToAction("ImportarClientes");
             }
 
             int totalImportados = 0;
             int totalDuplicados = 0;
             int totalInvalidos = 0;
             int totalLinhas = 0;
-
-            // Primeiro loop: contar linhas válidas
             using (var reader = new StreamReader(arquivoCSV.OpenReadStream()))
             {
                 string? linha;
@@ -58,35 +56,38 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                         totalLinhas++;
                 }
             }
-
             int linhaAtual = 0;
-
-            // Segundo loop: processar cada linha
             using (var reader = new StreamReader(arquivoCSV.OpenReadStream()))
             {
                 string? linha;
                 while ((linha = await reader.ReadLineAsync()) != null)
                 {
-                    if (string.IsNullOrWhiteSpace(linha)) continue;
+                    if (string.IsNullOrWhiteSpace(linha)) continue; if (string.IsNullOrWhiteSpace(linha)) continue;
 
                     linhaAtual++;
                     ProgressoImportacao = (int)((linhaAtual / (double)totalLinhas) * 100);
 
                     try
                     {
-                        string cnpj = new([.. linha.Where(char.IsDigit)]);
+                        string cnpj = string.Concat(linha.Where(char.IsDigit));
 
                         if (!DocumentoHelper.ValidaCnpj(cnpj))
                         {
                             totalInvalidos++;
-                            _logger.LogWarning($"CNPJ inválido ignorado: {cnpj}");
+                            if (_logger.IsEnabled(LogLevel.Warning))
+                            {
+                                _logger.LogWarning("CNPJ inválido ignorado: {Cnpj}", cnpj);
+                            }
                             continue;
                         }
 
-                        if (_context.Fornecedores.Any(f => f.CpfCnpj == cnpj))
+                        if (_context.Fornecedores.Any(c => c.CpfCnpj == cnpj))
                         {
                             totalDuplicados++;
-                            _logger.LogInformation($"CNPJ duplicado ignorado: {cnpj}");
+                            if (_logger.IsEnabled(LogLevel.Information))
+                            {
+                                _logger.LogInformation("CNPJ duplicado ignorado: {Cnpj}", cnpj);
+                            }
                             continue;
                         }
 
@@ -94,7 +95,10 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                         if (fornecedor == null)
                         {
                             totalInvalidos++;
-                            _logger.LogWarning($"CNPJ não encontrado na API: {cnpj}");
+                            if (_logger.IsEnabled(LogLevel.Warning))
+                            {
+                                _logger.LogWarning("CNPJ não encontrado na API: {Cnpj}", cnpj);
+                            }
                             continue;
                         }
 
@@ -104,24 +108,27 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                         fornecedor.FoneCelular = FormatHelper.SomenteNumeros(fornecedor.FoneCelular);
 
                         _context.Fornecedores.Add(fornecedor);
-                        await _context.SaveChangesAsync(); // 🔹 use versão assíncrona
+                        _context.SaveChanges();
                         totalImportados++;
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex, $"Erro ao importar CNPJ da linha: {linha}");
-                        TempData["Mensagem"] = "Erro ao inserir fornecedor: " + ex.Message;
+                        if (_logger.IsEnabled(LogLevel.Error))
+                        {
+                            _logger.LogError(ex, "Erro ao importar CNPJ da linha: {Linha}", linha);
+                        }
+                        TempData["Mensagem"] = "Erro ao Inserir Fornecedor: " + ex.Message;
                         TempData["MensagemTipo"] = "erro";
                         break;
                     }
                 }
             }
-
             ProgressoImportacao = 100; // finalizado
             TempData["Mensagem"] = $"Importação concluída! {totalImportados} registros inseridos. {totalDuplicados} duplicados ignorados. {totalInvalidos} inválidos.";
             TempData["MensagemTipo"] = "sucesso";
-            return RedirectToAction("ImportarFornecedores");
+            return RedirectToAction("ImportarClientes");
         }
+
 
         [HttpGet]
         public JsonResult Progresso()

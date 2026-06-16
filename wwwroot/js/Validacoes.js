@@ -75,6 +75,45 @@ async function validarLoginSenha(campoSenha, login) {
     return true;
 }
 
+// Função para buscar entidades dinamicamente
+async function GetEntidades(campo, url, entidade, parametrosExtras = {}) {
+    const queryParams = new URLSearchParams({
+        entidade,
+        ...parametrosExtras
+    });
+
+    try {
+        const response = await fetch(`${url}?${queryParams.toString()}`);
+        const result = await response.json();
+
+        if (!result.sucesso) {
+            mostrarToast("Erro ao consultar no servidor.", "erro");
+            return false;
+        }
+
+        // 🔹 popula o select dinamicamente
+        campo.innerHTML = "";
+        campo.append(new Option(`-- Selecione ${entidade} --`, ""));
+        result.dados.forEach(item => {
+            campo.append(new Option(item.valorDescricao, item.id));
+        });
+
+        // 🔹 garante que ao selecionar, o valor fique armazenado
+        campo.addEventListener("change", function () {
+            if (campo.value) {
+                // campo.value já é o id selecionado
+                limparErro(campo);
+            }
+        });
+
+    } catch (error) {
+        mostrarToast("Erro ao consultar no servidor.", "erro");
+        return false;
+    }
+
+    return true;
+}
+
 // Validação de CPF
 function ValidaCpf(cpf) {
     cpf = cpf.replace(/\D/g, "");

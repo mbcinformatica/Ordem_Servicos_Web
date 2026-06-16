@@ -557,6 +557,55 @@ th.sortable.active {
     color: #ffc107; /* texto em amarelo para contraste */
 }
 
+    /* Bordas das células */
+    .table-os-condensed td,
+    .table-os-condensed th {
+        white-space: nowrap; /* impede quebra de linha */
+        overflow: hidden; /* oculta texto que ultrapassa */
+        text-overflow: ellipsis; /* adiciona "..." quando o texto for maior */
+        padding: 4px 8px;
+        line-height: 1.2;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    /* Linhas alternadas */
+    .table-os-striped > tbody > tr:nth-of-type(odd) > * {
+        --bs-table-color-type: var(--bs-table-striped-color);
+        --bs-table-bg-type: var(--bs-table-striped-bg);
+    }
+
+    .table-os-bordered > :not(caption) > * {
+        border-width: var(--bs-border-width) 0;
+    }
+
+    /* Linhas alternadas */
+    .table-os-striped tbody tr:nth-child(even) {
+        background-color: #dc9797;
+    }
+
+    .table-os-striped tbody tr:nth-child(odd) {
+        background-color: #d1ecf1;
+    }
+
+    /* Texto */
+    .table-os td {
+        color: #212529; /* cinza escuro */
+    }
+    /* Hover */
+    .table-os-striped tbody tr:hover {
+        background-color: #d1ecf1; /* azul claro */
+        cursor: pointer;
+    }
+    /* Rodapé */
+    .table-footer {
+        background-color: #198754;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
 .mensagem-container {
     display: flex;
     justify-content: center; /* centraliza horizontalmente */
@@ -735,7 +784,7 @@ th.sortable.active {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 35px;
+    height: 35;
     color: #ffffff;
     pointer-events: auto;
     background-color: var(--bs-modal-bg);

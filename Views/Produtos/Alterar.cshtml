@@ -56,19 +56,19 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="PrecoCompra" class="label-destaque">Preço Compra</label>
-            <input asp-for="PrecoCompra" id="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end" style="width:257px;" autofocus/>
+            <input asp-for="PrecoCompra" id="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" autofocus/>
         </div>
         <div class="col-auto">
             <label asp-for="PrecoVenda" class="label-destaque">Preço Venda</label>
-            <input asp-for="PrecoVenda" id="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end" style="width:257px;" />
+            <input asp-for="PrecoVenda" id="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
-            <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end" style="width:257px;" />
+            <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
-            <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end" style="width:257px;" />
+            <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
         </div>
     </div>
 
@@ -108,42 +108,61 @@
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();
 
-            const form = document.getElementById("formProduto");
-            const descricao = document.getElementById("Descricao");
-            const precoCompra = document.getElementById("PrecoCompra");
-            const precoVenda = document.getElementById("PrecoVenda");
-            const estoqueAtual = document.getElementById("EstoqueAtual");
+            const form          = document.getElementById("formProduto");
+            const descricao     = document.getElementById("Descricao");
+            const precoCompra   = document.getElementById("PrecoCompra");
+            const precoVenda    = document.getElementById("PrecoVenda");
+            const estoqueAtual  = document.getElementById("EstoqueAtual");
             const estoqueMinimo = document.getElementById("EstoqueMinimo");
-            const imagem = document.getElementById("Imagem");
+            const imagem        = document.getElementById("Imagem");
+            const btnSalvar     = document.getElementById("btnSalvar");
 
-            // Foco inicial no campo Preço de Compra
-            if (precoCompra) {
-                precoCompra.focus();
-                if (precoCompra.value.trim() !== "") {
-                    precoCompra.select();
-                }
-            }
-
-            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
-                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
-            }
-
-            // Aplicar máscaras de formatação
-            if (precoCompra) aplicarMascaraCampo(precoCompra, "valor");
-            if (precoVenda) aplicarMascaraCampo(precoVenda, "valor");
-            if (estoqueAtual) aplicarMascaraCampo(estoqueAtual, "quantidade");
-            if (estoqueMinimo) aplicarMascaraCampo(estoqueMinimo, "quantidade");
+            const camposObrigatorios = [
+                "IdProdutoInterno",
+                "IdProdutoFabricante",
+                "PrecoCompra",
+                "PrecoVenda"
+            ];
 
             aplicarMaiusculoCampos(".maiusculo");
 
-            // Normalizar valores antes de enviar
+            // Aplicar máscaras de formatação
+            if (precoCompra)    aplicarMascaraCampo(precoCompra, "valor");
+            if (precoVenda)     aplicarMascaraCampo(precoVenda, "valor");
+            if (estoqueAtual)   aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (estoqueMinimo)  aplicarMascaraCampo(estoqueMinimo, "quantidade");
+
+            // 🔹 Configuração automática de validação
             if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "PRODUTOS");
+                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+                }
+
                 form.addEventListener("submit", function () {
-                    if (precoCompra) semMascaraCampo(precoCompra);
-                    if (precoVenda) semMascaraCampo(precoVenda);
-                    if (estoqueAtual) semMascaraCampo(estoqueAtual);
+                    if (precoCompra)   semMascaraCampo(precoCompra);
+                    if (precoVenda)    semMascaraCampo(precoVenda);
+                    if (estoqueAtual)  semMascaraCampo(estoqueAtual);
                     if (estoqueMinimo) semMascaraCampo(estoqueMinimo);
-                    form.submit();
+                });
+            }
+
+            // Focar no botão salvar a partir do campo de email
+            if (estoqueMinimo && btnSalvar) {
+                estoqueMinimo.addEventListener("blur", function () {
+                    if (estoqueMinimo.classList.contains("Invalid")) {
+                        estoqueMinimo.focus();
+                    } else {
+                        btnSalvar.focus();
+                    }
+                });
+                estoqueMinimo.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        btnSalvar.focus();
+                    }
                 });
             }
         });

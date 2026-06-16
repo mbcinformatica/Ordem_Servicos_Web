@@ -41,11 +41,25 @@ function aplicarMascaraCampo(inputCampo, tipo) {
 function semMascaraCampo(inputCampo) {
     if (!inputCampo) return;
 
-    // 🔹 Remove qualquer máscara aplicada pelo plugin Inputmask
-    $(inputCampo).inputmask("remove");
+    // remove máscara do Inputmask se existir
+    if ($(inputCampo).inputmask) {
+        $(inputCampo).inputmask("remove");
+    }
 
-    // 🔹 Força o valor a ficar apenas com números
-    inputCampo.value = (inputCampo.value || "").replace(/\D/g, "");
+    let valor = (inputCampo.value || "").trim();
+
+    // se for campo de valor/preço → normaliza para formato do banco
+    if (inputCampo.classList.contains("valor")) {
+
+        valor = valor.replace(/[R\$\s]/g, "") // remove R$, espaços
+            .replace(/\./g, "")      // remove separador de milhar
+            .replace(",", ".");      // troca vírgula por ponto
+    } else {
+        // para CPF, CNPJ, telefone, etc. → só dígitos
+        valor = valor.replace(/[()\.\-\/R\$\s]/g, "").trim();
+    }
+
+    inputCampo.value = valor;
 }
 
 // Função para aplicar CPF ou CNPJ conforme seleção

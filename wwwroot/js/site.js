@@ -61,8 +61,10 @@ FormUtils.enableEnterNavigation = function (form, options) {
         var idx = focusables.indexOf(target);
 
         // 🔹 roda validação genérica (local + duplicidade se existir)
-        var valido = await target._executarValidacao();
-
+        var valido = true;
+        if (typeof target._executarValidacao === "function") {
+            valido = await target._executarValidacao();
+        }
         if (valido) {
             // se último campo e opção ativa → envia
             if (submitOnLastField && idx === focusables.length - 1) {
