@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Filters;
@@ -37,18 +36,6 @@ builder.Services.AddControllersWithViews(options =>
 
 // Serilog (configuração única)
 builder.Host.UseSerilog((ctx, lc) => lc
-=======
-using Microsoft.AspNetCore.Server.IISIntegration; // necessário para IISDefaults
-using Microsoft.EntityFrameworkCore;
-using Ordem_Servicos_Web.Data;
-using Serilog;
-using Serilog.Debugging;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Configuração Serilog (logs em arquivo e MySQL)
-Log.Logger = new LoggerConfiguration()
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     .MinimumLevel.Information()
     .WriteTo.Console()
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
@@ -56,7 +43,6 @@ Log.Logger = new LoggerConfiguration()
         connectionString: builder.Configuration.GetConnectionString("MySqlConnection"),
         tableName: "Logs"
     )
-<<<<<<< HEAD
 );
 
 Log.Information("Aplicação Iniciada - Teste de Log no Banco MySQL");
@@ -88,46 +74,6 @@ builder.Services.AddScoped<EntidadesService>();
 var app = builder.Build();
 
 // Pipeline
-=======
-    .CreateLogger();
-SelfLog.Enable(msg =>Console.WriteLine(msg));
-Log.Information("Aplicação iniciada - teste de log no banco MySQL");
-
-// Configura Serilog: console + arquivo
-builder.Host.UseSerilog((ctx, lc) => lc
-    .WriteTo.Console()
-    .WriteTo.File("Logs/clientes.log", rollingInterval: RollingInterval.Day)
-);
-
-// Serviços MVC
-builder.Services.AddControllersWithViews();
-
-// Autenticação Windows via IIS/IIS Express
-builder.Services.AddAuthentication(IISDefaults.AuthenticationScheme);
-
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = options.DefaultPolicy;
-});
-
-// Configuração do DbContext com MySQL (banco principal)
-builder.Services.AddDbContext<MeuDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 36)) // ajuste conforme versão do MySQL
-    )
-);
-
-// Filtro global para verificar banco
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add<Ordem_Servicos_Web.Filters.VerificaBancoFilter>();
-});
-
-var app = builder.Build();
-
-// Pipeline de requisição HTTP
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -135,7 +81,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-<<<<<<< HEAD
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -148,18 +93,3 @@ app.MapControllerRoute(
     pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
-=======
-app.UseStaticFiles(); // necessário para servir CSS, JS e imagens
-
-app.UseRouting();
-
-app.UseAuthentication(); // deve vir antes de Authorization
-app.UseAuthorization();
-
-// Rotas MVC padrão
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

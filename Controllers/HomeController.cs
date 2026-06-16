@@ -1,18 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-<<<<<<< HEAD
 using Ordem_Servicos_Web.Controllers.Cadastros;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
-=======
-using Ordem_Servicos_Web.Models;
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 using System.Diagnostics;
 
 namespace Ordem_Servicos_Web.Controllers
 {
-<<<<<<< HEAD
 
     public class HomeController(PermissaoService permissaoService) : Controller
     {
@@ -43,23 +38,6 @@ namespace Ordem_Servicos_Web.Controllers
         }
 
         // Ação para a página de erro genérico
-=======
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-        public IActionResult ErroBanco()
-        {
-            return View();
-        }
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Ordem_Servicos_Web.Helpers;
 using System;
-=======
-﻿using System;
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,7 +13,6 @@ namespace Ordem_Servicos_Web.Models
         [Column("IDProduto")]
         public int IdProduto { get; set; }
 
-<<<<<<< HEAD
         [Required(ErrorMessage = "ID do Produto Interno é Obrigatório")]
         [StringLength(50)]
         public string IdProdutoInterno { get; set; } = string.Empty;
@@ -104,31 +99,3 @@ namespace Ordem_Servicos_Web.Models
         public virtual Unidade Unidade { get; set; } = null!;
     }
 }
-=======
-        [Required, StringLength(50)]
-        public string IdProdutoInterno { get; set; }
-
-        [Required, StringLength(50)]
-        public string IdProdutoFabricante { get; set; }
-
-        [Required, StringLength(100)]
-        public string Descricao { get; set; }
-
-        public int? IdFornecedor { get; set; }
-        public int? IdMarca { get; set; }
-        public int? IdModelo { get; set; }
-        public int? IdUnidade { get; set; }
-
-        public decimal? PrecoCompra { get; set; }
-        public decimal? PrecoVenda { get; set; }
-        public decimal? EstoqueAtual { get; set; }
-        public decimal? EstoqueMinimo { get; set; }
-        public DateTime? DataUltimaCompra { get; set; }
-
-        [StringLength(50)]
-        public string Garantia { get; set; }
-
-        public byte[] Imagem { get; set; }
-    }
-}
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

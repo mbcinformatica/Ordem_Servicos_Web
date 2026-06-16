@@ -7,13 +7,8 @@ namespace Ordem_Servicos_Web.Helpers
     {
         public static List<SelectListItem> GetEstados()
         {
-<<<<<<< HEAD
             return
             [
-=======
-            return new List<SelectListItem>
-            {
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                 new SelectListItem { Value = "AC", Text = "AC - Acre" },
                 new SelectListItem { Value = "AL", Text = "AL - Alagoas" },
                 new SelectListItem { Value = "AP", Text = "AP - Amapá" },
@@ -41,11 +36,7 @@ namespace Ordem_Servicos_Web.Helpers
                 new SelectListItem { Value = "SP", Text = "SP - São Paulo" },
                 new SelectListItem { Value = "SE", Text = "SE - Sergipe" },
                 new SelectListItem { Value = "TO", Text = "TO - Tocantins" }
-<<<<<<< HEAD
             ];
-=======
-            };
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         }
     }
 }

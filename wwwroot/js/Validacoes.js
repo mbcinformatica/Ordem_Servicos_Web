@@ -62,7 +62,6 @@ async function validarLoginSenha(campoSenha, login) {
         // 🔹 Chama endpoint que valida login/senha
         const response = await fetch(`/Entidades/ValidarLoginSenha?login=${encodeURIComponent(login)}&senha=${encodeURIComponent(senha)}`);
         const data = await response.json();
-
         if (!data.sucesso) {
             mostrarToast("Senha Incorreta. Tente Novamente.", "erro");
             return false;

@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
     <PackageReference Include="BundlerMinifier.Core" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="10.0.3" />
@@ -24,9 +23,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-=======
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="10.0.3" />
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
@@ -35,11 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-=======
-    <Folder Include="Controllers\Configuracoes\" />
-    <Folder Include="Controllers\Ferramentas\" />
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     <Folder Include="Controllers\Relatorios\" />
     <Folder Include="Controllers\Lancamentos\" />
     <Folder Include="Logs\" />

@@ -4,7 +4,6 @@
     ViewData["Title"] = "Excluir Cliente";
 }
 
-<<<<<<< HEAD
 <h2 class="text-center">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
@@ -38,27 +37,4 @@
             }
         });
     </script>
-=======
-<h2>Excluir Cliente</h2>
-
-<div class="alert alert-danger">
-    Tem certeza que deseja excluir o cliente <strong>@Model.NomeRazaoSocial</strong>?
-</div>
-
-<form asp-action="Excluir" method="post" class="text-center mt-4">
-    <input type="hidden" asp-for="IdCliente" />
-
-    <div class="d-flex justify-content-center gap-3">
-        <button type="submit" class="btn btn-danger">
-            <i class="fa fa-trash"></i> Excluir
-        </button>
-        <a asp-action="Index" class="btn btn-secondary">
-            <i class="fa fa-arrow-left"></i> Cancelar
-        </a>
-    </div>
-</form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 }

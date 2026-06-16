@@ -1,5 +1,4 @@
 ﻿using System;
-<<<<<<< HEAD
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -50,18 +49,5 @@ namespace Ordem_Servicos_Web.Models
         public virtual Usuario? Usuario { get; set; }
 
 
-=======
-
-namespace Ordem_Servicos_Web.Models
-{
-    public class Log
-    {
-        public int Id { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string Level { get; set; } = string.Empty;
-        public string Message { get; set; } = string.Empty;
-        public string? Exception { get; set; }
-        public string? Properties { get; set; }
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     }
 }

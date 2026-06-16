@@ -105,8 +105,8 @@ function mostrarToast(texto, tipo) {
 
 
     // Reset classes
-    toastEl.className = "mensagem-custom align-items-center border-0 toast-anim-slide"; // 🔹 animação aplicada
-    toastIcon.className = "me-2 fs-4";
+    toastEl.className = "toast mensagem-custom align-items-center border-0 toast-anim-slide";
+    toastIcon.className = "me-2 ms-3 fs-4 m-auto";
 
     // Aplica cor e ícone conforme tipo
     if (tipo === "erro") {
@@ -124,6 +124,6 @@ function mostrarToast(texto, tipo) {
     }
 
     // Inicializa toast Bootstrap com timeout de 4s
-    const toast = new bootstrap.Toast(toastEl, { delay: 40000 });
+    const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
     toast.show();
 }

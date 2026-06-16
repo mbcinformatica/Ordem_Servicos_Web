@@ -6,11 +6,8 @@
 
 <h2 class="text-center">@ViewData["Title"]</h2>
 
-<<<<<<< HEAD
 <partial name="_MensagemToast" />
 
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 <div class="card shadow-sm mt-4">
     <div class="card-header bg-dark text-white">
         <h5 class="mb-0">Informações do Usuário</h5>
@@ -34,7 +31,6 @@
             </div>
             <div class="col-md-7">
                 <dl class="row">
-<<<<<<< HEAD
                     <dt class=".col-sm-3">ID</dt>
                     <dd class="col-sm-7">@Model.IdUsuario</dd>
 
@@ -66,46 +62,12 @@
                     <dd class="col-sm-7">@Model.Municipio - @Model.Uf</dd>
 
                     <dt class=".col-sm-3">Data Cadastro</dt>
-=======
-                    <dt class="col-sm-3">ID</dt>
-                    <dd class="col-sm-7">@Model.IdUsuario</dd>
-
-                    <dt class="col-sm-3">Nome</dt>
-                    <dd class="col-sm-7">@Model.NomeUsuario</dd>
-
-                    <dt class="col-sm-3">Login</dt>
-                    <dd class="col-sm-7">@Model.Login</dd>
-
-                    <dt class="col-sm-3">Email</dt>
-                    <dd class="col-sm-7">@Model.EmailFormatado</dd>
-
-                    <dt class="col-sm-3">Telefone 1</dt>
-                    <dd class="col-sm-7">@Model.Fone1Formatado</dd>
-
-                    <dt class="col-sm-3">Telefone 2</dt>
-                    <dd class="col-sm-7">@Model.Fone2Formatado</dd>
-
-                    <dt class="col-sm-3">CEP</dt>
-                    <dd class="col-sm-7">@Model.CepFormatado</dd>
-
-                    <dt class="col-sm-3">Endereço</dt>
-                    <dd class="col-sm-7">@Model.Endereco, Nº @Model.Numero</dd>
-
-                    <dt class="col-sm-3">Bairro</dt>
-                    <dd class="col-sm-7">@Model.Bairro</dd>
-
-                    <dt class="col-sm-3">Município</dt>
-                    <dd class="col-sm-7">@Model.Municipio - @Model.Uf</dd>
-
-                    <dt class="col-sm-3">Data Cadastro</dt>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                     <dd class="col-sm-7">@Model.DataCadastro.ToShortDateString()</dd>
                 </dl>
             </div>
         </div>
     </div>
     <div class="card-footer d-flex justify-content-between">
-<<<<<<< HEAD
         <a asp-action="Index" class="btn btn-voltar btn-bg">
             <i class="fa fa-arrow-left"></i> Voltar
         </a>
@@ -114,22 +76,11 @@
                 <i class="fa fa-edit"></i> Alterar
             </a>
             <a asp-action="Excluir" asp-route-id="@Model.IdUsuario" class="btn btn-excluir  btn-bg">
-=======
-        <a asp-action="Index" class="btn btn-voltar">
-            <i class="fa fa-arrow-left"></i> Voltar
-        </a>
-        <div class="d-flex gap-2">
-            <a asp-action="Alterar" asp-route-id="@Model.IdUsuario" class="btn btn-alterar">
-                <i class="fa fa-edit"></i> Alterar
-            </a>
-            <a asp-action="Excluir" asp-route-id="@Model.IdUsuario" class="btn btn-excluir">
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                 <i class="fa fa-trash"></i> Excluir
             </a>
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @section Scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -137,5 +88,3 @@
         });
     </script>
 }
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

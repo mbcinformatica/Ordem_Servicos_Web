@@ -11,11 +11,7 @@
             <a asp-action="Excluir" asp-route-id="@usuario.IdUsuario" class="btn btn-excluir btn-sm">
                 <i class="fa fa-trash"></i> Excluir
             </a>
-<<<<<<< HEAD
             <a asp-action="Detalhes" asp-route-id="@usuario.IdUsuario" class="btn btn-detalhes btn-sm">
-=======
-            <a asp-action="Detalhes" asp-route-id="@usuario.IdUsuario" class="btn btn-info btn-sm">
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                 <i class="fa fa-eye"></i> Detalhes
             </a>
         </td>
@@ -30,7 +26,6 @@
                 <span>Sem foto</span>
             }
         </td>
-<<<<<<< HEAD
         <td class="text-end">@usuario.IdUsuario</td>
         <td>@usuario.NomeUsuario</td>
         <td>@usuario.Login</td>
@@ -44,20 +39,5 @@
         <td class="text-center">@usuario.FoneCelularFormatado</td>
         <td>@usuario.EmailFormatado</td>
         <td class="text-end">@usuario.DataCadastro.ToShortDateString()</td>
-=======
-        <td>@usuario.IdUsuario</td>
-        <td>@usuario.NomeUsuario</td>
-        <td>@usuario.Login</td>
-        <td>@usuario.CepFormatado</td>
-        <td>@usuario.Endereco</td>
-        <td>@usuario.Numero</td>
-        <td>@usuario.Bairro</td>
-        <td>@usuario.Municipio</td>
-        <td>@usuario.Uf</td>
-        <td>@usuario.Fone1Formatado</td>
-        <td>@usuario.Fone2Formatado</td>
-        <td>@usuario.EmailFormatado</td>
-        <td>@usuario.DataCadastro.ToShortDateString()</td>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     </tr>
 }

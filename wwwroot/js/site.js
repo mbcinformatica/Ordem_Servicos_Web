@@ -2,7 +2,6 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-<<<<<<< HEAD
 
 // Utilitários de formulário reutilizáveis
 window.FormUtils = window.FormUtils || {};
@@ -101,5 +100,3 @@ window.addEventListener("load", function () {
         }
     }
 });
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
