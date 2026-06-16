@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Ordem_Servicos_Web.Helpers;
 using System.ComponentModel.DataAnnotations;
-=======
-﻿using System.ComponentModel.DataAnnotations;
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordem_Servicos_Web.Models
@@ -16,7 +12,6 @@ namespace Ordem_Servicos_Web.Models
         [Column("IDServico")]
         public int IdServico { get; set; }
 
-<<<<<<< HEAD
         [Required(ErrorMessage = "ID do Código Base é Obrigatório")]
         [StringLength(20)]
         [Column("IDCodigoBase")]
@@ -43,17 +38,5 @@ namespace Ordem_Servicos_Web.Models
         // Propriedade de navegação
         [ValidateNever]
         public virtual CategoriaServico? CategoriaServico { get; set; }
-=======
-        [Required, StringLength(20)]
-        public string IdCodigoBase { get; set; }
-
-        [Required]
-        public int IdCategoriaServico { get; set; }
-
-        [Required, StringLength(100)]
-        public string Descricao { get; set; }
-
-        public decimal? ValorServico { get; set; }
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     }
 }

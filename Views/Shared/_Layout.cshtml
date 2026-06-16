@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
     <!-- Font Awesome via CDN -->
-<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" asp-append-version="true" />
 
     <!-- Variável global -->
@@ -27,19 +26,11 @@
     </style>
 </head>
 
-=======
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-<<<<<<< HEAD
                 <span class="navbar-brand">Sistema OS</span>
-=======
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Sistema OS</a>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Alternar navegação">
@@ -51,7 +42,6 @@
 
                         <!-- Cadastros -->
                         <li class="nav-item dropdown">
-<<<<<<< HEAD
                             <a class="nav-link btn-logout" href="#" id="cadastrosDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="fa fa-users me-2"></i> Cadastros
                             </a>
@@ -101,26 +91,10 @@
                                         <i class="fa fa-balance-scale me-2"></i> Unidades de Medida
                                     </a>
                                 </li>
-=======
-                            <a class="nav-link dropdown-toggle" href="#" id="cadastrosDropdown" role="button" data-bs-toggle="dropdown">
-                                Cadastros
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index">Clientes</a></li>
-                                <li><a class="dropdown-item" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a></li>
-                                <li><a class="dropdown-item" asp-controller="Produtos" asp-action="Index">Produtos</a></li>
-                                <li><a class="dropdown-item" asp-controller="Servicos" asp-action="Index">Serviços</a></li>
-                                <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index">Usuários</a></li>
-                                <li><a class="dropdown-item" asp-controller="CategoriaServicos" asp-action="Index">Categoria de Serviços</a></li>
-                                <li><a class="dropdown-item" asp-controller="Marcas" asp-action="Index">Marcas</a></li>
-                                <li><a class="dropdown-item" asp-controller="Modelos" asp-action="Index">Modelos</a></li>
-                                <li><a class="dropdown-item" asp-controller="Unidades" asp-action="Index">Unidades de Medida</a></li>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                             </ul>
                         </li>
 
                         <!-- Lançamentos -->
-<<<<<<< HEAD
                         <li class="nav-item dropdown">
                             <a class="nav-link btn-logout" href="#" id="lancamentosDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="fa fa-file-alt me-2"></i> Lançamentos
@@ -132,15 +106,10 @@
                                     </a>
                                 </li>
                             </ul>
-=======
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Lancamentos" asp-action="Servicos">Lançamentos</a>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                         </li>
 
                         <!-- Relatórios -->
                         <li class="nav-item dropdown">
-<<<<<<< HEAD
                             <a class="nav-link btn-logout" href="#" id="relatoriosDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="fa fa-chart-bar me-2"></i> Relatórios
                             </a>
@@ -270,43 +239,18 @@
                                     </a>
                                 </li>
                             </ul>
-=======
-                            <a class="nav-link dropdown-toggle" href="#" id="relatoriosDropdown" role="button" data-bs-toggle="dropdown">
-                                Relatórios
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Relatorios" asp-action="Clientes">Clientes</a></li>
-                                <li><a class="dropdown-item" asp-controller="Relatorios" asp-action="Fornecedores">Fornecedores</a></li>
-                                <li><a class="dropdown-item" asp-controller="Relatorios" asp-action="Usuarios">Usuários</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Configurações -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Configuracoes" asp-action="Index">Configurações</a>
-                        </li>
-
-                        <!-- Ferramentas -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Ferramentas" asp-action="Index">Ferramentas</a>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                         </li>
 
                         <!-- Fechar -->
                         <li class="nav-item">
-<<<<<<< HEAD
                             <a href="#" class="nav-link btn-logout" data-bs-toggle="modal" data-bs-target="#modalFechar">
                                 <i class="fa fa-times me-2"></i> Logout
                             </a>
-=======
-                            <a class="nav-link" href="#" onclick="window.close();" aria-label="Fechar aplicação">Fechar</a>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-<<<<<<< HEAD
 
         @await Html.PartialAsync("_ModalConfirmacao", new {
             IdModal = "modalFechar",
@@ -324,8 +268,6 @@
             ActionNameSecundario = "Index"
         })
 
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     </header>
 
     <div class="container mt-4">
@@ -338,7 +280,6 @@
         </div>
     </footer>
 
-<<<<<<< HEAD
     <!-- Scripts globais -->    
     <partial name="_ValidationScriptsPartial" />
 
@@ -406,11 +347,3 @@
     </script>
 </body>
 </html>
-=======
-    <!-- Scripts com cache busting -->
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
-    <script src="~/js/formatters.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

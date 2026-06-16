@@ -23,24 +23,15 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-<<<<<<< HEAD
       },
       "nativeDebugging": true,
       "sqlDebugging": true
-=======
-      }
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
-<<<<<<< HEAD
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-=======
-    "windowsAuthentication": true,
-    "anonymousAuthentication": false,
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     "iisExpress": {
       "applicationUrl": "http://localhost:50966/",
       "sslPort": 44312

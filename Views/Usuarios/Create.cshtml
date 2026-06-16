@@ -1,34 +1,12 @@
-<<<<<<< HEAD
 ﻿@model Ordem_Servicos_Web.ViewModels.UsuarioViewModel
 
 @{
     ViewData["Title"] = "Novo Usuário";
-=======
-﻿@model Ordem_Servicos_Web.ViewModels.UsuarioCreateViewModel
-
-@{
-    ViewData["Title"] = "Cadastrar Usuário";
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 }
 
 <h2 class="text-center">@ViewData["Title"]</h2>
 
-<<<<<<< HEAD
 <partial name="_MensagemToast" />
-=======
-<!-- Caixa de mensagem centralizada no topo -->
-<div class="mensagem-container" style="display:none;">
-    <div id="toastMensagem" 
-         class="mensagem-custom d-inline-flex align-items-center" 
-         role="alert" aria-live="assertive" aria-atomic="true">
-        <span id="toastTexto" class="me-3"></span>
-        <button type="button" 
-                class="btn-close ms-2" 
-                data-bs-dismiss="toast" 
-                aria-label="Fechar"></button>
-    </div>
-</div>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 
 <form asp-action="Create" method="post" id="formUsuario" enctype="multipart/form-data">
 
@@ -36,36 +14,19 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="NomeUsuario" class="label-destaque">Nome do Usuário</label>
-<<<<<<< HEAD
             <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase maiusculo" autofocus maxlength="150" style="width:500px;" />
-=======
-            <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase" maxlength="150" style="width:500px;" />
-            <span asp-validation-for="NomeUsuario" class="text-danger"></span>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
         <div class="col-auto">
             <label asp-for="Login" class="label-destaque">Login</label>
             <input asp-for="Login" id="Login" class="form-control" maxlength="50" style="width:200px;" />
-<<<<<<< HEAD
-=======
-            <span asp-validation-for="Login" class="text-danger"></span>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
         <div class="col-auto">
             <label asp-for="Senha" class="label-destaque">Senha</label>
             <input asp-for="Senha" id="Senha" type="password" class="form-control" maxlength="50" style="width:200px;" />
-<<<<<<< HEAD
-=======
-            <span asp-validation-for="Senha" class="text-danger"></span>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
         <div class="col-auto">
             <label asp-for="ConfirmaSenha" class="label-destaque">Confirma a Senha</label>
             <input asp-for="ConfirmaSenha" id="ConfirmaSenha" type="password" class="form-control" maxlength="50" style="width:200px;" />
-<<<<<<< HEAD
-=======
-            <span asp-validation-for="ConfirmaSenha" class="text-danger"></span>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
     </div>
 
@@ -74,7 +35,6 @@
         <div class="col-auto">
             <label asp-for="Cep" class="label-destaque">CEP</label>
             <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" style="width:120px;" />
-<<<<<<< HEAD
         </div>
         <div class="col-auto">
             <label asp-for="Endereco" class="label-destaque">Endereço</label>
@@ -87,21 +47,6 @@
         <div class="col-auto">
             <label asp-for="Bairro" class="label-destaque">Bairro</label>
             <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase maiusculo" maxlength="50" style="width:432px;" />
-=======
-            <span asp-validation-for="Cep" class="text-danger"></span>
-        </div>
-        <div class="col-auto">
-            <label asp-for="Endereco" class="label-destaque">Endereço</label>
-            <input asp-for="Endereco" id="Endereco" class="form-control text-uppercase" maxlength="100" style="width:450px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Numero" class="label-destaque">Número</label>
-            <input asp-for="Numero" id="Numero" type="text" inputmode="numeric" class="form-control" maxlength="10" style="width:100px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Bairro" class="label-destaque">Bairro</label>
-            <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase" maxlength="50" style="width:432px;" />
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
     </div>
 
@@ -109,7 +54,6 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="Municipio" class="label-destaque">Município</label>
-<<<<<<< HEAD
             <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase maiusculo" maxlength="200" style="width:580px;" />
         </div>
         <div class="col-auto">
@@ -123,22 +67,6 @@
         <div class="col-auto">
             <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
             <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
-=======
-            <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase" maxlength="200" style="width:580px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Uf" class="label-destaque">UF</label>
-            <estado-select asp-for="Uf"></estado-select>
-            <span asp-validation-for="Uf" class="text-danger"></span>
-        </div>
-        <div class="col-auto">
-            <label asp-for="Fone1" class="label-destaque">Telefone 1</label>
-            <input asp-for="Fone1" id="Fone1" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Fone2" class="label-destaque">Telefone 2</label>
-            <input asp-for="Fone2" id="Fone2" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
     </div>
 
@@ -146,12 +74,7 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="Email" class="label-destaque">Email</label>
-<<<<<<< HEAD
             <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo" style="width:585px;" />
-=======
-            <input asp-for="Email" id="Email" class="form-control text-lowercase" style="width:585px;" />
-            <span asp-validation-for="Email" class="text-danger"></span>
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         </div>
         <div class="col-auto">
             <label for="Imagem" class="label-destaque">Foto do Usuário</label>
@@ -166,17 +89,10 @@
 
     <!-- Botões -->
     <div class="d-flex gap-2 mt-4">
-<<<<<<< HEAD
         <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
             <i class="fa fa-save"></i> Salvar Usuário
         </button>
         <a asp-action="Index" class="btn btn-voltar btn-bg">
-=======
-        <button type="submit" class="btn btn-salvar">
-            <i class="fa fa-save"></i> Salvar Usuário
-        </button>
-        <a asp-action="Index" class="btn btn-voltar">
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
             <i class="fa fa-arrow-left"></i> Voltar
         </a>
     </div>
@@ -184,7 +100,6 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-<<<<<<< HEAD
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();
@@ -251,140 +166,8 @@
                         e.preventDefault();
                         btnSalvar.focus();
                     }
-=======
-    <script src="~/js/formatters.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const nomeUsuario = document.getElementById("NomeUsuario");
-            if (nomeUsuario) nomeUsuario.focus();
-
-            // Enter vai para o próximo campo
-            const campos = document.querySelectorAll("input, select, textarea");
-            campos.forEach((el, index) => {
-                el.addEventListener("keydown", function (e) {
-                    if (e.key === "Enter") {
-                        e.preventDefault();
-                        const next = campos[index + 1];
-                        if (next) next.focus();
-                    }
-                });
-            });
-
-            // Campos em maiúsculo
-            document.querySelectorAll("#NomeUsuario,#Endereco,#Bairro,#Municipio")
-                .forEach(input => input.addEventListener("blur", () => {
-                    input.value = input.value.toUpperCase().trim();
-                }));
-             if (nomeUsuario) {
-                 nomeUsuario.addEventListener("blur", function () {
-                     const nome = nomeUsuario.value.trim();
-                     if (nome.length > 0) {
-                         fetch(`/Usuarios/VerificarNomeUsuario?nome=${encodeURIComponent(nome)}`)
-                             .then(response => response.json())
-                             .then(data => {
-                                 if (data.existe) {
-                                     mostrarToast("Nome de usuário já cadastrado.", "aviso");
-                                     nomeUsuario.focus();
-                                 } else {
-                                     mostrarToast("Nome disponível.", "sucesso");
-                                 }
-                             })
-                             .catch(() => {
-                                 mostrarToast("Erro ao verificar nome.", "erro");
-                             });
-                     }
-                 });
-             }
-
-             // Verificação ao sair do campo Login
-             const loginInput = document.getElementById("Login");
-             if (loginInput) {
-                 loginInput.addEventListener("blur", function () {
-                     const login = loginInput.value.trim();
-                     if (login.length > 0) {
-                         fetch(`/Usuarios/VerificarLogin?login=${encodeURIComponent(login)}`)
-                             .then(response => response.json())
-                             .then(data => {
-                                 if (data.existe) {
-                                     mostrarToast("Login já Cadastrado.", "aviso");
-                                     loginInput.focus();
-                                 } else {
-                                     mostrarToast("Login disponível.", "sucesso");
-                                 }
-                             })
-                             .catch(() => {
-                                 mostrarToast("Erro ao verificar login.", "erro");
-                             });
-                     }
-                 });
-             }
-            const cep = document.getElementById("Cep");
-            const numero = document.getElementById("Numero");
-            const fone1 = document.getElementById("Fone1");
-            const fone2 = document.getElementById("Fone2");
-            const email = document.getElementById("Email");
-            const btnSalvar = document.querySelector("button[type='submit']");
-
-            // Apenas números
-            [cep, numero, fone1, fone2].forEach(campo => {
-                if (campo) {
-                    campo.addEventListener("input", () => apenasNumeros(campo));
-                }
-            });
-
-            // CEP
-            if (cep) {
-                cep.addEventListener("blur", () => {
-                    cep.value = formatCep(cep.value);
-                    if (!validarCep(cep)) {
-                        cep.focus();
-                    } else {
-                        buscarCEP("Cep", "Endereco", "Bairro", "Municipio", "Uf");
-                    }
-                });
-            }
-            // Telefone 1
-            if (fone1) fone1.addEventListener("blur", () => {
-                fone1.value = formatTelefone(fone1.value);
-                if (!validarTelefone(fone1)) fone1.focus();
-            });
-
-            // Telefone 2
-            if (fone2) fone2.addEventListener("blur", () => {
-                fone2.value = formatTelefone(fone2.value);
-                if (!validarTelefone(fone2)) fone2.focus();
-            });
-
-            // Email
-            if (email && btnSalvar) {
-                email.addEventListener("keydown", function (e) {
-                    if (e.key === "Enter") {
-                        e.preventDefault();
-                        email.value = converteParaMinusculo(email.value);
-                        if (!validarEmail(email)) {
-                            email.focus();
-                        } else {
-                            btnSalvar.focus();
-                        }
-                    }
-                });
-            }
-
-            // Antes de enviar → remove formatação
-            const form = document.getElementById("formUsuario");
-            if (form) {
-                form.addEventListener("submit", function () {
-                    if (cep) cep.value = SemFormatacao(cep.value);
-                    if (fone1) fone1.value = SemFormatacao(fone1.value);
-                    if (fone2) fone2.value = SemFormatacao(fone2.value);
-                    if (email) email.value = converteParaMinusculo(email.value);
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
                 });
             }
         });
     </script>
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

@@ -6,10 +6,7 @@
  * @version v4.0.0
  */
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /*jslint white: true, browser: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: false */
 /*global document: false, jQuery: false */
 

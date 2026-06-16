@@ -1,6 +1,5 @@
 ﻿@{
     var mensagem = TempData["Mensagem"]?.ToString();
-<<<<<<< HEAD
     var tipo = TempData["MensagemTipo"]?.ToString()?.ToLower();
     var titulo = tipo switch { "erro" => "Erro", "aviso" => "Aviso", "informacao" => "Informação", _ => "Sucesso" };
     var icone = tipo switch { "erro" => "fa-times-circle", "aviso" => "fa-exclamation-circle", "informacao" => "fa-info-circle", _ => "fa-check-circle" };
@@ -32,52 +31,10 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-=======
-    var tipo = TempData["MensagemTipo"]?.ToString() ?? "sucesso";
-
-    var titulo = tipo == "erro" ? "Erro" : tipo == "aviso" ? "Aviso" : "Sucesso";
-    var cor = tipo == "erro" ? "bg-danger text-white"
-             : tipo == "aviso" ? "bg-warning text-dark"
-             : "bg-success text-white";
-    var icone = tipo == "erro" ? "fa-times-circle"
-              : tipo == "aviso" ? "fa-exclamation-circle"
-              : "fa-check-circle";
-}
-
-<div class="modal fade" id="mensagemModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center">
-            <div class="modal-header bg-success text-white justify-content-center">
-                <h5 class="modal-title" id="mensagemTitulo">
-                    <i class="fa fa-check-circle me-2"></i> Mensagem
-                </h5>
-            </div>
-            <div class="modal-body">
-                <p class="fw-bold fs-5" id="mensagemTexto"></p>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@if (!string.IsNullOrEmpty(TempData["Mensagem"]?.ToString()))
-{
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const tituloEl = document.getElementById("mensagemTitulo");
-            const textoEl = document.getElementById("mensagemTexto");
-            if (tituloEl && textoEl) {
-                tituloEl.innerText = "@(TempData["MensagemTipo"] ?? "Sucesso")";
-                textoEl.innerText = "@TempData["Mensagem"]";
-            }
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
             var modalElement = document.getElementById("mensagemModal");
             if (modalElement) {
                 var modal = new bootstrap.Modal(modalElement);
                 modal.show();
-<<<<<<< HEAD
 
                 // Foca no botão OK quando o modal abrir
                 modalElement.addEventListener("shown.bs.modal", function () {
@@ -94,8 +51,6 @@
                     }
                     setTimeout(() => modal.hide(), 2000);
                 });
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
             }
         });
     </script>

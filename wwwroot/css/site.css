@@ -5,10 +5,7 @@ html {
     min-height: 100%;
 }
 
-<<<<<<< HEAD
 /* Aumenta a fonte em telas maiores para melhor legibilidade */
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -22,7 +19,6 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease, background 0.5s ease;
 }
 
-<<<<<<< HEAD
 /* Efeito de foco personalizado */
 .highlight-focus {
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
@@ -30,8 +26,6 @@ body {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /* Foco em botões, links e inputs */
 .btn:focus,
 .btn:active:focus,
@@ -54,7 +48,6 @@ body {
     text-align: start;
 }
 
-<<<<<<< HEAD
 /* aumenta o tamanho do checkbox */
 .form-check-input {
     width: 3em;
@@ -94,90 +87,6 @@ body {
 /* Classe base para todos os botões */
 .btn {
     display: inline-block;
-=======
-/* Ajuste dos botões pequenos */
-.btn-sm {
-    padding: 2px 6px;
-    font-size: 14px;
-    line-height: 1.2;
-}
-
-/* Botão Novo (verde) */
-.btn-novo {
-    background-color: #198754;
-    color: #fff;
-}
-
-    .btn-novo:hover {
-        background-color: #fff;
-        color: #198754;
-        border: 0.5px solid #198754;
-    }
-
-/* Botão Salvar (verde) */
-.btn-salvar {
-    background-color: #198754;
-    color: #fff;
-}
-
-    .btn-salvar:hover {
-        background-color: #fff;
-        color: #198754;
-        border: 0.5px solid #198754;
-    }
-
-.btn-voltar {
-    background-color: #198754;
-    color: #fff;
-}
-
-    .btn-voltar:hover {
-        background-color: #fff;
-        color: #198754;
-        border: 0.5px solid #198754;
-    }
-
-/* Botão Alterar (laranja) */
-.btn-alterar {
-    background-color: #ff6a00;
-    color: #fff;
-    padding: 2px 6px;
-}
-    .btn-alterar:hover {
-        background-color: #fff;
-        color: #ff6a00;
-        border: 0.5px solid #ff6a00;
-    }
-
-/* Botão Excluir (vermelho) */
-.btn-excluir {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 2px 6px;
-}
-    .btn-excluir:hover {
-        background-color: #fff;
-        color: #dc3545;
-        border: 0.5px solid #dc3545;
-    }
-
-/* Botões de navegação (azul) */
-.btn-navegacao {
-    background-color: #0d6efd;
-    color: #fff;
-}
-
-    .btn-navegacao:hover {
-        background-color: #fff;
-        color: #0d6efd;
-        border: 0.5px solid #0d6efd;
-    }
-
-/* Classe base para todos os botões */
-.btn {
-    display: inline-block;
-    padding: 2px 6px;
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
@@ -186,7 +95,6 @@ body {
     transition: 0.3s;
     border: none;
 }
-<<<<<<< HEAD
 /* Botão Novo */
 .btn-novo {
     background-color: #28a745; /* verde */
@@ -409,9 +317,6 @@ body {
     padding: 8px 10px;
     line-height: 1.2;
 }
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /* Verde (Sucesso) */
 .btn-verde {
     background-color: #198754;
@@ -421,16 +326,9 @@ body {
     .btn-verde:hover {
         background-color: #fff;
         color: #198754;
-<<<<<<< HEAD
         border: 1px solid #198754;
     }
 /* Vermelho (Error) */
-=======
-        border: 0.5px solid #198754;
-    }
-
-/* Vermelho (Excluir) */
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 .btn-vermelho {
     background-color: #dc3545;
     color: #fff;
@@ -439,14 +337,8 @@ body {
     .btn-vermelho:hover {
         background-color: #fff;
         color: #dc3545;
-<<<<<<< HEAD
         border: 1px solid #dc3545;
     }
-=======
-        border: 0.5px solid #dc3545;
-    }
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /* Azul (Informações) */
 .btn-azul {
     background-color: #0dcaf0;
@@ -456,34 +348,19 @@ body {
     .btn-azul:hover {
         background-color: #fff;
         color: #0dcaf0;
-<<<<<<< HEAD
         border: 1px solid #0dcaf0;
     }
-=======
-        border: 0.5px solid #0dcaf0;
-    }
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /* Claro */
 .btn-claro {
     background-color: #f8f9fa;
     color: #212529;
-<<<<<<< HEAD
-=======
-    border: 0.5px solid #ccc;
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 }
 
     .btn-claro:hover {
         background-color: #212529;
         color: #f8f9fa;
-<<<<<<< HEAD
         border: 1px solid #ccc;
     }
-=======
-    }
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /* Escuro */
 .btn-escuro {
     background-color: #212529;
@@ -493,7 +370,6 @@ body {
     .btn-escuro:hover {
         background-color: #fff;
         color: #212529;
-<<<<<<< HEAD
         border: 1px solid #212529;
     }
 /* Fundo personalizado para todos os inputs */
@@ -524,21 +400,12 @@ textarea {
 /* Input de Pesquisa */
 .input-pesquisa {
     width: 600px; /* Comprimento fixa (pode ajustar) */
-=======
-        border: 0.5px solid #212529;
-    }
-
-/* Input de Pesquisa */
-.input-pesquisa {
-    width: 300px; /* largura fixa (pode ajustar) */
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     padding: 8px 12px; /* espaço interno */
     font-size: 14px; /* tamanho da fonte */
     border: 2px solid #198754; /* borda verde */
     border-radius: 6px; /* cantos arredondados */
     outline: none; /* remove contorno padrão */
     transition: all 0.3s ease; /* transição suave */
-<<<<<<< HEAD
     caret-shape: block;
 }
     /* Efeito ao focar */
@@ -547,23 +414,11 @@ textarea {
         border-color: #0dcaf0; /* borda azul turquesa */
         box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
     }
-=======
-}
-
-    /* Efeito ao focar */
-    .input-pesquisa:focus {
-        background-color: #f8f9fa; /* fundo claro */
-        border-color: #0dcaf0; /* borda azul turquesa */
-        box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
-    }
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     /* Placeholder estilizado */
     .input-pesquisa::placeholder {
         color: #6c757d; /* cinza */
         font-style: italic; /* estilo itálico */
     }
-<<<<<<< HEAD
 /* Input de Login */
 .input-login {
     display: flex;
@@ -630,24 +485,11 @@ textarea {
     font-family: 'Times New Roman', Times, serif;
     display: flex;
 }
-=======
-
-.label-destaque {
-    font-weight: bold;
-    color: #212529;
-    font-size: 16px;
-}
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 /* Tema personalizado para Sistema OS */
 .table-os {
     caption-side: bottom;
     border-collapse: separate;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
     /* Cabeçalho */
     .table-os thead {
         background-color: #004085; /* azul escuro */
@@ -655,7 +497,6 @@ textarea {
         text-transform: uppercase;
         text-align: center;
     }
-<<<<<<< HEAD
 /* Bordas das células */
 .table-os-condensed td,
 .table-os-condensed th {
@@ -717,57 +558,6 @@ th.sortable.active {
 }
 
 
-=======
-
-    /* Bordas das células */
-    .table-os-condensed td,
-    .table-os-condensed th {
-        white-space: nowrap; /* impede quebra de linha */
-        overflow: hidden; /* oculta texto que ultrapassa */
-        text-overflow: ellipsis; /* adiciona "..." quando o texto for maior */
-        padding: 4px 8px;
-        line-height: 1.2;
-        vertical-align: middle;
-        font-size: 14px;
-    }
-
-    /* Linhas alternadas */
-    .table-os-striped > tbody > tr:nth-of-type(odd) > * {
-        --bs-table-color-type: var(--bs-table-striped-color);
-        --bs-table-bg-type: var(--bs-table-striped-bg);
-    }
-
-    .table-os-bordered > :not(caption) > * {
-        border-width: var(--bs-border-width) 0;
-    }
-
-    /* Linhas alternadas */
-    .table-os-striped tbody tr:nth-child(even) {
-        background-color: #dc9797;
-    }
-
-    .table-os-striped tbody tr:nth-child(odd) {
-        background-color: #d1ecf1;
-    }
-
-    /* Texto */
-    .table-os td {
-        color: #212529; /* cinza escuro */
-    }
-    /* Hover */
-    .table-os-striped tbody tr:hover {
-        background-color: #d1ecf1; /* azul claro */
-        cursor: pointer;
-    }
-    /* Rodapé */
-    .table-footer {
-        background-color: #198754;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        font-weight: bold;
-    }
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 
 .mensagem-container {
     display: flex;
@@ -775,11 +565,7 @@ th.sortable.active {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-<<<<<<< HEAD
 /* Base */
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 .mensagem-custom {
     display: inline-flex;
     align-items: center;
@@ -794,35 +580,21 @@ th.sortable.active {
     max-width: 90%; /* limite opcional */
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
-<<<<<<< HEAD
 /* Erro */
-=======
-
-/* Estilos prontos */
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 .mensagem-erro {
     background-color: #d9534f; /* vermelho */
     color: #fff;
 }
-<<<<<<< HEAD
 /* Aviso */
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 .mensagem-aviso {
     background-color: #f0ad4e; /* amarelo */
     color: #000;
 }
-<<<<<<< HEAD
 /* Sucesso */
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 .mensagem-sucesso {
     background-color: #5cb85c; /* verde */
     color: #fff;
 }
-<<<<<<< HEAD
 /* Erro → vermelho */
 .mensagem-erro-modal {
     background: linear-gradient(270deg, #ff0000, #ff4d4d, #b30000);
@@ -1019,6 +791,3 @@ th.sortable.active {
 .toast-anim-right {
     animation: slideRight 0.5s ease-out;
 }
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7

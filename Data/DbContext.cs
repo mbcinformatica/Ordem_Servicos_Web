@@ -1,30 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ordem_Servicos_Web.Models;
-<<<<<<< HEAD
 
 namespace Ordem_Servicos_Web.Data
 {
     public class MeuDbContext(DbContextOptions<MeuDbContext> options) : DbContext(options)
     {
-=======
-using System.Linq;
-
-namespace Ordem_Servicos_Web.Data
-{
-    public class MeuDbContext : DbContext
-    {
-        public MeuDbContext(DbContextOptions<MeuDbContext> options)
-            : base(options) { }
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 
         // DbSets para cada tabela
         public DbSet<Cliente> Clientes { get; set; } = null!;
         public DbSet<Fornecedor> Fornecedores { get; set; } = null!;
-<<<<<<< HEAD
         public DbSet<CategoriaServico> CategoriaServicos { get; set; } = null!;
-=======
-        public DbSet<CategoriaServico> CategoriasServicos { get; set; } = null!;
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         public DbSet<LancamentoServico> LancamentosServicos { get; set; } = null!;
         public DbSet<Marca> Marcas { get; set; } = null!;
         public DbSet<Modelo> Modelos { get; set; } = null!;
@@ -33,21 +18,14 @@ namespace Ordem_Servicos_Web.Data
         public DbSet<Unidade> Unidades { get; set; } = null!;
         public DbSet<Usuario> Usuarios { get; set; } = null!;
         public DbSet<Log> Logs { get; set; } = null!;
-<<<<<<< HEAD
         public DbSet<Permissao> Permissoes { get; set; } = null!;
         public DbSet<Menu> Menus { get; set; } = null!;
         public DbSet<ItensMenu> ItensMenus { get; set; } = null!;
-=======
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-<<<<<<< HEAD
             
-=======
-
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
             // Cliente: CPF/CNPJ único
             modelBuilder.Entity<Cliente>()
                 .HasIndex(c => c.CpfCnpj)
@@ -58,7 +36,6 @@ namespace Ordem_Servicos_Web.Data
                 .HasIndex(f => f.CpfCnpj)
                 .IsUnique();
 
-<<<<<<< HEAD
             modelBuilder.Entity<Fornecedor>()
                 .HasIndex(fo => fo.NomeRazaoSocial)
                 .IsUnique();
@@ -130,16 +107,10 @@ namespace Ordem_Servicos_Web.Data
                 .HasOne(pr => pr.Unidade)
                 .WithMany(un => un.Produtos)
                 .HasForeignKey(pr => pr.IdUnidade);
-=======
-            // Logs: índice por nível e data para facilitar consultas
-            modelBuilder.Entity<Log>()
-                .HasIndex(l => new { l.Level, l.Timestamp });
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
         }
 
         public override int SaveChanges()
         {
-<<<<<<< HEAD
             try
             {
                 // Antes de salvar, percorre todas as entidades rastreadas
@@ -167,24 +138,3 @@ namespace Ordem_Servicos_Web.Data
         }
     }
 }
-=======
-            // Antes de salvar, percorre todas as entidades rastreadas
-            foreach (var entry in ChangeTracker.Entries())
-            {
-                if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
-                {
-                    foreach (var prop in entry.Properties)
-                    {
-                        if (prop.Metadata.ClrType == typeof(string) && prop.CurrentValue != null)
-                        {
-                            prop.CurrentValue = prop.CurrentValue.ToString();
-                        }
-                    }
-                }
-            }
-
-            return base.SaveChanges();
-        }
-    }
-}
->>>>>>> 2ddd7e7f7bdc32e421f23a847a01c8ab48c6f1d7
