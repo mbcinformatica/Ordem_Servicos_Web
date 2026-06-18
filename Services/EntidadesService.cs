@@ -32,29 +32,10 @@ namespace Ordem_Servicos_Web.Services
                     {
                         prop.SetValue(entidade, FormatHelper.ConverteParaMinusculo(rawValue));
                     }
-                    // 🔹 Preço/Valor → decimal
-                    else if (id.Contains("preco", StringComparison.OrdinalIgnoreCase) ||
-                             id.Contains("valor", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var normalizado = FormatHelper.SemFormatacao(rawValue, monetario: true);
-
-                        if (decimal.TryParse(normalizado, NumberStyles.Any, CultureInfo.InvariantCulture, out var dec))
-                        {
-                            prop.SetValue(entidade, dec);
-
-                        }
-                        else
-                        {
-                            if (Nullable.GetUnderlyingType(prop.PropertyType) != null)
-                                prop.SetValue(entidade, null);
-                            else
-                                prop.SetValue(entidade, 0m);
-                        }
-                    }
                     // 🔹 Demais campos → apenas números
                     else
                     {
-                        prop.SetValue(entidade, FormatHelper.SemFormatacao(rawValue));
+                        prop.SetValue(entidade, FormatHelper.SomenteNumeros(rawValue));
                     }
                 }
             }

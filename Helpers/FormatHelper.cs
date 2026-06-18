@@ -7,7 +7,9 @@ namespace Ordem_Servicos_Web.Helpers
     {
         // Regex compilada em tempo de execução para remover caracteres não numéricos
         private static readonly Regex _nonDigitRegex = new(@"\D", RegexOptions.Compiled);
+
         private static Regex NonDigitRegex() => _nonDigitRegex;
+
         public static string FormatCpfCnpj(string valor, string tipoPessoa)
         {
             valor = SomenteNumeros(valor);
@@ -85,6 +87,7 @@ namespace Ordem_Servicos_Web.Helpers
             // padrão: só números
             return NonDigitRegex().Replace(valor, "");
         }
+
         public static string FormatValor(decimal valor)
         {
             return valor.ToString("C", new CultureInfo("pt-BR"));

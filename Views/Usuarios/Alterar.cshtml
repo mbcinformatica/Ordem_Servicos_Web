@@ -15,19 +15,19 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="NomeUsuario" class="label-destaque">Nome do Usuário</label>
-            <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase maiusculo" maxlength="150" readonly style="width:500px;" />
+            <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase maiusculo noneUsuario" maxlength="150" readonly style="width:500px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Login" class="label-destaque">Login</label>
-            <input asp-for="Login" id="Login" class="form-control" maxlength="50" readonly style="width:200px;" />
+            <input asp-for="Login" id="Login" class="form-control login" maxlength="50" readonly style="width:200px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Senha" class="label-destaque">Nova Senha</label>
-            <input asp-for="Senha" id="Senha" type="password" class="form-control" maxlength="50" style="width:200px;" autofocus />
+            <input asp-for="Senha" id="Senha" type="password" class="form-control senha" maxlength="50" style="width:200px;" autofocus />
         </div>
         <div class="col-auto">
             <label asp-for="ConfirmaSenha" class="label-destaque">Confirma a Senha</label>
-            <input asp-for="ConfirmaSenha" id="ConfirmaSenha" type="password" class="form-control" maxlength="50" style="width:200px;" />
+            <input asp-for="ConfirmaSenha" id="ConfirmaSenha" type="password" class="form-control confirmaSenha" maxlength="50" style="width:200px;" />
         </div>
     </div>
 
@@ -35,7 +35,7 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="Cep" class="label-destaque">CEP</label>
-            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" style="width:120px;" />
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control cep" style="width:120px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Endereco" class="label-destaque">Endereço</label>
@@ -43,7 +43,7 @@
         </div>
         <div class="col-auto">
             <label asp-for="Numero" class="label-destaque">Número</label>
-            <input asp-for="Numero" id="Numero" class="form-control text-uppercase text-end maiusculo" maxlength="10" style="width:100px;" />
+            <input asp-for="Numero" id="Numero" class="form-control text-uppercase text-end maiusculo numero" maxlength="10" style="width:100px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Bairro" class="label-destaque">Bairro</label>
@@ -63,11 +63,11 @@
         </div>
         <div class="col-auto">
             <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
-            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
+            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control telefone" style="width:160px;" />
         </div>
         <div class="col-auto">
             <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
-            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control" style="width:160px;" />
+            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control telefone" style="width:160px;" />
         </div>
     </div>
 
@@ -75,11 +75,11 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="Email" class="label-destaque">Email</label>
-            <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo" style="width:585px;" />
+            <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo email" style="width:585px;" />
         </div>
         <div class="col-auto">
             <label for="Imagem" class="label-destaque">Foto do Usuário</label>
-            <input type="file" id="Imagem" name="Imagem" class="form-control" accept="image/*" />
+            <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
         </div>
         <div class="col-auto">
             <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>

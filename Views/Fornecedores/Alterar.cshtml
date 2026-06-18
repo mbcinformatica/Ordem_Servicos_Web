@@ -20,7 +20,7 @@
         </div>
         <div class="col-auto">
             <label class="label-destaque">CPF/CNPJ</label>
-            <input class="form-control" id="CpfCnpj" value="@Model.CpfCnpjFormatado" readonly style="width:200px;" />
+            <input class="form-control cpfcnpj" id="CpfCnpj" value="@Model.CpfCnpjFormatado" readonly style="width:200px;" />
             <input type="hidden" asp-for="CpfCnpj" />
         </div>
         <div class="col-auto">
@@ -29,7 +29,7 @@
         </div>
         <div class="col-auto">
             <label asp-for="Cep" class="label-destaque">CEP</label>
-            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control" maxlength="9" style="width:130px;" />
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control cep" maxlength="9" style="width:130px;" />
         </div>
     </div>
 
@@ -41,7 +41,7 @@
         </div>
         <div class="col-auto">
             <label asp-for="Numero" class="label-destaque">Número</label>
-            <input asp-for="Numero" id="Numero" type="text" class="form-control text-uppercase text-end maiusculo" maxlength="10" style="width:100px;" />
+            <input asp-for="Numero" id="Numero" type="text" class="form-control text-uppercase text-end maiusculo numero" maxlength="10" style="width:100px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Bairro" class="label-destaque">Bairro</label>
@@ -69,15 +69,15 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
-            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control" maxlength="15" style="width:160px;" />
+            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control telefone" maxlength="15" style="width:160px;" />
         </div>
         <div class="col-auto">
             <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
-            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control" maxlength="15" style="width:160px;" />
+            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control telefone" maxlength="15" style="width:160px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Email" class="label-destaque">Email</label>
-            <input asp-for="Email" id="Email" class="form-control text-lowercase" style="width:530px;" />
+            <input asp-for="Email" id="Email" class="form-control text-lowercase email" style="width:530px;" />
         </div>
         <div class="col-auto">
             <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>

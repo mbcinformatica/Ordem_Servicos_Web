@@ -14,21 +14,21 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="IdCodigoBase" class="label-destaque">Código Base do Serviço</label>
-            <input asp-for="IdCodigoBase" class="form-control text-uppercase maiusculo" id="IdCodigoBase" required autofocus style="width:250px;" />
+            <input asp-for="IdCodigoBase" class="form-control text-uppercase maiusculo idCodigoBase" id="IdCodigoBase" required autofocus style="width:250px;" />
         </div>
         <div class="col-auto">
             <label class="label-destaque">Categoria de Serviço</label>
-            <select asp-for="IdCategoriaServico" class="form-control" style="width:616px;" id="categoriaServicoSelect">
+            <select asp-for="IdCategoriaServico" class="form-control categoriaServicoSelect" style="width:616px;" id="categoriaServicoSelect">
                 <option value="">-- Clique para carregar Categorias --</option>
             </select>
         </div>
         <div class="col-auto">
             <label asp-for="Descricao" class="label-destaque">Descrição do Serviço</label>
-            <input asp-for="Descricao" class="form-control text-uppercase maiusculo" id="Descricao"  style="width:615px;" />
+            <input asp-for="Descricao" class="form-control text-uppercase maiusculo descricaoServico" id="Descricao"  style="width:615px;" />
         </div>
         <div class="col-auto">
             <label asp-for="ValorServico" class="label-destaque">Valor do Serviço</label>
-            <input asp-for="ValorServico" type="text" inputmode="numeric" class="form-control text-end" id="ValorServico" style="width:250px;" />
+            <input asp-for="ValorServico" type="text" inputmode="numeric" class="form-control text-end valor" id="ValorServico" style="width:250px;" />
         </div>
     </div>
 

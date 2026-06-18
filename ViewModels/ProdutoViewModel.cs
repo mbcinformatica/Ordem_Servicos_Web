@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +19,7 @@ namespace Ordem_Servicos_Web.ViewModels
 
         public string Descricao { get; set; } = string.Empty;
 
+
         public int? IdFornecedor { get; set; }
 
         public int? IdMarca { get; set; }
@@ -26,28 +27,28 @@ namespace Ordem_Servicos_Web.ViewModels
         public int? IdModelo { get; set; }
 
         public int? IdUnidade { get; set; }
-
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
+        
+        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoCompra { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoCompraFormatado => PrecoCompra > 0
-            ? FormatHelper.FormatValor(PrecoCompra)
+        public string PrecoCompraFormatado => (PrecoCompra.HasValue && PrecoCompra.Value > 0)
+            ? FormatHelper.FormatValor(PrecoCompra.Value)
             : string.Empty;
 
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
+        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoVenda { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoVendaFormatado => PrecoVenda > 0
-            ? FormatHelper.FormatValor(PrecoVenda)
+        public string PrecoVendaFormatado => (PrecoVenda.HasValue && PrecoVenda.Value > 0)
+            ? FormatHelper.FormatValor(PrecoVenda.Value)
             : string.Empty;
 
-        public int? EstoqueAtual { get; set; }
+        public int EstoqueAtual { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
@@ -56,7 +57,7 @@ namespace Ordem_Servicos_Web.ViewModels
             ? FormatHelper.FormatQuantidade(EstoqueAtual)
             : string.Empty;
 
-        public int? EstoqueMinimo { get; set; }
+        public int EstoqueMinimo { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]

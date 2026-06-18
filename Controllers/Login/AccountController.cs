@@ -32,7 +32,7 @@ namespace Ordem_Servicos_Web.Controllers.Login
                     var usuario = _context.Usuarios
                     .FirstOrDefault(u => u.Login.Equals(login, StringComparison.Ordinal));
 
-                    HttpContext.Session.SetString("IdUsuario", usuario.IdUsuario.ToString());
+                    HttpContext.Session.SetString("IdUsuario", usuario?.IdUsuario.ToString() ?? string.Empty);
                     return RedirectToAction("Index", "Home");
                 }
 

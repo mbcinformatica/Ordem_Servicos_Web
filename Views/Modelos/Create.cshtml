@@ -14,13 +14,13 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label class="label-destaque">Descrição da Marca</label>
-            <select asp-for="IdMarca" class="form-control" style="width:450px;" id="marcaSelect">
+            <select asp-for="IdMarca" class="form-control marcaSelect" style="width:450px;" id="marcaSelect">
                 <option value="">-- Clique para carregar Marcas --</option>
             </select>
         </div>
         <div class="col-auto">
             <label class="label-destaque">Descrição do Modelo</label>
-            <input asp-for="Descricao" class="form-control text-uppercase maiusculo" id="Descricao" required autofocus style="width:615px;" />
+            <input asp-for="Descricao" class="form-control text-uppercase maiusculo descricaoModelo" id="Descricao" required autofocus style="width:615px;" />
         </div>
     </div>
 

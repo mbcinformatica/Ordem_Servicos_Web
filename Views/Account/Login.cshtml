@@ -14,17 +14,17 @@
             <form asp-action="Login" asp-controller="Account" method="post" id="formLogin" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="Login" class="form-label label-destaque">Login</label>
-                    <input type="text" id="Login" name="Login" class="form-control input-login" autofocus tabindex="1" />
+                    <input type="text" id="Login" name="Login" class="form-control input-login login" autofocus tabindex="1" />
                 </div>
 
                 <div class="mb-4">
                     <label for="Senha" class="form-label label-destaque">Senha</label>
-                    <input type="password" id="Senha" name="Senha" class="form-control input-login" tabindex="2" />
+                    <input type="password" id="Senha" name="Senha" class="form-control input-login senha" tabindex="2" />
                 </div>
 
                 <!-- Container da imagem e NomeUsuario -->
                 <div id="userImageContainer" class="text-center mb-3" style="display:none;">
-                    <img id="userImage" src="" alt="Imagem do usuário" class="img-thumbnail" style="max-width:150px;" />
+                    <img id="userImage" src="" alt="Imagem do usuário" class="img-thumbnail  imagemGet" style="max-width:150px;" />
                     <p id="nomeUsuario" class="fw-bold mt-2"></p>
                 </div>
 
@@ -39,6 +39,7 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>

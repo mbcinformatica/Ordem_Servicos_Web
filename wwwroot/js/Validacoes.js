@@ -1,4 +1,5 @@
-﻿async function validarLogin(
+﻿// Função para Validação de Login
+async function validarLogin(
     campo,
     url,
     mensagemErro,
@@ -17,15 +18,17 @@
         const response = await fetch(`${url}?${queryParams.toString()}`);
         const data = await response.json();
 
-        // 🔹 Se o endpoint retorna { existe: true/false }
-        if (!data.existe && !data.sucesso) {
+        // 🔹 Se o endpoint retorna { existe: true/false } ou { sucesso: true/false }
+        if (!(data.existe || data.sucesso)) {
             mostrarToast(mensagemErro, "erro");
             return false;
         }
 
         // 🔹 Busca imagem do usuário
         try {
-            const imgResponse = await fetch(`/Usuarios/GetUserImage?valor=${encodeURIComponent(valor)}`);
+            const imgResponse = await fetch(
+                `/Entidades/GetImagens?campoID=${encodeURIComponent(valor)}&campoBD=Login&campoImagem=Imagem&campoDescricao=NomeUsuario&entidade=Usuario&apelido=us`
+            );
             const imgData = await imgResponse.json();
 
             if (imgData.exists && imgData.imagemBase64) {
@@ -50,7 +53,7 @@
     return true;
 }
 
-// Validação de Login e Senha Juntos
+// Função para Validação de Login e Senha Juntos
 async function validarLoginSenha(campoSenha, login) {
     const senha = campoSenha.value.trim();
 
@@ -114,7 +117,7 @@ async function GetEntidades(campo, url, entidade, parametrosExtras = {}) {
     return true;
 }
 
-// Validação de CPF
+// Função paraValidação de CPF
 function ValidaCpf(cpf) {
     cpf = cpf.replace(/\D/g, "");
     if (cpf.length !== 11) return false;
@@ -132,7 +135,7 @@ function ValidaCpf(cpf) {
     return resto === parseInt(cpf.substring(10, 11));
 }
 
-// Validação de CNPJ
+// Função para Validação de CNPJ
 function ValidaCnpj(cnpj) {
     cnpj = cnpj.replace(/\D/g, "");
     if (cnpj.length !== 14) return false;
@@ -163,7 +166,7 @@ function ValidaCnpj(cnpj) {
 
 // Função Valida CPF/CNPJ
 async function validarCpfCnpj(input, tipoPessoa, entidade) {
-    let valor = input.value.replace(/\D/g, "");
+    let valor = semMascaraCampo(input.value);
     if (tipoPessoa === "JURÍDICA") {
         let valido = ValidaCnpj(valor);
         if (!valido) {
@@ -220,7 +223,7 @@ async function validarCpfCnpj(input, tipoPessoa, entidade) {
 
 // Função Valida CEP
 async function validarCep(input) {
-    let valor = input.value.replace(/\D/g, "");
+    let valor = semMascaraCampo(input.value);
     if (valor.length !== 8) {
         mostrarToast("CEP Inválido. Deve Conter 8 Dígitos.", "erro");
         return false;
@@ -238,7 +241,7 @@ async function validarCep(input) {
 
 // Função Valida Telefone
 function validarTelefone(input) {
-    let valor = input.value.replace(/\D/g, "");
+    let valor = semMascaraCampo(input.value);
     if (valor.length !== 10 && valor.length !== 11 && valor.length !== 0) {
         mostrarToast("Telefone Inválido. Deve Conter 10 ou 11 Dígitos.", "erro");
         return false;    
@@ -249,10 +252,25 @@ function validarTelefone(input) {
 
 // Função Valida Número
 function validarNumero(input) {
-    let valor = input.value.replace(/\D/g, "");
+    let valor = semMascaraCampo(input.value);
     if (valor.length === 0) {
         input.value = "S/N";
     }
+    limparErro(input);
+    return true;
+}
+
+// Função Valida Valor Monetário
+function validarValor(input) {
+
+
+    limparErro(input);
+    return true;
+}
+
+// Função Valida Quantidade
+function validarQuantidade(input) {
+
     limparErro(input);
     return true;
 }

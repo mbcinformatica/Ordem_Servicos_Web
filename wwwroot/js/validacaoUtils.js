@@ -29,7 +29,6 @@ const ValidacaoUtils = (function () {
                 return false;
             }
 
-
             // validação local
             if (validacaoFn) {
                 let resultado = await validacaoFn(campo);
@@ -112,6 +111,7 @@ const ValidacaoUtils = (function () {
     }
 
     // 🔹 Validação final no submit
+
     function validarFormulario(form, camposObrigatorios) {
         form.addEventListener("submit", function (e) {
             const invalidFields = form.querySelectorAll(".Invalid");
@@ -147,8 +147,7 @@ const ValidacaoUtils = (function () {
             if (campo.hasAttribute("readonly")) {
                 return;
             }
-
-            if (id.includes("cpfcnpj")) {
+            else if (campo.classList.contains("cpfcnpj")) {
                 ValidacaoUtils.validarCampo(
                     campo,
                     async c => await validarCpfCnpj(
@@ -162,19 +161,25 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
-            else if (id.includes("cep")) {
+            else if (campo.classList.contains("cep")) {
                 ValidacaoUtils.validarCampo(campo, validarCep, null, "", false, ehObrigatorio);
             }
-            else if (id.includes("numero")) {
+            else if (campo.classList.contains("numero")) {
                 ValidacaoUtils.validarCampo(campo, validarNumero, null, "", false, ehObrigatorio);
             }
-            else if (id.includes("email")) {
+            else if (campo.classList.contains("valor")) {
+                ValidacaoUtils.validarCampo(campo, validarValor, null, "", false, ehObrigatorio);
+            }
+            else if (campo.classList.contains("quantidade")) {
+                ValidacaoUtils.validarCampo(campo, validarQuantidade, null, "", false, ehObrigatorio);
+            }
+            else if (campo.classList.contains("email")) {
                 ValidacaoUtils.validarCampo(campo, validarEmail, null, "", true, ehObrigatorio);
             }
-            else if (id.includes("fone") || id.includes("telefone")) {
+            else if (campo.classList.contains("telefone")) {
                 ValidacaoUtils.validarCampo(campo, validarTelefone, null, "", true, ehObrigatorio);
             }
-            else if (id.includes("nomeusuario")) {
+            else if (campo.classList.contains("nomeusuario")) {
                 ValidacaoUtils.validarCampo(
                     campo,
                     c => c.value.trim().length > 0,
@@ -189,7 +194,7 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
-            else if (id.includes("login")) {
+            else if (campo.classList.contains("login")) {
                 const isLoginScreen = form.id?.toLowerCase().includes("formlogin"); // 🔹 identifica se é tela de login
 
                 if (isLoginScreen) {
@@ -224,7 +229,7 @@ const ValidacaoUtils = (function () {
                     );
                 }
             }
-            else if (id.includes("senha")) {
+            else if (campo.classList.contains("senha")) {
                 const isLoginScreen = form.id?.toLowerCase().includes("formlogin"); // 🔹 identifica se é tela de login
 
                 if (isLoginScreen) {
@@ -254,7 +259,7 @@ const ValidacaoUtils = (function () {
                     );
                 }
             }
-            else if (id.includes("confirmasenha")) {
+            else if (campo.classList.contains("confirmasenha")) {
                 ValidacaoUtils.validarCampo(
                     campo,
                     c => validarConfirmacaoSenha(
@@ -268,7 +273,7 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
-            else if (id.includes("fornecedorselect")) {
+            else if (campo.classList.contains("fornecedorselect")) {
                 ["focus", "click"].forEach(evt => {
                     fornecedorSelect.addEventListener(evt, async function () {
                         if (fornecedorSelect.options.length <= 1) {
@@ -276,7 +281,7 @@ const ValidacaoUtils = (function () {
                                 fornecedorSelect,
                                 "/Entidades/GetEntidades",
                                 "FORNECEDORES",
-                                { campoDescricao: "NomeRazaoSocial", apelido: "f" }
+                                { campoDescricao: "NomeRazaoSocial", apelido: "fo" }
                             );
                         }
                     });
@@ -289,8 +294,7 @@ const ValidacaoUtils = (function () {
                     }
                 });
             }
-            // 🔹 Marca
-            else if (id.includes("marcaselect")) {
+            else if (campo.classList.contains("marcaselect")) {
                 ["focus", "click"].forEach(evt => {
                     marcaSelect.addEventListener(evt, async function () {
                         if (marcaSelect.options.length <= 1) {
@@ -304,43 +308,40 @@ const ValidacaoUtils = (function () {
                     });
                 });
 
-                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
-                marcaSelect.addEventListener("change", function () {
+                // 🔹 ao selecionar marca → carrega modelos
+                marcaSelect.addEventListener("change", async function () {
                     if (marcaSelect.value && modeloSelect) {
+                        modeloSelect.innerHTML = "<option value=''>Selecione o modelo</option>";
+
+                        // chamada AJAX para o endpoint
+                        const response = await fetch(`/Entidades/GetModelosPorMarca?idMarca=${marcaSelect.value}`);
+                        const modelos = await response.json();
+
+                        modelos.forEach(m => {
+                            const option = document.createElement("option");
+                            option.value = m.idModelo;
+                            option.text = m.descricao;
+                            modeloSelect.appendChild(option);
+                        });
+
                         modeloSelect.focus();
                     }
                 });
             }
-            // 🔹 Modelo
-            else if (id.includes("modeloselect")) {
-                ["focus", "click"].forEach(evt => {
-                    modeloSelect.addEventListener(evt, async function () {
-                        if (modeloSelect.options.length <= 1) {
-                            await GetEntidades(
-                                modeloSelect,
-                                "/Entidades/GetEntidades",
-                                "MODELOS",
-                                { campoDescricao: "Descricao", apelido: "mo" }
-                            );
-                        }
-                    });
-                });
-
-                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+            else if (campo.classList.contains("modeloselect")) {
                 modeloSelect.addEventListener("change", function () {
                     if (modeloSelect.value && unidadeSelect) {
                         unidadeSelect.focus();
 
                         const descricaoProduto = document.getElementById("Descricao");
-                        const selectedOption = campo.options[campo.selectedIndex];
+                        const selectedOption = modeloSelect.options[modeloSelect.selectedIndex];
                         if (descricaoProduto && selectedOption && selectedOption.text) {
                             descricaoProduto.value = selectedOption.text;
                         }
                     }
                 });
             }
-            // 🔹 Unidade
-            else if (id.includes("unidadeselect")) {
+            else if (campo.classList.contains("unidadeselect")) {
                 ["focus", "click"].forEach(evt => {
                     unidadeSelect.addEventListener(evt, async function () {
                         if (unidadeSelect.options.length <= 1) {

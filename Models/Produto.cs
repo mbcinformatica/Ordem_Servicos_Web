@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Helpers;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -29,27 +29,27 @@ namespace Ordem_Servicos_Web.Models
 
         public int? IdUnidade { get; set; }
 
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
+        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoCompra { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoCompraFormatado => PrecoCompra > 0
-            ? FormatHelper.FormatValor(PrecoCompra)
+        public string PrecoCompraFormatado => (PrecoCompra.HasValue && PrecoCompra.Value > 0)
+            ? FormatHelper.FormatValor(PrecoCompra.Value)
             : string.Empty;
 
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
+        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoVenda { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoVendaFormatado => PrecoVenda > 0
-            ? FormatHelper.FormatValor(PrecoVenda)
+        public string PrecoVendaFormatado => (PrecoVenda.HasValue && PrecoVenda.Value > 0)
+            ? FormatHelper.FormatValor(PrecoVenda.Value)
             : string.Empty;
 
-        public int? EstoqueAtual { get; set; }
+        public int EstoqueAtual { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
@@ -58,7 +58,7 @@ namespace Ordem_Servicos_Web.Models
             ? FormatHelper.FormatQuantidade(EstoqueAtual)
             : string.Empty;
 
-        public int? EstoqueMinimo { get; set; }
+        public int EstoqueMinimo { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
@@ -76,18 +76,18 @@ namespace Ordem_Servicos_Web.Models
 
         // Propriedades de navegação
         [ValidateNever]
-        public virtual Fornecedor Fornecedor { get; set; } = null!;
+        public virtual Fornecedor? Fornecedor { get; set; }
 
         // Propriedades de navegação
         [ValidateNever]
-        public virtual Marca Marca { get; set; } = null!;
+        public virtual Marca? Marca { get; set; }
 
         // Propriedades de navegação
         [ValidateNever]
-        public virtual Modelo Modelo { get; set; } = null!;
+        public virtual Modelo? Modelo { get; set; }
 
         // Propriedades de navegação
         [ValidateNever]
-        public virtual Unidade Unidade { get; set; } = null!;
+        public virtual Unidade? Unidade { get; set; }
     }
 }

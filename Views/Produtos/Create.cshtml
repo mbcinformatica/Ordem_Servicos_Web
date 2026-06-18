@@ -9,22 +9,21 @@
 <partial name="_MensagemToast" />
 
 <form asp-action="Create" method="post" id="formProduto" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Descricao" />
-
+    <input type="hidden" asp-for="Descricao" id="Descricao" />
 
     <!-- Linha 1 -->
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno do Produto</label>
-            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control text-uppercase maiusculo" style="width:260px;" autofocus />
+            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control text-uppercase maiusculo idProdutoInterno" style="width:260px;" autofocus />
         </div>
         <div class="col-auto">
             <label asp-for="IdProdutoFabricante" class="label-destaque">Código do Fabricante</label>
-            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control text-uppercase maiusculo" style="width:260px;" />
+            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control text-uppercase maiusculo idProdutoFabricante" style="width:260px;" />
         </div>
         <div class="col-auto">
             <label class="label-destaque">Nome do Fornecedor</label>
-            <select asp-for="IdFornecedor" class="form-select" style="width:525px;" id="fornecedorSelect">
+            <select asp-for="IdFornecedor" class="form-select fornecedorSelect" style="width:525px;" id="fornecedorSelect">
                 <option value="">-- Clique para carregar Fornecedores --</option>
             </select>
         </div>
@@ -34,19 +33,19 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label class="label-destaque">Descrição da Marca</label>
-            <select asp-for="IdMarca" class="form-select" style="width:300px;" id="marcaSelect">
+            <select asp-for="IdMarca" class="form-select marcaSelect" style="width:300px;" id="marcaSelect">
                 <option value="">-- Clique para carregar Marca --</option>
             </select>
         </div>
         <div class="col-auto">
             <label class="label-destaque">Descrição do Modelo</label>
-            <select asp-for="IdModelo" class="form-select" style="width:400px;" id="modeloSelect">
+            <select asp-for="IdModelo" class="form-select modeloSelect" style="width:400px;" id="modeloSelect">
                 <option value="">-- Selecione uma Marca primeiro --</option>
             </select>
         </div>
         <div class="col-auto">
             <label class="label-destaque">Descrição da Unidade</label>
-            <select asp-for="IdUnidade" class="form-select" style="width:350px;" id="unidadeSelect">
+            <select asp-for="IdUnidade" class="form-select unidadeSelect" style="width:350px;" id="unidadeSelect">
                 <option value="">-- Clique para carregar Unidade --</option>
             </select>
         </div>
@@ -65,11 +64,11 @@
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
-            <input asp-for="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end" id="EstoqueAtual" style="width:257px;" />
+            <input asp-for="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end" quantidade id="EstoqueAtual" style="width:257px;" />
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
-            <input asp-for="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end" id="EstoqueMinimo" style="width:257px;" />
+            <input asp-for="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end" quantidade id="EstoqueMinimo" style="width:257px;" />
         </div>
     </div>
 
@@ -77,7 +76,7 @@
     <div class="row mb-2 g-4">
           <div class="col-auto">
               <label for="Imagem" class="label-destaque">Imagem do Produto</label>
-              <input type="file" id="Imagem" name="Imagem" class="form-control" accept="image/*" />
+              <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
           </div>
     </div>
 
@@ -98,14 +97,14 @@
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();
 
-            const form          = document.getElementById("formProduto");
-            const descricao     = document.getElementById("Descricao");
-            const precoCompra   = document.getElementById("PrecoCompra");
-            const precoVenda    = document.getElementById("PrecoVenda");
-            const estoqueAtual  = document.getElementById("EstoqueAtual");
-            const estoqueMinimo = document.getElementById("EstoqueMinimo");
-            const imagem        = document.getElementById("Imagem");
-            const btnSalvar     = document.getElementById("btnSalvar");
+            const form              = document.getElementById("formProduto");
+            const descricaoProduto  = document.getElementById("Descricao");
+            const precoCompra       = document.getElementById("PrecoCompra");
+            const precoVenda        = document.getElementById("PrecoVenda");
+            const estoqueAtual      = document.getElementById("EstoqueAtual");
+            const estoqueMinimo     = document.getElementById("EstoqueMinimo");
+            const imagem            = document.getElementById("Imagem");
+            const btnSalvar         = document.getElementById("btnSalvar");
 
             const camposObrigatorios = [
                 "IdProdutoInterno",
@@ -115,9 +114,9 @@
             aplicarMaiusculoCampos(".maiusculo");
 
             // Aplicar máscaras de formatação
-            if (precoCompra)    aplicarMascaraCampo(precoCompra, "valor");
-            if (precoVenda)     aplicarMascaraCampo(precoVenda, "valor");
-            if (estoqueAtual)   aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (precoCompra)    aplicarMascaraCampo(precoCompra,   "valor");
+            if (precoVenda)     aplicarMascaraCampo(precoVenda,    "valor");
+            if (estoqueAtual)   aplicarMascaraCampo(estoqueAtual,  "quantidade");
             if (estoqueMinimo)  aplicarMascaraCampo(estoqueMinimo, "quantidade");
 
             // 🔹 Configuração automática de validação
@@ -134,6 +133,14 @@
                     if (precoVenda)    semMascaraCampo(precoVenda);
                     if (estoqueAtual)  semMascaraCampo(estoqueAtual);
                     if (estoqueMinimo) semMascaraCampo(estoqueMinimo);
+                });
+            }
+
+            // 🔹 Executar submit ao clicar no botão Salvar
+            if (btnSalvar && form) {
+                btnSalvar.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    form.requestSubmit();
                 });
             }
 

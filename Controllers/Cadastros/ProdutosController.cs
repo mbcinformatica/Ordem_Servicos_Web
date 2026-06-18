@@ -140,8 +140,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "PrecoCompra", "PrecoVenda" };
-                _entidadesService.NormalizarCampos(model, normalizarCampos);
+                ModelState.Remove("Imagem");
+                ModelState.Remove("ImagemBase64");
 
                 if (ModelState.IsValid)
                 {
@@ -153,14 +153,21 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         Imagem.CopyTo(ms);
                         imagemBytes = ms.ToArray();
                     }
+                    else
+                    {
+                        var caminhoImagemPadrao = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagens", "sem-imagem.png");
+                        if (System.IO.File.Exists(caminhoImagemPadrao))
+                        {
+                            imagemBytes = System.IO.File.ReadAllBytes(caminhoImagemPadrao);
+                        }
+                    }
 
                     var produto = new Produto
                     {
                         IdProduto = model.IdProduto,
                         IdProdutoInterno = model.IdProdutoInterno,
                         IdProdutoFabricante = model.IdProdutoFabricante,
-                        //Descricao = model.Descricao,
-                        Descricao = model.Modelo?.Descricao ?? "Não informado",
+                        Descricao = model.Descricao,
                         IdFornecedor = model.IdFornecedor,
                         IdMarca = model.IdMarca,
                         IdModelo = model.IdModelo,
@@ -254,8 +261,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             try
 
             {
-                var normalizarCampos = new[] { "PrecoCompra", "PrecoVenda" };
-                _entidadesService.NormalizarCampos(model, normalizarCampos);
 
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");

@@ -9,13 +9,16 @@ using Ordem_Servicos_Web.ViewModels;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class UsuariosController(MeuDbContext context, ILogger<UsuariosController> logger, PermissaoService permissaoService, EntidadesService entidadesService, IImageService imageService) : Controller
+    public class UsuariosController(
+        MeuDbContext context,
+        ILogger<UsuariosController> logger,
+        PermissaoService permissaoService,
+        EntidadesService entidadesService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<UsuariosController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
         private readonly EntidadesService _entidadesService = entidadesService;
-        private readonly IImageService _imageService = imageService;
 
         // 🔹 Index: apenas ADMINISTRADOR pode listar usuários
         public IActionResult Index(int page = 1, string search = "", string column = "NomeUsuario")
@@ -347,21 +350,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             if (usuario == null) return NotFound();
 
             return View(usuario);
-        }
-
-        // GET: Nova Action para retornar objeto JSON com dados do usuário
-        [HttpGet]
-        public IActionResult GetUserImage(string valor)
-        {
-            if (string.IsNullOrWhiteSpace(valor))
-                return Json(new { exists = false });
-
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Login == valor);
-            if (usuario == null)
-                return Json(new { exists = false });
-
-            return Json(_imageService.ProcessarImagem(usuario.Imagem ?? [], usuario.NomeUsuario, usuario.Login));
-
         }
     }
 }

@@ -8,7 +8,6 @@
 
 <partial name="_MensagemToast" />
 
-
 <form asp-action="Alterar" method="post" id="formProduto" enctype="multipart/form-data">
     <input type="hidden" asp-for="IdProduto" />
     <input type="hidden" asp-for="Descricao" />
@@ -17,13 +16,13 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno</label>
-            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control maiusculo" style="width:260px;" />
+            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control maiusculo idProdutoInterno" style="width:260px;" />
             <input type="hidden" asp-for="IdProdutoInterno" />
 
         </div>
         <div class="col-auto">
             <label asp-for="IdProdutoFabricante" class="label-destaque">Código Fabricante</label>
-            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control maiusculo" style="width:260px;" />
+            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control maiusculo idProdutoFabricante" style="width:260px;" />
             <input type="hidden" asp-for="IdProdutoFabricante" />
         </div>
         <div class="col-auto">
@@ -64,11 +63,11 @@
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
-            <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end" style="width:257px;" />
+            <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
         </div>
         <div class="col-auto">
             <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
-            <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end" style="width:257px;" />
+            <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
         </div>
     </div>
 
@@ -76,7 +75,7 @@
     <div class="row mb-2 g-4">
          <div class="col-auto">
              <label for="Imagem" class="label-destaque">Imagem do Produto</label>
-             <input type="file" id="Imagem" name="Imagem" class="form-control" accept="image/*" />
+             <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
          </div>
     </div>
 
@@ -119,17 +118,15 @@
 
             const camposObrigatorios = [
                 "IdProdutoInterno",
-                "IdProdutoFabricante",
-                "PrecoCompra",
-                "PrecoVenda"
+                "IdProdutoFabricante"
             ];
 
             aplicarMaiusculoCampos(".maiusculo");
 
             // Aplicar máscaras de formatação
-            if (precoCompra)    aplicarMascaraCampo(precoCompra, "valor");
-            if (precoVenda)     aplicarMascaraCampo(precoVenda, "valor");
-            if (estoqueAtual)   aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (precoCompra)    aplicarMascaraCampo(precoCompra,   "valor");
+            if (precoVenda)     aplicarMascaraCampo(precoVenda,    "valor");
+            if (estoqueAtual)   aplicarMascaraCampo(estoqueAtual,  "quantidade");
             if (estoqueMinimo)  aplicarMascaraCampo(estoqueMinimo, "quantidade");
 
             // 🔹 Configuração automática de validação
@@ -146,6 +143,25 @@
                     if (precoVenda)    semMascaraCampo(precoVenda);
                     if (estoqueAtual)  semMascaraCampo(estoqueAtual);
                     if (estoqueMinimo) semMascaraCampo(estoqueMinimo);
+                });
+            }
+
+            if (btnSalvar && form) {
+                btnSalvar.addEventListener("click", function (e) {
+                    e.preventDefault();
+            
+                    // 🔹 Foca no botão salvar
+                    btnSalvar.focus();
+            
+                    // 🔹 Cria evento Enter com bubbling
+                    const enterEvent = new KeyboardEvent("keydown", {
+                        key: "Enter",
+                        bubbles: true
+                    });
+            
+                    // 🔹 Dispara no botão (com foco) → o evento sobe até o form
+                    btnSalvar.dispatchEvent(enterEvent);
+
                 });
             }
 

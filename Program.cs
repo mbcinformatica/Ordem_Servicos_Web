@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Filters;
 using Ordem_Servicos_Web.Models;
@@ -27,6 +28,17 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+// Model Binder para SmartDecimal
+builder.Services.AddControllers(options =>
+{
+    // Binder para valores monetários e quantidades
+    options.ModelBinderProviders.Insert(0, new SmartDecimalBinderProvider());
+
+    // Binder para datas em múltiplos formatos
+    options.ModelBinderProviders.Insert(0, new DateBinderProvider());
+});
+
 
 // MVC + filtros globais
 builder.Services.AddControllersWithViews(options =>

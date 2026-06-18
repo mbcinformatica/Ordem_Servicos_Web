@@ -7,6 +7,8 @@ using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
 using Ordem_Servicos_Web.Services.Interfaces;
 using Serilog.Core;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Ordem_Servicos_Web.Controllers.Entidades
 {
@@ -16,12 +18,14 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
         MeuDbContext context,
         ICnpjService<Cliente> clienteCnpjService,
         ICnpjService<Fornecedor> fornecedorCnpjService,
-        EntidadesService entidadesService) : Controller
+        EntidadesService entidadesService,
+        IImageService imageService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ICnpjService<Cliente> _clienteCnpjService = clienteCnpjService;
         private readonly ICnpjService<Fornecedor> _fornecedorCnpjService = fornecedorCnpjService;
         private readonly EntidadesService _entidadesService = entidadesService;
+        private readonly IImageService _imageService = imageService;
 
 
         /// Verifica duplicidade de CPF/CNPJ em Clientes, Fornecedores ou Usuários.
@@ -121,31 +125,32 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
             object resultado = entidade.ToUpperInvariant() switch
             {
                 "FORNECEDORES" => _context.Fornecedores
-                    .Select(f => new {
-                        id = f.IdFornecedor,
-                        valorDescricao = EF.Property<string>(f, campoDescricao),
+                    .Select(apelido => new {
+                        id = apelido.IdFornecedor,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
                         apelido
                     }).ToList(),
 
                 "MARCAS" => _context.Marcas
-                    .Select(m => new {
-                        id = m.IdMarca,
-                        valorDescricao = EF.Property<string>(m, campoDescricao),
+                    .Select(apelido => new {
+                        id = apelido.IdMarca,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
                         apelido
                     }).ToList(),
 
+
                 "MODELOS" => _context.Modelos
-                    .Where(m => filtroId == null || m.IdMarca == filtroId)
-                    .Select(m => new {
-                        id = m.IdModelo,
-                        valorDescricao = EF.Property<string>(m, campoDescricao),
+                    .Where(apelido => filtroId == null || apelido.IdMarca == filtroId)
+                    .Select(apelido => new {
+                        id = apelido.IdModelo,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
                         apelido
                     }).ToList(),
 
                 "UNIDADES" => _context.Unidades
-                    .Select(u => new {
-                        id = u.IdUnidade,
-                        valorDescricao = EF.Property<string>(u, campoDescricao),
+                    .Select(apelido => new {
+                        id = apelido.IdUnidade,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
                         apelido
                     }).ToList(),
 
@@ -154,5 +159,87 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
 
             return Json(new { sucesso = true, dados = resultado });
         }
+
+        [HttpGet]
+        public IActionResult GetModelosPorMarca(int idMarca)
+        {
+            var modelos = _context.Modelos
+                .Where(m => m.IdMarca == idMarca)
+                .Select(m => new
+                {
+                    m.IdModelo,
+                    m.Descricao
+                })
+                .ToList();
+
+            return Json(modelos);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetImagens(
+            string campoID,
+            string campoBD,
+            string campoImagem,
+            string campoDescricao,
+            string entidade,
+            string apelido)
+        {
+            if (string.IsNullOrWhiteSpace(entidade) || string.IsNullOrWhiteSpace(campoID))
+                return Json(new { exists = false, mensagem = "Parâmetros inválidos" });
+
+            var tipoEntidade = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .FirstOrDefault(t => t.Name.Equals(entidade, StringComparison.OrdinalIgnoreCase));
+
+            if (tipoEntidade == null)
+                return Json(new { exists = false, mensagem = $"Entidade '{entidade}' não encontrada." });
+
+            // Usa reflexão para chamar _context.Set<T>()
+            var metodoSet = typeof(DbContext)
+                .GetMethod(nameof(DbContext.Set), Type.EmptyTypes)
+                ?.MakeGenericMethod(tipoEntidade);
+
+            var dbSet = metodoSet?.Invoke(_context, null) as IQueryable<object>;
+            if (dbSet == null)
+                return Json(new { exists = false, mensagem = $"DbSet para '{entidade}' não encontrado." });
+
+            // Monta filtro dinamicamente: x => x.campoBD == campoID
+            var parametro = Expression.Parameter(tipoEntidade, apelido);
+            var propriedadeCampoBD = Expression.Property(parametro, campoBD);
+            var valorCampoID = Convert.ChangeType(campoID, propriedadeCampoBD.Type);
+            var igualdade = Expression.Equal(propriedadeCampoBD, Expression.Constant(valorCampoID));
+            var lambda = Expression.Lambda(igualdade, parametro);
+
+            var metodoWhere = typeof(Queryable)
+                .GetMethods()
+                .First(m => m.Name == "Where" && m.GetParameters().Length == 2)
+                .MakeGenericMethod(tipoEntidade);
+
+            var query = metodoWhere.Invoke(null, new object[] { dbSet, lambda });
+
+            var metodoFirstOrDefault = typeof(Queryable)
+                .GetMethods()
+                .First(m => m.Name == "FirstOrDefault" && m.GetParameters().Length == 1)
+                .MakeGenericMethod(tipoEntidade);
+
+            var entidadeEncontrada = metodoFirstOrDefault.Invoke(null, new object[] { query });
+
+            if (entidadeEncontrada == null)
+                return Json(new { exists = false, mensagem = "Registro não encontrado." });
+
+            // Obtém imagem e descrição
+            var propImagem = tipoEntidade.GetProperty(campoImagem);
+            var propDescricao = tipoEntidade.GetProperty(campoDescricao);
+            var propBD = tipoEntidade.GetProperty(campoBD);
+
+            var imagemBytes = propImagem?.GetValue(entidadeEncontrada) as byte[] ?? Array.Empty<byte>();
+            var descricao = propDescricao?.GetValue(entidadeEncontrada)?.ToString() ?? string.Empty;
+            var codigoBD = propBD?.GetValue(entidadeEncontrada)?.ToString() ?? string.Empty;
+
+            var resultado = _imageService.ProcessarImagem(imagemBytes, descricao, codigoBD);
+
+            return Json(resultado);
+        }
+
     }
 }
