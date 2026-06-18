@@ -243,7 +243,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 NomeUnidade = produto.Unidade?.Descricao
             };
 
-
             return View(model);
         }
 

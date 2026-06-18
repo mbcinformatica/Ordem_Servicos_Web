@@ -27,9 +27,8 @@ namespace Ordem_Servicos_Web.ViewModels
 
         public int? IdUnidade { get; set; }
 
-
         [ModelBinder(BinderType = typeof(DecimalModelBinder))]
-        public decimal PrecoCompra { get; set; }
+        public decimal? PrecoCompra { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
@@ -39,7 +38,7 @@ namespace Ordem_Servicos_Web.ViewModels
             : string.Empty;
 
         [ModelBinder(BinderType = typeof(DecimalModelBinder))]
-        public decimal PrecoVenda { get; set; }
+        public decimal? PrecoVenda { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
@@ -48,8 +47,7 @@ namespace Ordem_Servicos_Web.ViewModels
             ? FormatHelper.FormatValor(PrecoVenda)
             : string.Empty;
 
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
-        public int EstoqueAtual { get; set; }
+        public int? EstoqueAtual { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
@@ -58,8 +56,7 @@ namespace Ordem_Servicos_Web.ViewModels
             ? FormatHelper.FormatQuantidade(EstoqueAtual)
             : string.Empty;
 
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
-        public int EstoqueMinimo { get; set; }
+        public int? EstoqueMinimo { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]

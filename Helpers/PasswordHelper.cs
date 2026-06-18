@@ -18,7 +18,6 @@ public static class PasswordHelper
         return $"{Convert.ToBase64String(salt)}:{hash}";
     }
 
-
     public static string HashPasswordBCrypt(string senha)
     {
         return BCrypt.Net.BCrypt.HashPassword(senha);
