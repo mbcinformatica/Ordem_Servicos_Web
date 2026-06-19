@@ -1,7 +1,5 @@
 ﻿using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
-using Ordem_Servicos_Web.Models;
-using System.Globalization;
 
 namespace Ordem_Servicos_Web.Services
 {
@@ -10,33 +8,24 @@ namespace Ordem_Servicos_Web.Services
         private readonly MeuDbContext _context = context;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
-        /// <summary>
-        /// Normaliza campos comuns de uma entidade (remove formatação ou converte para minúsculo).
-        /// </summary>
         public void NormalizarCampos(object entidade, IEnumerable<string> campos)
         {
-            if (entidade == null) return;
-
-            var tipo = entidade.GetType();
-            var form = _httpContextAccessor.HttpContext?.Request.Form;
-
-            foreach (var id in campos)
+            if (campos == null || entidade == null)
             {
-                var prop = tipo.GetProperty(id);
-                if (prop != null && prop.CanWrite)
-                {
-                    var rawValue = form?[id].ToString() ?? prop.GetValue(entidade)?.ToString() ?? string.Empty;
+                return;
+            }
 
-                    // 🔹 Email → minúsculo
-                    if (id.Contains("email", StringComparison.OrdinalIgnoreCase))
-                    {
-                        prop.SetValue(entidade, FormatHelper.ConverteParaMinusculo(rawValue));
-                    }
-                    // 🔹 Demais campos → apenas números
-                    else
-                    {
-                        prop.SetValue(entidade, FormatHelper.SomenteNumeros(rawValue));
-                    }
+            foreach (var campo in campos)
+            {
+                var propriedade = entidade.GetType().GetProperty(campo);
+                if (propriedade == null) continue;
+
+                var valor = propriedade.GetValue(entidade);
+                if (valor == null) continue;
+
+                if (valor is string str)
+                {
+                    propriedade.SetValue(entidade, FormatHelper.SemFormatacao(str));
                 }
             }
         }

@@ -1,37 +1,47 @@
 // Função genérica para aplicar máscara
 function aplicarMascaraCampo(inputCampo, tipo) {
     if (!inputCampo) return;
+
     switch (tipo.toLowerCase()) {
         case "cpf":
             $(inputCampo).inputmask("999.999.999-99");
             break;
+
         case "cnpj":
             $(inputCampo).inputmask("99.999.999/9999-99");
             break;
+
         case "cep":
             $(inputCampo).inputmask("99999-999");
             break;
+
         case "telefone":
             $(inputCampo).inputmask({
                 mask: ["(99) 9999-9999", "(99) 99999-9999"],
                 keepStatic: true
             });
             break;
-        case "valor":
+
+        case "monetario":
             $(inputCampo).inputmask("currency", {
+                prefix: "R$ ",
                 radixPoint: ",",
                 groupSeparator: ".",
-                digits: 2,
                 autoGroup: true,
-                prefix: "R$ ",
-                rightAlign: false
+                digits: 2,
+                digitsOptional: false,
+                allowMinus: false,
+                rightAlign: false,
+                removeMaskOnSubmit: true // 🔹 envia apenas o número limpo
             });
             break;
+
         case "quantidade":
             $(inputCampo).inputmask("integer", {
                 groupSeparator: ".",
                 autoGroup: true,
-                rightAlign: false
+                rightAlign: false,
+                removeMaskOnSubmit: true // 🔹 envia apenas o número limpo
             });
             break;
     }
@@ -43,18 +53,20 @@ function semMascaraCampo(inputCampo) {
 
     // remove máscara do Inputmask se existir
     if ($(inputCampo).inputmask) {
-        $(inputCampo).inputmask("remove");
+        $(inputCampo).inputmask("unmaskedvalue");
     }
 
     let valor = (inputCampo.value || "").trim();
 
     // se for campo de valor/preço → normaliza para formato do banco
-    if (inputCampo.classList.contains("valor")) {
+    if (inputCampo.classList.contains("monetario")) {
 
         valor = valor.replace(/[R\$\s]/g, "") // remove R$, espaços
             .replace(/\./g, "")      // remove separador de milhar
             .replace(",", ".");      // troca vírgula por ponto
-    } else {
+    }
+    else if (inputCampo.classList.contains("numeros")) {
+
         // para CPF, CNPJ, telefone, etc. → só dígitos
         valor = valor.replace(/[()\.\-\/R\$\s]/g, "").trim();
     }
@@ -140,4 +152,27 @@ function mostrarToast(texto, tipo) {
     // Inicializa toast Bootstrap com timeout de 4s
     const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
     toast.show();
+}
+
+// 🔹 Nova função: normalizar campos antes de enviar
+function normalizarCampos(form) {
+    if (!form) return;
+
+    const campos = form.querySelectorAll("input, textarea, select");
+
+    campos.forEach(campo => {
+
+        if (campo.classList.contains("monetario") || campo.classList.contains("numeros")) {
+
+            semMascaraCampo(campo);
+        }
+        else {
+            return; // ignora outros tipos de campo
+        }
+
+//        campo.value = valor;
+        campo.classList.remove("Invalid");
+        campo.classList.remove("input-validation-error");
+        campo.classList.add("Valid");
+    });
 }

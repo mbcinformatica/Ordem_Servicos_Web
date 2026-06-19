@@ -438,6 +438,25 @@ textarea {
         color: #6c757d; /* cinza */
         font-style: italic; /* estilo itálico */
     }
+
+/* Campo válido */
+.Valid {
+    border: 2px solid #28a745; /* verde */
+    background-color: #e6ffed; /* verde claro */
+}
+
+/* Campo inválido */
+.Invalid {
+    border: 2px solid #dc3545; /* vermelho */
+    background-color: #ffe6e6; /* vermelho claro */
+}
+
+/* Mensagens de erro */
+.text-danger {
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
 /* tamanho e estilo do toggle */
 .toggle-switch {
     width: 3rem;

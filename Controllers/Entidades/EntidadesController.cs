@@ -91,7 +91,7 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
             {
                 if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(senha))
                 {
-                    return Json(new { sucesso = false});
+                    return Json(new { sucesso = false });
                 }
 
                 var usuario = _context.Usuarios
@@ -104,14 +104,14 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
 
                     if (senhaValida)
                     {
-                        return Json(new { sucesso = true});
+                        return Json(new { sucesso = true });
                     }
                 }
-                return Json(new { sucesso = false});
+                return Json(new { sucesso = false });
             }
             catch (Exception)
             {
-                return Json(new { sucesso = false});
+                return Json(new { sucesso = false });
             }
         }
 

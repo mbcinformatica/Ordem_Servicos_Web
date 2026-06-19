@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
@@ -140,6 +141,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
+                _entidadesService.NormalizarCampos(model, new[] { "PrecoCompra", "PrecoVenda" });
+
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");
 
@@ -261,16 +264,16 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             try
 
             {
+ 
+//                ModelState.Remove("Imagem");
+//                ModelState.Remove("ImagemBase64");
 
-                ModelState.Remove("Imagem");
-                ModelState.Remove("ImagemBase64");
-
-                if (!ModelState.IsValid)
-                {
-                    TempData["Mensagem"] = "Ocorreu um Erro na Validação das Informações. Tente Novamente.";
-                    TempData["MensagemTipo"] = "erro";
-                    return View(model);
-                }
+//                if (!ModelState.IsValid)
+//                {
+//                    TempData["Mensagem"] = "Ocorreu um Erro na Validação das Informações. Tente Novamente.";
+//                    TempData["MensagemTipo"] = "erro";
+//                    return View(model);
+//                }
 
                 var produtoDb = _context.Produtos.Find(model.IdProduto);
                 if (produtoDb == null) return NotFound();
@@ -396,5 +399,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
             return View(model);
         }
+
     }
 }

@@ -13,6 +13,11 @@ const ValidacaoUtils = (function () {
 
 
         const executarValidacao = async () => {
+
+            // 🔹 remove classes padrão do MVC
+            campo.classList.remove("input-validation-error");
+            campo.classList.remove("valid");
+
             // opcional e vazio → válido
             if (opcional && !campo.value.trim()) {
                 campo.classList.remove("Invalid");
@@ -111,28 +116,32 @@ const ValidacaoUtils = (function () {
     }
 
     // 🔹 Validação final no submit
-
     function validarFormulario(form, camposObrigatorios) {
-        form.addEventListener("submit", function (e) {
-            const invalidFields = form.querySelectorAll(".Invalid");
-            if (invalidFields.length > 0) {
-                e.preventDefault();
-                mostrarToast("Existem Campos Inválidos. Corrija Antes de Salvar.", "erro");
-                invalidFields[0].focus();
-                return false;
-            }
-
-            for (let id of camposObrigatorios) {
-                const campo = document.getElementById(id);
-                if (!campo || !campo.value.trim()) {
+        // só adiciona o listener se a lista de campos obrigatórios for válida e não vazia
+        if (Array.isArray(camposObrigatorios) && camposObrigatorios.some(id => id && id.trim() !== "")) {
+            form.addEventListener("submit", function (e) {
+                const invalidFields = form.querySelectorAll(".Invalid");
+                if (invalidFields.length > 0) {
                     e.preventDefault();
-                    mostrarToast("Preencha Todos os Campos Obrigatórios.", "erro");
-                    campo.focus();
+                    mostrarToast("Existem Campos Inválidos. Corrija Antes de Salvar.", "erro");
+                    invalidFields[0].focus();
                     return false;
                 }
-            }
-            return true;
-        });
+
+                for (let id of camposObrigatorios) {
+                    if (!id || !id.trim()) continue; // 🔹 ignora strings vazias
+
+                    const campo = document.getElementById(id);
+                    if (!campo || !campo.value.trim()) {
+                        e.preventDefault();
+                        mostrarToast("Preencha Todos os Campos Obrigatórios.", "erro");
+                        if (campo) campo.focus();
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
     }
 
     // 🔹 Configuração automática de validação
@@ -140,60 +149,43 @@ const ValidacaoUtils = (function () {
         const campos = form.querySelectorAll("input, select, textarea");
 
         campos.forEach(campo => {
-            const id = campo.id?.toLowerCase() || "";
             const ehObrigatorio = camposObrigatorios.includes(campo.id);
 
-            // 🔹 se não for Create e o campo estiver readonly → não valida
-            if (campo.hasAttribute("readonly")) {
-                return;
+            if (campo.hasAttribute("readonly")) return;
+
+            // 🔹 Data
+            if (campo.classList.contains("data")) {
+                aplicarMascaraCampo(campo, "data");
+                ValidacaoUtils.validarCampo(campo, validarData, null, "Data inválida.", false, ehObrigatorio);
             }
-            else if (campo.classList.contains("cpfcnpj")) {
-                ValidacaoUtils.validarCampo(
-                    campo,
-                    async c => await validarCpfCnpj(
-                        c,
-                        document.getElementById("TipoPessoa")?.value,
-                        entidade
-                    ),
-                    null,                    
-                    "",
-                    false,
-                    ehObrigatorio
-                );
+            // 🔹 Valor monetário
+            else if (campo.classList.contains("monetario")) {
+                aplicarMascaraCampo(campo, "monetario");
+                ValidacaoUtils.validarCampo(campo, validarValor, null, "Valor inválido.", false, ehObrigatorio);
             }
-            else if (campo.classList.contains("cep")) {
-                ValidacaoUtils.validarCampo(campo, validarCep, null, "", false, ehObrigatorio);
-            }
-            else if (campo.classList.contains("numero")) {
-                ValidacaoUtils.validarCampo(campo, validarNumero, null, "", false, ehObrigatorio);
-            }
-            else if (campo.classList.contains("valor")) {
-                ValidacaoUtils.validarCampo(campo, validarValor, null, "", false, ehObrigatorio);
-            }
+            // 🔹 Quantidade
             else if (campo.classList.contains("quantidade")) {
-                ValidacaoUtils.validarCampo(campo, validarQuantidade, null, "", false, ehObrigatorio);
+                aplicarMascaraCampo(campo, "quantidade");
+                ValidacaoUtils.validarCampo(campo, validarQuantidade, null, "Quantidade inválida.", false, ehObrigatorio);
             }
-            else if (campo.classList.contains("email")) {
-                ValidacaoUtils.validarCampo(campo, validarEmail, null, "", true, ehObrigatorio);
-            }
-            else if (campo.classList.contains("telefone")) {
-                ValidacaoUtils.validarCampo(campo, validarTelefone, null, "", true, ehObrigatorio);
-            }
-            else if (campo.classList.contains("nomeusuario")) {
+            // 🔹 CPF/CNPJ
+            else if (campo.classList.contains("cpfcnpj")) {
+                aplicarMascaraCampo(campo, "cpfcnpj");
                 ValidacaoUtils.validarCampo(
                     campo,
-                    c => c.value.trim().length > 0,
-                    c => ValidacaoUtils.consultaDuplicidade(
-                        c,
-                        "/Entidades/VerificarDuplicidade",
-                        "Usuário já Cadastrado.",
-                        { entidade: entidade, campo: "NomeUsuario" }
-                    ),
-                    "Nome do Usuário é Obrigatório.",
+                    async c => await validarCpfCnpj(c, document.getElementById("TipoPessoa")?.value, entidade),
+                    null,
+                    "CPF/CNPJ inválido.",
                     false,
                     ehObrigatorio
                 );
             }
+            // 🔹 CEP
+            else if (campo.classList.contains("cep")) {
+                aplicarMascaraCampo(campo, "cep");
+                ValidacaoUtils.validarCampo(campo, validarCep, null, "CEP inválido.", false, ehObrigatorio);
+            }
+
             else if (campo.classList.contains("login")) {
                 const isLoginScreen = form.id?.toLowerCase().includes("formlogin"); // 🔹 identifica se é tela de login
 
@@ -273,96 +265,10 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
-            else if (campo.classList.contains("fornecedorselect")) {
-                ["focus", "click"].forEach(evt => {
-                    fornecedorSelect.addEventListener(evt, async function () {
-                        if (fornecedorSelect.options.length <= 1) {
-                            await GetEntidades(
-                                fornecedorSelect,
-                                "/Entidades/GetEntidades",
-                                "FORNECEDORES",
-                                { campoDescricao: "NomeRazaoSocial", apelido: "fo" }
-                            );
-                        }
-                    });
-                });
 
-                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
-                fornecedorSelect.addEventListener("change", function () {
-                    if (fornecedorSelect.value && marcaSelect) {
-                        marcaSelect.focus();
-                    }
-                });
-            }
-            else if (campo.classList.contains("marcaselect")) {
-                ["focus", "click"].forEach(evt => {
-                    marcaSelect.addEventListener(evt, async function () {
-                        if (marcaSelect.options.length <= 1) {
-                            await GetEntidades(
-                                marcaSelect,
-                                "/Entidades/GetEntidades",
-                                "MARCAS",
-                                { campoDescricao: "Descricao", apelido: "ma" }
-                            );
-                        }
-                    });
-                });
 
-                // 🔹 ao selecionar marca → carrega modelos
-                marcaSelect.addEventListener("change", async function () {
-                    if (marcaSelect.value && modeloSelect) {
-                        modeloSelect.innerHTML = "<option value=''>Selecione o modelo</option>";
 
-                        // chamada AJAX para o endpoint
-                        const response = await fetch(`/Entidades/GetModelosPorMarca?idMarca=${marcaSelect.value}`);
-                        const modelos = await response.json();
-
-                        modelos.forEach(m => {
-                            const option = document.createElement("option");
-                            option.value = m.idModelo;
-                            option.text = m.descricao;
-                            modeloSelect.appendChild(option);
-                        });
-
-                        modeloSelect.focus();
-                    }
-                });
-            }
-            else if (campo.classList.contains("modeloselect")) {
-                modeloSelect.addEventListener("change", function () {
-                    if (modeloSelect.value && unidadeSelect) {
-                        unidadeSelect.focus();
-
-                        const descricaoProduto = document.getElementById("Descricao");
-                        const selectedOption = modeloSelect.options[modeloSelect.selectedIndex];
-                        if (descricaoProduto && selectedOption && selectedOption.text) {
-                            descricaoProduto.value = selectedOption.text;
-                        }
-                    }
-                });
-            }
-            else if (campo.classList.contains("unidadeselect")) {
-                ["focus", "click"].forEach(evt => {
-                    unidadeSelect.addEventListener(evt, async function () {
-                        if (unidadeSelect.options.length <= 1) {
-                            await GetEntidades(
-                                unidadeSelect,
-                                "/Entidades/GetEntidades",
-                                "UNIDADES",
-                                { campoDescricao: "Descricao", apelido: "un" }
-                            );
-                        }
-                    });
-                });
-
-                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
-                unidadeSelect.addEventListener("change", function () {
-                    if (unidadeSelect.value && PrecoCompra) {
-                        PrecoCompra.focus();
-                        if (typeof PrecoCompra.select === "function") PrecoCompra.select();
-                    }
-                });
-            }
+                // 🔹 Padrão
             else {
                 ValidacaoUtils.validarCampo(campo, null, null, "", false, ehObrigatorio);
             }

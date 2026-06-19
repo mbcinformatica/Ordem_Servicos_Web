@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Ordem_Servicos_Web.Binders;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Ordem_Servicos_Web.Attributes;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +10,6 @@ namespace Ordem_Servicos_Web.ViewModels
 {
     public class ProdutoViewModel
     {
-
         public int IdProduto { get; set; }
 
         public string IdProdutoInterno { get; set; } = string.Empty;
@@ -19,75 +18,65 @@ namespace Ordem_Servicos_Web.ViewModels
 
         public string Descricao { get; set; } = string.Empty;
 
-
         public int? IdFornecedor { get; set; }
-
         public int? IdMarca { get; set; }
-
         public int? IdModelo { get; set; }
-
         public int? IdUnidade { get; set; }
-        
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
+
+        [Monetario]
         public decimal? PrecoCompra { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoCompraFormatado => (PrecoCompra.HasValue && PrecoCompra.Value > 0)
-            ? FormatHelper.FormatValor(PrecoCompra.Value)
+        public string PrecoCompraFormatado => PrecoCompra > 0 
+            ? FormatHelper.FormatValor(PrecoCompra.Value) 
             : string.Empty;
 
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
+        [Monetario]
         public decimal? PrecoVenda { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoVendaFormatado => (PrecoVenda.HasValue && PrecoVenda.Value > 0)
-            ? FormatHelper.FormatValor(PrecoVenda.Value)
+        public string PrecoVendaFormatado => PrecoVenda > 0 
+            ? FormatHelper.FormatValor(PrecoVenda.Value) 
             : string.Empty;
 
+        [Quantidade]
         public int EstoqueAtual { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string EstoqueAtualFormatado => EstoqueAtual > 0
-            ? FormatHelper.FormatQuantidade(EstoqueAtual)
-            : string.Empty;
+        public string EstoqueAtualFormatado =>
+            EstoqueAtual > 0 ? FormatHelper.FormatQuantidade(EstoqueAtual) : string.Empty;
 
+        [Quantidade]
         public int EstoqueMinimo { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string EstoqueMinimoFormatado => EstoqueMinimo > 0
-            ? FormatHelper.FormatQuantidade(EstoqueMinimo)
-            : string.Empty;
+        public string EstoqueMinimoFormatado =>
+            EstoqueMinimo > 0 ? FormatHelper.FormatQuantidade(EstoqueMinimo) : string.Empty;
 
+        [DataType(DataType.Date)]
         public DateTime DataUltimaCompra { get; set; }
 
         public string? Garantia { get; set; }
 
         public byte[]? Imagem { get; set; }
 
-        // Propriedades de navegação
         [ValidateNever]
         public virtual Fornecedor? Fornecedor { get; set; }
 
-        // Propriedades de navegação
         [ValidateNever]
         public virtual Marca? Marca { get; set; }
-        // Propriedades de navegação
+
         [ValidateNever]
         public virtual Modelo? Modelo { get; set; }
 
-        // Propriedades de navegação
         [ValidateNever]
         public virtual Unidade? Unidade { get; set; }
 
-        // Campos auxiliares para exibição (somente leitura)
+        // Campos auxiliares
         public string? NomeFornecedor { get; set; }
         public string? NomeMarca { get; set; }
         public string? NomeModelo { get; set; }

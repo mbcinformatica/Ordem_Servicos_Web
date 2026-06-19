@@ -29,7 +29,7 @@
         </div>
         <div class="col-auto">
             <label asp-for="ValorServico" class="label-destaque">Valor do Serviço</label>
-            <input asp-for="ValorServico" type="text" inputmode="numeric" class="form-control text-end valor" id="ValorServico" style="width:250px;" />
+            <input asp-for="ValorServico" type="text" inputmode="numeric" class="form-control text-end monetario" id="ValorServico" style="width:250px;" />
         </div>
     </div>
 
@@ -61,9 +61,9 @@
             }
 
             // Aplicar máscaras de formatação
-            if (valorServico) aplicarMascaraCampo(valorServico, "valor");
+            if (valorServico) aplicarMascaraCampo(valorServico, "monetario");
   
-            configurarValidacaoCamposObrigatorios(camposObrigatorios);
+//            configurarValidacaoCamposObrigatorios(camposObrigatorios);
 
             aplicarMaiusculoCampos(".maiusculo");
 

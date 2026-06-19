@@ -53,6 +53,8 @@ FormUtils.enableEnterNavigation = function (form, options) {
         var type = target.getAttribute && target.getAttribute("type");
         if ((target.tagName === "BUTTON" && (!type || type.toLowerCase() === "submit")) ||
             (target.tagName === "INPUT" && type && type.toLowerCase() === "submit")) {
+
+//            normalizarCampos(form);
             form.submit();
             return;
         }
@@ -60,17 +62,20 @@ FormUtils.enableEnterNavigation = function (form, options) {
         var focusables = FormUtils.getFocusableElements(form);
         var idx = focusables.indexOf(target);
 
+        // se último campo e opção ativa → envia
+        if (submitOnLastField && idx === focusables.length - 1) {
+
+//            normalizarCampos(form);
+            form.submit();
+            return;
+        }
+
         // 🔹 roda validação genérica (local + duplicidade se existir)
         var valido = true;
         if (typeof target._executarValidacao === "function") {
             valido = await target._executarValidacao();
         }
         if (valido) {
-            // se último campo e opção ativa → envia
-            if (submitOnLastField && idx === focusables.length - 1) {
-                form.submit();
-                return;
-            }
 
             // avança para próximo campo
             var next = (idx >= 0 && idx < focusables.length - 1) ? focusables[idx + 1] : null;

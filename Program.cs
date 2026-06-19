@@ -1,23 +1,29 @@
 using Microsoft.EntityFrameworkCore;
-using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Filters;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
 using Ordem_Servicos_Web.Services.Interfaces;
 using Serilog;
+using System.Globalization;
 using Log = Serilog.Log;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// 🔹 Configura culturas aceitas
+var supportedCultures = new[] { CultureInfo.InvariantCulture, new CultureInfo("pt-BR") };
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(CultureInfo.InvariantCulture);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
+
 // Serviços
 builder.Services.AddScoped<PermissaoService>();
 builder.Services.AddScoped<VerificaBancoFilter>();
-
-// Registrar ImageService
 builder.Services.AddScoped<IImageService, ImageService>();
-
-// registra IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 
 // Session
@@ -29,16 +35,12 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// Model Binder para SmartDecimal
-builder.Services.AddControllers(options =>
+// Configuração dos Binders
+builder.Services.AddControllersWithViews(options =>
 {
-    // Binder para valores monetários e quantidades
-    options.ModelBinderProviders.Insert(0, new SmartDecimalBinderProvider());
-
-    // Binder para datas em múltiplos formatos
-    options.ModelBinderProviders.Insert(0, new DateBinderProvider());
+    // 🔹 Insere o UniversalBinder como primeiro provider
+    options.ModelBinderProviders.Insert(0, new Ordem_Servicos_Web.Binders.UniversalBinderProvider());
 });
-
 
 // MVC + filtros globais
 builder.Services.AddControllersWithViews(options =>
@@ -94,7 +96,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseRequestLocalization();
 app.UseRouting();
 
 app.UseSession();   // habilitar sessão

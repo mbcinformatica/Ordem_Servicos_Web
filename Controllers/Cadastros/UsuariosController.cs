@@ -128,8 +128,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(model, normalizarCampos);
+//                _entidadesService.NormalizarCampos(model);
 
                 if (ModelState.IsValid)
                 {
@@ -223,8 +222,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(model, normalizarCampos);
+//                _entidadesService.NormalizarCampos(model);
 
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");

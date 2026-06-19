@@ -19,7 +19,7 @@ async function validarLogin(
         const data = await response.json();
 
         // 🔹 Se o endpoint retorna { existe: true/false } ou { sucesso: true/false }
-        if (!(data.existe || data.sucesso)) {
+        if (!(data.existe)) {
             mostrarToast(mensagemErro, "erro");
             return false;
         }
@@ -263,6 +263,7 @@ function validarNumero(input) {
 // Função Valida Valor Monetário
 function validarValor(input) {
 
+    let valor = input.value.trim();
 
     limparErro(input);
     return true;

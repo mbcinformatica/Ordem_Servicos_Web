@@ -29,23 +29,21 @@ namespace Ordem_Servicos_Web.Models
 
         public int? IdUnidade { get; set; }
 
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoCompra { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoCompraFormatado => (PrecoCompra.HasValue && PrecoCompra.Value > 0)
+        public string PrecoCompraFormatado => PrecoCompra > 0
             ? FormatHelper.FormatValor(PrecoCompra.Value)
             : string.Empty;
 
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoVenda { get; set; }
 
         // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string PrecoVendaFormatado => (PrecoVenda.HasValue && PrecoVenda.Value > 0)
+        public string PrecoVendaFormatado => PrecoVenda > 0 
             ? FormatHelper.FormatValor(PrecoVenda.Value)
             : string.Empty;
 
