@@ -4,8 +4,8 @@ async function validarLogin(
     url,
     mensagemErro,
     parametrosExtras = {},
-    nomeParametro = "valor"
-) {
+    nomeParametro = "valor")
+{
     const valor = campo.value.trim();
     if (!valor) {
         mostrarToast("Login não informado.", "erro");
@@ -164,52 +164,34 @@ function ValidaCnpj(cnpj) {
     return resultado === parseInt(digitos.charAt(1));
 }
 
-// Função Valida CPF/CNPJ
+// Função para validar CPF/CNPJ
 async function validarCpfCnpj(input, tipoPessoa, entidade) {
-    let valor = semMascaraCampo(input.value);
+    let valor = hexParaStringNumerica(semMascaraCampo(input));
+
     if (tipoPessoa === "JURÍDICA") {
-        let valido = ValidaCnpj(valor);
-        if (!valido) {
+        if (valor.length !== 14 || !ValidaCnpj(valor)) {
             mostrarToast("CNPJ Inválido.", "erro");
             return false;
         }
     } else if (tipoPessoa === "FÍSICA") {
-        let valido = ValidaCpf(valor);
-        if (!valido) {
+        if (valor.length !== 11 || !ValidaCpf(valor)) {
             mostrarToast("CPF Inválido.", "erro");
             return false;
         }
     }
-
-    // 🔹 Checa duplicidade usando entidade dinâmica
     const duplicado = await ValidacaoUtils.consultaDuplicidade(
         input,
         "/Entidades/VerificarDuplicidade",
         "CPF/CNPJ já Cadastrado.",
         { entidade: entidade, campo: "CpfCnpj" }
     );
+    if (duplicado) return false;
 
-    if (duplicado) {
-        return false; // já existe → inválido
-    }
-
-    // 🔹 Se não existe duplicidade e for JURÍDICA → busca dados
     if (tipoPessoa && tipoPessoa.toUpperCase() === "JURÍDICA") {
         const resultado = await buscarCNPJ(
-            "CpfCnpj",
-            "TipoPessoa",
-            "NomeRazaoSocial",
-            "Endereco",
-            "Numero",
-            "Bairro",
-            "Municipio",
-            "Uf",
-            "Cep",
-            "FoneCelular",
-            "FoneFixo",
-            "Email",
-            "Contato",
-            entidade // 🔹 agora flexível
+            "CpfCnpj", "TipoPessoa", "NomeRazaoSocial", "Endereco", "Numero",
+            "Bairro", "Municipio", "Uf", "Cep", "FoneCelular", "FoneFixo", "Email", "Contato",
+            entidade
         );
         if (!resultado) {
             mostrarToast("Erro ao Consultar CNPJ no Servidor.", "erro");
@@ -221,9 +203,10 @@ async function validarCpfCnpj(input, tipoPessoa, entidade) {
     return true;
 }
 
-// Função Valida CEP
+// Função para validar CEP
 async function validarCep(input) {
-    let valor = semMascaraCampo(input.value);
+    let valor = hexParaStringNumerica(semMascaraCampo(input));
+
     if (valor.length !== 8) {
         mostrarToast("CEP Inválido. Deve Conter 8 Dígitos.", "erro");
         return false;
@@ -239,20 +222,22 @@ async function validarCep(input) {
     return true;
 }
 
-// Função Valida Telefone
+// Função para validar Telefone
 function validarTelefone(input) {
-    let valor = semMascaraCampo(input.value);
-    if (valor.length !== 10 && valor.length !== 11 && valor.length !== 0) {
+    let valor = hexParaStringNumerica(semMascaraCampo(input));
+
+    if (valor.length !== 0 && valor.length !== 10 && valor.length !== 11) {
         mostrarToast("Telefone Inválido. Deve Conter 10 ou 11 Dígitos.", "erro");
-        return false;    
+        return false;
     }
+
     limparErro(input);
     return true;
 }
 
 // Função Valida Número
 function validarNumero(input) {
-    let valor = semMascaraCampo(input.value);
+    let valor = semMascaraCampo(input);
     if (valor.length === 0) {
         input.value = "S/N";
     }

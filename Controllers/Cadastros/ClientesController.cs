@@ -122,8 +122,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
             try
             {
-                var normalizarCampos = new[] { "CpfCnpj", "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(cliente, normalizarCampos);
 
                 if (ModelState.IsValid)
                 {
@@ -178,8 +176,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "CpfCnpj", "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(cliente, normalizarCampos);
+                
                 if (ModelState.IsValid)
                 {
                     _context.Clientes.Update(cliente); 

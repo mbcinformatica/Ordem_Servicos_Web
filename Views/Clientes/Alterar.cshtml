@@ -21,16 +21,16 @@
         </div>
         <div class="col-auto">
             <label class="label-destaque">CPF/CNPJ</label>
-            <input class="form-control cpfcnpj" id="CpfCnpj" value="@Model.CpfCnpjFormatado" readonly style="width:200px;" />
+            <input class="form-control somentenumeros" id="CpfCnpj" value="@Model.CpfCnpjFormatado" readonly style="width:200px;" />
             <input type="hidden" asp-for="CpfCnpj" />
         </div>
         <div class="col-auto">
             <label asp-for="NomeRazaoSocial" class="label-destaque">Nome/Razão Social</label>
-            <input asp-for="NomeRazaoSocial" id="NomeRazaoSocial" class="form-control text-uppercase maiusculo" maxlength="150" style="width:561px;" autofocus />
+            <input asp-for="NomeRazaoSocial" id="NomeRazaoSocial" class="form-control text-uppercase maiusculo" maxlength="150" style="width:561px;" data-focus="true" />
         </div>
         <div class="col-auto">
             <label asp-for="Cep" class="label-destaque">CEP</label>
-            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control cep" maxlength="9" style="width:130px;" />
+            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control cep somentenumeros" maxlength="9" style="width:130px;" />
         </div>
     </div>
 
@@ -70,15 +70,15 @@
     <div class="row mb-2 g-4">
         <div class="col-auto">
             <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
-            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control telefone" maxlength="15" style="width:160px;" />
+            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control telefone somentenumeros" maxlength="15" style="width:160px;" />
         </div>
         <div class="col-auto">
             <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
-            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control telefone" maxlength="15" style="width:160px;" />
+            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control telefone somentenumeros" maxlength="15" style="width:160px;" />
         </div>
         <div class="col-auto">
             <label asp-for="Email" class="label-destaque">Email</label>
-            <input asp-for="Email" id="Email" class="form-control text-lowercase minusculob email" style="width:530px;" />
+            <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo email" style="width:530px;" />
         </div>
         <div class="col-auto">
             <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
@@ -122,9 +122,6 @@
                 "Uf"
             ];
 
-            aplicarMaiusculoCampos(".maiusculo");
-            aplicarMinusculoCampos(".minusculo");
-
             // Aplicar máscaras de formatação
             if (cep)            aplicarMascaraCampo(cep, "cep");
             if (foneFixo)       aplicarMascaraCampo(foneFixo, "telefone");
@@ -138,29 +135,36 @@
                 if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
                     FormUtils.enableEnterNavigation(form, { allowTextarea: true });
                 }
-
-                form.addEventListener("submit", function () {
-                    if (cpfCnpj)     semMascaraCampo(cpfCnpj);
-                    if (cep)         semMascaraCampo(cep);
-                    if (foneFixo)    semMascaraCampo(foneFixo);
-                    if (foneCelular) semMascaraCampo(foneCelular);
-                });
             }
 
             // Focar no botão salvar a partir do campo de email
-            if (email && btnSalvar) {
+            if (email && btnSalvar && form) {
+                // Quando sair do campo email
                 email.addEventListener("blur", function () {
                     if (email.classList.contains("Invalid")) {
-                        email.focus();
+                        email.focus(); // mantém foco se inválido
                     } else {
-                        btnSalvar.focus();
+                        btnSalvar.focus(); // se válido, passa para o botão
                     }
                 });
+            
+                // Enter dentro do campo email → foca no botão
                 email.addEventListener("keydown", function (e) {
                     if (e.key === "Enter") {
                         e.preventDefault();
                         btnSalvar.focus();
                     }
+                });
+            
+                btnSalvar.addEventListener("click", function (e) {
+                    btnSalvar.focus();
+                    const enterEvent = new KeyboardEvent("keydown", {
+                        key: "Enter",
+                        code: "Enter",
+                        bubbles: true
+                    });
+                    btnSalvar.dispatchEvent(enterEvent);
+                    form.requestSubmit();
                 });
             }
         });

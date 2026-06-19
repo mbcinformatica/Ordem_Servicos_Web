@@ -51,16 +51,16 @@ namespace Ordem_Servicos_Web.Services
                 return new T
                 {
                     TipoPessoa = "JURÍDICA",
-                    CpfCnpj = FormatHelper.SemFormatacao(cnpj) ?? string.Empty,
+                    CpfCnpj = FormatHelper.SomenteNumeros(cnpj) ?? string.Empty,
                     NomeRazaoSocial = dados.GetProperty("nome").GetString() ?? "",
                     Endereco = dados.GetProperty("logradouro").GetString(),
                     Numero = dados.GetProperty("numero").GetString(),
                     Bairro = dados.GetProperty("bairro").GetString(),
                     Municipio = dados.GetProperty("municipio").GetString(),
                     Uf = dados.GetProperty("uf").GetString(),
-                    Cep = FormatHelper.SemFormatacao(cep) ?? string.Empty,
-                    FoneFixo = FormatHelper.SemFormatacao(foneFixo) ?? string.Empty,
-                    FoneCelular = FormatHelper.SemFormatacao(foneCelular) ?? string.Empty,
+                    Cep = FormatHelper.SomenteNumeros(cep) ?? string.Empty,
+                    FoneFixo = FormatHelper.SomenteNumeros(foneFixo) ?? string.Empty,
+                    FoneCelular = FormatHelper.SomenteNumeros(foneCelular) ?? string.Empty,
                     Email = dados.GetProperty("email").GetString(),
                     Contato = dados.GetProperty("email").GetString(),
                     DataCadastro = DateTime.Now

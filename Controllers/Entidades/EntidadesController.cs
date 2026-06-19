@@ -215,14 +215,14 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
                 .First(m => m.Name == "Where" && m.GetParameters().Length == 2)
                 .MakeGenericMethod(tipoEntidade);
 
-            var query = metodoWhere.Invoke(null, new object[] { dbSet, lambda });
+            var query = metodoWhere.Invoke(null, [dbSet, lambda]);
 
             var metodoFirstOrDefault = typeof(Queryable)
                 .GetMethods()
                 .First(m => m.Name == "FirstOrDefault" && m.GetParameters().Length == 1)
                 .MakeGenericMethod(tipoEntidade);
 
-            var entidadeEncontrada = metodoFirstOrDefault.Invoke(null, new object[] { query });
+            var entidadeEncontrada = metodoFirstOrDefault.Invoke(null, [query]);
 
             if (entidadeEncontrada == null)
                 return Json(new { exists = false, mensagem = "Registro não encontrado." });

@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordem_Servicos_Web.ViewModels
 {
     public class ProdutoViewModel
     {
-
         public int IdProduto { get; set; }
 
         public string IdProdutoInterno { get; set; } = string.Empty;
@@ -19,75 +18,62 @@ namespace Ordem_Servicos_Web.ViewModels
 
         public string Descricao { get; set; } = string.Empty;
 
-
         public int? IdFornecedor { get; set; }
-
         public int? IdMarca { get; set; }
-
         public int? IdModelo { get; set; }
-
         public int? IdUnidade { get; set; }
-        
+
+        // 🔹 Preço Compra com binder
         [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoCompra { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
         public string PrecoCompraFormatado => (PrecoCompra.HasValue && PrecoCompra.Value > 0)
-            ? FormatHelper.FormatValor(PrecoCompra.Value)
+            ? FormatHelper.FormatValor(PrecoCompra.Value) // sempre R$ com 2 casas
             : string.Empty;
 
+        // 🔹 Preço Venda com binder
         [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
         public decimal? PrecoVenda { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
         public string PrecoVendaFormatado => (PrecoVenda.HasValue && PrecoVenda.Value > 0)
             ? FormatHelper.FormatValor(PrecoVenda.Value)
             : string.Empty;
 
-        public int EstoqueAtual { get; set; }
+        // 🔹 Estoque Atual com binder
+        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
+        public decimal? EstoqueAtual { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string EstoqueAtualFormatado => EstoqueAtual > 0
-            ? FormatHelper.FormatQuantidade(EstoqueAtual)
+        public string EstoqueAtualFormatado => (EstoqueAtual.HasValue && EstoqueAtual.Value > 0)
+            ? FormatHelper.FormatQuantidade(EstoqueAtual.Value) // sempre 3 casas decimais
             : string.Empty;
 
-        public int EstoqueMinimo { get; set; }
+        // 🔹 Estoque Mínimo com binder
+        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
+        public decimal? EstoqueMinimo { get; set; }
 
-        // Propriedade para exibir o valor formatado
         [NotMapped]
         [ValidateNever]
-        public string EstoqueMinimoFormatado => EstoqueMinimo > 0
-            ? FormatHelper.FormatQuantidade(EstoqueMinimo)
+        public string EstoqueMinimoFormatado => (EstoqueMinimo.HasValue && EstoqueMinimo.Value > 0)
+            ? FormatHelper.FormatQuantidade(EstoqueMinimo.Value)
             : string.Empty;
 
         public DateTime DataUltimaCompra { get; set; }
-
         public string? Garantia { get; set; }
-
         public byte[]? Imagem { get; set; }
 
-        // Propriedades de navegação
-        [ValidateNever]
-        public virtual Fornecedor? Fornecedor { get; set; }
+        // 🔹 Propriedades de navegação
+        [ValidateNever] public virtual Fornecedor? Fornecedor { get; set; }
+        [ValidateNever] public virtual Marca? Marca { get; set; }
+        [ValidateNever] public virtual Modelo? Modelo { get; set; }
+        [ValidateNever] public virtual Unidade? Unidade { get; set; }
 
-        // Propriedades de navegação
-        [ValidateNever]
-        public virtual Marca? Marca { get; set; }
-        // Propriedades de navegação
-        [ValidateNever]
-        public virtual Modelo? Modelo { get; set; }
-
-        // Propriedades de navegação
-        [ValidateNever]
-        public virtual Unidade? Unidade { get; set; }
-
-        // Campos auxiliares para exibição (somente leitura)
+        // 🔹 Campos auxiliares
         public string? NomeFornecedor { get; set; }
         public string? NomeMarca { get; set; }
         public string? NomeModelo { get; set; }

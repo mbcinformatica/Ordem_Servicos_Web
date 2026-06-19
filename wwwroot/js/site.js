@@ -53,6 +53,8 @@ FormUtils.enableEnterNavigation = function (form, options) {
         var type = target.getAttribute && target.getAttribute("type");
         if ((target.tagName === "BUTTON" && (!type || type.toLowerCase() === "submit")) ||
             (target.tagName === "INPUT" && type && type.toLowerCase() === "submit")) {
+
+            normalizarCampos(form);
             form.submit();
             return;
         }
@@ -60,17 +62,20 @@ FormUtils.enableEnterNavigation = function (form, options) {
         var focusables = FormUtils.getFocusableElements(form);
         var idx = focusables.indexOf(target);
 
+        // se último campo e opção ativa → envia
+        if (submitOnLastField && idx === focusables.length - 1) {
+
+            normalizarCampos(form);
+            form.submit();
+            return;
+        }
+
         // 🔹 roda validação genérica (local + duplicidade se existir)
         var valido = true;
         if (typeof target._executarValidacao === "function") {
             valido = await target._executarValidacao();
         }
         if (valido) {
-            // se último campo e opção ativa → envia
-            if (submitOnLastField && idx === focusables.length - 1) {
-                form.submit();
-                return;
-            }
 
             // avança para próximo campo
             var next = (idx >= 0 && idx < focusables.length - 1) ? focusables[idx + 1] : null;
@@ -92,13 +97,28 @@ FormUtils.enableEnterNavigation = function (form, options) {
     };
 };
 
-// Foco automático no primeiro campo obrigatório do formulário
-window.addEventListener("load", function () {
-    const primeiroCampo = document.querySelector("form input[required], form select[required], form textarea[required]");
-    if (primeiroCampo) {
-        primeiroCampo.focus();
-        if (typeof primeiroCampo.select === 'function') {
-            primeiroCampo.select();
+/**
+ * 🔹 Foca e seleciona automaticamente o campo marcado com data-focus="true"
+ * Se nenhum for encontrado, cai no primeiro obrigatório.
+ * @param {string} [selector] Se informado, usa esse seletor; senão pega o primeiro obrigatório.
+ */
+FormUtils.focusAuto = function () {
+    window.addEventListener("load", function () {
+        let campo = document.querySelector("[data-focus='true']") ||
+            document.querySelector("form input[required], form select[required], form textarea[required]");
+
+        if (campo) {
+            campo.focus();
+            setTimeout(() => {
+                if (typeof campo.select === 'function') {
+                    campo.select();
+                } else if (campo.tagName.toLowerCase() === "select") {
+                    campo.click();
+                }
+            }, 50);
         }
-    }
-});
+    });
+};
+
+// 🔹 já chama automaticamente
+FormUtils.focusAuto();

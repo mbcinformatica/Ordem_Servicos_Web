@@ -287,6 +287,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 produtoDb.EstoqueAtual = model.EstoqueAtual;
                 produtoDb.EstoqueMinimo = model.EstoqueMinimo;
 
+
                 // Atualiza imagem
                 if (Imagem != null && Imagem.Length > 0)
                 {

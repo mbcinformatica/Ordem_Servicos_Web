@@ -6,6 +6,7 @@ using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
 using Ordem_Servicos_Web.Services.Interfaces;
 using Serilog;
+using System.Globalization;
 using Log = Serilog.Log;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,6 +76,7 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
         new MySqlServerVersion(new Version(9, 4, 0)), // versão válida
         mySqlOptions => mySqlOptions.EnableStringComparisonTranslations()
     ));
+
 
 // Serviços CNPJ
 builder.Services.AddHttpClient<ICnpjService<Cliente>, CnpjService<Cliente>>();

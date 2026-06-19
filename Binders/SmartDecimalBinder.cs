@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Ordem_Servicos_Web.Binders
 {
@@ -24,48 +23,45 @@ namespace Ordem_Servicos_Web.Binders
                 return Task.CompletedTask;
             }
 
-            // 🔹 Se o campo for monetário (nome contém "Preco" ou "Valor")
-            if (bindingContext.ModelName.Contains("Preco", StringComparison.OrdinalIgnoreCase) ||
-                bindingContext.ModelName.Contains("Valor", StringComparison.OrdinalIgnoreCase))
-            {
-                // Remove caracteres não numéricos, exceto vírgula e ponto
-                valor = Regex.Replace(valor, @"[^0-9.,]", "");
-                valor = valor.Replace(",", ".");
+            // 🔹 Remove prefixo "R$" e espaços
+            valor = valor.Replace("R$", "").Trim();
 
-                // Ajusta separador decimal (último ponto vira separador, os demais são removidos)
-                int lastDot = valor.LastIndexOf('.');
-                if (lastDot >= 0)
-                {
-                    var inteiro = valor[..lastDot].Replace(".", "");
-                    var decimalParte = valor[lastDot..];
-                    valor = inteiro + decimalParte;
-                }
-            }
-            else
+            // 🔹 Remove caracteres inválidos, mas mantém vírgula e ponto
+            valor = Regex.Replace(valor, @"[^0-9.,-]", "");
+
+            // 🔹 Normaliza separador decimal:
+            // Se o último separador for vírgula → decimal brasileiro
+            // Se for ponto → decimal invariável
+            int lastComma = valor.LastIndexOf(',');
+            int lastDot = valor.LastIndexOf('.');
+
+            if (lastComma > lastDot)
             {
-                // 🔹 Para quantidade (Estoque, etc.) → apenas dígitos
-                valor = Regex.Replace(valor, @"\D", "");
+                // vírgula é separador decimal → remove pontos (milhar)
+                valor = valor.Replace(".", "");
+            }
+            else if (lastDot > lastComma)
+            {
+                // ponto é separador decimal → remove vírgulas (milhar)
+                valor = valor.Replace(",", "");
             }
 
-            // 🔹 Tentativa de conversão
-            if (decimal.TryParse(valor, NumberStyles.Any, CultureInfo.InvariantCulture, out var dec))
+            decimal dec;
+
+            // 🔹 Primeiro tenta com cultura brasileira
+            if (decimal.TryParse(valor, NumberStyles.Number, CultureInfo.GetCultureInfo("pt-BR"), out dec))
+            {
+                bindingContext.Result = ModelBindingResult.Success(dec);
+            }
+            // 🔹 Depois tenta com cultura invariável
+            else if (decimal.TryParse(valor, NumberStyles.Number, CultureInfo.InvariantCulture, out dec))
             {
                 bindingContext.Result = ModelBindingResult.Success(dec);
             }
             else
             {
-                // Mensagens de erro personalizadas
-                if (bindingContext.ModelName.Contains("Preco", StringComparison.OrdinalIgnoreCase) ||
-                    bindingContext.ModelName.Contains("Valor", StringComparison.OrdinalIgnoreCase))
-                {
-                    bindingContext.ModelState.TryAddModelError(bindingContext.ModelName,
-                        "Preço inválido. Use apenas números, vírgula ou ponto.");
-                }
-                else
-                {
-                    bindingContext.ModelState.TryAddModelError(bindingContext.ModelName,
-                        "Quantidade inválida. Digite apenas números.");
-                }
+                // Se não conseguir converter, retorna erro de binding
+                bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, $"Valor inválido: {valor}");
             }
 
             return Task.CompletedTask;

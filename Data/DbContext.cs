@@ -107,6 +107,21 @@ namespace Ordem_Servicos_Web.Data
                 .HasOne(pr => pr.Unidade)
                 .WithMany(un => un.Produtos)
                 .HasForeignKey(pr => pr.IdUnidade);
+
+            modelBuilder.Entity<Produto>(entity =>
+            {
+                entity.Property(pr => pr.PrecoCompra)
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(pr => pr.PrecoVenda)
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(pr => pr.EstoqueAtual)
+                      .HasColumnType("decimal(10,3)");
+
+                entity.Property(pr => pr.EstoqueMinimo)
+                      .HasColumnType("decimal(10,3)");
+            });
         }
 
         public override int SaveChanges()

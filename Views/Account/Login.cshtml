@@ -14,7 +14,7 @@
             <form asp-action="Login" asp-controller="Account" method="post" id="formLogin" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="Login" class="form-label label-destaque">Login</label>
-                    <input type="text" id="Login" name="Login" class="form-control input-login login" autofocus tabindex="1" />
+                    <input type="text" id="Login" name="Login" class="form-control input-login login" tabindex="1" data-focus="true" />
                 </div>
 
                 <div class="mb-4">
@@ -42,6 +42,7 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();

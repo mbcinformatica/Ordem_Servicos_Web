@@ -41,7 +41,7 @@ namespace Ordem_Servicos_Web.Binders
             }
             else
             {
-                bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, "Data inválida");
+                bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, "Data Inválida");
             }
 
             return Task.CompletedTask;

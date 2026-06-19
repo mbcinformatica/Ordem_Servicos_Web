@@ -210,7 +210,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         TempData["MensagemTipo"] = "aviso";
                         return View(servico);
                     }
-
+                    servico.ValorServico = servico.ValorServico.Value;
                     _context.Servicos.Update(servico); 
                     _context.SaveChanges();
 

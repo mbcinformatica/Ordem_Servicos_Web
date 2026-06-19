@@ -19,19 +19,28 @@ function aplicarMascaraCampo(inputCampo, tipo) {
             break;
         case "valor":
             $(inputCampo).inputmask("currency", {
+                prefix: "R$ ",
                 radixPoint: ",",
                 groupSeparator: ".",
-                digits: 2,
                 autoGroup: true,
-                prefix: "R$ ",
-                rightAlign: false
+                digits: 2,
+                digitsOptional: false,
+                allowMinus: false,
+                rightAlign: false,
+                removeMaskOnSubmit: true // 🔹 envia apenas o número limpo
             });
             break;
+
         case "quantidade":
-            $(inputCampo).inputmask("integer", {
-                groupSeparator: ".",
-                autoGroup: true,
-                rightAlign: false
+            $(inputCampo).inputmask("decimal", {
+                radixPoint: ".",        // ponto como separador decimal
+                groupSeparator: "",     // com separador de milhar
+                autoGroup: false,
+                digits: 3,              // até 3 casas decimais
+                digitsOptional: true,
+                allowMinus: false,
+                rightAlign: false,
+                removeMaskOnSubmit: true
             });
             break;
     }
@@ -42,24 +51,38 @@ function semMascaraCampo(inputCampo) {
     if (!inputCampo) return;
 
     // remove máscara do Inputmask se existir
-    if ($(inputCampo).inputmask) {
-        $(inputCampo).inputmask("remove");
-    }
+    //if ($(inputCampo).inputmask) {
+    //    $(inputCampo).inputmask("remove");
+    //}
 
     let valor = (inputCampo.value || "").trim();
 
     // se for campo de valor/preço → normaliza para formato do banco
     if (inputCampo.classList.contains("valor")) {
 
-        valor = valor.replace(/[R\$\s]/g, "") // remove R$, espaços
-            .replace(/\./g, "")      // remove separador de milhar
-            .replace(",", ".");      // troca vírgula por ponto
+        // remove tudo que não for número, vírgula ou ponto
+        let limpo = valor.replace(/[^0-9.,]/g, "");
+
+        // converte vírgula para ponto
+        limpo = limpo.replace(/,/g, ".");
+
+        // mantém apenas o último ponto como separador decimal
+        let lastDot = limpo.lastIndexOf(".");
+        if (lastDot >= 0) {
+            let inteiro = limpo.substring(0, lastDot).replace(/\./g, "");
+            let decimalParte = limpo.substring(lastDot);
+            limpo = inteiro + decimalParte;
+        }
+
+        valor = limpo;
+
     } else {
         // para CPF, CNPJ, telefone, etc. → só dígitos
-        valor = valor.replace(/[()\.\-\/R\$\s]/g, "").trim();
+        valor = valor.replace(/\D/g, "").trim();
     }
 
     inputCampo.value = valor;
+    return valor;
 }
 
 // Função para aplicar CPF ou CNPJ conforme seleção
@@ -91,6 +114,11 @@ function aplicarMinusculoCampos(seletor, evento = "blur") {
             this.value = this.value.trim().toLowerCase();
         });
     });
+}
+
+function converteParaMaiusculo(valor) {
+    if (!valor) return "";
+    return valor.trim().toUpperCase();
 }
 
 // Função para converter texto para minúsculo, removendo espaços extras
@@ -140,4 +168,62 @@ function mostrarToast(texto, tipo) {
     // Inicializa toast Bootstrap com timeout de 4s
     const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
     toast.show();
+}
+
+// 🔹 Nova função: normalizar campos antes de enviar
+function normalizarCampos(form) {
+    if (!form) return;
+
+    const campos = form.querySelectorAll("input, textarea, select");
+
+    campos.forEach(campo => {
+
+        if (campo.classList.contains("maiusculo")) {
+
+            campo.value = converteParaMaiusculo(campo.value);
+        }
+        else if (campo.classList.contains("minusculo")) {
+
+            campo.value = converteParaMinusculo(campo.value);
+        }
+        else if (campo.classList.contains("somentenumeros")) {
+
+            if ($(campo).inputmask) {
+                $(campo).inputmask("remove");
+            }
+            campo.value = semMascaraCampo(campo);
+        }
+        else {
+            return;
+        }
+
+        campo.classList.remove("Invalid");
+        campo.classList.remove("input-validation-error");
+        campo.classList.add("Valid");
+    });
+}
+
+// 🔹 Nova função: converte string hexadecimal para string numérica
+function hexParaStringNumerica(hex) {
+    let str = '';
+    for (let i = 0; i < hex.length; i += 2) {
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    }
+    // 🔹 garante que só fiquem dígitos
+    return str;
+}
+
+function hexParaStringNumerica(hex) {
+    // Se já for decimal (só dígitos), retorna direto
+    if (/^\d+$/.test(hex)) {
+        return hex;
+    }
+
+    // Caso contrário, converte de hex ASCII para string
+    let str = '';
+    for (let i = 0; i < hex.length; i += 2) {
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    }
+
+    return str;
 }

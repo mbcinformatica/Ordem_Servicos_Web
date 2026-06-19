@@ -11,7 +11,6 @@ const ValidacaoUtils = (function () {
 
         if (!campo) return async () => true;
 
-
         const executarValidacao = async () => {
             // opcional e vazio → válido
             if (opcional && !campo.value.trim()) {
@@ -40,6 +39,7 @@ const ValidacaoUtils = (function () {
                     return false;
                 }
             }
+
 
             // validação duplicidade
             if (consultaServidorFn) {
@@ -113,26 +113,31 @@ const ValidacaoUtils = (function () {
     // 🔹 Validação final no submit
 
     function validarFormulario(form, camposObrigatorios) {
-        form.addEventListener("submit", function (e) {
-            const invalidFields = form.querySelectorAll(".Invalid");
-            if (invalidFields.length > 0) {
-                e.preventDefault();
-                mostrarToast("Existem Campos Inválidos. Corrija Antes de Salvar.", "erro");
-                invalidFields[0].focus();
-                return false;
-            }
-
-            for (let id of camposObrigatorios) {
-                const campo = document.getElementById(id);
-                if (!campo || !campo.value.trim()) {
+        // só adiciona o listener se a lista de campos obrigatórios for válida e não vazia
+        if (Array.isArray(camposObrigatorios) && camposObrigatorios.some(id => id && id.trim() !== "")) {
+            form.addEventListener("submit", function (e) {
+                const invalidFields = form.querySelectorAll(".Invalid");
+                if (invalidFields.length > 0) {
                     e.preventDefault();
-                    mostrarToast("Preencha Todos os Campos Obrigatórios.", "erro");
-                    campo.focus();
+                    mostrarToast("Existem Campos Inválidos. Corrija Antes de Salvar.", "erro");
+                    invalidFields[0].focus();
                     return false;
                 }
-            }
-            return true;
-        });
+
+                for (let id of camposObrigatorios) {
+                    if (!id || !id.trim()) continue; // 🔹 ignora strings vazias
+
+                    const campo = document.getElementById(id);
+                    if (!campo || !campo.value.trim()) {
+                        e.preventDefault();
+                        mostrarToast("Preencha Todos os Campos Obrigatórios.", "erro");
+                        if (campo) campo.focus();
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
     }
 
     // 🔹 Configuração automática de validação
@@ -148,6 +153,7 @@ const ValidacaoUtils = (function () {
                 return;
             }
             else if (campo.classList.contains("cpfcnpj")) {
+//                aplicarMascaraCampo(campo, "cpfcnpj");                
                 ValidacaoUtils.validarCampo(
                     campo,
                     async c => await validarCpfCnpj(
@@ -161,7 +167,9 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
+
             else if (campo.classList.contains("cep")) {
+//                aplicarMascaraCampo(campo, "cep");
                 ValidacaoUtils.validarCampo(campo, validarCep, null, "", false, ehObrigatorio);
             }
             else if (campo.classList.contains("numero")) {
@@ -177,6 +185,7 @@ const ValidacaoUtils = (function () {
                 ValidacaoUtils.validarCampo(campo, validarEmail, null, "", true, ehObrigatorio);
             }
             else if (campo.classList.contains("telefone")) {
+                aplicarMascaraCampo(campo, "telefone");
                 ValidacaoUtils.validarCampo(campo, validarTelefone, null, "", true, ehObrigatorio);
             }
             else if (campo.classList.contains("nomeusuario")) {
@@ -273,7 +282,10 @@ const ValidacaoUtils = (function () {
                     ehObrigatorio
                 );
             }
-            else if (campo.classList.contains("fornecedorselect")) {
+            else if (campo.classList.contains("fornecedorSelect")) {
+                const fornecedorSelect = document.getElementById("fornecedorSelect");
+                const marcaSelect = document.getElementById("marcaSelect");
+
                 ["focus", "click"].forEach(evt => {
                     fornecedorSelect.addEventListener(evt, async function () {
                         if (fornecedorSelect.options.length <= 1) {
@@ -294,7 +306,10 @@ const ValidacaoUtils = (function () {
                     }
                 });
             }
-            else if (campo.classList.contains("marcaselect")) {
+            else if (campo.classList.contains("marcaSelect")) {
+                const marcaSelect = document.getElementById("marcaSelect");
+                const modeloSelect = document.getElementById("modeloSelect");
+
                 ["focus", "click"].forEach(evt => {
                     marcaSelect.addEventListener(evt, async function () {
                         if (marcaSelect.options.length <= 1) {
@@ -328,7 +343,7 @@ const ValidacaoUtils = (function () {
                     }
                 });
             }
-            else if (campo.classList.contains("modeloselect")) {
+            else if (campo.classList.contains("modeloSelect")) {
                 modeloSelect.addEventListener("change", function () {
                     if (modeloSelect.value && unidadeSelect) {
                         unidadeSelect.focus();
@@ -341,7 +356,7 @@ const ValidacaoUtils = (function () {
                     }
                 });
             }
-            else if (campo.classList.contains("unidadeselect")) {
+            else if (campo.classList.contains("unidadeSelect")) {
                 ["focus", "click"].forEach(evt => {
                     unidadeSelect.addEventListener(evt, async function () {
                         if (unidadeSelect.options.length <= 1) {
