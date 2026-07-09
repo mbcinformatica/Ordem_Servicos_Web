@@ -23,7 +23,6 @@ namespace Ordem_Servicos_Web.ViewModels
         public int? IdModelo { get; set; }
         public int? IdUnidade { get; set; }
 
-        [Monetario]
         public decimal? PrecoCompra { get; set; }
 
         [NotMapped]
@@ -32,7 +31,6 @@ namespace Ordem_Servicos_Web.ViewModels
             ? FormatHelper.FormatValor(PrecoCompra.Value) 
             : string.Empty;
 
-        [Monetario]
         public decimal? PrecoVenda { get; set; }
 
         [NotMapped]
@@ -41,7 +39,6 @@ namespace Ordem_Servicos_Web.ViewModels
             ? FormatHelper.FormatValor(PrecoVenda.Value) 
             : string.Empty;
 
-        [Quantidade]
         public int EstoqueAtual { get; set; }
 
         [NotMapped]
@@ -49,7 +46,6 @@ namespace Ordem_Servicos_Web.ViewModels
         public string EstoqueAtualFormatado =>
             EstoqueAtual > 0 ? FormatHelper.FormatQuantidade(EstoqueAtual) : string.Empty;
 
-        [Quantidade]
         public int EstoqueMinimo { get; set; }
 
         [NotMapped]

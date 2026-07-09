@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MySqlX.XDevAPI;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
@@ -141,7 +140,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                _entidadesService.NormalizarCampos(model, new[] { "PrecoCompra", "PrecoVenda" });
 
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");
@@ -177,8 +175,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         IdUnidade = model.IdUnidade,
                         PrecoCompra = model.PrecoCompra,
                         PrecoVenda = model.PrecoVenda,
-                        EstoqueAtual = model.EstoqueAtual,
-                        EstoqueMinimo = model.EstoqueMinimo,
+                        EstoqueAtual = (Int32)model.EstoqueAtual,
+                        EstoqueMinimo = (Int32)model.EstoqueMinimo,
                         Imagem = imagemBytes
                     };
 
@@ -262,33 +260,34 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         public IActionResult Alterar(ProdutoViewModel model, IFormFile Imagem, string ImagemBase64)
         {
             try
-
             {
- 
-//                ModelState.Remove("Imagem");
-//                ModelState.Remove("ImagemBase64");
+                // Evita validação automática desses campos
+                ModelState.Remove("Imagem");
+                ModelState.Remove("ImagemBase64");
 
-//                if (!ModelState.IsValid)
-//                {
-//                    TempData["Mensagem"] = "Ocorreu um Erro na Validação das Informações. Tente Novamente.";
-//                    TempData["MensagemTipo"] = "erro";
-//                    return View(model);
-//                }
+                // Checagem defensiva
+                if (model == null)
+                {
+                    TempData["Mensagem"] = "Model não recebido.";
+                    TempData["MensagemTipo"] = "erro";
+                    return RedirectToAction("Index");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    TempData["Mensagem"] = "Erro na validação das informações. Tente novamente.";
+                    TempData["MensagemTipo"] = "erro";
+                    return View(model);
+                }
 
                 var produtoDb = _context.Produtos.Find(model.IdProduto);
                 if (produtoDb == null) return NotFound();
 
-                produtoDb.IdProdutoInterno = model.IdProdutoInterno;
-                produtoDb.IdProdutoFabricante = model.IdProdutoFabricante;
-                produtoDb.Descricao = model.Descricao;
-                produtoDb.IdFornecedor = model.IdFornecedor;
-                produtoDb.IdMarca = model.IdMarca;
-                produtoDb.IdModelo = model.IdModelo;
-                produtoDb.IdUnidade = model.IdUnidade;
+                // Atualiza campos
                 produtoDb.PrecoCompra = model.PrecoCompra;
                 produtoDb.PrecoVenda = model.PrecoVenda;
-                produtoDb.EstoqueAtual = model.EstoqueAtual;
-                produtoDb.EstoqueMinimo = model.EstoqueMinimo;
+                produtoDb.EstoqueAtual = (Int32)model.EstoqueAtual;
+                produtoDb.EstoqueMinimo = (Int32)model.EstoqueMinimo;
 
                 // Atualiza imagem
                 if (Imagem != null && Imagem.Length > 0)
@@ -301,21 +300,21 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 {
                     produtoDb.Imagem = Convert.FromBase64String(ImagemBase64);
                 }
-                 _context.Produtos.Update(produtoDb);
-                 _context.SaveChanges();
 
-                 TempData["Mensagem"] = "Produto alterado com sucesso!";
-                 TempData["MensagemTipo"] = "sucesso";
-                 return RedirectToAction("Index");
+                _context.Produtos.Update(produtoDb);
+                _context.SaveChanges();
 
+                TempData["Mensagem"] = "Produto alterado com sucesso!";
+                TempData["MensagemTipo"] = "sucesso";
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao alterar produto no banco de dados.");
                 TempData["Mensagem"] = "Erro ao salvar no banco de dados. Tente novamente.";
                 TempData["MensagemTipo"] = "erro";
+                return View(model);
             }
-            return View(model);
         }
 
         // GET: Produtos/Excluir/5

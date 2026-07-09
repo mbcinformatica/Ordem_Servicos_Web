@@ -267,8 +267,96 @@ const ValidacaoUtils = (function () {
             }
 
 
+            else if (campo.classList.contains("fornecedorselect")) {
+                ["focus", "click"].forEach(evt => {
+                    fornecedorSelect.addEventListener(evt, async function () {
+                        if (fornecedorSelect.options.length <= 1) {
+                            await GetEntidades(
+                                fornecedorSelect,
+                                "/Entidades/GetEntidades",
+                                "FORNECEDORES",
+                                { campoDescricao: "NomeRazaoSocial", apelido: "fo" }
+                            );
+                        }
+                    });
+                });
 
-                // 🔹 Padrão
+                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+                fornecedorSelect.addEventListener("change", function () {
+                    if (fornecedorSelect.value && marcaSelect) {
+                        marcaSelect.focus();
+                    }
+                });
+            }
+            else if (campo.classList.contains("marcaselect")) {
+                ["focus", "click"].forEach(evt => {
+                    marcaSelect.addEventListener(evt, async function () {
+                        if (marcaSelect.options.length <= 1) {
+                            await GetEntidades(
+                                marcaSelect,
+                                "/Entidades/GetEntidades",
+                                "MARCAS",
+                                { campoDescricao: "Descricao", apelido: "ma" }
+                            );
+                        }
+                    });
+                });
+
+                // 🔹 ao selecionar marca → carrega modelos
+                marcaSelect.addEventListener("change", async function () {
+                    if (marcaSelect.value && modeloSelect) {
+                        modeloSelect.innerHTML = "<option value=''>Selecione o modelo</option>";
+
+                        // chamada AJAX para o endpoint
+                        const response = await fetch(`/Entidades/GetModelosPorMarca?idMarca=${marcaSelect.value}`);
+                        const modelos = await response.json();
+
+                        modelos.forEach(m => {
+                            const option = document.createElement("option");
+                            option.value = m.idModelo;
+                            option.text = m.descricao;
+                            modeloSelect.appendChild(option);
+                        });
+
+                        modeloSelect.focus();
+                    }
+                });
+            }
+            else if (campo.classList.contains("modeloselect")) {
+                modeloSelect.addEventListener("change", function () {
+                    if (modeloSelect.value && unidadeSelect) {
+                        unidadeSelect.focus();
+
+                        const descricaoProduto = document.getElementById("Descricao");
+                        const selectedOption = modeloSelect.options[modeloSelect.selectedIndex];
+                        if (descricaoProduto && selectedOption && selectedOption.text) {
+                            descricaoProduto.value = selectedOption.text;
+                        }
+                    }
+                });
+            }
+            else if (campo.classList.contains("unidadeselect")) {
+                ["focus", "click"].forEach(evt => {
+                    unidadeSelect.addEventListener(evt, async function () {
+                        if (unidadeSelect.options.length <= 1) {
+                            await GetEntidades(
+                                unidadeSelect,
+                                "/Entidades/GetEntidades",
+                                "UNIDADES",
+                                { campoDescricao: "Descricao", apelido: "un" }
+                            );
+                        }
+                    });
+                });
+
+                // 🔹 ao selecionar fornecedor → foca no próximo campo (marca)
+                unidadeSelect.addEventListener("change", function () {
+                    if (unidadeSelect.value && PrecoCompra) {
+                        PrecoCompra.focus();
+                        if (typeof PrecoCompra.select === "function") PrecoCompra.select();
+                    }
+                });
+            }
             else {
                 ValidacaoUtils.validarCampo(campo, null, null, "", false, ehObrigatorio);
             }

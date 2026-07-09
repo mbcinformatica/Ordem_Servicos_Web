@@ -263,8 +263,6 @@ function validarNumero(input) {
 // Função Valida Valor Monetário
 function validarValor(input) {
 
-    let valor = input.value.trim();
-
     limparErro(input);
     return true;
 }

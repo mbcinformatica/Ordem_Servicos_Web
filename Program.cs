@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Filters;
 using Ordem_Servicos_Web.Models;
@@ -35,16 +36,10 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// Configuração dos Binders
+// 🔹 Configuração dos Binders + filtros globais (em uma única chamada)
 builder.Services.AddControllersWithViews(options =>
 {
-    // 🔹 Insere o UniversalBinder como primeiro provider
-    options.ModelBinderProviders.Insert(0, new Ordem_Servicos_Web.Binders.UniversalBinderProvider());
-});
-
-// MVC + filtros globais
-builder.Services.AddControllersWithViews(options =>
-{
+    options.ModelBinderProviders.Insert(0, new UniversalBinderProvider());
     options.Filters.AddService<VerificaBancoFilter>();
 });
 
