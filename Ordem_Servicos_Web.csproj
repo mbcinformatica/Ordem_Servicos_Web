@@ -50,6 +50,7 @@
     <Folder Include="Controllers\Lancamentos\" />
     <Folder Include="Controllers\Relatorios\" />
     <Folder Include="Logs\" />
+    <Folder Include="aaaa\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
