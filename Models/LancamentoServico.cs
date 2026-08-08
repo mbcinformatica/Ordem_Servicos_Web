@@ -13,11 +13,9 @@ namespace Ordem_Servicos_Web.Models
         public int IdOrdemServico { get; set; }
 
         // Outras propriedades da classe
-        [Required(ErrorMessage = "Data de Emissão é Obrigatória")]
         public DateTime? DataEmissao { get; set; }
         
         // Outras propriedades da classe
-        [Required(ErrorMessage = "Data de Conclusão é Obrigatória")]
         public DateTime? DataConclusao { get; set; }
 
         // Outras propriedades da classe
@@ -33,19 +31,15 @@ namespace Ordem_Servicos_Web.Models
         public int? IdProduto { get; set; }
 
         // Outras propriedades da classe
-        [StringLength(100)]
         public string? NumeroSerie { get; set; }
 
         // Outras propriedades da classe
-        [Required(ErrorMessage = "Descrição do Defeito é Obrigatória")]
         public string? DescricaoDefeito { get; set; }
 
         // Outras propriedades da classe
-        [StringLength(50)]
         public string? GarantiaServico { get; set; }
 
         // Outras propriedades da classe
-        [StringLength(50)]
         public string? GarantiaMaterial { get; set; }
 
         // Outras propriedades da classe

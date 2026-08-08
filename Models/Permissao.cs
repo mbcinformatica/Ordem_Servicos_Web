@@ -12,20 +12,11 @@ namespace Ordem_Servicos_Web.Models
         [Column("IDPermissao")]
         public int IdPermissao { get; set; }
 
-        // </summary>
-        [ForeignKey(nameof(Menu))]
-        [Column("IDMenu")]
-        public int IdMenu { get; set; }
+        public int? IdMenu { get; set; }
 
-        // </summary>
-        [ForeignKey(nameof(ItensMenu))]
-        [Column("IDItensMenu")]
-        public int IdItensMenu { get; set; }
+        public int? IdItensMenu { get; set; }
 
-        // </summary>
-        [ForeignKey(nameof(Usuario))]
-        [Column("IDUsuario")]
-        public int IdUsuario { get; set; } = 0;
+        public int? IdUsuario { get; set; }
 
         //  </summary>
         public bool Executar { get; set; } = false;
@@ -40,15 +31,12 @@ namespace Ordem_Servicos_Web.Models
         public bool Excluir { get; set; } = false;
 
         // Propriedades de navegação
-        [ValidateNever]
-        public virtual Menu Menu { get; set; } = null!;
+        [ValidateNever] public virtual Menu? Menu { get; set; }
 
         // Propriedades de navegação
-        [ValidateNever]
-        public virtual ItensMenu ItensMenu { get; set; } = null!;
+        [ValidateNever] public virtual ItensMenu? ItensMenu { get; set; }
 
         // Propriedades de navegação
-        [ValidateNever]
-        public virtual Usuario Usuario { get; set; } = null!;
+        [ValidateNever] public virtual Usuario? Usuario { get; set; }
     }
 }

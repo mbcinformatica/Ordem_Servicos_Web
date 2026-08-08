@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Ordem_Servicos_Web.Binders;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordem_Servicos_Web.ViewModels
@@ -19,8 +19,11 @@ namespace Ordem_Servicos_Web.ViewModels
         public string Descricao { get; set; } = string.Empty;
 
         public int? IdFornecedor { get; set; }
+        
         public int? IdMarca { get; set; }
+        
         public int? IdModelo { get; set; }
+        
         public int? IdUnidade { get; set; }
 
         // 🔹 Preço Compra com binder
@@ -43,40 +46,45 @@ namespace Ordem_Servicos_Web.ViewModels
             ? FormatHelper.FormatValor(PrecoVenda.Value)
             : string.Empty;
 
-        // 🔹 Estoque Atual com binder
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
-        public decimal? EstoqueAtual { get; set; }
+        public int? EstoqueAtual { get; set; }
 
         [NotMapped]
         [ValidateNever]
         public string EstoqueAtualFormatado => (EstoqueAtual.HasValue && EstoqueAtual.Value > 0)
-            ? FormatHelper.FormatQuantidade(EstoqueAtual.Value) // sempre 3 casas decimais
+            ? FormatHelper.FormatQuantidade((Int32)EstoqueAtual.Value) 
             : string.Empty;
 
-        // 🔹 Estoque Mínimo com binder
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
-        public decimal? EstoqueMinimo { get; set; }
+        public int? EstoqueMinimo { get; set; }
 
         [NotMapped]
         [ValidateNever]
-        public string EstoqueMinimoFormatado => (EstoqueMinimo.HasValue && EstoqueMinimo.Value > 0)
-            ? FormatHelper.FormatQuantidade(EstoqueMinimo.Value)
+        public string EstoqueMinimoFormatado => (EstoqueMinimo.HasValue && EstoqueMinimo.Value > 0) 
+            ? FormatHelper.FormatQuantidade((Int32)EstoqueMinimo.Value) 
             : string.Empty;
 
+        [DataType(DataType.Date)]
         public DateTime DataUltimaCompra { get; set; }
+        
         public string? Garantia { get; set; }
+        
         public byte[]? Imagem { get; set; }
 
         // 🔹 Propriedades de navegação
         [ValidateNever] public virtual Fornecedor? Fornecedor { get; set; }
+        
         [ValidateNever] public virtual Marca? Marca { get; set; }
+        
         [ValidateNever] public virtual Modelo? Modelo { get; set; }
+        
         [ValidateNever] public virtual Unidade? Unidade { get; set; }
 
-        // 🔹 Campos auxiliares
+        // Campos auxiliares
         public string? NomeFornecedor { get; set; }
+        
         public string? NomeMarca { get; set; }
+        
         public string? NomeModelo { get; set; }
+        
         public string? NomeUnidade { get; set; }
     }
 }

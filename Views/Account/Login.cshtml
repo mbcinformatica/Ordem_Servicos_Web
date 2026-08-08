@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ordem_Servicos_Web.Models.Usuario>
+﻿@model Ordem_Servicos_Web.Models.Usuario
 
 @{
     ViewData["Title"] = "Login";
@@ -11,30 +11,31 @@
         <div class="card-body">
             <h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
-            <form asp-action="Login" asp-controller="Account" method="post" id="formLogin" enctype="multipart/form-data">
+            <form asp-action="Login" asp-controller="Account" method="post" id="formLogin" 
+                data-campos-obrigatorios="Login, Senha">
+
                 <div class="mb-3">
                     <label for="Login" class="form-label label-destaque">Login</label>
-                    <input type="text" id="Login" name="Login" class="form-control input-login login" tabindex="1" data-focus="true" />
+                    <input name="Login" id="Login" class="form-control input-login login Invalid" tabindex="1" data-focus="true" />
                 </div>
 
                 <div class="mb-4">
                     <label for="Senha" class="form-label label-destaque">Senha</label>
-                    <input type="password" id="Senha" name="Senha" class="form-control input-login senha" tabindex="2" />
+                    <input name="Senha" id="Senha" type="password" class="form-control input-login senha Invalid" tabindex="2" />
                 </div>
 
                 <!-- Container da imagem e NomeUsuario -->
                 <div id="userImageContainer" class="text-center mb-3" style="display:none;">
-                    <img id="userImage" src="" alt="Imagem do usuário" class="img-thumbnail  imagemGet" style="max-width:150px;" />
+                    <img id="userImage" src="" alt="Imagem do usuário" class="img-thumbnail imagemGet imagem-estilo" />
                     <p id="nomeUsuario" class="fw-bold mt-2"></p>
                 </div>
 
                 <!-- Botões -->
-                <div class="d-grid">
-                    <button type="submit" id="btnEntrar" class="btn-entrar" tabindex="3">
-                        <i class="fa fa-sign-in-alt me-2"></i> Entrar
+                <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" id="btnEntrar" class="btn-gradiente btn-gradiente-entrar" tabindex="3">
+                        <i class="fa fa-sign-in-alt me-2 move-icone-dir"></i> Entrar
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -60,29 +61,30 @@
                 "Senha"
             ];
 
-
             if (form) {
                 ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "USUARIOS");
-                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
 
                 if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
                     FormUtils.enableEnterNavigation(form, { allowTextarea: true });
                 }
             }
 
-            // Focar no botão salvar a partir do campo de email
-            if (senhaInput && btnEntrar) {
-                senhaInput.addEventListener("blur", function () {
-                    if (senhaInput.classList.contains("Invalid")) {
-                        senhaInput.focus();
-                    } else {
-                        btnEntrar.focus();
-                    }
+            if (btnEntrar && form) {
+                btnEntrar.addEventListener("click", function (e) {
+                    btnEntrar.focus();
+                    const enterEvent = new KeyboardEvent("keydown", {
+                        key: "Enter",
+                        code: "Enter",
+                        bubbles: true
+                    });
+                    btnEntrar.dispatchEvent(enterEvent);
+                    form.requestSubmit();
                 });
-                senhaInput.addEventListener("keydown", function (e) {
+
+                btnEntrar.addEventListener("keydown", function (e) {
+
                     if (e.key === "Enter") {
-                        e.preventDefault();
-                        btnEntrar.focus();
+                        form.requestSubmit();
                     }
                 });
             }

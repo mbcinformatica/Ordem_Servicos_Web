@@ -12,13 +12,12 @@ namespace Ordem_Servicos_Web.Models
         public int IdMarca { get; set; }
 
         // Propriedade de descrição da marca
-        [Required(ErrorMessage = "Descrição da Marca é Obrigatória")]
-        [StringLength(100)]
         public string Descricao { get; set; } = nameof(Descricao);
 
         // Propriedade de navegação
         public virtual ICollection<Modelo> Modelos { get; set; } = new List<Modelo>();
-        public virtual ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 
+        // Propriedade de navegação para produtos
+        public virtual ICollection<Produto> Produtos { get; set; } = new List<Produto>();
     }
 }

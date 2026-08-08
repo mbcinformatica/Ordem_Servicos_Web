@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Desenvolvimento\ProjetosCSharp\Ordem_Servicos_Web\bin\Release\net10.0\publish\</_PublishTargetUrl>
+    <_PublishTargetUrl>bin\Release\net10.0\publish\</_PublishTargetUrl>
     <History>True|2026-04-09T09:12:51.5723660Z||;True|2026-04-08T21:40:23.6615562-03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>

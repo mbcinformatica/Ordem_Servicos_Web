@@ -1,7 +1,10 @@
 ﻿using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services.Interfaces;
+using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
 using System.Text.Json;
+using System.Xml;
 
 namespace Ordem_Servicos_Web.Services
 {
@@ -75,6 +78,88 @@ namespace Ordem_Servicos_Web.Services
             {
                 _logger.LogError(ex, $"Erro inesperado ao consultar CNPJ {cnpj}");
                 return null;
+            }
+        }
+
+        public void ConsultarNotas(string cnpj, DateTime inicio, DateTime fim)
+        {
+            var certificado = new X509Certificate2("caminho_do_certificado.pfx", "senha");
+
+            string url = "https://nfe.sefazvirtual.rs.gov.br/ws/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx";
+
+            var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport);
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
+
+            var endpoint = new EndpointAddress(url);
+
+            var client = new NFeDistribuicaoDFeClient(binding, endpoint)
+            {
+                ClientCredentials = new System.ServiceModel.Description.ClientCredentials()
+            };
+            // usando o tipo do WCF explicitamente
+            if (client.ClientCredentials is System.ServiceModel.Description.ClientCredentials creds)
+            {
+                creds.ClientCertificate.Certificate = certificado;
+            }
+            else
+            {
+                _logger.LogError("ClientCredentials do cliente WCF não é do tipo ClientCredentials.");
+                throw new InvalidOperationException("ClientCredentials inválido.");
+            }
+
+            string? ultNSU = "0";
+            bool continuar = true;
+
+            while (continuar)
+            {
+                string xml = $@"
+            <distDFeInt xmlns=""http://www.portalfiscal.inf.br/nfe"" versao=""1.01"">
+                <tpAmb>1</tpAmb>
+                <cUFAutor>42</cUFAutor> <!-- SC -->
+                <CNPJ>{cnpj}</CNPJ>
+                <distNSU>
+                    <ultNSU>{ultNSU}</ultNSU>
+                </distNSU>
+            </distDFeInt>";
+
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(xml);
+
+                var respostaObj = client.nfeDistDFeInteresse(doc);
+
+                // Normaliza para XmlDocument / XmlNode para poder usar GetElementsByTagName
+                XmlDocument xmlResposta;
+                if (respostaObj is XmlDocument xd)
+                {
+                    xmlResposta = xd;
+                }
+                else if (respostaObj is XmlNode xn)
+                {
+                    xmlResposta = new XmlDocument();
+                    xmlResposta.LoadXml(xn.OuterXml);
+                }
+                else if (respostaObj is string s)
+                {
+                    xmlResposta = new XmlDocument();
+                    xmlResposta.LoadXml(s);
+                }
+                else
+                {
+                    _logger.LogError("Tipo de resposta inesperado ao chamar nfeDistDFeInteresse: {Tipo}", respostaObj?.GetType());
+                    throw new InvalidOperationException("Tipo de resposta inesperado.");
+                }
+
+                XmlNodeList documentos = xmlResposta.GetElementsByTagName("docZip");
+                foreach (XmlNode docZip in documentos)
+                {
+                    string conteudo = docZip.InnerText;
+                    // descompactar (Base64 + GZip) e ler o XML da NF-e
+                }
+                var maxNSU = xmlResposta.GetElementsByTagName("maxNSU")[0]?.InnerText;
+                ultNSU = xmlResposta.GetElementsByTagName("ultNSU")[0]?.InnerText;
+
+                if (ultNSU == maxNSU)
+                    continuar = false;
             }
         }
     }

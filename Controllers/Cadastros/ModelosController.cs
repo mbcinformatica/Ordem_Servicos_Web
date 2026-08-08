@@ -28,7 +28,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Modelos
                 .Include(mo => mo.Marca)
@@ -132,16 +133,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade de CPF/CNPJ
-                    bool existe = _context.Modelos.Any(mo =>
-                        mo.IdMarca == modelo.IdMarca &&
-                        mo.Descricao == modelo.Descricao);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"Já existe um Modelo '{modelo.Descricao}' para esta Marca.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(modelo);
-                    }
 
                     _context.Modelos.Add(modelo);
                     _context.SaveChanges();
@@ -155,15 +146,15 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 }
                 else
                 {
-                    TempData["Mensagem"] = "Ocorreu um Erro na Validação das Informações. Tente Novamente.";
+                    //                  TempData["Mensagem"] = "Ocorreu um Erro na Validação das Informações. Tente Novamente.";
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao Incluir Modelo no Banco de Dados.");
-                TempData["Mensagem"] = "Ocorreu um Erro ao Salvar no Banco de Dados. Tente Novamente.";
+                //              TempData["Mensagem"] = "Ocorreu um Erro ao Salvar no Banco de Dados. Tente Novamente.";
             }
-            TempData["MensagemTipo"] = "erro";
+            //     TempData["MensagemTipo"] = "erro";
 
             return View(modelo);
         }
@@ -202,18 +193,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade apenas na mesma Marca
-                    bool existe = _context.Modelos.Any(mo =>
-                        mo.IdMarca == modelo.IdMarca &&
-                        mo.Descricao == modelo.Descricao &&
-                        mo.IdModelo != modelo.IdModelo);
-                    
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"Já existe um Modelo '{modelo.Descricao}' para esta Marca.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(modelo);
-                    }
 
                     _context.Modelos.Update(modelo); 
                     _context.SaveChanges();
@@ -288,27 +267,5 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             }
             return RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public JsonResult GetMarcas()
-        {
-            var marcas = _context.Marcas
-                .Select(ma => new { idMarca = ma.IdMarca, descricao = ma.Descricao })
-                .ToList();
-
-            return Json(marcas);
-        }
-
-        // GET: Verificar Existência de descricão
-        [HttpGet]
-        public JsonResult VerificarDescricaoModelo(int idMarca, string descricaoModelo)
-        {
-            bool existe = _context.Modelos.Any(mo =>
-                mo.IdMarca == idMarca &&
-                mo.Descricao == descricaoModelo);
-
-            return Json(new { existe });
-        }
-
     }
 }

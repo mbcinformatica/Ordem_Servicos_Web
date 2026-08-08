@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Ordem_Servicos_Web.Controllers.Cadastros;
-using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;

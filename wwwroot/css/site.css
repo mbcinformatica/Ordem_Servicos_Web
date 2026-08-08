@@ -5,8 +5,41 @@ html {
     min-height: 100%;
 }
 
+.container1,
+.container1-fluid,
+.container1-xxl,
+.container1-xl,
+.container1-lg,
+.container1-md,
+.container1-sm {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 95%;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 14px;
+}
+
+/* Estilo do card de formulário */
+.card-form {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    background: #28a745;
+    border-radius: 15px;
+}
+
+.card-form-width {
+    width: 100%
+}
+
 /* Aumenta a fonte em telas maiores para melhor legibilidade */
-@media (min-width: 768px) {
+@media (min-width: 95%) {
+    .container1-lg, .container1-md, .container1-sm, .container1 {
+        max-width: 100%;
+    }
+
     html {
         font-size: 16px;
     }
@@ -14,9 +47,9 @@ html {
 
 /* Espaçamento inferior do body para evitar sobreposição com rodapé fixo */
 body {
-    background-color: #20B2AA; /* fundo claro */
+    background: #20B2AA; /* fundo claro */
     margin-bottom: 60px;
-    transition: background-color 0.5s ease, color 0.5s ease, background 0.5s ease;
+    transition: background 0.5s ease, color 0.5s ease, background 0.5s ease;
 }
 
 /* Efeito de foco personalizado */
@@ -27,9 +60,9 @@ body {
 }
 
 /* Foco em botões, links e inputs */
-.btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
+.btn-gradiente:focus,
+.btn-gradiente:active:focus,
+.btn-gradiente.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem #258cfb;
@@ -58,7 +91,7 @@ body {
 
     /* cor quando marcado */
     .form-check-input:checked {
-        background-color: #28a745; /* verde */
+        background: #28a745; /* verde */
         border-color: #28a745;
     }
 
@@ -69,7 +102,7 @@ body {
 
     /* cor quando desabilitado */
     .form-check-input:disabled {
-        background-color: #ccc;
+        background: #ccc;
         cursor: not-allowed;
     }
 
@@ -80,310 +113,23 @@ body {
 }
 
 .form-switch {
-    width: 12em;
+    width: 14em;
     padding-left: 1.5em;
     margin-left: 1em;
 }
-/* Classe base para todos os botões */
-.btn {
-    display: inline-block;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.3s;
-    border: none;
-}
-/* Botão Novo */
-.btn-novo {
-    background-color: #28a745; /* verde */
-    color: #fff;
-}
-    /* Ícone com espaçamento */
-    .btn-novo i {
-        margin-right: 5px;
-    }
-    /* Hover invertido */
-    .btn-novo:hover {
-        background-color: #fff; /* fundo branco */
-        color: #28a745; /* texto verde */
-        border: 1px solid #28a745;
-    }
-/* Botão Salvar */
-.btn-salvar {
-    background-color: #007bff; /* azul */
-    color: #fff;
-}
-    /* Ícone com espaçamento */
-    .btn-salvar i {
-        margin-right: 5px;
-    }
-    /* Hover invertido */
-    .btn-salvar:hover {
-        background-color: #fff;
-        color: #007bff;
-        border: 1px solid #007bff;
-    }
-/* Botão Alterar */
-.btn-alterar {
-    background-color: #fd7e14; /* laranja */
-    color: #fff;
-}
-    .btn-alterar i {
-        margin-right: 5px;
-    }
 
-    .btn-alterar:hover {
-        background-color: #fff;
-        color: #fd7e14;
-        border: 1px solid #fd7e14;
-    }
-/* Botão Excluir */
-.btn-excluir {
-    background-color: #dc3545; /* vermelho */
-    color: #fff;
-}
-
-    .btn-excluir i {
-        margin-right: 5px;
-    }
-
-    .btn-excluir:hover {
-        background-color: #fff;
-        color: #dc3545;
-        border: 1px solid #dc3545;
-    }
-/* Botão Detalhes */
-.btn-detalhes {
-    background-color: #17a2b8; /* azul claro */
-    color: #fff;
-}
-
-    .btn-detalhes i {
-        margin-right: 5px;
-    }
-
-    .btn-detalhes:hover {
-        background-color: #fff;
-        color: #17a2b8;
-        border: 1px solid #17a2b8;
-    }
-/* Botão Pesquisar */
-.btn-pesquisar {
-    background-color: #6c757d; /* cinza escuro */
-    color: #fff;
-}
-
-    .btn-pesquisar i {
-        margin-right: 5px;
-    }
-
-    .btn-pesquisar:hover {
-        background-color: #fff;
-        color: #6c757d;
-        border: 1px solid #6c757d;
-    }
-/* Botão Navegação */
-.btn-navegacao {
-    background-color: #6c757d; /* cinza neutro */
-    color: #fff;
-}
-
-    .btn-navegacao i {
-        margin-right: 5px;
-    }
-    /* Hover invertido */
-    .btn-navegacao:hover {
-        background-color: #fff; /* fundo branco */
-        color: #6c757d; /* texto cinza */
-        border: 1px solid #6c757d;
-    }
-
-/* Botão Voltar */
-.btn-voltar {
-    background-color: #6c757d; /* cinza neutro */
-    color: #fff;
-}
-
-    .btn-voltar i {
-        margin-right: 5px;
-    }
-    /* Hover invertido */
-    .btn-voltar:hover {
-        background-color: #fff; /* fundo branco */
-        color: #6c757d; /* texto cinza */
-        border: 1px solid #6c757d;
-    }
-
-/* Botão Fechar */
-.btn-fechar {
-    background-color: #6c757d; /* cinza */
-    color: #fff;
-}
-
-    .btn-fechar i {
-        margin-right: 5px;
-    }
-
-    .btn-fechar:hover {
-        background-color: #fff;
-        color: #6c757d;
-        border: 1px solid #6c757d;
-    }
-
-/* Botão Fechar */
-.btn-logout {
-    background-color: #212529; /* cinza */
-    color: #fff;
-}
-
-    .btn-logout i {
-        margin-right: 5px;
-    }
-
-    .btn-logout:hover {
-        background-color: #fff;
-        color: #212529;
-    }
-
-.btn-ok {
-    border: 2px solid #000;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100px;
-    height: 30px;
-    font-family: Arial, sans-serif; /* fonte usada no texto */
-    font-size: 16px; /* tamanho da fonte */
-    font-weight: bold;
-    border-radius: 10px; /* arredonda os cantos do botão */
-    background: linear-gradient(45deg, #007bff, #ffffff); /* gradiente azul → branco */
-    box-shadow: 0 0 10px #00ff00, /* brilho neon verde suave */
-    0 0 20px #00ff00, 0 0 30px #00ff00;
-    transition: background 0.3s ease, /* transição suave da cor de fundo */
-    transform 0.2s ease, /* transição suave do efeito de escala */
-    box-shadow 0.3s ease;
-}
-
-    .btn-ok:hover {
-        background: linear-gradient(45deg, #0056b3, #e6e6e6); /* gradiente mais escuro no hover */
-        transform: scale(1.05); /* aumenta levemente o botão */
-        box-shadow: 0 0 15px #00ff00, /* brilho neon verde mais intenso */
-        0 0 30px #00ff00, 0 0 45px #00ff00;
-    }
-
-.btn-entrar {
-    display: inline-block; /* exibe como bloco inline, permite largura/altura */
-    margin: auto; /* configura a margem do botão */
-    width: 200px; /* largura fixa do botão (comprimento) */
-    height: 50px; /* altura fixa do botão */
-    padding: 12px 24px; /* espaço interno do botão (vertical x horizontal) */
-    font-family: Arial, sans-serif; /* fonte usada no texto */
-    font-size: 16px; /* tamanho da fonte */
-    font-weight: bold; /* deixa o texto em negrito */
-    line-height: 1.5; /* altura da linha, melhora legibilidade */
-    color: #000; /* cor do texto (preto para contraste) */
-    text-align: center; /* centraliza o texto dentro do botão */
-    text-decoration: none; /* remove sublinhado do texto */
-    vertical-align: middle; /* alinha verticalmente com outros elementos inline */
-    cursor: pointer; /* mostra a “mãozinha” ao passar o mouse */
-    -webkit-user-select: none; /* impede seleção de texto (Safari/Chrome) */
-    -moz-user-select: none; /* impede seleção de texto (Firefox) */
-    user-select: none; /* impede seleção de texto em navegadores modernos */
-    border: 2px solid #00ff00; /* borda verde neon */
-    border-radius: 10px; /* arredonda os cantos do botão */
-    background: linear-gradient(45deg, #007bff, #ffffff); /* gradiente azul → branco */
-    box-shadow: 0 0 10px #00ff00, /* brilho neon verde suave */
-    0 0 20px #00ff00, 0 0 30px #00ff00;
-    transition: background 0.3s ease, /* transição suave da cor de fundo */
-    transform 0.2s ease, /* transição suave do efeito de escala */
-    box-shadow 0.3s ease; /* transição suave da sombra neon */
-}
-
-    .btn-entrar:hover {
-        background: linear-gradient(45deg, #0056b3, #e6e6e6); /* gradiente mais escuro no hover */
-        transform: scale(1.05); /* aumenta levemente o botão */
-        box-shadow: 0 0 15px #00ff00, /* brilho neon verde mais intenso */
-        0 0 30px #00ff00, 0 0 45px #00ff00;
-    }
-/* Ajuste dos botões pequenos */
-.btn-sm {
-    padding: 2px 6px;
-    line-height: 1.2;
-}
-/* Ajuste dos botões Grandes */
-.btn-bg {
-    padding: 8px 10px;
-    line-height: 1.2;
-}
-/* Verde (Sucesso) */
-.btn-verde {
-    background-color: #198754;
-    color: #fff;
-}
-
-    .btn-verde:hover {
-        background-color: #fff;
-        color: #198754;
-        border: 1px solid #198754;
-    }
-/* Vermelho (Error) */
-.btn-vermelho {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-    .btn-vermelho:hover {
-        background-color: #fff;
-        color: #dc3545;
-        border: 1px solid #dc3545;
-    }
-/* Azul (Informações) */
-.btn-azul {
-    background-color: #0dcaf0;
-    color: #fff;
-}
-
-    .btn-azul:hover {
-        background-color: #fff;
-        color: #0dcaf0;
-        border: 1px solid #0dcaf0;
-    }
-/* Claro */
-.btn-claro {
-    background-color: #f8f9fa;
-    color: #212529;
-}
-
-    .btn-claro:hover {
-        background-color: #212529;
-        color: #f8f9fa;
-        border: 1px solid #ccc;
-    }
-/* Escuro */
-.btn-escuro {
-    background-color: #212529;
-    color: #fff;
-}
-
-    .btn-escuro:hover {
-        background-color: #fff;
-        color: #212529;
-        border: 1px solid #212529;
-    }
 /* Fundo personalizado para todos os inputs */
 input,
 select,
 textarea {
-    background-color: #f5fcfe !important; /* azul claro */
-    caret-shape:block;
+    background: #f5fcfe !important; /* azul claro */
+    caret-shape: block;
 }
     /* Aplica efeito de foco em qualquer campo obrigatório */
     input[required]:focus,
     select[required]:focus,
     textarea[required]:focus {
-        background-color: #cef4fc; /* fundo claro */
+        background: #cef4fc; /* fundo claro */
         border-color: #0dcaf0; /* borda azul turquesa */
         box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
         transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
@@ -392,7 +138,7 @@ textarea {
     input:focus,
     select:focus,
     textarea:focus {
-        background-color: #cef4fc !important;
+        background: #cef4fc !important;
         border-color: #0dcaf0 !important;
         box-shadow: 0 0 6px #0dcaf0 !important;
         transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out !important;
@@ -400,17 +146,17 @@ textarea {
 /* Input de Pesquisa */
 .input-pesquisa {
     width: 600px; /* Comprimento fixa (pode ajustar) */
-    padding: 8px 12px; /* espaço interno */
+    height: 35px; /* altura fixa */
     font-size: 14px; /* tamanho da fonte */
     border: 2px solid #198754; /* borda verde */
-    border-radius: 6px; /* cantos arredondados */
+    border-radius: 10px; /* cantos arredondados */
     outline: none; /* remove contorno padrão */
     transition: all 0.3s ease; /* transição suave */
     caret-shape: block;
 }
     /* Efeito ao focar */
     .input-pesquisa:focus {
-        background-color: #cef4fc; /* fundo claro */
+        background: #cef4fc; /* fundo claro */
         border-color: #0dcaf0; /* borda azul turquesa */
         box-shadow: 0 0 6px #0dcaf0; /* brilho suave */
     }
@@ -431,24 +177,30 @@ textarea {
     border-radius: 11px; /* cantos arredondados */
     outline: none; /* remove contorno padrão */
     transition: all 0.3s ease; /* transição suave */
-    caret-shape:block;
+    caret-shape: block;
 }
     /* Placeholder estilizado */
     .input-login::placeholder {
         color: #6c757d; /* cinza */
         font-style: italic; /* estilo itálico */
     }
+
+/* Mensagens de erro */
+.text-danger {
+    font-size: 0.9rem;
+    color: #dc3545;
+}
 /* tamanho e estilo do toggle */
 .toggle-switch {
     width: 3rem;
     height: 1.5rem;
-    background-color: #ccc;
+    background: #ccc;
     border-radius: 1rem;
     position: relative;
     appearance: none;
     cursor: pointer;
     outline: none;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
     vertical-align: middle;
     margin-top: 32px;
 }
@@ -460,13 +212,13 @@ textarea {
         left: 0.15rem;
         width: 1.2rem;
         height: 1.2rem;
-        background-color: #0d6efd;
+        background: #0d6efd;
         border-radius: 50%;
         transition: transform 0.3s ease;
     }
 
     .toggle-switch:checked {
-        background-color: #28a745; /* verde ligado */
+        background: #28a745; /* verde ligado */
     }
 
         .toggle-switch:checked::before {
@@ -474,9 +226,10 @@ textarea {
         }
     /* desabilitado */
     .toggle-switch:disabled {
-        background-color: #999;
+        background: #999;
         cursor: not-allowed;
     }
+
 
 .label-destaque {
     font-weight: bolder;
@@ -492,11 +245,16 @@ textarea {
 }
     /* Cabeçalho */
     .table-os thead {
-        background-color: #004085; /* azul escuro */
+        background: #004085; /* azul escuro */
         color: #fff; /* texto branco */
         text-transform: uppercase;
         text-align: center;
     }
+
+.table-responsive-cust {
+    padding: 10px 0px;
+}
+
 /* Bordas das células */
 .table-os-condensed td,
 .table-os-condensed th {
@@ -508,6 +266,7 @@ textarea {
     vertical-align: middle;
     font-size: 14px;
     font-weight: bold;
+    border-radius: 5px;
 }
 /* Linhas alternadas */
 .table-os-striped > tbody > tr:nth-of-type(odd) > * {
@@ -520,11 +279,11 @@ textarea {
 }
 /* Linhas alternadas */
 .table-os-striped tbody tr:nth-child(even) {
-    background-color: #ced4da;
+    background: #ced4da;
 }
 
 .table-os-striped tbody tr:nth-child(odd) {
-    background-color: #d1ecf1;
+    background: #d1ecf1;
 }
 /* Texto */
 .table-os td {
@@ -532,12 +291,13 @@ textarea {
 }
 /* Hover */
 .table-os-striped tbody tr:hover {
-    background-color: #ffc107; /* azul claro */
+    background: #ffc107; /* azul claro */
     cursor: pointer;
 }
+
 /* Rodapé */
 .table-footer {
-    background-color: #198754;
+    background: #198754;
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -553,58 +313,9 @@ textarea {
 }
 
 th.sortable.active {
-    background-color: #343a40; /* cor de fundo diferente */
+    background: #343a40; /* cor de fundo diferente */
     color: #ffc107; /* texto em amarelo para contraste */
 }
-
-    /* Bordas das células */
-    .table-os-condensed td,
-    .table-os-condensed th {
-        white-space: nowrap; /* impede quebra de linha */
-        overflow: hidden; /* oculta texto que ultrapassa */
-        text-overflow: ellipsis; /* adiciona "..." quando o texto for maior */
-        padding: 4px 8px;
-        line-height: 1.2;
-        vertical-align: middle;
-        font-size: 14px;
-    }
-
-    /* Linhas alternadas */
-    .table-os-striped > tbody > tr:nth-of-type(odd) > * {
-        --bs-table-color-type: var(--bs-table-striped-color);
-        --bs-table-bg-type: var(--bs-table-striped-bg);
-    }
-
-    .table-os-bordered > :not(caption) > * {
-        border-width: var(--bs-border-width) 0;
-    }
-
-    /* Linhas alternadas */
-    .table-os-striped tbody tr:nth-child(even) {
-        background-color: #dc9797;
-    }
-
-    .table-os-striped tbody tr:nth-child(odd) {
-        background-color: #d1ecf1;
-    }
-
-    /* Texto */
-    .table-os td {
-        color: #212529; /* cinza escuro */
-    }
-    /* Hover */
-    .table-os-striped tbody tr:hover {
-        background-color: #d1ecf1; /* azul claro */
-        cursor: pointer;
-    }
-    /* Rodapé */
-    .table-footer {
-        background-color: #198754;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        font-weight: bold;
-    }
 
 .mensagem-container {
     display: flex;
@@ -629,17 +340,17 @@ th.sortable.active {
 }
 /* Erro */
 .mensagem-erro {
-    background-color: #d9534f; /* vermelho */
+    background: #d9534f; /* vermelho */
     color: #fff;
 }
 /* Aviso */
 .mensagem-aviso {
-    background-color: #f0ad4e; /* amarelo */
+    background: #f0ad4e; /* amarelo */
     color: #000;
 }
 /* Sucesso */
 .mensagem-sucesso {
-    background-color: #5cb85c; /* verde */
+    background: #5cb85c; /* verde */
     color: #fff;
 }
 /* Erro → vermelho */
@@ -672,9 +383,7 @@ th.sortable.active {
 }
 
 .mensagem-texto {
-    display: block; /* força ocupar linha inteira */
-    white-space: pre-wrap; /* respeita quebras de linha e ajusta altura */
-    word-wrap: break-word; /* quebra palavras longas */
+    font-size: 1.2rem;
 }
 
 @keyframes fadeIn {
@@ -720,7 +429,7 @@ th.sortable.active {
     }
 /* Navbar fundo e links */
 .navbar.bg-dark {
-    background-color: #1a1a40; /* cor personalizada para o fundo */
+    background: #1a1a40; /* cor personalizada para o fundo */
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -733,7 +442,7 @@ th.sortable.active {
     }
 /* Dropdown itens */
 .dropdown-menu {
-    background-color: #2c2c54; /* fundo do menu dropdown */
+    background: #2c2c54; /* fundo do menu dropdown */
 }
 
 .dropdown-item {
@@ -742,12 +451,13 @@ th.sortable.active {
 
     .dropdown-item:hover,
     .dropdown-item:focus {
-        background-color: #575fcf; /* fundo ao passar o mouse */
+        background: #575fcf; /* fundo ao passar o mouse */
         color: #ffffff; /* texto ao passar o mouse */
     }
 
 .login-page {
     height: 100vh;
+    border-radius: 15px;
 }
 
 
@@ -774,7 +484,7 @@ th.sortable.active {
 .translucent-box {
     max-width: 400px;
     width: 100%;
-    background-color: rgba(40, 167, 69, 0.85); /* verde com 85% opacidade */
+    background: rgba(40, 167, 69, 0.85);
     color: white;
     border-radius: 8px;
 }
@@ -784,13 +494,9 @@ th.sortable.active {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 35;
     color: #ffffff;
     pointer-events: auto;
-    background-color: var(--bs-modal-bg);
-    background-clip: padding-box;
-    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
-    border-radius: var(--bs-modal-border-radius);
+    border-radius: 10px;
     outline: 0;
 }
 
@@ -799,9 +505,20 @@ th.sortable.active {
     font-weight: bolder;
 }
 
+.col-detalhe-sm {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .col-detalhe {
     flex: 0 0 auto;
-    width: 35%;
+    width: 27%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.row-detalhe {
+    align-items: center;
 }
 
 /* Animação deslizar de cima */
@@ -816,7 +533,6 @@ th.sortable.active {
         opacity: 1;
     }
 }
-
 /* Animação deslizar da direita */
 @keyframes slideRight {
     from {
@@ -829,7 +545,6 @@ th.sortable.active {
         opacity: 1;
     }
 }
-
 /* Classe aplicada ao toast */
 .toast-anim-slide {
     animation: slideDown 0.5s ease-out;
@@ -837,4 +552,153 @@ th.sortable.active {
 
 .toast-anim-right {
     animation: slideRight 0.5s ease-out;
+}
+
+
+.btn-gradiente {
+    display: inline-block;
+    background: rgba(13, 110, 253, 0.25);
+    color: white;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 11px;
+    cursor: pointer;
+    box-shadow: 6px 7px 15px 4px rgb(187 197 211 / 25%);
+    transition: all 0.1s ease;
+}
+
+    .btn-gradiente i {
+        margin-right: 6px;
+    }
+
+    .btn-gradiente .move-icone-esq {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-gradiente:hover .move-icone-esq {
+        transform: translateX(-5px);
+    }
+
+    .btn-gradiente .move-icone-dir {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-gradiente:hover .move-icone-dir {
+        transform: translateX(5px);
+    }
+
+    .btn-gradiente:hover {
+        background: white;
+        color: black;
+    }
+
+    .btn-gradiente:active {
+        transform: translateY(8px);
+        box-shadow: 0 0px 0 #198754, 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-gradiente.disabled,
+    .btn-gradiente:disabled {
+        background: #ccc !important; /* cinza neutro */
+        color: #666 !important; /* texto mais apagado */
+        cursor: not-allowed !important; /* cursor bloqueado */
+        border: 1px solid #999 !important; /* borda discreta */
+        opacity: 0.7; /* efeito visual de desabilitado */
+        pointer-events: none; /* impede clique */
+    }
+
+.btn-gradiente-sm {
+    padding: 2px 6px;
+    line-height: 1.2;
+}
+
+.btn-gradiente-bg {
+    padding: 8px 10px;
+    line-height: 1.2;
+}
+
+.btn-gradiente-novo {
+    background: #0000FF;
+    color: white;
+}
+
+.btn-gradiente-alterar {
+    background: #FF8C00;
+    color: white;
+}
+
+.btn-gradiente-salvar {
+    background: #006400;
+    color: white;
+}
+
+.btn-gradiente-cancelar {
+    background: #4169E1;
+    color: white;
+}
+
+.btn-gradiente-excluir {
+    background: #FF0000;
+    color: white;
+}
+
+.btn-gradiente-detalhes {
+    background: #191970;
+    color: white;
+}
+
+.btn-gradiente-sair {
+    background: #008080;
+    color: white;
+}
+
+.btn-gradiente-imprimir {
+    background: #FFD700;
+    color: white;
+}
+
+.btn-gradiente-filtrar {
+    background: #FF7F50;
+    color: white;
+}
+
+.btn-gradiente-executar {
+    background: #00FFFF;
+    color: white;
+}
+
+.btn-gradiente-navegacao {
+    background: #4682B4;
+    color: white;
+}
+
+.btn-gradiente-entrar {
+    font-size: 18px;
+    color: navy;
+    background: linear-gradient(45deg, #007bff, #ffffff);
+    box-shadow: 0 0 10px #0dcaf0, 0 0 20px #007bff, 0 0 30px #00ff00;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 120px;
+}
+
+/* Logout (preto/cinza escuro) */
+.btn-gradiente-logout {
+    color: #212529;
+    border-color: #212529;
+}
+
+.btn-gradiente-ok {
+    font-size: 18px;
+    color: navy;
+    background: linear-gradient(45deg, #007bff, #ffffff);
+    box-shadow: 0 0 10px #0dcaf0, 0 0 20px #007bff, 0 0 30px #00ff00;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 110px;
+}
+
+.imagem-estilo {
+    max-width: 100px;
+    border-radius: 50%;
 }

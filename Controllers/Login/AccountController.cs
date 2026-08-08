@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Ordem_Servicos_Web.Data;
-using System.Security.Claims;
+using Ordem_Servicos_Web.Helpers;
+using Ordem_Servicos_Web.Services;
 
 namespace Ordem_Servicos_Web.Controllers.Login
 {
-    public class AccountController(MeuDbContext context, ILogger<AccountController> logger) : Controller
+    public class AccountController(MeuDbContext context, ILogger<AccountController> logger, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<AccountController> _logger = logger;
+        private readonly LogService _logService = logService;
 
         // Exibir a página de login
         [HttpGet]
@@ -21,7 +20,7 @@ namespace Ordem_Servicos_Web.Controllers.Login
 
         // Processar o login do usuário
         [HttpPost]
-        public IActionResult Login(string login, string senha)
+        public IActionResult Login(string login)
         {
             try
             {
@@ -30,9 +29,11 @@ namespace Ordem_Servicos_Web.Controllers.Login
 
                     // Busca o usuário pelo login com comparação case-sensitive
                     var usuario = _context.Usuarios
-                    .FirstOrDefault(u => u.Login.Equals(login, StringComparison.Ordinal));
+                    .FirstOrDefault(u => u.Login != null && u.Login.Equals(login, StringComparison.Ordinal));
 
                     HttpContext.Session.SetString("IdUsuario", usuario?.IdUsuario.ToString() ?? string.Empty);
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Login", "Account", 0, usuario?.NomeUsuario, "Login Efetuado com Sucesso!");
                     return RedirectToAction("Index", "Home");
                 }
 

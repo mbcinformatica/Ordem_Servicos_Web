@@ -4,165 +4,115 @@
     ViewData["Title"] = "Criar Permissão";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
-<form asp-action="Create" method="post" id="formPermissao">
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="card-form">
+        <div class="card-body">
+            <form asp-action="Create" class="novo" method="post" id="formPermissao" enctype="multipart/form-data"
+                  data-campos-obrigatorios="usuarioSelect,
+                menuSelect,
+                itensMenuSelect">
 
-    <!-- Linha 1: Dropdowns -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label class="label-destaque">Nome do Usuário</label>
-            <select asp-for="IdUsuario" class="form-control usuarioSelect" style="width:450px;" id="usuarioSelect">
-                <option value="">-- Clique para carregar Usuários --</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Opção do Menu</label>
-            <select asp-for="IdMenu" class="form-control menuSelect" style="width:250px;" id="menuSelect">
-                <option value="">-- Clique para carregar Menus --</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Opção SubItem do Menu</label>
-            <select asp-for="IdItensMenu" class="form-control itensMenuSelect" style="width:250px;" id="itensMenuSelect">
-                <option value="">-- Selecione um Menu primeiro --</option>
-            </select>
+                <!-- Linha 1: Dropdowns -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label class="label-destaque">Nome do Usuário</label>
+                        <select asp-for="IdUsuario" class="form-select usuarioSelect" style="width:450px;" id="usuarioSelect" data-focus="true">
+                            <option value="">-- Clique para carregar Usuários --</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label class="label-destaque">Opção do Menu</label>
+                        <select asp-for="IdMenu" class="form-select menuSelect" style="width:250px;" id="menuSelect">
+                            <option value="">-- Clique para carregar Menus --</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label class="label-destaque">Opção SubItem do Menu</label>
+                        <select asp-for="IdItensMenu" class="form-select itensMenuSelect" style="width:250px;" id="itensMenuSelect">
+                            <option value="">-- Selecione um Menu primeiro --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Linha 2: Checkboxes de Permissões -->
+                <div class="row mb-2 g-4 align-items-center" style="margin-left:0.5em;">
+                    <div class="col-auto form-check form-switch d-flex align-items-center">
+                        <input asp-for="Executar" id="Executar" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
+                        <label class="form-check-label label-destaque ms-2">Pode Executar</label>
+                    </div>
+                    <div class="col-auto form-check form-switch d-flex align-items-center">
+                        <input asp-for="Criar" id="Criar" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
+                        <label class="form-check-label label-destaque ms-2">Pode Criar</label>
+                    </div>
+                    <div class="col-auto form-check form-switch d-flex align-items-center">
+                        <input asp-for="Alterar" id="Alterar" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
+                        <label class="form-check-label label-destaque ms-2">Pode Alterar</label>
+                    </div>
+                    <div class="col-auto form-check form-switch d-flex align-items-center">
+                        <input asp-for="Excluir" id="Excluir" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
+                        <label class="form-check-label label-destaque ms-2">Pode Excluir</label>
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" id="btnSalvar" class="btn-gradiente btn-gradiente-salvar">
+                        <i class="fa fa-floppy-disk move-icone-esq"></i> Salvar Permissão
+                    </button>
+                    <a asp-action="Index" class="btn-gradiente btn-gradiente-cancelar">
+                        <i class="fa fa-undo move-icone-esq"></i> Cancelar/Voltar
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-
-    <!-- Linha 2: Checkboxes de Permissões -->
-    <div class="row mb-2 g-4 align-items-center" style="margin-left:0.5em;">
-        <div class="col-auto form-check form-switch d-flex align-items-center">
-            <input asp-for="Executar" id="Executar" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" autofocus />
-            <label class="form-check-label label-destaque ms-2">Pode Executar</label>
-        </div>
-        <div class="col-auto form-check form-switch d-flex align-items-center">
-            <input asp-for="Criar" id="Criar" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
-            <label class="form-check-label label-destaque ms-2">Pode Criar</label>
-        </div>
-        <div class="col-auto form-check form-switch d-flex align-items-center">
-            <input asp-for="Alterar" id="Alterar" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
-            <label class="form-check-label label-destaque ms-2">Pode Alterar</label>
-        </div>
-        <div class="col-auto form-check form-switch d-flex align-items-center">
-            <input asp-for="Excluir" id="Excluir" class="form-check-input toggle-switch" style="width:3em;" type="checkbox" />
-            <label class="form-check-label label-destaque ms-2">Pode Excluir</label>
-        </div>
-    </div>
-
-    <!-- Botões -->
-    <div class="d-flex gap-2 mt-4">
-        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
-            <i class="fa fa-save"></i> Salvar Permissão
-        </button>
-        <a asp-action="Index" class="btn btn-voltar btn-bg">
-            <i class="fa fa-arrow-left"></i> Voltar
-        </a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             bloquearMenu();
 
-            // Ao clicar no campo Usuário → carregar usuários
-            document.getElementById("usuarioSelect").addEventListener("focus", function () {
-                var usuarioSelect = this;
-                if (usuarioSelect.options.length <= 1) {
-                    fetch('/Permissoes/GetUsuarios')
-                        .then(response => response.json())
-                        .then(data => {
-                            usuarioSelect.innerHTML = "";
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione um Usuário --";
-                            option.value = "";
-                            usuarioSelect.appendChild(option);
+            const btnSalvar = document.getElementById("btnSalvar");
+            const form = document.getElementById("formPermissao");
 
-                            data.forEach(function (usuario) {
-                                var option = document.createElement("option");
-                                option.value = usuario.idUsuario;
-                                option.text = usuario.nomeUsuario;
-                                usuarioSelect.appendChild(option);
-                            });
-                        });
+            const camposObrigatorios = [
+                "usuarioSelect",
+                "menuSelect",
+                "itensMenuSelect"
+            ];
+
+            if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "PERMISSOES");
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
                 }
-            });
+            }
 
-            // Ao clicar no campo Menu → carregar menus
-            document.getElementById("menuSelect").addEventListener("focus", function () {
-                var menuSelect = this;
-                if (menuSelect.options.length <= 1) {
-                    fetch('/Permissoes/GetMenus')
-                        .then(response => response.json())
-                        .then(data => {
-                            menuSelect.innerHTML = "";
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione um Menu --";
-                            option.value = "";
-                            menuSelect.appendChild(option);
+            if (btnSalvar && form) {
+                btnSalvar.addEventListener("click", function(e) {
+                    btnSalvar.focus();
+                    const enterEvent = new KeyboardEvent("keydown", {
+                        key: "Enter",
+                        code: "Enter",
+                        bubbles: true
+                    });
+                    btnSalvar.dispatchEvent(enterEvent);
+                    form.requestSubmit();
+                });
 
-                            data.forEach(function (menu) {
-                                var option = document.createElement("option");
-                                option.value = menu.idMenu;
-                                option.text = menu.descricao;
-                                menuSelect.appendChild(option);
-                            });
-                        });
-                }
-            });
-
-            // Ao selecionar Menu → carregar ItensMenu
-            document.getElementById("menuSelect").addEventListener("change", function () {
-                var idMenu = this.value;
-                var itensSelect = document.getElementById("itensMenuSelect");
-
-                itensSelect.innerHTML = "";
-
-                if (idMenu) {
-                    fetch('/Permissoes/GetItensMenu?idMenu=' + idMenu)
-                        .then(response => response.json())
-                        .then(data => {
-                            var option = document.createElement("option");
-                            option.text = "-- Selecione um SubItem --";
-                            option.value = "";
-                            itensSelect.appendChild(option);
-
-                            data.forEach(function (item) {
-                                var option = document.createElement("option");
-                                option.value = item.idItensMenu;
-                                option.text = item.descricao;
-                                itensSelect.appendChild(option);
-                            });
-                        });
-                } else {
-                    var option = document.createElement("option");
-                    option.text = "-- Selecione um Menu primeiro --";
-                    itensSelect.appendChild(option);
-                }
-            });
-
-            // Ao selecionar ItemMenu → verificar duplicidade
-            document.getElementById("itensMenuSelect").addEventListener("change", function () {
-                var idUsuario = document.getElementById("usuarioSelect").value;
-                var idMenu = document.getElementById("menuSelect").value;
-                var idItensMenu = this.value;
-
-                if (idUsuario && idMenu && idItensMenu) {
-                    fetch('/Permissoes/VerificarPermissao?idUsuario=' + idUsuario + '&idMenu=' + idMenu + '&idItensMenu=' + idItensMenu)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.existe) {
-                                mostrarToast("Já existe uma permissão cadastrada para este Usuário, Menu e SubItem.", "erro");
-                                this.value = "";
-                                document.getElementById("menuSelect").focus();
-                            }
-                        });
-                }
-            });
+                btnSalvar.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") {
+                        form.requestSubmit();
+                    }
+                });
+            }
         });
     </script>
 }

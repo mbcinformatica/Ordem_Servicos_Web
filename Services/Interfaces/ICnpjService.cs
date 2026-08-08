@@ -11,4 +11,5 @@ namespace Ordem_Servicos_Web.Services.Interfaces
         /// <returns>Objeto Cliente preenchido ou null se não encontrado</returns>
         Task<T?> ConsultarCnpjAsync(string cnpj);
     }
+
 }

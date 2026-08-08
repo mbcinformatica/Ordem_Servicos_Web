@@ -117,10 +117,10 @@ namespace Ordem_Servicos_Web.Data
                       .HasColumnType("decimal(10,2)");
 
                 entity.Property(pr => pr.EstoqueAtual)
-                      .HasColumnType("decimal(10,3)");
+                      .HasColumnType("int");
 
                 entity.Property(pr => pr.EstoqueMinimo)
-                      .HasColumnType("decimal(10,3)");
+                      .HasColumnType("int");
             });
         }
 

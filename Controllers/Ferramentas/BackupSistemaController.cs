@@ -5,24 +5,18 @@ using Ordem_Servicos_Web.Services;
 
 namespace Ordem_Servicos_Web.Controllers.Ferramentas
 {
-    public class BackupSistemaController : Controller
+    public class BackupSistemaController(
+        MySqlBackupService backupService,
+        MeuDbContext context,
+        ILogger<BackupSistemaController> logger,
+        PermissaoService permissaoService,
+        LogService logService) : Controller
     {
-        private readonly MySqlBackupService _backupService;
-        private readonly MeuDbContext _context;
-        private readonly ILogger<BackupSistemaController> _logger;
-        private readonly PermissaoService _permissaoService;
-
-        public BackupSistemaController(
-            MySqlBackupService backupService,
-            MeuDbContext context,
-            ILogger<BackupSistemaController> logger,
-            PermissaoService permissaoService)
-        {
-            _backupService = backupService;
-            _context = context;
-            _logger = logger;
-            _permissaoService = permissaoService;
-        }
+        private readonly MySqlBackupService _backupService = backupService;
+        private readonly MeuDbContext _context = context;
+        private readonly ILogger<BackupSistemaController> _logger = logger;
+        private readonly PermissaoService _permissaoService = permissaoService;
+        private readonly LogService _logService = logService;
 
         [HttpGet]
         public IActionResult BackupSistema()
@@ -31,7 +25,7 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
 
             if (!_permissaoService.PodeExecutar(idUsuario, "FERRAMENTAS", "BACKUP"))
             {
-                TempData["Mensagem"] = "Você não tem permissão para acessar essa tela.";
+                TempData["Mensagem"] = "Você não tem Permissão para acessar essa tela.";
                 TempData["MensagemTipo"] = "aviso";
                 return RedirectToAction("Index", "Home");
             }
@@ -44,6 +38,7 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
         {
             try
             {
+
                 var arquivos = await _backupService.BackupTablesAsync(new List<string>
                 {
                     "DBCategoriaServicos",
@@ -60,13 +55,16 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                     "DBPermissoes",
                     "DBMenu"
                 });
+                
+                var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                _logService.Registrar(idUsuario, "Backup", "BancoDados", 0, null, "Backup Concluído com Sucesso!");
 
                 TempData["Mensagem"] = "Backup Concluído com Sucesso!";
                 TempData["MensagemTipo"] = "sucesso";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao realizar backup do banco de dados.");
+                _logger.LogError(ex, "Erro ao Realizar Backup do bBanco de Dados.");
                 TempData["Mensagem"] = "Erro ao Realizar Backup:";
                 TempData["MensagemTipo"] = "erro";
             }

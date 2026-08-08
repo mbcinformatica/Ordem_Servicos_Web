@@ -2,7 +2,7 @@
     ViewData["Title"] = "Importar Clientes";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <div class="alert alert-info">
     <br />
@@ -27,10 +27,11 @@
         <label for="arquivoCSV" class="alert-info" style="font-size: 18px;">Selecione o arquivo CSV:</label>
         <input type="file" id="arquivoCSV" name="arquivoCSV" class="form-control" />
     </div>
-    <button type="submit" id="btnSalvar" class="btn btn-primary btn-bg"
-            onclick="iniciarProgresso('/ImportarClientes/Progresso','barraProgresso')">Importar</button>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-voltar btn-bg" onclick="liberarMenu()">
-        <i class="fa fa-home"></i> Voltar
+    <button type="submit" id="btnSalvar" class="btn-gradiente btn-gradiente-salvar"
+            onclick="iniciarProgresso('/ImportarClientes/Progresso','barraProgresso')">Importar
+    </button>
+    <a asp-controller="Home" asp-action="Index" class="btn-gradiente btn-gradiente-cancelar" onclick="liberarMenu()">
+        <i class="fa fa-home move-icone-esq"></i> Voltar
     </a>
 </form>
 

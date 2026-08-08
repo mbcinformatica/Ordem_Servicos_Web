@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Ordem_Servicos_Web.Controllers.Cadastros;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
-using Ordem_Servicos_Web.Services;
 using Ordem_Servicos_Web.Services.Interfaces;
-using Serilog.Core;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -18,32 +16,70 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
         MeuDbContext context,
         ICnpjService<Cliente> clienteCnpjService,
         ICnpjService<Fornecedor> fornecedorCnpjService,
-        EntidadesService entidadesService,
         IImageService imageService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ICnpjService<Cliente> _clienteCnpjService = clienteCnpjService;
         private readonly ICnpjService<Fornecedor> _fornecedorCnpjService = fornecedorCnpjService;
-        private readonly EntidadesService _entidadesService = entidadesService;
         private readonly IImageService _imageService = imageService;
-
 
         /// Verifica duplicidade de CPF/CNPJ em Clientes, Fornecedores ou Usuários.
         [HttpGet]
-        public async Task<IActionResult> VerificarDuplicidade(string campo, string valor, string entidade)
+        public async Task<IActionResult> VerificarDuplicidade(string entidade, [FromQuery] Dictionary<string, string> campos)
         {
-            if (string.IsNullOrWhiteSpace(campo) || string.IsNullOrWhiteSpace(valor) || string.IsNullOrWhiteSpace(entidade))
+            if (string.IsNullOrWhiteSpace(entidade) || campos == null || campos.Count == 0)
                 return Json(new { existe = false });
 
             bool existe = entidade.ToUpperInvariant() switch
             {
-                "CLIENTES" => await _context.Clientes.AnyAsync(c => EF.Property<string>(c, campo) == valor),
-                "FORNECEDORES" => await _context.Fornecedores.AnyAsync(f => EF.Property<string>(f, campo) == valor),
-                "USUARIOS" => await _context.Usuarios.AnyAsync(u => EF.Property<string>(u, campo) == valor),
+                "CLIENTES" => await AplicarFiltros(_context.Clientes.AsQueryable(), campos),
+                "FORNECEDORES" => await AplicarFiltros(_context.Fornecedores.AsQueryable(), campos),
+                "USUARIOS" => await AplicarFiltros(_context.Usuarios.AsQueryable(), campos),
+                "PRODUTOS" => await AplicarFiltros(_context.Produtos.AsQueryable(), campos),
+                "CATEGORIASERVICOS" => await AplicarFiltros(_context.CategoriaServicos.AsQueryable(), campos),
+                "SERVICOS" => await AplicarFiltros(_context.Servicos.AsQueryable(), campos),
+                "UNIDADES" => await AplicarFiltros(_context.Unidades.AsQueryable(), campos),
+                "MARCAS" => await AplicarFiltros(_context.Marcas.AsQueryable(), campos),
+                "MODELOS" => await AplicarFiltros(_context.Modelos.AsQueryable(), campos),
+                "PERMISSOES" => await AplicarFiltros(_context.Permissoes.AsQueryable(), campos),
+                "LOGS" => await AplicarFiltros(_context.Logs.AsQueryable(), campos),
                 _ => throw new ArgumentException("Entidade inválida.")
             };
 
             return Json(new { existe });
+        }
+
+        private async Task<bool> AplicarFiltros<T>(IQueryable<T> query, Dictionary<string, string> campos) where T : class
+        {
+            foreach (var kvp in campos)
+            {
+                string campo = kvp.Key;
+                string valor = kvp.Value;
+
+                var prop = typeof(T).GetProperty(campo, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+                if (prop == null) continue;
+
+                object? convertedValue;
+                try
+                {
+                    var targetType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                    convertedValue = Convert.ChangeType(valor, targetType, CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                var parameter = Expression.Parameter(typeof(T), "e");
+                var propertyAccess = Expression.Property(parameter, prop);
+                var constant = Expression.Constant(convertedValue, prop.PropertyType);
+                var equal = Expression.Equal(propertyAccess, constant);
+                var lambda = Expression.Lambda<Func<T, bool>>(equal, parameter);
+
+                query = query.Where(lambda);
+            }
+
+            return await query.AnyAsync();
         }
 
         /// Busca dados de Cliente ou Fornecedor por CNPJ.
@@ -83,6 +119,7 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
             });
         }
 
+
         // Valida login e senha de usuário para autenticação.
         [HttpGet]
         public IActionResult ValidarLoginSenha(string login, string senha)
@@ -90,28 +127,25 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
             try
             {
                 if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(senha))
-                {
-                    return Json(new { sucesso = false});
-                }
+                    return Json(new { sucesso = false });
 
                 var usuario = _context.Usuarios
-                    .FirstOrDefault(u => u.Login.Equals(login, StringComparison.Ordinal));
+                    .FirstOrDefault(u => u.Login != null && u.Login.Equals(login, StringComparison.Ordinal));
 
-                if (usuario != null)
-                {
+                // Garante que não passemos null para PasswordHelper.VerificarSenha
+                if (usuario == null || string.IsNullOrEmpty(usuario.Senha))
+                    return Json(new { sucesso = false });
 
-                    bool senhaValida = PasswordHelper.VerificarSenha(senha, usuario.Senha);
+                bool senhaValida = PasswordHelper.VerificarSenha(senha, usuario.Senha);
 
-                    if (senhaValida)
-                    {
-                        return Json(new { sucesso = true});
-                    }
-                }
-                return Json(new { sucesso = false});
+                if (senhaValida)
+                    return Json(new { sucesso = true });
+
+                return Json(new { sucesso = false });
             }
             catch (Exception)
             {
-                return Json(new { sucesso = false});
+                return Json(new { sucesso = false });
             }
         }
 
@@ -154,6 +188,35 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
                         apelido
                     }).ToList(),
 
+                "CATEGORIASERVICOS" => _context.CategoriaServicos
+                    .Select(apelido => new {
+                        id = apelido.IdCategoriaServico,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                "USUARIOS" => _context.Usuarios
+                    .Select(apelido => new {
+                        id = apelido.IdUsuario,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                "MENUS" => _context.Menus
+                    .Select(apelido => new {
+                        id = apelido.IdMenu,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
+                        apelido
+                    }).ToList(),
+
+                "ITENSMENUS" => _context.ItensMenus
+                    .Where(apelido => filtroId == null || apelido.IdMenu == filtroId)
+                    .Select(apelido => new {
+                        id = apelido.IdItensMenu,
+                        valorDescricao = EF.Property<string>(apelido, campoDescricao),
+                        apelido
+                    }).ToList(),
+
                 _ => throw new ArgumentException("Entidade inválida.")
             };
 
@@ -173,6 +236,20 @@ namespace Ordem_Servicos_Web.Controllers.Entidades
                 .ToList();
 
             return Json(modelos);
+        }
+
+        public JsonResult GetItensMenuPorMenu(int idMenu)
+        {
+            var itens = _context.ItensMenus
+                .Where(i => i.IdMenu == idMenu)
+                .Select(i => new
+                {
+                    i.IdItensMenu,
+                    i.Descricao
+                })
+                .ToList();
+
+            return Json(itens);
         }
 
         [HttpGet]

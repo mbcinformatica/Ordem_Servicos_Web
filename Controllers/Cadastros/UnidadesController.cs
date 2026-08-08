@@ -7,11 +7,12 @@ using Ordem_Servicos_Web.Services;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class UnidadesController(MeuDbContext context, ILogger<UnidadesController> logger, PermissaoService permissaoService) : Controller
+    public class UnidadesController(MeuDbContext context, ILogger<UnidadesController> logger, PermissaoService permissaoService, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<UnidadesController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
+        private readonly LogService _logService = logService;
 
         // Index com paginação + pesquisa
         public IActionResult Index(int page = 1, string search = "", string column = "Descricao")
@@ -25,7 +26,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Unidades.AsQueryable();
 
@@ -118,17 +120,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             {
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade de CPF/CNPJ
-                    bool existe = _context.Unidades.Any(un => un.Descricao == unidade.Descricao);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"A Unidade {unidade.Descricao} já Está Cadastrada.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(unidade);
-                    }
-
                     _context.Unidades.Add(unidade);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Criar", "Unidades", unidade.IdUnidade, unidade.Descricao, "Registro Criado");
 
                     TempData["Mensagem"] = "Unidade Incluída com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -145,7 +141,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 TempData["Mensagem"] = "Ocorreu um Erro ao Salvar no Banco de Dados. Tente Novamente.";
             }
             TempData["MensagemTipo"] = "erro";
-
             return View(unidade);
         }
 
@@ -178,17 +173,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             {
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade ao alterar (exceto o próprio registro)
-                    bool existe = _context.Unidades.Any(un => un.Descricao == unidade.Descricao && un.IdUnidade != unidade.IdUnidade);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"A Unidade {unidade.Descricao} já Está Cadastrada.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(unidade);
-                    }
-
                     _context.Unidades.Update(unidade); 
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Alterar", "Unidades", unidade.IdUnidade, unidade.Descricao, "Registro Alterado");
 
                     TempData["Mensagem"] = "Unidade Alterada com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -239,6 +228,10 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 {
                     _context.Unidades.Remove(unidade);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Excluir", "Unidades", unidade.IdUnidade, unidade.Descricao, "Registro Excluido");
+
                     TempData["Mensagem"] = "Unidade Excluida com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
                 }
@@ -249,14 +242,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 TempData["MensagemTipo"] = "erro";
             }
             return RedirectToAction("Index");
-        }
-
-         // GET: Verificar Existência de descricão
-        [HttpGet]
-        public async Task<JsonResult> VerificarDescricaoUnidade(string descricaoUnidade)
-        {
-            bool existe = _context.Unidades.Any(un => un.Descricao == descricaoUnidade);
-            return Json(new { existe });
         }
     }
 }

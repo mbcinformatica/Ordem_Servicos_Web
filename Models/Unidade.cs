@@ -10,8 +10,6 @@ namespace Ordem_Servicos_Web.Models
         [Column("IDUnidade")]
         public int IdUnidade { get; set; }
 
-        [Required(ErrorMessage = "Descrição da Unidade é Obrigatória")]
-        [StringLength(100)]
         public string? Descricao { get; set; }
 
         // Propriedade de navegação

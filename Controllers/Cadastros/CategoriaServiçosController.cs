@@ -27,7 +27,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.CategoriaServicos.AsQueryable();
 
@@ -120,14 +121,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             {
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade de CPF/CNPJ
-                    bool existe = _context.CategoriaServicos.Any(cs => cs.Descricao == categoriaServico.Descricao);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"A Categoria de Serviços {categoriaServico.Descricao} já Está Cadastrada.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(categoriaServico);
-                    }
 
                     _context.CategoriaServicos.Add(categoriaServico);
                     _context.SaveChanges();
@@ -183,14 +176,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             {
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade ao alterar (exceto o próprio registro)
-                    bool existe = _context.CategoriaServicos.Any(cs => cs.Descricao == categoriaServico.Descricao && cs.IdCategoriaServico != categoriaServico.IdCategoriaServico);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"A Categoria de Serviços {categoriaServico.Descricao} já Está Cadastrada.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(categoriaServico);
-                    }
 
                     _context.CategoriaServicos.Update(categoriaServico); 
                     _context.SaveChanges();
@@ -261,14 +246,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 TempData["MensagemTipo"] = "erro";
             }
             return RedirectToAction("Index");
-        }
-
-         // GET: Verificar Existência de descricão
-        [HttpGet]
-        public async Task<JsonResult> VerificarDescricaoCategoriaServico(string descricaoCategoriaServico)
-        {
-            bool existe = _context.CategoriaServicos.Any(cs => cs.Descricao == descricaoCategoriaServico);
-            return Json(new { existe });
         }
     }
 }

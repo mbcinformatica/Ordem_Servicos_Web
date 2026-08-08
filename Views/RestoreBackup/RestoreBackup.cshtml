@@ -2,7 +2,7 @@
     ViewData["Title"] = "Restaurar Backup";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
@@ -19,9 +19,11 @@
         <label for="arquivoSQL" class="form-label">Selecione o arquivo SQL:</label>
         <input type="file" id="arquivoSQL" name="arquivoSQL" class="form-control" accept=".sql" required />
     </div>
-    <button type="submit" id="btnRestaurar" class="btn btn-danger">Restaurar Backup</button>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-2" onclick="liberarMenu()">
-        <i class="fa fa-home"></i> Voltar
+    <button type="submit" id="btnRestaurar" class="btn-gradiente btn-gradiente-executar">
+        <i class="fa fa-floppy-disk move-icone-esq"></i> Restaurar Backup
+    </button>
+    <a asp-controller="Home" asp-action="Index" class="btn-gradiente btn-gradiente-cancelar ms-2" onclick="liberarMenu()">
+        <i class="fa fa-home move-icone-esq"></i> Cancelar/Voltar
     </a>
 </form>
 

@@ -4,97 +4,109 @@
     ViewData["Title"] = "Novo Produto";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="card-form">
+        <div class="card-body">
+            <form asp-action="Create" class="novo" method="post" id="formProduto" enctype="multipart/form-data"
+                  data-campos-obrigatorios="IdProdutoInterno,
+                IdProdutoFabricante,
+                fornecedorSelect,
+                marcaSelect,
+                modeloSelect,
+                unidadeSelect">
 
-<form asp-action="Create" method="post" id="formProduto" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Descricao" id="Descricao" />
+                <input type="hidden" asp-for="Descricao" id="Descricao" />
 
-    <!-- Linha 1 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno do Produto</label>
-            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control text-uppercase maiusculo idProdutoInterno" style="width:260px;" autofocus />
-        </div>
-        <div class="col-auto">
-            <label asp-for="IdProdutoFabricante" class="label-destaque">Código do Fabricante</label>
-            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control text-uppercase maiusculo idProdutoFabricante" style="width:260px;" />
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Nome do Fornecedor</label>
-            <select asp-for="IdFornecedor" class="form-select fornecedorSelect" style="width:525px;" id="fornecedorSelect">
-                <option value="">-- Clique para carregar Fornecedores --</option>
-            </select>
+                <!-- Linha 1 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno do Produto</label>
+                        <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control text-uppercase maiusculo idProdutoInterno" style="width:260px;" data-focus="true" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="IdProdutoFabricante" class="label-destaque">Código do Fabricante</label>
+                        <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control text-uppercase maiusculo idProdutoFabricante" style="width:260px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label for="fornecedorSelect" class="label-destaque">Nome do Fornecedor</label>
+                        <select asp-for="IdFornecedor" class="form-select fornecedorSelect" style="width:525px;" id="fornecedorSelect">
+                            <option value="">-- Clique para carregar Fornecedores --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Linha 2 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label for="marcaSelect" class="label-destaque">Descrição da Marca</label>
+                        <select asp-for="IdMarca" class="form-select marcaSelect" style="width:300px;" id="marcaSelect">
+                            <option value="">-- Clique para carregar Marca --</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="modeloSelect" class="label-destaque">Descrição do Modelo</label>
+                        <select asp-for="IdModelo" class="form-select modeloSelect" style="width:400px;" id="modeloSelect">
+                            <option value="">-- Selecione uma Marca primeiro --</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="unidadeSelect" class="label-destaque">Descrição da Unidade</label>
+                        <select asp-for="IdUnidade" class="form-select unidadeSelect" style="width:350px;" id="unidadeSelect">
+                            <option value="">-- Clique para carregar Unidade --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Linha 3 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="PrecoCompra" class="label-destaque">Preço Compra</label>
+                        <input asp-for="PrecoCompra" id="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="PrecoVenda" class="label-destaque">Preço Venda</label>
+                        <input asp-for="PrecoVenda" id="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
+                        <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
+                        <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
+                    </div>
+                </div>
+
+                <!-- Linha 4 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label for="Imagem" class="label-destaque">Imagem do Produto</label>
+                        <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" id="btnSalvar" class="btn-gradiente btn-gradiente-salvar">
+                        <i class="fa fa-floppy-disk move-icone-esq"></i> Salvar Produto
+                    </button>
+                    <a asp-action="Index" class="btn-gradiente btn-gradiente-cancelar">
+                        <i class="fa fa-undo move-icone-esq"></i> Cancelar/Voltar
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Linha 2 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label class="label-destaque">Descrição da Marca</label>
-            <select asp-for="IdMarca" class="form-select marcaSelect" style="width:300px;" id="marcaSelect">
-                <option value="">-- Clique para carregar Marca --</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Descrição do Modelo</label>
-            <select asp-for="IdModelo" class="form-select modeloSelect" style="width:400px;" id="modeloSelect">
-                <option value="">-- Selecione uma Marca primeiro --</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Descrição da Unidade</label>
-            <select asp-for="IdUnidade" class="form-select unidadeSelect" style="width:350px;" id="unidadeSelect">
-                <option value="">-- Clique para carregar Unidade --</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Linha 3 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="PrecoCompra" class="label-destaque">Preço Compra</label>
-            <input asp-for="PrecoCompra" id="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" autofocus/>
-        </div>
-        <div class="col-auto">
-            <label asp-for="PrecoVenda" class="label-destaque">Preço Venda</label>
-            <input asp-for="PrecoVenda" id="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
-            <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
-            <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
-        </div>
-    </div>
-
-    <!-- Linha 4 -->
-    <div class="row mb-2 g-4">
-          <div class="col-auto">
-              <label for="Imagem" class="label-destaque">Imagem do Produto</label>
-              <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
-          </div>
-    </div>
-
-    <!-- Botões -->
-    <div class="d-flex gap-2 mt-4">
-        <button type="submit" id="btnSalvar" class="btn btn-bg btn-salvar">
-            <i class="fa fa-save"></i> Salvar Produto
-        </button>
-        <a asp-action="Index" class="btn btn-voltar btn-bg">
-            <i class="fa fa-arrow-left"></i> Voltar
-        </a>
-    </div>
-</form>
-              
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             bloquearMenu();
 
             const form = document.getElementById("formProduto");
@@ -103,19 +115,23 @@
             const precoVenda = document.getElementById("PrecoVenda");
             const estoqueAtual = document.getElementById("EstoqueAtual");
             const estoqueMinimo = document.getElementById("EstoqueMinimo");
+
             const camposObrigatorios = [
                 "IdProdutoInterno",
-                "IdProdutoFabricante"
+                "IdProdutoFabricante",
+                "fornecedorSelect",
+                "marcaSelect",
+                "modeloSelect",
+                "unidadeSelect"
             ];
 
-            if (precoCompra)   aplicarMascaraCampo(precoCompra, "valor");
-            if (precoVenda)    aplicarMascaraCampo(precoVenda, "valor");
-            if (estoqueAtual)  aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (precoCompra) aplicarMascaraCampo(precoCompra, "valor");
+            if (precoVenda) aplicarMascaraCampo(precoVenda, "valor");
+            if (estoqueAtual) aplicarMascaraCampo(estoqueAtual, "quantidade");
             if (estoqueMinimo) aplicarMascaraCampo(estoqueMinimo, "quantidade");
 
             if (form) {
                 ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "PRODUTOS");
-                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
 
                 if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
                     FormUtils.enableEnterNavigation(form, { allowTextarea: true });
@@ -123,7 +139,7 @@
             }
 
             if (btnSalvar && form) {
-                btnSalvar.addEventListener("click", function (e) {
+                btnSalvar.addEventListener("click", function(e) {
                     btnSalvar.focus();
                     const enterEvent = new KeyboardEvent("keydown", {
                         key: "Enter",
@@ -132,6 +148,13 @@
                     });
                     btnSalvar.dispatchEvent(enterEvent);
                     form.requestSubmit();
+                });
+
+                btnSalvar.addEventListener("keydown", function(e) {
+
+                    if (e.key === "Enter") {
+                        form.requestSubmit();
+                    }
                 });
             }
         });

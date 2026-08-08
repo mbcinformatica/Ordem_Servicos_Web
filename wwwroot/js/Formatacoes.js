@@ -27,20 +27,15 @@ function aplicarMascaraCampo(inputCampo, tipo) {
                 digitsOptional: false,
                 allowMinus: false,
                 rightAlign: false,
-                removeMaskOnSubmit: true // 🔹 envia apenas o número limpo
+                removeMaskOnSubmit: true
             });
             break;
-
         case "quantidade":
-            $(inputCampo).inputmask("decimal", {
-                radixPoint: ".",        // ponto como separador decimal
-                groupSeparator: "",     // com separador de milhar
-                autoGroup: false,
-                digits: 3,              // até 3 casas decimais
-                digitsOptional: true,
-                allowMinus: false,
-                rightAlign: false,
-                removeMaskOnSubmit: true
+            // 🔹 Máscara para quantidade como número inteiro
+            $(inputCampo).inputmask("9{1,}", {
+                placeholder: "0",   // preenche com zero se vazio
+                rightAlign: false,   // alinha à esquerda
+                allowMinus: false    // não permite sinal de negativo
             });
             break;
     }
@@ -51,9 +46,9 @@ function semMascaraCampo(inputCampo) {
     if (!inputCampo) return;
 
     // remove máscara do Inputmask se existir
-    //if ($(inputCampo).inputmask) {
-    //    $(inputCampo).inputmask("remove");
-    //}
+    if ($(inputCampo).inputmask) {
+        $(inputCampo).inputmask("unmaskedvalue");
+    }
 
     let valor = (inputCampo.value || "").trim();
 
@@ -76,9 +71,10 @@ function semMascaraCampo(inputCampo) {
 
         valor = limpo;
 
-    } else {
+    }
+    else if (inputCampo.classList.contains("somentenumeros")) {
         // para CPF, CNPJ, telefone, etc. → só dígitos
-        valor = valor.replace(/\D/g, "").trim();
+        valor = valor.replace(/\D/g, "");
     }
 
     inputCampo.value = valor;
@@ -92,39 +88,6 @@ function aplicarCpfCnpj(campo, tipoPessoa) {
     } else {
         aplicarMascaraCampo(campo, "cnpj");
     }
-}
-
-// Função genérica para converter campos em maiúsculo
-function aplicarMaiusculoCampos(seletor, evento = "blur") {
-    const campos = document.querySelectorAll(seletor);
-
-    campos.forEach(campo => {
-        campo.addEventListener(evento, function () {
-            this.value = this.value.trim().toUpperCase();
-        });
-    });
-}
-
-// Função genérica para converter campos em minusculo
-function aplicarMinusculoCampos(seletor, evento = "blur") {
-    const campos = document.querySelectorAll(seletor);
-
-    campos.forEach(campo => {
-        campo.addEventListener(evento, function () {
-            this.value = this.value.trim().toLowerCase();
-        });
-    });
-}
-
-function converteParaMaiusculo(valor) {
-    if (!valor) return "";
-    return valor.trim().toUpperCase();
-}
-
-// Função para converter texto para minúsculo, removendo espaços extras
-function converteParaMinusculo(valor) {
-    if (!valor) return "";
-    return valor.trim().toLowerCase();
 }
 
 // Função para limpar mensagens de erro associadas a um campo de input
@@ -171,35 +134,25 @@ function mostrarToast(texto, tipo) {
 }
 
 // 🔹 Nova função: normalizar campos antes de enviar
+// Função: normalizar campos antes de enviar
 function normalizarCampos(form) {
     if (!form) return;
 
     const campos = form.querySelectorAll("input, textarea, select");
 
     campos.forEach(campo => {
-
+        console.log("Campo: Antes", campo.name, "Valor:", campo.value);
         if (campo.classList.contains("maiusculo")) {
-
-            campo.value = converteParaMaiusculo(campo.value);
+            campo.value = campo.value.trim().toUpperCase();
         }
         else if (campo.classList.contains("minusculo")) {
-
-            campo.value = converteParaMinusculo(campo.value);
+            campo.value = campo.value.trim().toLowerCase();
         }
         else if (campo.classList.contains("somentenumeros")) {
-
-            if ($(campo).inputmask) {
-                $(campo).inputmask("remove");
-            }
             campo.value = semMascaraCampo(campo);
         }
-        else {
-            return;
-        }
-
-        campo.classList.remove("Invalid");
-        campo.classList.remove("input-validation-error");
-        campo.classList.add("Valid");
+        console.log("Campo: Depois", campo.name, "Valor:", campo.value);
+        // outros casos podem ser adicionados aqui
     });
 }
 
@@ -210,20 +163,5 @@ function hexParaStringNumerica(hex) {
         str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
     }
     // 🔹 garante que só fiquem dígitos
-    return str;
-}
-
-function hexParaStringNumerica(hex) {
-    // Se já for decimal (só dígitos), retorna direto
-    if (/^\d+$/.test(hex)) {
-        return hex;
-    }
-
-    // Caso contrário, converte de hex ASCII para string
-    let str = '';
-    for (let i = 0; i < hex.length; i += 2) {
-        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-    }
-
     return str;
 }

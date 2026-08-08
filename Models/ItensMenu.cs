@@ -15,9 +15,7 @@ namespace Ordem_Servicos_Web.Models
         [ForeignKey("Menu")]
         public int? IdMenu { get; set; } = null;
 
-        // Propriedade de descrição do item de menu
-        [Required(ErrorMessage = "Descrição do Items de Menu é Obrigatório")]
-        [StringLength(100)]
+        // Propriedades adicionais
         public string Descricao { get; set; } = string.Empty;
 
         // Navegação

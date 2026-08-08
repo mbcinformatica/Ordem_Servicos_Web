@@ -5,14 +5,16 @@ using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
+using Ordem_Servicos_Web.ViewModels;
 
 namespace Ordem_Servicos_Web.Controllers.Configuracoes
 {
-    public class PermissoesController(MeuDbContext context, ILogger<PermissoesController> logger, PermissaoService permissaoService) : Controller
+    public class PermissoesController(MeuDbContext context, ILogger<PermissoesController> logger, PermissaoService permissaoService, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<PermissoesController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
+        private readonly LogService _logService = logService;
 
         // Index com paginação + pesquisa
         public IActionResult Index(int page = 1, string search = "", string column = "UsuarioNomeUsuario")
@@ -26,7 +28,8 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
                 return RedirectToAction("Index", "Home");
             }
 
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Permissoes
                 .Include(p => p.Usuario)
@@ -57,6 +60,7 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
 
             return View(permissoes);
         }
+
 
         // Action para pesquisa Ajax
         public IActionResult Search(string search = "", string column = "UsuarioNomeUsuario")
@@ -90,13 +94,13 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
                         query = query.Where(mo => mo.IdPermissao == id);
                     break;
                 case "MenuDescricao":
-                    query = query.Where(mo => mo.Menu.Descricao.StartsWith(search));
+                    query = query.Where(mo => mo.Menu != null && mo.Menu.Descricao.StartsWith(search));
                     break;
                 case "ItensMenuDescricao":
-                    query = query.Where(mo => mo.ItensMenu.Descricao.StartsWith(search));
+                    query = query.Where(mo => mo.ItensMenu != null && mo.ItensMenu.Descricao.StartsWith(search));
                     break;
-                default: // Descricao
-                    query = query.Where(mo => mo.Usuario.NomeUsuario.StartsWith(search));
+                default: // UsuarioNomeUsuario
+                    query = query.Where(mo => mo.Usuario != null && mo.Usuario.NomeUsuario.StartsWith(search));
                     break;
             }
             return query;
@@ -144,6 +148,9 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
                 {
                     _context.Permissoes.Add(permissao);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Criar", "Permissoes", permissao.IdPermissao, permissao.Usuario?.NomeUsuario, "Registro Criado");
 
                     TempData["Mensagem"] = "Permissão Incluída com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -217,6 +224,9 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
 
                     _context.Permissoes.Update(permissaoDb);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Alterar", "Permissoes", permissaoDb.IdPermissao, permissaoDb.Usuario?.NomeUsuario, "Registro Alterado");
 
                     TempData["Mensagem"] = "Permissão Alterada com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -272,6 +282,10 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
                 {
                     _context.Permissoes.Remove(permissao);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Excluir", "Permissoes", permissao.IdPermissao, permissao.Usuario?.NomeUsuario, "Registro Excluido");
+
                     TempData["Mensagem"] = "Permissão Excluída com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
                 }
@@ -283,48 +297,6 @@ namespace Ordem_Servicos_Web.Controllers.Configuracoes
                 TempData["MensagemTipo"] = "erro";
             }
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public JsonResult GetUsuarios()
-        {
-            var usuarios = _context.Usuarios
-                .Select(u => new { u.IdUsuario, u.NomeUsuario })
-                .ToList();
-
-            return Json(usuarios);
-        }
-
-        [HttpGet]
-        public JsonResult GetMenus()
-        {
-            var menus = _context.Menus
-                .Select(m => new { m.IdMenu, m.Descricao })
-                .ToList();
-
-            return Json(menus);
-        }
-
-        [HttpGet]
-        public JsonResult GetItensMenu(int idMenu)
-        {
-            var itens = _context.ItensMenus
-                .Where(i => i.IdMenu == idMenu)
-                .Select(i => new { i.IdItensMenu, i.Descricao })
-                .ToList();
-
-            return Json(itens);
-        }
-
-        [HttpGet]
-        public JsonResult VerificarPermissao(int idUsuario, int idMenu, int idItensMenu)
-        {
-            bool existe = _context.Permissoes.Any(p =>
-                p.IdUsuario == idUsuario &&
-                p.IdMenu == idMenu &&
-                p.IdItensMenu == idItensMenu);
-
-            return Json(new { existe });
         }
     }
 }

@@ -4,22 +4,22 @@
     ViewData["Title"] = "Excluir Serviços";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
 <modal-confirmacao id-modal="confirmarExclusao"
-                   icone="fa fa-trash"
+                   icone="fa fa-trash-o"
                    titulo="Excluir Serviço"
                    mensagem="Tem certeza que deseja excluir o serviço <strong>@Model.Descricao</strong>?"
                    classe-mensagem="mensagem-sucesso-modal"
                    action-controller="Servicos"
                    action-name="Excluir"
                    id-registro="@Model.IdServico"
-                   icone-botao-principal="fa fa-trash"
+                   icone-botao-principal="fa fa-trash-o"
                    texto-botao-principal="Excluir"
                    classe-botao-principal="btn-danger"
-                   texto-botao-cancelar="Voltar"
+                   texto-botao-cancelar="Cancelar/Voltar"
                    classe-botao-secundario="btn-secondary"
                    action-controller-secundario="Servicos"
                    action-name-secundario="Index">

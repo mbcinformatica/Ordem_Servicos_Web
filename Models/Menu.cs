@@ -13,8 +13,6 @@ namespace Ordem_Servicos_Web.Models
         public int IdMenu { get; set; }
 
         // O campo "Descricao" é obrigatório e tem um limite de 100 caracteres
-        [Required(ErrorMessage = "Descrição do Menu é Obrigatória")]
-        [StringLength(100)]
         public string Descricao { get; set; } = string.Empty;
 
         // Navegação

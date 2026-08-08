@@ -4,7 +4,7 @@
     ViewData["Title"] = "Excluir Cliente";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
@@ -18,9 +18,9 @@
                    id-registro="@Model.IdCliente"
                    icone-botao-principal="fa fa-trash"
                    texto-botao-principal="Excluir"
-                   classe-botao-principal="btn-excluir"
-                   texto-botao-cancelar="Voltar"
-                   classe-botao-secundario="btn-voltar"
+                   classe-botao-principal="btn-gradiente-excluir"
+                   texto-botao-cancelar="Cancelar/Voltar"
+                   classe-botao-secundario="btn-gradiente-cancelar"
                    action-controller-secundario="Clientes"
                    action-name-secundario="Index">
 </modal-confirmacao>

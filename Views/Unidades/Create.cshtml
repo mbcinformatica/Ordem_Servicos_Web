@@ -4,77 +4,76 @@
     ViewData["Title"] = "Novo Unidade";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
-<form asp-action="Create" method="post" id="formUnidade" enctype="multipart/form-data">
-    
-	<!-- Descrição da Unidade -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="Descricao" class="label-destaque">Descrição</label>
-            <input asp-for="Descricao" class="form-control text-uppercase maiusculo descricaoUnidade" id="Descricao" autofocus style="width:615px;" />
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="card-form">
+        <div class="card-body">
+            <form asp-action="Create" class="novo" method="post" id="formUnidade" enctype="multipart/form-data"
+                  data-campos-obrigatorios="Descricao">
+
+                <!-- Descrição da Unidade -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="Descricao" class="label-destaque">Descrição</label>
+                        <input asp-for="Descricao" class="form-control text-uppercase maiusculo descricaoUnidade" id="Descricao" style="width:615px;" data-focus="true" />
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" id="btnSalvar" class="btn-gradiente btn-gradiente-salvar">
+                        <i class="fa fa-floppy-disk move-icone-esq"></i> Salvar Unidade
+                    </button>
+                    <a asp-action="Index" class="btn-gradiente btn-gradiente-cancelar">
+                        <i class="fa fa-undo move-icone-esq"></i> Cancelar/Voltar
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-
-    <!-- Botões -->
-    <div class="d-flex gap-2 mt-4">
-        <button type="submit" id="btnSalvar" class="btn btn-bg btn-salvar">
-            <i class="fa fa-save"></i> Salvar Unidade
-        </button>
-        <a asp-action="Index" class="btn btn-voltar btn-bg">
-            <i class="fa fa-arrow-left"></i> Voltar
-        </a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             bloquearMenu();
 
             const descricao = document.getElementById("Descricao");
             const btnSalvar = document.getElementById("btnSalvar");
             const form = document.getElementById("formUnidade");
 
-            if (descricao) descricao.focus();
+            const camposObrigatorios = [
+                "Descricao"
+            ];
 
-            if (form && window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
-                FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+            if (form) {
+                ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "UNIDADES");
+
+                if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
+                    FormUtils.enableEnterNavigation(form, { allowTextarea: true });
+                }
             }
 
-            aplicarMaiusculoCampos(".maiusculo");
-
-            if (descricao) {
-                descricao.addEventListener("blur", function () {
-                    const descricaoUnidade = descricao.value.trim();
-                    if (descricaoUnidade.length > 0) {
-                        fetch(`/Unidades/VerificarDescricaoUnidade?descricaoUnidade=${encodeURIComponent(descricaoUnidade)}`)
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.existe) {
-                                    mostrarToast("Descrição de Unidade já Cadastrada.", "erro");
-                                    descricao.focus();
-                                }
-                            })
-                            .catch(() => {
-                                mostrarToast("Erro ao Verificar Descrição.", "erro");
-                                descricao.focus();
-                            });
-                    }
+            if (btnSalvar && form) {
+                btnSalvar.addEventListener("click", function(e) {
+                    btnSalvar.focus();
+                    const enterEvent = new KeyboardEvent("keydown", {
+                        key: "Enter",
+                        code: "Enter",
+                        bubbles: true
+                    });
+                    btnSalvar.dispatchEvent(enterEvent);
+                    form.requestSubmit();
                 });
-            }
 
-			// Descricao
-            if (descricao && btnSalvar) {
+                btnSalvar.addEventListener("keydown", function(e) {
 
-               // Ao pressionar Enter dentro do campo
-                descricao.addEventListener("keydown", function (e) {
                     if (e.key === "Enter") {
-                        e.preventDefault(); // evita submit automático
-                        btnSalvar.focus();
+                        form.requestSubmit();
                     }
                 });
             }

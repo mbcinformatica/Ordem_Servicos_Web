@@ -4,22 +4,47 @@ async function validarLogin(
     url,
     mensagemErro,
     parametrosExtras = {},
-    nomeParametro = "valor")
-{
-    const valor = campo.value.trim();
-    if (!valor) {
-        mostrarToast("Login não informado.", "erro");
-        return false;
+    nomeParametro = "valor") {
+
+    let valor = campo.value.trim();
+
+    if (valor.length === 0) return false;
+
+    // 🔹 Lista de campos que devem ser normalizados (apenas dígitos)
+    const campoNumericos = ["cpf", "cnpj", "cep", "fone", "telefone"];
+
+    // Normaliza o campo principal
+    const campoLower = (campo.name || campo.id || nomeParametro).toLowerCase();
+    if (campoNumericos.some(c => campoLower.includes(c))) {
+        valor = valor.replace(/\D/g, "");
+        campo.value = valor;
     }
 
-    const queryParams = new URLSearchParams({ [nomeParametro]: valor, ...parametrosExtras });
+    // Monta query string inicial
+    const queryParams = new URLSearchParams({ [nomeParametro]: valor });
+
+    // Adiciona entidade se existir
+    if (parametrosExtras.entidade) {
+        queryParams.append("entidade", parametrosExtras.entidade);
+    }
+
+    // 🔹 Normaliza e adiciona múltiplos campo extras
+    if (parametrosExtras.campo && typeof parametrosExtras.campo === "object") {
+        Object.entries(parametrosExtras.campo).forEach(([key, val]) => {
+            let valNormalizado = val;
+            if (typeof val === "string" && campoNumericos.some(c => key.toLowerCase().includes(c))) {
+                valNormalizado = val.replace(/\D/g, "");
+            }
+            queryParams.append(key, valNormalizado);
+        });
+    }
 
     try {
         const response = await fetch(`${url}?${queryParams.toString()}`);
         const data = await response.json();
 
         // 🔹 Se o endpoint retorna { existe: true/false } ou { sucesso: true/false }
-        if (!(data.existe || data.sucesso)) {
+        if (!(data.existe)) {
             mostrarToast(mensagemErro, "erro");
             return false;
         }
@@ -71,10 +96,63 @@ async function validarLoginSenha(campoSenha, login) {
         }
 
     } catch (error) {
-        mostrarToast("Erro ao validar login/senha no servidor.", "erro");
+        mostrarToast("Erro ao Validar Login/Senha no Servidor.", "erro");
         return false;
     }
     limparErro(campoSenha);
+    return true;
+}
+
+// Função Valida Senha Forte
+function validarSenhaForte(campo, campoConfirmacao = null, opcional = false) {
+    const valor = campo.value.trim();
+
+
+    // 🔹 Se for opcional e estiver vazio
+    if (opcional && valor.length === 0) {
+
+        // Desabilita confirmação se senha estiver vazia
+        if (campoConfirmacao) {
+            campoConfirmacao.value = "";
+            campoConfirmacao.disabled = true;
+        }
+        return true;
+    }
+
+    // Habilita confirmação se senha foi preenchida
+    if (campoConfirmacao) {
+        campoConfirmacao.disabled = false;
+    }
+
+    // Regex para senha forte
+    const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+    if (!regexSenhaForte.test(valor)) {
+        mostrarToast("A Senha Deve ter no Mínimo 8 Caracteres, Incluindo Maiúscula, Minúscula, Número e Símbolo.", "erro");
+        return false;
+    }
+    limparErro(campo);
+    return true;
+}
+
+// Função Valida Confirmação de Senha
+function validarConfirmacaoSenha(campoConfirmacao, campoSenha, opcional = false) {
+    const senha = campoSenha.value.trim();
+    const confirmacao = campoConfirmacao.value.trim();
+
+    // 🔹 Se senha for opcional e estiver vazia, confirmação fica desabilitada
+    if (opcional && senha.length === 0) {
+        campoConfirmacao.disabled = true;
+        campoConfirmacao.value = "";
+        return true;
+    }
+
+    if (senha !== confirmacao) {
+        mostrarToast("A Confirmação da Senha não Confere.", "erro");
+        return false;
+    }
+
+    limparErro(campoConfirmacao);
     return true;
 }
 
@@ -90,7 +168,7 @@ async function GetEntidades(campo, url, entidade, parametrosExtras = {}) {
         const result = await response.json();
 
         if (!result.sucesso) {
-            mostrarToast("Erro ao consultar no servidor.", "erro");
+            mostrarToast("Erro ao Consultar no Servidor.", "erro");
             return false;
         }
 
@@ -110,7 +188,7 @@ async function GetEntidades(campo, url, entidade, parametrosExtras = {}) {
         });
 
     } catch (error) {
-        mostrarToast("Erro ao consultar no servidor.", "erro");
+        mostrarToast("Erro ao Consultar no Servidor.", "erro");
         return false;
     }
 
@@ -166,7 +244,7 @@ function ValidaCnpj(cnpj) {
 
 // Função para validar CPF/CNPJ
 async function validarCpfCnpj(input, tipoPessoa, entidade) {
-    let valor = hexParaStringNumerica(semMascaraCampo(input));
+    let valor = semMascaraCampo(input);
 
     if (tipoPessoa === "JURÍDICA") {
         if (valor.length !== 14 || !ValidaCnpj(valor)) {
@@ -183,7 +261,12 @@ async function validarCpfCnpj(input, tipoPessoa, entidade) {
         input,
         "/Entidades/VerificarDuplicidade",
         "CPF/CNPJ já Cadastrado.",
-        { entidade: entidade, campo: "CpfCnpj" }
+        {
+            entidade: entidade,
+            campo: {
+                CpfCnpj: document.getElementById("CpfCnpj").value
+            }
+        }
     );
     if (duplicado) return false;
 
@@ -205,16 +288,16 @@ async function validarCpfCnpj(input, tipoPessoa, entidade) {
 
 // Função para validar CEP
 async function validarCep(input) {
-    let valor = hexParaStringNumerica(semMascaraCampo(input));
+    let valor = semMascaraCampo(input);
 
-    if (valor.length !== 8) {
+    if (valor.length !== 0 && valor.length !== 8) {
         mostrarToast("CEP Inválido. Deve Conter 8 Dígitos.", "erro");
         return false;
     }
 
     const resultado = await buscarCEP("Cep", "Endereco", "Bairro", "Municipio", "Uf");
     if (!resultado) {
-        mostrarToast("CEP não Encontrado.", "aviso");
+        mostrarToast("CEP não Existente.", "aviso");
         return false;
     }
 
@@ -224,7 +307,7 @@ async function validarCep(input) {
 
 // Função para validar Telefone
 function validarTelefone(input) {
-    let valor = hexParaStringNumerica(semMascaraCampo(input));
+    let valor = semMascaraCampo(input);
 
     if (valor.length !== 0 && valor.length !== 10 && valor.length !== 11) {
         mostrarToast("Telefone Inválido. Deve Conter 10 ou 11 Dígitos.", "erro");
@@ -248,7 +331,6 @@ function validarNumero(input) {
 // Função Valida Valor Monetário
 function validarValor(input) {
 
-
     limparErro(input);
     return true;
 }
@@ -260,67 +342,30 @@ function validarQuantidade(input) {
     return true;
 }
 
-// Função Valida e-MAIL
-function validarEmail(input) {
+// Função Valida Código Interno do Produto
+async function validarProdutoInterno(input) {
+    // 🔹 Remove espaços extras
     let valor = input.value.trim();
-    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regex.test(valor)) {
-        mostrarToast("E-mail Inválido. Informe no Formato usuario@dominio.com.", "erro");
-        return false;
+
+    // 🔹 Só adiciona prefixo se ainda não tiver
+    if (valor && !valor.startsWith("MBC-")) {
+        input.value = "MBC-" + valor;
     }
-    input.value = converteParaMinusculo(input.value);
+
     limparErro(input);
     return true;
 }
 
-// Função Valida Senha Forte
-function validarSenhaForte(campo, campoConfirmacao = null, opcional = false) {
-    const valor = campo.value.trim();
-
-    // 🔹 Se for opcional e estiver vazio
-    if (opcional && valor.length === 0) {
-
-        // Desabilita confirmação se senha estiver vazia
-        if (campoConfirmacao) {
-            campoConfirmacao.value = "";
-            campoConfirmacao.disabled = true;
-        }
-        return true;
-    }
-
-    // Habilita confirmação se senha foi preenchida
-    if (campoConfirmacao) {
-        campoConfirmacao.disabled = false;
-    }
-
-    // Regex para senha forte
-    const regexSenhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
-    if (!regexSenhaForte.test(valor)) {
-        mostrarToast("A senha deve ter no mínimo 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.", "erro");
-        return false;
-    }
-    limparErro(campo);
-    return true;
-}
-
-// Função Valida Confirmação de Senha
-function validarConfirmacaoSenha(campoConfirmacao, campoSenha, opcional = false) {
-    const senha = campoSenha.value.trim();
-    const confirmacao = campoConfirmacao.value.trim();
-
-    // 🔹 Se senha for opcional e estiver vazia, confirmação fica desabilitada
-   if (opcional && senha.length === 0) {
-        campoConfirmacao.disabled = true;
-        campoConfirmacao.value = "";
-        return true;
-    }
-
-    if (senha !== confirmacao) {
-        mostrarToast("A Confirmação da Senha não Confere.", "erro");
+// Função Valida e-MAIL
+function validarEmail(input) {
+    let valor = input.value.trim();
+    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (valor.length !== 0 && !regex.test(valor)) {
+        mostrarToast("E-Mail Inválido. Formato Correto usuario@dominio.com.", "erro");
         return false;
     }
 
-    limparErro(campoConfirmacao);
+    input.value = input.value.trim().toLowerCase();
+    limparErro(input);
     return true;
 }

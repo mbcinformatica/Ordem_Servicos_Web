@@ -16,13 +16,18 @@ namespace Ordem_Servicos_Web.Models
         [Column("IDProduto")]
         public int IdProduto { get; set; }
 
-        public string IdProdutoInterno { get; set; } = string.Empty;
-        public string IdProdutoFabricante { get; set; } = string.Empty;
-        public string Descricao { get; set; } = string.Empty;
+        public string? IdProdutoInterno { get; set; }
+        
+        public string? IdProdutoFabricante { get; set; }
+        
+        public string? Descricao { get; set; }
 
         public int? IdFornecedor { get; set; }
+        
         public int? IdMarca { get; set; }
+        
         public int? IdModelo { get; set; }
+        
         public int? IdUnidade { get; set; }
 
         // 🔹 Preço Compra com binder
@@ -45,24 +50,20 @@ namespace Ordem_Servicos_Web.Models
             ? FormatHelper.FormatValor(PrecoVenda.Value)
             : string.Empty;
 
-        // 🔹 Estoque Atual com binder
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
-        public decimal? EstoqueAtual { get; set; }
+        public int? EstoqueAtual { get; set; }
 
         [NotMapped]
         [ValidateNever]
-        public string EstoqueAtualFormatado => (EstoqueAtual.HasValue && EstoqueAtual.Value > 0)
-            ? FormatHelper.FormatQuantidade(EstoqueAtual.Value) // 3 casas decimais
+        public string EstoqueAtualFormatado => (EstoqueAtual.HasValue && EstoqueAtual.Value > 0) 
+            ? FormatHelper.FormatQuantidade((Int32)EstoqueAtual.Value) 
             : string.Empty;
 
-        // 🔹 Estoque Mínimo com binder
-        [ModelBinder(BinderType = typeof(SmartDecimalBinder))]
-        public decimal? EstoqueMinimo { get; set; }
+        public int? EstoqueMinimo { get; set; }
 
         [NotMapped]
         [ValidateNever]
-        public string EstoqueMinimoFormatado => (EstoqueMinimo.HasValue && EstoqueMinimo.Value > 0)
-            ? FormatHelper.FormatQuantidade(EstoqueMinimo.Value)
+        public string EstoqueMinimoFormatado => (EstoqueMinimo.HasValue && EstoqueMinimo.Value > 0) 
+            ? FormatHelper.FormatQuantidade((Int32)EstoqueMinimo.Value) 
             : string.Empty;
 
         public DateTime DataUltimaCompra { get; set; }
@@ -74,8 +75,11 @@ namespace Ordem_Servicos_Web.Models
 
         // 🔹 Propriedades de navegação
         [ValidateNever] public virtual Fornecedor? Fornecedor { get; set; }
+        
         [ValidateNever] public virtual Marca? Marca { get; set; }
+        
         [ValidateNever] public virtual Modelo? Modelo { get; set; }
+        
         [ValidateNever] public virtual Unidade? Unidade { get; set; }
     }
 }

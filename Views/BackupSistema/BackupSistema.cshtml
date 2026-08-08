@@ -2,23 +2,23 @@
     ViewData["Title"] = "Backup Sistema.";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
 <modal-confirmacao id-modal="confirmaBackupSistema"
-                   icone="fa fa-save"
+                   icone="fa fa-floppy-disk"
                    titulo="Confirmação"
-                   mensagem="Deseja Realizaro Backup do Sistema Agora?"
+                   mensagem="Deseja Realizar o Backup do Sistema Agora?"
                    classe-mensagem="mensagem-sucesso-modal"
                    action-controller="BackupSistema"
                    action-name="BackupSistema"
                    id-registro=""
-                   icone-botao-principal="fa fa-save"
+                   icone-botao-principal="fa fa-floppy-disk"
                    texto-botao-principal="Executar Backup"
-                   classe-botao-principal="btn-salvar"
-                   texto-botao-cancelar="Voltar"
-                   classe-botao-secundario="btn-voltar"
+                   classe-botao-principal="btn-gradiente-executar"
+                   texto-botao-cancelar="Cancelar/Voltar"
+                   classe-botao-secundario="btn-gradiente-cancelar"
                    action-controller-secundario="Home"
                    action-name-secundario="Index">
 </modal-confirmacao>
@@ -29,7 +29,6 @@
         document.addEventListener("DOMContentLoaded", function () {
             bloquearMenu();
 
-            // Abre o modal automaticamente ao carregar a página
             var modalElement = document.getElementById("confirmaBackupSistema");
             if (modalElement) {
                 var modal = new bootstrap.Modal(modalElement);

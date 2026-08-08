@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using Ordem_Servicos_Web.Helpers;
+using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
 using System.Text;
 
@@ -9,11 +10,13 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
     public class RestoreBackupController(
         IConfiguration config,
         ILogger<RestoreBackupController> logger,
-        PermissaoService permissaoService) : Controller
+        PermissaoService permissaoService,
+        LogService logService) : Controller
     {
         private readonly string _connectionString = config.GetConnectionString("DefaultConnection") ?? string.Empty;
         private readonly ILogger<RestoreBackupController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
+        private readonly LogService _logService = logService;
 
         [HttpGet]
         public IActionResult RestoreBackup()
@@ -94,6 +97,10 @@ namespace Ordem_Servicos_Web.Controllers.Ferramentas
                         await cmd.ExecuteNonQueryAsync();
                     }
                 }
+
+                var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                _logService.Registrar(idUsuario, "Restaurar", "BancoDados", 0, null, "Backup Restaurado com Sucesso!");
+
                 TempData["Mensagem"] = $"Backup da tabela {tableName} restaurado com sucesso!";
                 TempData["MensagemTipo"] = "sucesso";
             }

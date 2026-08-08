@@ -8,11 +8,12 @@ using Ordem_Servicos_Web.Services;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class ServicosController(MeuDbContext context, ILogger<ServicosController> logger, PermissaoService permissaoService) : Controller
+    public class ServicosController(MeuDbContext context, ILogger<ServicosController> logger, PermissaoService permissaoService, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<ServicosController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
+        private readonly LogService _logService = logService;
 
         // Index: Listagem com Paginação e Pesquisa
         public IActionResult Index(int page = 1, string search = "", string column = "Descricao")
@@ -26,8 +27,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Servicos
                 .Include(se => se.CategoriaServico)
@@ -131,19 +132,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade de CPF/CNPJ
-                    bool existe = _context.Servicos.Any(se =>
-                        se.IdCategoriaServico == servico.IdCategoriaServico &&
-                        se.Descricao == servico.Descricao);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"Já existe um Servico '{servico.Descricao}' para esta Marca.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(servico);
-                    }
-
                     _context.Servicos.Add(servico);
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Criar", "Servicos", servico.IdServico, servico.Descricao, "Registro Criado");
 
                     TempData["Mensagem"] = "Serviço Incluída com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -198,21 +191,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade apenas na mesma Marca
-                    bool existe = _context.Servicos.Any(se =>
-                        se.IdCategoriaServico == servico.IdCategoriaServico &&
-                        se.Descricao == servico.Descricao &&
-                        se.IdServico != servico.IdServico);
-                    
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"Já existe um Servico '{servico.Descricao}' para esta Marca.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(servico);
-                    }
-                    servico.ValorServico = servico.ValorServico.Value;
                     _context.Servicos.Update(servico); 
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Alterar", "Servicos", servico.IdServico, servico.Descricao, "Registro Alterado");
 
                     TempData["Mensagem"] = "Servico Alterado com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -265,6 +248,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 {
                     _context.Servicos.Remove(servico);
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Excluir", "Servicos", servico.IdServico, servico.Descricao, "Registro Excluido");
+
+
                     TempData["Mensagem"] = "Serviço excluído com sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
                 }
@@ -275,36 +263,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 TempData["MensagemTipo"] = "erro";
             }
             return RedirectToAction("Index");
-        }
-
-        // GET: Servicos/GetCategoriaServico
-        [HttpGet]
-        public JsonResult GetCategoriaServico()
-        {
-            var categoriaServicos = _context.CategoriaServicos
-                .Select(cs => new { idCategoriaServico = cs.IdCategoriaServico, descricao = cs.Descricao })
-                .ToList();
-
-            return Json(categoriaServicos);
-        }
-
-        // GET: Verificar Existência de descricão
-        [HttpGet]
-        public JsonResult VerificarDescricaoServico(int idCategoriaServico, string descricaoServico)
-        {
-            bool existe = _context.Servicos.Any(se => se.IdCategoriaServico == idCategoriaServico &&
-                se.Descricao == descricaoServico);
-
-            return Json(new { existe });
-        }
-
-
-        // GET: Verificar Existência de Codigo Base
-        [HttpGet]
-        public async Task<JsonResult> VerificarCodigoBase(string codigoBase)
-        {
-            bool existe = _context.Servicos.Any(se => se.IdCodigoBase == codigoBase);
-            return Json(new { existe });
         }
     }
 }

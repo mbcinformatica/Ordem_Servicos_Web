@@ -4,21 +4,19 @@ using System.Text.Json;
 
 namespace Ordem_Servicos_Web.Services
 {
-    public class LogService
+    public class LogService(MeuDbContext context)
     {
-        private readonly MeuDbContext _context;
-
-        public LogService(MeuDbContext context)
-        {
-            _context = context;
-
-        }
+        private readonly MeuDbContext _context = context;
 
         public void Registrar(int idUsuario, string acao, string tabela, int? idRegistro, string? observacao, string level = "Information")
         {
             // Monta mensagem principal
-            var mensagem = $"{acao} Realizado na Tabela {tabela} no Registro {idRegistro}";
+            var mensagem = $"{acao} Realizado na Tabela {tabela}";
 
+            if (idRegistro.HasValue && idRegistro.Value != 0)
+            {
+                mensagem = $"{acao} Realizado na Tabela {tabela} no Registro {idRegistro}";
+            }
             // Monta propriedades em JSON para facilitar auditoria
             var props = new
             {
@@ -27,6 +25,7 @@ namespace Ordem_Servicos_Web.Services
                 Registro = idRegistro,
                 Acao = acao
             };
+
 
             var log = new Log
             {

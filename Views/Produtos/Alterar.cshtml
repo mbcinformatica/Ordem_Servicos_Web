@@ -4,106 +4,118 @@
     ViewData["Title"] = "Alterar Produto";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 
 <partial name="_MensagemToast" />
 
-<form asp-action="Alterar" method="post" id="formProduto" enctype="multipart/form-data">
-    <input type="hidden" asp-for="IdProduto" />
-    <input type="hidden" asp-for="Descricao" />
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="card-form">
+        <div class="card-body">
+            <form asp-action="Alterar" method="post" id="formProduto" enctype="multipart/form-data"
+                  data-campos-obrigatorios="IdProdutoInterno">
 
-    <!-- Linha 1 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno</label>
-            <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control maiusculo idProdutoInterno" readonly style="width:260px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="IdProdutoFabricante" class="label-destaque">Código Fabricante</label>
-            <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control maiusculo idProdutoFabricante" readonly style="width:260px;" />
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Nome do Fornecedor</label>
-            <input type="text" class="form-control" value="@Model.NomeFornecedor" readonly style="width:525px;" />
-            <input type="hidden" asp-for="IdFornecedor" />
+                <!-- 🔹 Campo essencial para reconstruir o model -->
+                <input type="hidden" asp-for="IdProduto" />
+                <input type="hidden" asp-for="Descricao" />
+                <input type="hidden" asp-for="IdFornecedor" />
+                <input type="hidden" asp-for="IdMarca" />
+                <input type="hidden" asp-for="IdModelo" />
+                <input type="hidden" asp-for="IdUnidade" />
+
+
+                <!-- Linha 1 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="IdProdutoInterno" class="label-destaque">Código Interno</label>
+                        <input asp-for="IdProdutoInterno" id="IdProdutoInterno" class="form-control maiusculo idProdutoInterno" readonly style="width:260px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="IdProdutoFabricante" class="label-destaque">Código Fabricante</label>
+                        <input asp-for="IdProdutoFabricante" id="IdProdutoFabricante" class="form-control maiusculo idProdutoFabricante" readonly style="width:260px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label class="label-destaque">Nome do Fornecedor</label>
+                        <input type="text" class="form-control" value="@Model.NomeFornecedor" readonly style="width:525px;" />
+                        <input type="hidden" asp-for="IdFornecedor" />
+                    </div>
+                </div>
+
+                <!-- Linha 2 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label class="label-destaque">Descrição da Marca</label>
+                        <input type="text" class="form-control" value="@Model.NomeMarca" readonly style="width:300px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label class="label-destaque">Descrição do Modelo</label>
+                        <input type="text" class="form-control" value="@Model.NomeModelo" readonly style="width:400px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label class="label-destaque">Descrição da Unidade</label>
+                        <input type="text" class="form-control" value="@Model.NomeUnidade" readonly style="width:350px;" />
+                    </div>
+                </div>
+
+                <!-- Linha 3 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="PrecoCompra" class="label-destaque">Preço Compra</label>
+                        <input asp-for="PrecoCompra" id="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" data-focus="true" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="PrecoVenda" class="label-destaque">Preço Venda</label>
+                        <input asp-for="PrecoVenda" id="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
+                        <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
+                        <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
+                    </div>
+                </div>
+
+                <!-- Linha 4 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label for="Imagem" class="label-destaque">Imagem do Produto</label>
+                        <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
+                    </div>
+                </div>
+
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        @if (Model.Imagem != null)
+                        {
+                            <input type="hidden" name="ImagemBase64" value="@Convert.ToBase64String(Model.Imagem)" />
+                            <img src="data:image/png;base64,@Convert.ToBase64String(Model.Imagem)"
+                                 alt="Foto atual" style="width:120px;height:120px;border-radius:50%;" />
+                        }
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" id="btnSalvar" class="btn-gradiente btn-gradiente-salvar">
+                        <span class="spinner-border spinner-border-sm d-none" id="spinnerSalvar" role="status" aria-hidden="true"></span>
+                        <i class="fa fa-floppy-disk move-icone-esq"></i> Salvar Alterações
+                    </button>
+
+                    <a asp-action="Index" class="btn-gradiente btn-gradiente-cancelar">
+                        <i class="fa fa-undo move-icone-esq"></i> Cancelar/Voltar
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-
-    <!-- Linha 2 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label class="label-destaque">Descrição da Marca</label>
-            <input type="text" class="form-control" value="@Model.NomeMarca" readonly style="width:300px;" />
-            <input type="hidden" asp-for="IdMarca" />
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Descrição do Modelo</label>
-            <input type="text" class="form-control" value="@Model.NomeModelo" readonly style="width:400px;" />
-            <input type="hidden" asp-for="IdModelo" />
-        </div>
-        <div class="col-auto">
-            <label class="label-destaque">Descrição da Unidade</label>
-            <input type="text" class="form-control" value="@Model.NomeUnidade" readonly style="width:350px;" />
-            <input type="hidden" asp-for="IdUnidade" />
-        </div>
-    </div>
-    <!-- Linha 3 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="PrecoCompra" class="label-destaque">Preço Compra</label>
-            <input asp-for="PrecoCompra" id="PrecoCompra" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" data-focus="true" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="PrecoVenda" class="label-destaque">Preço Venda</label>
-            <input asp-for="PrecoVenda" id="PrecoVenda" type="text" inputmode="numeric" class="form-control text-end valor" style="width:257px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="EstoqueAtual" class="label-destaque">Estoque Atual</label>
-            <input asp-for="EstoqueAtual" id="EstoqueAtual" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="EstoqueMinimo" class="label-destaque">Estoque Mínimo</label>
-            <input asp-for="EstoqueMinimo" id="EstoqueMinimo" type="text" inputmode="numeric" class="form-control text-end quantidade" style="width:257px;" />
-        </div>
-    </div>
-
-    <!-- Linha 4 -->
-    <div class="row mb-2 g-4">
-         <div class="col-auto">
-             <label for="Imagem" class="label-destaque">Imagem do Produto</label>
-             <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
-         </div>
-    </div>
-
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            @if (Model.Imagem != null)
-            {
-                <input type="hidden" name="ImagemBase64" value="@Convert.ToBase64String(Model.Imagem)" />
-                <img src="data:image/png;base64,@Convert.ToBase64String(Model.Imagem)"
-                     alt="Foto atual" style="width:120px;height:120px;border-radius:50%;" />
-            }
-        </div>
-    </div>
-
-    <!-- Botões -->
-    <div class="d-flex gap-2 mt-4">
-        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
-            <span class="spinner-border spinner-border-sm d-none" id="spinnerSalvar" role="status" aria-hidden="true"></span>
-            <i class="fa fa-save"></i> Salvar Alterações
-        </button>
-
-        <a asp-action="Index" class="btn btn-voltar btn-bg">
-            <i class="fa fa-arrow-left"></i> Voltar
-        </a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             bloquearMenu();
 
             const form = document.getElementById("formProduto");
@@ -112,16 +124,16 @@
             const precoVenda = document.getElementById("PrecoVenda");
             const estoqueAtual = document.getElementById("EstoqueAtual");
             const estoqueMinimo = document.getElementById("EstoqueMinimo");
+
             const camposObrigatorios = [""];
 
-            if (precoCompra)   aplicarMascaraCampo(precoCompra, "valor");
-            if (precoVenda)    aplicarMascaraCampo(precoVenda, "valor");
-            if (estoqueAtual)  aplicarMascaraCampo(estoqueAtual, "quantidade");
+            if (precoCompra) aplicarMascaraCampo(precoCompra, "valor");
+            if (precoVenda) aplicarMascaraCampo(precoVenda, "valor");
+            if (estoqueAtual) aplicarMascaraCampo(estoqueAtual, "quantidade");
             if (estoqueMinimo) aplicarMascaraCampo(estoqueMinimo, "quantidade");
 
             if (form) {
                 ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "PRODUTOS");
-                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
 
                 if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
                     FormUtils.enableEnterNavigation(form, { allowTextarea: true });
@@ -129,7 +141,7 @@
             }
 
             if (btnSalvar && form) {
-                btnSalvar.addEventListener("click", function (e) {
+                btnSalvar.addEventListener("click", function(e) {
                     btnSalvar.focus();
                     const enterEvent = new KeyboardEvent("keydown", {
                         key: "Enter",
@@ -138,6 +150,13 @@
                     });
                     btnSalvar.dispatchEvent(enterEvent);
                     form.requestSubmit();
+                });
+
+                btnSalvar.addEventListener("keydown", function(e) {
+
+                    if (e.key === "Enter") {
+                        form.requestSubmit();
+                    }
                 });
             }
         });

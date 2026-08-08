@@ -4,16 +4,16 @@
     ViewData["Title"] = "Detalhes do Usuário";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
-<div class="card shadow-sm mt-4">
+<div class="card shadow-sm mt-4" style="width: 80%; background: #28a745; margin: 0 auto;">
     <div class="card-header bg-dark text-white">
         <h5 class="mb-0">Informações do Usuário</h5>
     </div>
     <div class="card-body">
-        <div class="row mb-1">
+        <div class="row mb-1 row-detalhe">
             <div class="col-md-5 text-center">
                 @if (Model.Imagem != null)
                 {
@@ -28,59 +28,61 @@
                         <span class="text-muted">Sem foto</span>
                     </div>
                 }
+
             </div>
             <div class="col-md-7">
                 <dl class="row">
-                    <dt class=".col-sm-3">ID</dt>
-                    <dd class="col-sm-7">@Model.IdUsuario</dd>
+                    <dt class="col-detalhe">ID</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.IdUsuario</dd>
 
-                    <dt class=".col-sm-3">Nome</dt>
-                    <dd class="col-sm-7">@Model.NomeUsuario</dd>
+                    <dt class="col-detalhe">Nome</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.NomeUsuario</dd>
 
-                    <dt class=".col-sm-3">Login</dt>
-                    <dd class="col-sm-7">@Model.Login</dd>
+                    <dt class="col-detalhe">Login</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.Login</dd>
 
-                    <dt class=".col-sm-3">Email</dt>
-                    <dd class="col-sm-7">@Model.EmailFormatado</dd>
+                    <dt class="col-detalhe">Email</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.EmailFormatado</dd>
 
-                    <dt class=".col-sm-3">Fone Fixo</dt>
-                    <dd class="col-sm-7">@Model.FoneFixoFormatado</dd>
+                    <dt class="col-detalhe">Fone Fixo</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.FoneFixoFormatado</dd>
 
-                    <dt class=".col-sm-3">Fone Celular</dt>
-                    <dd class="col-sm-7">@Model.FoneCelularFormatado</dd>
+                    <dt class="col-detalhe">Fone Celular</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.FoneCelularFormatado</dd>
 
-                    <dt class=".col-sm-3">CEP</dt>
-                    <dd class="col-sm-7">@Model.CepFormatado</dd>
+                    <dt class="col-detalhe">CEP</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.CepFormatado</dd>
 
-                    <dt class=".col-sm-3">Endereço</dt>
-                    <dd class="col-sm-7">@Model.Endereco, Nº @Model.Numero</dd>
+                    <dt class="col-detalhe">Endereço</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.Endereco, Nº @Model.Numero</dd>
 
-                    <dt class=".col-sm-3">Bairro</dt>
-                    <dd class="col-sm-7">@Model.Bairro</dd>
+                    <dt class="col-detalhe">Bairro</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.Bairro</dd>
 
-                    <dt class=".col-sm-3">Município</dt>
-                    <dd class="col-sm-7">@Model.Municipio - @Model.Uf</dd>
+                    <dt class="col-detalhe">Município</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.Municipio - @Model.Uf</dd>
 
-                    <dt class=".col-sm-3">Data Cadastro</dt>
-                    <dd class="col-sm-7">@Model.DataCadastro.ToShortDateString()</dd>
+                    <dt class="col-detalhe">Data Cadastro</dt>
+                    <dd class="col-sm-7 col-detalhe-sm">@Model.DataCadastro.ToShortDateString()</dd>
                 </dl>
             </div>
         </div>
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <a asp-action="Index" class="btn btn-voltar btn-bg">
-            <i class="fa fa-arrow-left"></i> Voltar
+        <a asp-action="Index" class="btn-gradiente btn-gradiente-cancelar">
+            <i class="fa fa-undo move-icone-esq"></i> Cancelar/Voltar
         </a>
         <div class="d-flex gap-2">
-            <a asp-action="Alterar" asp-route-id="@Model.IdUsuario" class="btn btn-alterar  btn-bg">
-                <i class="fa fa-edit"></i> Alterar
+            <a asp-action="Alterar" asp-route-id="@Model.IdUsuario" class="btn-gradiente btn-gradiente-alterar">
+                <i class="fa fa-edit move-icone-esq"></i> Alterar
             </a>
-            <a asp-action="Excluir" asp-route-id="@Model.IdUsuario" class="btn btn-excluir  btn-bg">
-                <i class="fa fa-trash"></i> Excluir
+            <a asp-action="Excluir" asp-route-id="@Model.IdUsuario" class="btn-gradiente btn-gradiente-excluir">
+                <i class="fa fa-trash-o move-icone-esq"></i> Excluir
             </a>
         </div>
     </div>
 </div>
+
 @section Scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function () {

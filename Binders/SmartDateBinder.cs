@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace Ordem_Servicos_Web.Binders
 {
 
-    public class DateBinder : IModelBinder
+    public class SmartDateBinder : IModelBinder
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {

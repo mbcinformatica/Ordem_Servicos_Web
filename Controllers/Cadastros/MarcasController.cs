@@ -26,7 +26,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Marcas.AsQueryable();
 
@@ -121,14 +122,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                 if (ModelState.IsValid)
                 {
-                    // Verifica duplicidade de CPF/CNPJ
-                    bool existe = _context.Marcas.Any(ma => ma.Descricao == marca.Descricao);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"A Marca {marca.Descricao} já Está Cadastrada.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(marca);
-                    }
 
                     _context.Marcas.Add(marca);
                     _context.SaveChanges();
@@ -187,14 +180,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 if (ModelState.IsValid)
 
                 {
-                    // Verifica duplicidade ao alterar (exceto o próprio registro)
-                    bool existe = _context.Marcas.Any(ma => ma.Descricao == marca.Descricao && ma.IdMarca != marca.IdMarca);
-                    if (existe)
-                    {
-                        TempData["Mensagem"] = $"A Marca {marca.Descricao} já Está Cadastrada.";
-                        TempData["MensagemTipo"] = "aviso";
-                        return View(marca);
-                    }
 
                     _context.Marcas.Update(marca); 
                     _context.SaveChanges();
@@ -267,14 +252,5 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             }
             return RedirectToAction("Index");
         }
-
-         // GET: Verificar Existência de descricão
-        [HttpGet]
-        public async Task<JsonResult> VerificarDescricaoMarca(string descricaoMarca)
-        {
-            bool existe = _context.Marcas.Any(ma => ma.Descricao == descricaoMarca);
-            return Json(new { existe });
-        }
-
     }
 }

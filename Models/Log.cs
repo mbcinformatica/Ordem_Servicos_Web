@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordem_Servicos_Web.Models
@@ -9,7 +8,6 @@ namespace Ordem_Servicos_Web.Models
     {
         // Chave primária
         [Key]
-        [Column("Id")]
         public int Id { get; set; }
 
         // Timestamp of when the log entry was created
@@ -21,15 +19,10 @@ namespace Ordem_Servicos_Web.Models
         // The log message
         public string Message { get; set; } = string.Empty;
 
-        // The exception details, if any
-        public string? Exception { get; set; }
-
         // Additional properties or context for the log entry
         public string? Properties { get; set; }
 
-        // User ID associated with the log entry (if applicable)
-        [Column("IDUsuario")]
-        public int IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
 
         // Action performed (e.g., Create, Update, Delete)
         public string Acao { get; set; } = string.Empty;
@@ -45,9 +38,6 @@ namespace Ordem_Servicos_Web.Models
         public string? Observacao { get; set; }
 
         // Navigation property to the associated user (if applicable)
-        [ForeignKey("IdUsuario")]
-        public virtual Usuario? Usuario { get; set; }
-
-
+        [ForeignKey("IdUsuario")] public virtual Usuario? Usuario { get; set; }
     }
 }

@@ -8,12 +8,12 @@ using Ordem_Servicos_Web.ViewModels;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class ProdutosController(MeuDbContext context, ILogger<ProdutosController> logger, PermissaoService permissaoService, EntidadesService entidadesService) : Controller
+    public class ProdutosController(MeuDbContext context, ILogger<ProdutosController> logger, PermissaoService permissaoService, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<ProdutosController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
-        private readonly EntidadesService _entidadesService = entidadesService;
+        private readonly LogService _logService = logService;
 
         // Index com paginação + pesquisa
         public IActionResult Index(int page = 1, string search = "", string column = "Descricao")
@@ -27,6 +27,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
+            if (page < 1) page = 1;
             int pageSize = 10;
 
             var query = _context.Produtos
@@ -92,16 +93,16 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         query = query.Where(pr => pr.IdProduto == id);
                     break;
                 case "IdProdutoInterno":
-                    query = query.Where(pr => pr.IdProdutoInterno.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+                    query = query.Where(pr => pr.IdProdutoInterno != null && pr.IdProdutoInterno.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
                     break;
                 case "IdProdutoFabricante":
-                    query = query.Where(pr => pr.IdProdutoFabricante.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+                    query = query.Where(pr => pr.IdProdutoFabricante != null && pr.IdProdutoFabricante.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
                     break;
                 case "FornecedorNome":
-                    query = query.Where(pr => pr.Fornecedor.NomeRazaoSocial.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+                    query = query.Where(pr => pr.Fornecedor != null && pr.Fornecedor.NomeRazaoSocial.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
                     break;
                 default: // Descricao
-                    query = query.Where(pr => pr.Descricao.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+                    query = query.Where(pr => pr.Descricao != null && pr.Descricao.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
                     break;
             }
             return query;
@@ -140,6 +141,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
+
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");
 
@@ -174,13 +176,17 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         IdUnidade = model.IdUnidade,
                         PrecoCompra = model.PrecoCompra,
                         PrecoVenda = model.PrecoVenda,
-                        EstoqueAtual = model.EstoqueAtual,
-                        EstoqueMinimo = model.EstoqueMinimo,
+                        EstoqueAtual = (Int32?)(model.EstoqueAtual ?? 0m),
+                        EstoqueMinimo = (Int32?)(model.EstoqueMinimo ?? 0m),
                         Imagem = imagemBytes
                     };
 
+
                     _context.Produtos.Add(produto);
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Criar", "Produtos", produto.IdProduto, produto.Descricao, "Registro Criado");
 
                     TempData["Mensagem"] = "Produto incluído com sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -189,16 +195,14 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 else
                 {
                     TempData["Mensagem"] = "Erro na validação das informações. Tente novamente.";
-                    TempData["MensagemTipo"] = "aviso";
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao incluir produto no banco de dados.");
                 TempData["Mensagem"] = "Erro ao salvar no banco de dados. Tente novamente.";
-                TempData["MensagemTipo"] = "erro";
             }
-
+            TempData["MensagemTipo"] = "erro";
             return View(model);
         }
 
@@ -230,9 +234,9 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             var model = new ProdutoViewModel
             {
                 IdProduto = produto.IdProduto,
-                IdProdutoInterno = produto.IdProdutoInterno,
-                IdProdutoFabricante = produto.IdProdutoFabricante,
-                Descricao = produto.Descricao,
+                IdProdutoInterno = produto.IdProdutoInterno ?? string.Empty,
+                IdProdutoFabricante = produto.IdProdutoFabricante ?? string.Empty,
+                Descricao = produto.Descricao ?? string.Empty,
                 IdFornecedor = produto.IdFornecedor,
                 IdMarca = produto.IdMarca,
                 IdModelo = produto.IdModelo,
@@ -259,60 +263,58 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         public IActionResult Alterar(ProdutoViewModel model, IFormFile Imagem, string ImagemBase64)
         {
             try
-
             {
-
+                // Evita validação automática desses campos
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");
 
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    TempData["Mensagem"] = "Ocorreu um Erro na Validação das Informações. Tente Novamente.";
-                    TempData["MensagemTipo"] = "erro";
-                    return View(model);
+
+                    var produtoDb = _context.Produtos.Find(model.IdProduto);
+                    if (produtoDb == null) return NotFound();
+
+                    // Atualiza campos
+                    produtoDb.IdProdutoInterno = model.IdProdutoInterno;
+                    produtoDb.IdProdutoFabricante = model.IdProdutoFabricante;
+                    produtoDb.PrecoCompra = model.PrecoCompra;
+                    produtoDb.PrecoVenda = model.PrecoVenda;
+                    produtoDb.EstoqueAtual = (Int32?)(model.EstoqueAtual ?? 0m);
+                    produtoDb.EstoqueMinimo = (Int32?)(model.EstoqueMinimo ?? 0m);
+
+                    // Atualiza imagem
+                    if (Imagem != null && Imagem.Length > 0)
+                    {
+                        using var ms = new MemoryStream();
+                        Imagem.CopyTo(ms);
+                        produtoDb.Imagem = ms.ToArray();
+                    }
+                    else if (!string.IsNullOrEmpty(ImagemBase64))
+                    {
+                        produtoDb.Imagem = Convert.FromBase64String(ImagemBase64);
+                    }
+
+                    _context.Produtos.Update(produtoDb);
+                    _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Alterar", "Produtos", produtoDb.IdProduto, produtoDb.Descricao, "Registro Alterado");
+
+                    TempData["Mensagem"] = "Produto alterado com sucesso!";
+                    TempData["MensagemTipo"] = "sucesso";
+                    return RedirectToAction("Index");
                 }
-
-                var produtoDb = _context.Produtos.Find(model.IdProduto);
-                if (produtoDb == null) return NotFound();
-
-                produtoDb.IdProdutoInterno = model.IdProdutoInterno;
-                produtoDb.IdProdutoFabricante = model.IdProdutoFabricante;
-                produtoDb.Descricao = model.Descricao;
-                produtoDb.IdFornecedor = model.IdFornecedor;
-                produtoDb.IdMarca = model.IdMarca;
-                produtoDb.IdModelo = model.IdModelo;
-                produtoDb.IdUnidade = model.IdUnidade;
-                produtoDb.PrecoCompra = model.PrecoCompra;
-                produtoDb.PrecoVenda = model.PrecoVenda;
-                produtoDb.EstoqueAtual = model.EstoqueAtual;
-                produtoDb.EstoqueMinimo = model.EstoqueMinimo;
-
-
-                // Atualiza imagem
-                if (Imagem != null && Imagem.Length > 0)
+                else
                 {
-                    using var ms = new MemoryStream();
-                    Imagem.CopyTo(ms);
-                    produtoDb.Imagem = ms.ToArray();
+                    TempData["Mensagem"] = "Erro na validação das informações. Tente novamente.";
                 }
-                else if (!string.IsNullOrEmpty(ImagemBase64))
-                {
-                    produtoDb.Imagem = Convert.FromBase64String(ImagemBase64);
-                }
-                 _context.Produtos.Update(produtoDb);
-                 _context.SaveChanges();
-
-                 TempData["Mensagem"] = "Produto alterado com sucesso!";
-                 TempData["MensagemTipo"] = "sucesso";
-                 return RedirectToAction("Index");
-
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao alterar produto no banco de dados.");
                 TempData["Mensagem"] = "Erro ao salvar no banco de dados. Tente novamente.";
-                TempData["MensagemTipo"] = "erro";
             }
+            TempData["MensagemTipo"] = "erro";
             return View(model);
         }
 
@@ -347,6 +349,10 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 {
                     _context.Produtos.Remove(produto);
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Excluir", "Produtos", produto.IdProduto, produto.Descricao, "Registro Excluido");
+
                     TempData["Mensagem"] = "Produto excluído com sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
                 }
@@ -379,9 +385,9 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
             var model = new ProdutoViewModel
             {
                 IdProduto = produto.IdProduto,
-                IdProdutoInterno = produto.IdProdutoInterno,
-                IdProdutoFabricante = produto.IdProdutoFabricante,
-                Descricao = produto.Descricao,
+                IdProdutoInterno = produto.IdProdutoInterno ?? string.Empty,
+                IdProdutoFabricante = produto.IdProdutoFabricante ?? string.Empty,
+                Descricao = produto.Descricao ?? string.Empty,
                 PrecoCompra = produto.PrecoCompra,
                 PrecoVenda = produto.PrecoVenda,
                 EstoqueAtual = produto.EstoqueAtual,
@@ -397,5 +403,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
             return View(model);
         }
+
     }
 }

@@ -66,10 +66,10 @@ namespace Ordem_Servicos_Web.Helpers
             return valor.ToString("C2", CultureInfo.GetCultureInfo("pt-BR"));
         }
 
-        public static string FormatQuantidade(decimal quantidade)
+        public static string FormatQuantidade(int quantidade)
         {
-            // 🔹 Sempre número com 3 casas decimais
-            return quantidade.ToString("N3", CultureInfo.GetCultureInfo("pt-BR"));
+            // 🔹 Exibe número inteiro puro, sem separador de milhar
+            return quantidade.ToString("G", CultureInfo.InvariantCulture);
         }
     }
 }

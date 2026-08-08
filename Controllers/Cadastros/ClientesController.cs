@@ -6,12 +6,11 @@ using Ordem_Servicos_Web.Services;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class ClientesController(MeuDbContext context, ILogger<ClientesController> logger, PermissaoService permissaoService, EntidadesService entidadesService, LogService logService) : Controller
+    public class ClientesController(MeuDbContext context, ILogger<ClientesController> logger, PermissaoService permissaoService, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<ClientesController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
-        private readonly EntidadesService _entidadesService = entidadesService;
         private readonly LogService _logService = logService;
 
         // Index com paginação + pesquisa
@@ -26,8 +25,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Clientes.AsQueryable();
 
@@ -84,7 +83,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         query = query.Where(c => c.IdCliente == id);
                     break;
                 case "CpfCnpj":
-                    query = query.Where(c => c.CpfCnpj.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+                    query = query.Where(c => c.CpfCnpj != null && c.CpfCnpj.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+
                     break;
                 default: // NomeRazaoSocial
                     query = query.Where(c => c.NomeRazaoSocial.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
@@ -176,8 +176,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                
-                if (ModelState.IsValid)
+               if (ModelState.IsValid)
                 {
                     _context.Clientes.Update(cliente); 
                     _context.SaveChanges();

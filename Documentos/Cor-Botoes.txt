@@ -1,0 +1,49 @@
+<div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+    <button class="btn-gradiente" style="background:#FF0000; color:white;">Vermelho</button>
+    <button class="btn-gradiente" style="background:#00FF00; color:black;">Verde</button>
+    <button class="btn-gradiente" style="background:#0000FF; color:white;">Azul</button>
+    <button class="btn-gradiente" style="background:#FFFF00; color:black;">Amarelo</button>
+    <button class="btn-gradiente" style="background:#00FFFF; color:black;">Ciano</button>
+    <button class="btn-gradiente" style="background:#FF00FF; color:white;">Magenta</button>
+    <button class="btn-gradiente" style="background:#000000; color:white;">Preto</button>
+    <button class="btn-gradiente" style="background:#FFFFFF; color:black; border:1px solid #ccc;">Branco</button>
+    <button class="btn-gradiente" style="background:#808080; color:white;">Cinza</button>
+    <button class="btn-gradiente" style="background:#A52A2A; color:white;">Marrom</button>
+    <button class="btn-gradiente" style="background:#FFC0CB; color:black;">Rosa</button>
+    <button class="btn-gradiente" style="background:#800080; color:white;">Roxo</button>
+    <button class="btn-gradiente" style="background:#FFA500; color:black;">Laranja</button>
+    <button class="btn-gradiente" style="background:#40E0D0; color:black;">Turquesa</button>
+    <button class="btn-gradiente" style="background:#8A2BE2; color:white;">Violeta</button>
+    <button class="btn-gradiente" style="background:#C0C0C0; color:black;">Prata</button>
+    <button class="btn-gradiente" style="background:#FFD700; color:black;">Ouro</button>
+    <button class="btn-gradiente" style="background:#808000; color:white;">Oliva</button>
+    <button class="btn-gradiente" style="background:#000080; color:white;">Azul Marinho</button>
+    <button class="btn-gradiente" style="background:#008080; color:white;">Teal</button>
+    <button class="btn-gradiente" style="background:#FF7F50; color:black;">Coral</button>
+    <button class="btn-gradiente" style="background:#4B0082; color:white;">Índigo</button>
+    <button class="btn-gradiente" style="background:#00CED1; color:black;">Turquesa Escuro</button>
+    <button class="btn-gradiente" style="background:#C71585; color:white;">Violeta Vermelho</button>
+    <button class="btn-gradiente" style="background:#D3D3D3; color:black;">Cinza Claro</button>
+    <button class="btn-gradiente" style="background:#FF6347; color:white;">Tomate</button>
+    <button class="btn-gradiente" style="background:#F08080; color:black;">Coral Claro</button>
+    <button class="btn-gradiente" style="background:#ADD8E6; color:black;">Azul Claro</button>
+    <button class="btn-gradiente" style="background:#FFFFF0; color:black;">Marfim</button>
+    <button class="btn-gradiente" style="background:#E6E6FA; color:black;">Lavanda</button>
+    <button class="btn-gradiente" style="background:#A9A9A9; color:white;">Cinza Escuro</button>
+    <button class="btn-gradiente" style="background:#FFB6C1; color:black;">Rosa Claro</button>
+    <button class="btn-gradiente" style="background:#FA8072; color:white;">Salmão</button>
+    <button class="btn-gradiente" style="background:#2E8B57; color:white;">Verde Mar</button>
+    <button class="btn-gradiente" style="background:#4682B4; color:white;">Azul Aço</button>
+    <button class="btn-gradiente" style="background:#556B2F; color:white;">Verde Oliva</button>
+    <button class="btn-gradiente" style="background:#708090; color:white;">Cinza Ardósia</button>
+    <button class="btn-gradiente" style="background:#00008B; color:white;">Azul Escuro</button>
+    <button class="btn-gradiente" style="background:#FF8C00; color:black;">Laranja Escuro</button>
+    <button class="btn-gradiente" style="background:#006400; color:white;">Verde Escuro</button>
+    <button class="btn-gradiente" style="background:#D2691E; color:white;">Marrom Chocolate</button>
+    <button class="btn-gradiente" style="background:#48D1CC; color:black;">Turquesa Médio</button>
+    <button class="btn-gradiente" style="background:#008000; color:white;">Verde Marinho</button>
+    <button class="btn-gradiente" style="background:#9370DB; color:white;">Púrpura Médio</button>
+    <button class="btn-gradiente" style="background:#191970; color:white;">Azul Meia-Noite</button>
+    <button class="btn-gradiente" style="background:#4169E1; color:white;">Azul Real</button>
+    <button class="btn-gradiente" style="background:#FF4500; color:white;">Laranja Vermelho</button>
+</div>

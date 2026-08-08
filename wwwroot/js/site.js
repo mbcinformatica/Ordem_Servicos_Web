@@ -54,8 +54,21 @@ FormUtils.enableEnterNavigation = function (form, options) {
         if ((target.tagName === "BUTTON" && (!type || type.toLowerCase() === "submit")) ||
             (target.tagName === "INPUT" && type && type.toLowerCase() === "submit")) {
 
+            const camposObrigatorios = form.dataset.camposObrigatorios
+                ? form.dataset.camposObrigatorios.split(",").map(c => c.trim()).filter(c => c.length > 0)
+                : Array.from(form.querySelectorAll("[required]")).map(el => el.id || el.name);
+
             normalizarCampos(form);
-            form.submit();
+
+            var valido = true;
+            valido = await ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+        
+            if (valido) {             
+                form.submit();
+            } else {
+                e.preventDefault();
+                target.focus();
+            }
             return;
         }
 
@@ -65,9 +78,22 @@ FormUtils.enableEnterNavigation = function (form, options) {
         // se último campo e opção ativa → envia
         if (submitOnLastField && idx === focusables.length - 1) {
 
+            // Lê os campos obrigatórios direto do atributo data-campos-obrigatorios
+            const camposObrigatorios = form.dataset.camposObrigatorios
+                ? form.dataset.camposObrigatorios.split(",").map(c => c.trim()).filter(c => c.length > 0)
+                : Array.from(form.querySelectorAll("[required]")).map(el => el.id || el.name);
+
             normalizarCampos(form);
-            form.submit();
-            return;
+
+            var valido = true;
+            valido = await ValidacaoUtils.validarFormulario(form, camposObrigatorios);
+
+            if (valido) {
+                form.submit();
+            } else {
+                e.preventDefault();
+                target.focus();
+            }
         }
 
         // 🔹 roda validação genérica (local + duplicidade se existir)

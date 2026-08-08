@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MySqlX.XDevAPI;
 using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
@@ -7,12 +6,11 @@ using Ordem_Servicos_Web.Services;
 
 namespace Ordem_Servicos_Web.Controllers.Cadastros
 {
-    public class FornecedoresController(MeuDbContext context, ILogger<FornecedoresController> logger, PermissaoService permissaoService, EntidadesService entidadesService, LogService logService) : Controller
+    public class FornecedoresController(MeuDbContext context, ILogger<FornecedoresController> logger, PermissaoService permissaoService, LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<FornecedoresController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
-        private readonly EntidadesService _entidadesService = entidadesService;
         private readonly LogService _logService = logService;
 
         // Index com paginação + pesquisa
@@ -27,7 +25,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
-            int pageSize = 10;
+            if (page < 1) page = 1;
+            int pageSize = 13;
 
             var query = _context.Fornecedores.AsQueryable();
 
@@ -75,6 +74,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         // Método auxiliar para aplicar filtro
         private static IQueryable<Fornecedor> ApplySearchFilter(IQueryable<Fornecedor> query, string search, string column)
         {
+            search = search.ToLower().Trim();
+
             switch (column)
             {
                 case "IdFornecedor":
@@ -82,10 +83,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         query = query.Where(f => f.IdFornecedor == id);
                     break;
                 case "CpfCnpj":
-                    query = query.Where(f => f.CpfCnpj.StartsWith(search));
+                    query = query.Where(c => c.CpfCnpj != null && c.CpfCnpj.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
+
                     break;
                 default: // NomeRazaoSocial
-                    query = query.Where(f => f.NomeRazaoSocial.StartsWith(search));
+                    query = query.Where(c => c.NomeRazaoSocial.StartsWith(search, StringComparison.CurrentCultureIgnoreCase));
                     break;
             }
             return query;
@@ -122,8 +124,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "CpfCnpj", "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(fornecedor, normalizarCampos);
 
                 if (ModelState.IsValid)
                 {
@@ -180,8 +180,6 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "CpfCnpj", "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(fornecedor, normalizarCampos);
 
                 if (ModelState.IsValid)
                 {

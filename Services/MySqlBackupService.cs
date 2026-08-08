@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySqlConnector;
 using System.Diagnostics;
 using System.Text;
 
@@ -47,12 +47,12 @@ namespace Ordem_Servicos_Web.Services
                     RedirectStandardError = true,
                     UseShellExecute = false,
                     CreateNoWindow = true,
-                    StandardOutputEncoding = Encoding.UTF8 // 🔹 garante que o dump seja lido em UTF-8
+                    StandardOutputEncoding = Encoding.UTF8
                 };
 
                 using var process = Process.Start(psi);
                 if (process == null)
-                    throw new InvalidOperationException($"Não foi possível iniciar o mysqldump para a tabela {tableName}.");
+                    throw new InvalidOperationException($"Não foi Possível Iniciar o mysqldump para a Tabela {tableName}.");
 
                 string dump = await process.StandardOutput.ReadToEndAsync();
                 string error = await process.StandardError.ReadToEndAsync();
@@ -60,7 +60,7 @@ namespace Ordem_Servicos_Web.Services
                 await process.WaitForExitAsync();
 
                 if (process.ExitCode != 0)
-                    throw new Exception($"Erro ao executar mysqldump para {tableName}: {error}");
+                    throw new Exception($"Erro ao Executar mysqldump para {tableName}: {error}");
 
                 await File.WriteAllTextAsync(backupFilePath, dump, Encoding.UTF8);
                 arquivosGerados.Add(backupFilePath);

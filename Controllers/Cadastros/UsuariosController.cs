@@ -3,7 +3,6 @@ using Ordem_Servicos_Web.Data;
 using Ordem_Servicos_Web.Helpers;
 using Ordem_Servicos_Web.Models;
 using Ordem_Servicos_Web.Services;
-using Ordem_Servicos_Web.Services.Interfaces;
 using Ordem_Servicos_Web.ViewModels;
 
 
@@ -13,12 +12,12 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         MeuDbContext context,
         ILogger<UsuariosController> logger,
         PermissaoService permissaoService,
-        EntidadesService entidadesService) : Controller
+        LogService logService) : Controller
     {
         private readonly MeuDbContext _context = context;
         private readonly ILogger<UsuariosController> _logger = logger;
         private readonly PermissaoService _permissaoService = permissaoService;
-        private readonly EntidadesService _entidadesService = entidadesService;
+        private readonly LogService _logService = logService;
 
         // 🔹 Index: apenas ADMINISTRADOR pode listar usuários
         public IActionResult Index(int page = 1, string search = "", string column = "NomeUsuario")
@@ -32,6 +31,7 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                 return RedirectToAction("Index", "Home");
             }
 
+            if (page < 1) page = 1;
             int pageSize = 10;
 
             var query = _context.Usuarios.AsQueryable();
@@ -87,10 +87,10 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         query = query.Where(us => us.IdUsuario == id);
                     break;
                 case "Login":
-                    query = query.Where(us => us.Login.StartsWith(search));
+                    query = query.Where(us => us.Login != null && us.Login.StartsWith(search));
                     break;
                 default: // Nome Usuário
-                    query = query.Where(us => us.NomeUsuario.StartsWith(search));
+                    query = query.Where(us => us.NomeUsuario != null && us.NomeUsuario.StartsWith(search));
                     break;
             }
             return query;
@@ -128,8 +128,8 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(model, normalizarCampos);
+                ModelState.Remove("Imagem");
+                ModelState.Remove("ImagemBase64");
 
                 if (ModelState.IsValid)
                 {
@@ -140,6 +140,14 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
                         using var ms = new MemoryStream();
                         Imagem.CopyTo(ms);
                         imagemBytes = ms.ToArray();
+                    }
+                    else
+                    {
+                        var caminhoImagemPadrao = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagens", "sem-imagem.png");
+                        if (System.IO.File.Exists(caminhoImagemPadrao))
+                        {
+                            imagemBytes = System.IO.File.ReadAllBytes(caminhoImagemPadrao);
+                        }
                     }
 
                     var usuario = new Usuario
@@ -162,6 +170,9 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                     _context.Usuarios.Add(usuario);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Criar", "Usuarios", usuario.IdUsuario, usuario.NomeUsuario, "Registro Criado");
 
                     TempData["Mensagem"] = "Usuário Incluído com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -223,21 +234,16 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
         {
             try
             {
-                var normalizarCampos = new[] { "Cep", "FoneFixo", "FoneCelular", "Email" };
-                _entidadesService.NormalizarCampos(model, normalizarCampos);
 
                 ModelState.Remove("Imagem");
                 ModelState.Remove("ImagemBase64");
 
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-
                     var usuarioDb = _context.Usuarios.Find(model.IdUsuario);
                     if (usuarioDb == null) return NotFound();
 
                     // Atualiza campos básicos
-                    usuarioDb.NomeUsuario = model.NomeUsuario;
-                    usuarioDb.Login = model.Login;
                     usuarioDb.Email = model.Email;
                     usuarioDb.Cep = model.Cep;
                     usuarioDb.FoneFixo = model.FoneFixo;
@@ -267,6 +273,9 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                     _context.Update(usuarioDb);
                     _context.SaveChanges();
+                    
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Alterar", "Usuarios", usuarioDb.IdUsuario, usuarioDb.NomeUsuario, "Registro Alterado");
 
                     TempData["Mensagem"] = "Usuário Alterado com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
@@ -325,6 +334,11 @@ namespace Ordem_Servicos_Web.Controllers.Cadastros
 
                     _context.Usuarios.Remove(usuario);
                     _context.SaveChanges();
+
+                    var idUsuario = UsuarioSessaoHelper.ObterUsuarioLogado(HttpContext);
+                    _logService.Registrar(idUsuario, "Excluir", "Usuarios", usuario.IdUsuario, usuario.NomeUsuario, "Registro Excluido");
+
+
                     TempData["Mensagem"] = "Usuário e Permissões Excluídos com Sucesso!";
                     TempData["MensagemTipo"] = "sucesso";
                 }

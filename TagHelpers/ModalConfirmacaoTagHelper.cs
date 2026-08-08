@@ -45,7 +45,7 @@ namespace Ordem_Servicos_Web.TagHelpers
             output.Attributes.SetAttribute("aria-hidden", "true");
 
             // Token antiforgery
-var tokens = _antiforgery.GetAndStoreTokens(httpContextAccessor.HttpContext!);
+            var tokens = _antiforgery.GetAndStoreTokens(httpContextAccessor.HttpContext!);
 
             var antiForgeryInput = $"<input name='{tokens.FormFieldName}' type='hidden' value='{tokens.RequestToken}' />";
 
@@ -54,23 +54,23 @@ var tokens = _antiforgery.GetAndStoreTokens(httpContextAccessor.HttpContext!);
             var voltarUrl = urlHelper.Action(ActionNameSecundario, ActionControllerSecundario);
 
             var html = $@"
-<div class='modal-dialog modal-dialog-centered'>
+<div class='modal-dialog modal-dialog-centered mensagem-texto>
     <div class='modal-content text-center {ClasseMensagem}'>
         <div class='modal-header d-flex justify-content-center align-items-center fw-bold fs-5'>
             <i class='{Icone} me-2'></i>
             <span>{Titulo}</span>
         </div>
         <div class='modal-body text-center fw-bold fs-5'>
-            <span class='mensagem-texto'>{Mensagem}</span>
+            <span'>{Mensagem}</span>
             <form asp-controller='{ActionController}' asp-action='{ActionName}' method='post' class='text-center mt-4'>
                 {antiForgeryInput}
                 {(string.IsNullOrEmpty(IdRegistro) ? "" : $"<input type='hidden' name='id' value='{IdRegistro}' />")}
                 <div class='d-flex justify-content-center gap-3'>
-                    <button type='submit' class='btn {ClasseBotaoPrincipal} btn-bg'>
-                        <i class='{IconeBotaoPrincipal}'></i> {TextoBotaoPrincipal}
+                    <button type='submit' class='btn-gradiente {ClasseBotaoPrincipal}'>
+                        <i class='{IconeBotaoPrincipal} move-icone-esq'></i> {TextoBotaoPrincipal}
                     </button>
-                    <a href='{voltarUrl}' class='btn {ClasseBotaoSecundario} btn-bg'>
-                        <i class='fa fa-arrow-left'></i> {TextoBotaoCancelar}
+                    <a href='{voltarUrl}' class='btn-gradiente {ClasseBotaoSecundario}'>
+                        <i class='fa fa-undo move-icone-esq'></i> {TextoBotaoCancelar}
                     </a>
                 </div>
             </form>

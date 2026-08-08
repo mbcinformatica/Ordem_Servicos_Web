@@ -30,16 +30,12 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// Model Binder para SmartDecimal
+// Model Binder para SmartDecimal, SmartDate, SmartCep, SmartTelefone, SmartCpfCnpj
+
 builder.Services.AddControllers(options =>
 {
-    // Binder para valores monetários e quantidades
-    options.ModelBinderProviders.Insert(0, new SmartDecimalBinderProvider());
-
-    // Binder para datas em múltiplos formatos
-    options.ModelBinderProviders.Insert(0, new DateBinderProvider());
+    options.ModelBinderProviders.Insert(0, new Ordem_Servicos_Web.Binders.SmartBinderProvider());
 });
-
 
 // MVC + filtros globais
 builder.Services.AddControllersWithViews(options =>
@@ -81,9 +77,6 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
 // Serviços CNPJ
 builder.Services.AddHttpClient<ICnpjService<Cliente>, CnpjService<Cliente>>();
 builder.Services.AddHttpClient<ICnpjService<Fornecedor>, CnpjService<Fornecedor>>();
-
-// Registrar EntidadesService
-builder.Services.AddScoped<EntidadesService>();
 
 var app = builder.Build();
 

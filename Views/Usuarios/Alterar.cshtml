@@ -4,174 +4,177 @@
     ViewData["Title"] = "Alterar Usuário";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
 <partial name="_MensagemToast" />
 
-<form asp-action="Alterar" method="post" id="formUsuario" enctype="multipart/form-data">
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="card-form">
+        <div class="card-body">
+            <form asp-action="Alterar" method="post" id="formUsuario" enctype="multipart/form-data"
+                  data-campos-obrigatorios="Cep,
+                Endereco,
+                Bairro,
+                Municipio,
+                Uf,
+                FoneCelular,
+                Email">
 
-    <!-- Linha 1 -->
-    <input type="hidden" asp-for="IdUsuario" />
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="NomeUsuario" class="label-destaque">Nome do Usuário</label>
-            <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase maiusculo noneUsuario" maxlength="150" readonly style="width:500px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Login" class="label-destaque">Login</label>
-            <input asp-for="Login" id="Login" class="form-control login" maxlength="50" readonly style="width:200px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Senha" class="label-destaque">Nova Senha</label>
-            <input asp-for="Senha" id="Senha" type="password" class="form-control senha" maxlength="50" style="width:200px;" autofocus />
-        </div>
-        <div class="col-auto">
-            <label asp-for="ConfirmaSenha" class="label-destaque">Confirma a Senha</label>
-            <input asp-for="ConfirmaSenha" id="ConfirmaSenha" type="password" class="form-control confirmaSenha" maxlength="50" style="width:200px;" />
+                <input type="hidden" asp-for="IdUsuario" />
+
+                <!-- Linha 1 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="NomeUsuario" class="label-destaque">Nome do Usuário</label>
+                        <input asp-for="NomeUsuario" id="NomeUsuario" class="form-control text-uppercase maiusculo noneUsuario" readonly style="width:500px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="Login" class="label-destaque">Login</label>
+                        <input asp-for="Login" id="Login" class="form-control login" readonly style="width:200px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="Senha" class="label-destaque">Nova Senha</label>
+                        <input asp-for="Senha" id="Senha" type="password" class="form-control senha" style="width:200px;" data-focus="true" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="ConfirmaSenha" class="label-destaque">Confirma a Senha</label>
+                        <input asp-for="ConfirmaSenha" id="ConfirmaSenha" type="password" class="form-control confirmaSenha" style="width:200px;" />
+                    </div>
+                </div>
+
+                <!-- Linha 2 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="Cep" class="label-destaque">CEP</label>
+                        <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control cep somentenumeros" style="width:120px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="Endereco" class="label-destaque">Endereço</label>
+                        <input asp-for="Endereco" id="Endereco" class="form-control text-uppercase maiusculo" style="width:450px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="Numero" class="label-destaque">Número</label>
+                        <input asp-for="Numero" id="Numero" class="form-control text-uppercase text-end maiusculo numero" style="width:100px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="Bairro" class="label-destaque">Bairro</label>
+                        <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase maiusculo" style="width:432px;" />
+                    </div>
+                </div>
+
+                <!-- Linha 3 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="Municipio" class="label-destaque">Município</label>
+                        <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase maiusculo" style="width:580px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="Uf" class="label-destaque">UF</label>
+                        <estado-select asp-for="Uf" id="Uf"></estado-select>
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
+                        <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control telefone somentenumeros" style="width:160px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
+                        <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control telefone somentenumeros" style="width:160px;" />
+                    </div>
+                </div>
+
+                <!-- Linha 4 -->
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        <label asp-for="Email" class="label-destaque">Email</label>
+                        <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo email" style="width:585px;" />
+                    </div>
+                    <div class="col-auto">
+                        <label for="Imagem" class="label-destaque">Foto do Usuário</label>
+                        <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
+                    </div>
+                    <div class="col-auto">
+                        <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
+                        <input asp-for="DataCadastro" id="DataCadastro" type="date" class="form-control" readonly style="width:180px;" />
+                    </div>
+                </div>
+
+                <div class="row mb-2 g-4">
+                    <div class="col-auto">
+                        @if (Model.Imagem != null)
+                        {
+                            <input type="hidden" name="ImagemBase64" value="@Convert.ToBase64String(Model.Imagem)" />
+                            <img src="data:image/png;base64,@Convert.ToBase64String(Model.Imagem)"
+                                 alt="Foto atual" style="width:120px;height:120px;border-radius:50%;" />
+                        }
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" id="btnSalvar" class="btn-gradiente btn-gradiente-salvar">
+                        <i class="fa fa-floppy-disk move-icone-esq"></i> Salvar Alterações
+                    </button>
+                    <a asp-action="Index" class="btn-gradiente btn-gradiente-cancelar">
+                        <i class="fa fa-undo move-icone-esq"></i> Cancelar/Voltar
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-
-    <!-- Linha 2 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="Cep" class="label-destaque">CEP</label>
-            <input asp-for="Cep" id="Cep" type="text" inputmode="numeric" class="form-control cep" style="width:120px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Endereco" class="label-destaque">Endereço</label>
-            <input asp-for="Endereco" id="Endereco" class="form-control text-uppercase maiusculo" maxlength="100" style="width:450px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Numero" class="label-destaque">Número</label>
-            <input asp-for="Numero" id="Numero" class="form-control text-uppercase text-end maiusculo numero" maxlength="10" style="width:100px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Bairro" class="label-destaque">Bairro</label>
-            <input asp-for="Bairro" id="Bairro" class="form-control text-uppercase maiusculo" maxlength="50" style="width:432px;" />
-        </div>
-    </div>
-
-    <!-- Linha 3 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="Municipio" class="label-destaque">Município</label>
-            <input asp-for="Municipio" id="Municipio" class="form-control text-uppercase maiusculo" maxlength="200" style="width:580px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="Uf" class="label-destaque">UF</label>
-            <estado-select asp-for="Uf" id="Uf"></estado-select>
-        </div>
-        <div class="col-auto">
-            <label asp-for="FoneFixo" class="label-destaque">Fone Fixo</label>
-            <input asp-for="FoneFixo" id="FoneFixo" type="text" inputmode="numeric" class="form-control telefone" style="width:160px;" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="FoneCelular" class="label-destaque">Fone Celular</label>
-            <input asp-for="FoneCelular" id="FoneCelular" type="text" inputmode="numeric" class="form-control telefone" style="width:160px;" />
-        </div>
-    </div>
-
-    <!-- Linha 4 -->
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            <label asp-for="Email" class="label-destaque">Email</label>
-            <input asp-for="Email" id="Email" class="form-control text-lowercase minusculo email" style="width:585px;" />
-        </div>
-        <div class="col-auto">
-            <label for="Imagem" class="label-destaque">Foto do Usuário</label>
-            <input type="file" id="Imagem" name="Imagem" class="form-control imagemGet" accept="image/*" />
-        </div>
-        <div class="col-auto">
-            <label asp-for="DataCadastro" class="label-destaque">Data de Cadastro</label>
-            <input asp-for="DataCadastro" id="DataCadastro" type="date" class="form-control" readonly style="width:180px;" />
-        </div>
-    </div>
-
-    <div class="row mb-2 g-4">
-        <div class="col-auto">
-            @if (Model.Imagem != null)
-            {
-                <input type="hidden" name="ImagemBase64" value="@Convert.ToBase64String(Model.Imagem)" />
-                <img src="data:image/png;base64,@Convert.ToBase64String(Model.Imagem)"
-                     alt="Foto atual" style="width:120px;height:120px;border-radius:50%;" />
-            }
-        </div>
-    </div>
-
-    <!-- Botões -->
-    <div class="d-flex gap-2 mt-4">
-        <button type="submit" id="btnSalvar" class="btn btn-salvar btn-bg">
-            <i class="fa fa-save"></i> Salvar Alterações
-        </button>
-        <a asp-action="Index" class="btn btn-voltar btn-bg">
-            <i class="fa fa-arrow-left"></i> Voltar
-        </a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             bloquearMenu();
 
-            const nomeUsuario           = document.getElementById("NomeUsuario");
-            const cep                   = document.getElementById("Cep");
-            const foneFixo              = document.getElementById("FoneFixo");
-            const foneCelular           = document.getElementById("FoneCelular");
-            const email                 = document.getElementById("Email");
-            const btnSalvar             = document.getElementById("btnSalvar");
-            const loginInput            = document.getElementById("Login");
-            const senhaInput            = document.getElementById("Senha");
-            const confirmaSenhaInput    = document.getElementById("ConfirmaSenha");
-            const imagem                = document.getElementById("Imagem");
-            const form                  = document.getElementById("formUsuario");
-            
+            const cep = document.getElementById("Cep");
+            const foneFixo = document.getElementById("FoneFixo");
+            const foneCelular = document.getElementById("FoneCelular");
+            const btnSalvar = document.getElementById("btnSalvar");
+            const form = document.getElementById("formUsuario");
+            const imagem = document.getElementById("Imagem");
+
             const camposObrigatorios = [
                 "Cep",
                 "Endereco",
                 "Bairro",
                 "Municipio",
-                "Uf"
+                "Uf",
+                "FoneCelular",
+                "Email"
             ];
 
-            aplicarMaiusculoCampos(".maiusculo");
-            aplicarMinusculoCampos(".minusculo");
-
             // Aplicar máscaras
-            if (cep)         aplicarMascaraCampo(cep, "cep");
-            if (foneFixo)    aplicarMascaraCampo(foneFixo, "telefone");
+            if (cep) aplicarMascaraCampo(cep, "cep");
+            if (foneFixo) aplicarMascaraCampo(foneFixo, "telefone");
             if (foneCelular) aplicarMascaraCampo(foneCelular, "telefone");
 
             // 🔹 Configuração automática de validação
             if (form) {
                 ValidacaoUtils.configurarValidacaoCampos(form, camposObrigatorios, "USUARIOS");
-                ValidacaoUtils.validarFormulario(form, camposObrigatorios);
 
                 if (window.FormUtils && typeof FormUtils.enableEnterNavigation === 'function') {
                     FormUtils.enableEnterNavigation(form, { allowTextarea: true });
                 }
-
-                form.addEventListener("submit", function () {
-                    if (cep)         semMascaraCampo(cep);
-                    if (foneFixo)    semMascaraCampo(foneFixo);
-                    if (foneCelular) semMascaraCampo(foneCelular);
-                });
             }
 
-            // Focar no botão salvar a partir do campo de email
-            if (email && btnSalvar) {
-                email.addEventListener("blur", function () {
-                    if (email.classList.contains("Invalid")) {
-                        email.focus();
-                    } else {
-                        btnSalvar.focus();
-                    }
+            if (btnSalvar && form) {
+                btnSalvar.addEventListener("click", function(e) {
+                    btnSalvar.focus();
+                    const enterEvent = new KeyboardEvent("keydown", {
+                        key: "Enter",
+                        code: "Enter",
+                        bubbles: true
+                    });
+                    btnSalvar.dispatchEvent(enterEvent);
+                    form.requestSubmit();
                 });
-                email.addEventListener("keydown", function (e) {
+
+                btnSalvar.addEventListener("keydown", function(e) {
                     if (e.key === "Enter") {
-                        e.preventDefault();
-                        btnSalvar.focus();
+                        form.requestSubmit();
                     }
                 });
             }

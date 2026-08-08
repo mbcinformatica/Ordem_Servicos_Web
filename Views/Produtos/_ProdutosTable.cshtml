@@ -4,21 +4,21 @@
 {
     <tr>
         <td>
-            <a asp-action="Alterar" asp-route-id="@produto.IdProduto" class="btn btn-alterar btn-sm">
-                <i class="fa fa-edit"></i> Alterar
+            <a asp-action="Alterar" asp-route-id="@produto.IdProduto" class="btn-gradiente btn-gradiente-alterar btn-gradiente-sm">
+                <i class="fa fa-edit move-icone-esq"></i> Alterar
             </a>
-            <a asp-action="Excluir" asp-route-id="@produto.IdProduto" class="btn btn-excluir btn-sm">
-                <i class="fa fa-trash"></i> Excluir
+            <a asp-action="Excluir" asp-route-id="@produto.IdProduto" class="btn-gradiente btn-gradiente-excluir btn-gradiente-sm">
+                <i class="fa fa-trash move-icone-esq"></i> Excluir
             </a>
-            <a asp-action="Detalhes" asp-route-id="@produto.IdProduto" class="btn btn-detalhes btn-sm">
-                <i class="fa fa-eye"></i> Detalhes
+            <a asp-action="Detalhes" asp-route-id="@produto.IdProduto" class="btn-gradiente btn-gradiente-detalhes btn-gradiente-sm">
+                <i class="fa fa-eye move-icone-esq"></i> Detalhes
             </a>
         </td>
-        <td>
+        <td class="text-center">
             @if (produto.Imagem != null)
             {
                 <img src="data:image/png;base64,@Convert.ToBase64String(produto.Imagem)"
-                     alt="Imagem do Produto" style="width:50px;height:50px;border-radius:50%;" />
+                     alt="Imagem do Produto" style="width:30px;height:30px;border-radius:50%;" />
             }
             else
             {
