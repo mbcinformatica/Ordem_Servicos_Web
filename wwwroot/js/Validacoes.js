@@ -358,6 +358,7 @@ async function validarProdutoInterno(input) {
 
 // Função Valida e-MAIL
 function validarEmail(input) {
+
     let valor = input.value.trim();
     let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (valor.length !== 0 && !regex.test(valor)) {
